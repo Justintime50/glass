@@ -31,13 +31,15 @@ services:
 
     # Use latest Mariadb
     db_blog:
-        image: mariadb:10.3
+        image: mysql:5.7.26
         restart: always
         container_name: 'blog-db'
         volumes:
             - ./db:/var/lib/mysql
         networks:
             - traefik
+        env_file:
+            - init-db.env
 
 networks:
     traefik:
