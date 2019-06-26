@@ -1,45 +1,42 @@
-version: '3.7'
-
+version: "3.7"
 services:
 
-    # Use latest Nginx to serve
-    nginx_blog:
+    blog_nginx:
         image: nginx:latest
         restart: always
-        container_name: 'blog-nginx'
+        container_name: blog-nginx
         volumes:
-            - ./laravel:/var/www
+            - ./laravel:/var/www/html
             - ./nginx.conf:/etc/nginx/conf.d/default.conf
         networks:
             - traefik
         labels:
             - traefik.enabled=true
-            - traefik.backend=nginx
             - traefik.docker.network=traefik
             - traefik.frontend.rule=Host:blog.localhost
             - traefik.port=80
 
-    # Use latest PHP
-    php_blog:
+    blog_php:
         image: php:fpm
         restart: always
-        container_name: 'blog-php'
+        container_name: blog-php
         volumes:
-            - ./laravel:/var/www
+            - ./laravel:/var/www/html
         networks:
             - traefik
 
-    # Use latest Mariadb
-    db_blog:
+    blog_db:
         image: mysql:5.7.26
         restart: always
-        container_name: 'blog-db'
+        container_name: blog-db
+        env_file:
+            - init-db.env
+        ports:
+            - "3306:3306"
         volumes:
             - ./db:/var/lib/mysql
         networks:
             - traefik
-        env_file:
-            - init-db.env
 
 networks:
     traefik:
