@@ -1,3 +1,4 @@
 db
 .idea
 .DS_Store
+init-db.env
