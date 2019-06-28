@@ -34,7 +34,7 @@ $ php artisan key:generate
 $ docker-compose up -d
 ```
 
-4) Migrate and create the database
+4) Migrate and create the database (do so inside the Docker container)
 ```
 $ php artisan migrate
 ```
