@@ -81,8 +81,9 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel Blog
+                    Laraview
                 </div>
+                <h2 class="sub-title">Simplistic Laravel Blog</h2>
             </div>
         </div>
     </body>
