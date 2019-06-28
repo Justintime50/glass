@@ -1,4 +1,4 @@
-# Laravel Blog
+# Laraview
 This is a simple Laravel Blog deployed via Docker (proxied through Traefik) running on MySQL and Nginx. 
 
 Drawing on inspiration from [Medium's](medium.com) simplistic design, quickly deploy a self-hosted blog to your server. 
