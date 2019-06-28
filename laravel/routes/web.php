@@ -11,14 +11,21 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Admin
 Route::get('/admin', function () {
     return view('admin');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+// Posts
+Route::get('/create-post', 'PostsController@create');
+Route::get('/{user}/{slug}', 'PostsController@read');
+Route::get('/edit-post', 'PostsController@edit');
+Route::get('/delete-post', 'PostsController@delete');
