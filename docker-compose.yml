@@ -10,6 +10,7 @@ services:
             - ./nginx.conf:/etc/nginx/conf.d/default.conf
         networks:
             - traefik
+            - laraview
         labels:
             - traefik.enabled=true
             - traefik.docker.network=traefik
@@ -17,13 +18,14 @@ services:
             - traefik.port=80
 
     laraview-php:
-        image: php:fpm
+        build: .
         restart: always
         container_name: laraview-php
         volumes:
             - ./laravel:/var/www/html
         networks:
             - traefik
+            - laraview
         env_file:
             - init-db.env
 
@@ -36,7 +38,7 @@ services:
         volumes:
             - ./db:/var/lib/mysql
         networks:
-            - traefik
+            - laraview
         ports:
             - "3306:3306"
 
@@ -44,3 +46,5 @@ networks:
     traefik:
         external:
             name: traefik
+    laraview:
+        name: laraview
