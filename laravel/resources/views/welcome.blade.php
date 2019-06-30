@@ -84,6 +84,7 @@
                     Laraview
                 </div>
                 <h2 class="sub-title">Simplistic Laravel Blog</h2>
+                <a href="/posts">View Posts</a>
             </div>
         </div>
     </body>

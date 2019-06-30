@@ -3,8 +3,86 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Post;
+use Auth;
 
 class PostsController extends Controller
 {
-    
+
+    public function readPosts(Request $request) 
+    {
+
+        $posts = Post::all();
+
+        return view('/posts', compact('posts'));
+    }
+
+    public function create(Request $request) 
+    {
+        request()->validate([
+            // TODO: Validate input
+        ]);
+
+        $post = new Post();
+        $post->title = request()->get('title');
+        $post->slug = request()->get('slug');
+        $post->reading_time = request()->get('reading_time');
+        $post->keywords = request()->get('keywords');
+        $post->category = request()->get('category');
+        $post->post = request()->get('post');
+        $post->user_id = Auth::user()->id;
+        $post->save();
+
+        session()->flash("message", "Post created.");
+        return redirect('/');
+    }
+
+    public function read($user, $slug) 
+    {
+
+        $post = Post::where('slug', '=', $slug)
+            ->first();
+
+        return view('/post', compact('post'));
+    }
+
+    public function readEdit($user, $slug) 
+    {
+
+        $post = Post::where('slug', '=', $slug)
+            ->first();
+
+        return view('/edit-post', compact('post'));
+    }
+
+    public function update(Request $request) 
+    {
+        request()->validate([
+            // TODO: Validate input
+        ]);
+
+        $slug = request()->get('slug');
+        $post = Post::where('slug', '=', $slug)->first();
+        $post->title = request()->get('title');
+        $post->slug = request()->get('slug');
+        $post->reading_time = request()->get('reading_time');
+        $post->keywords = request()->get('keywords');
+        $post->category = request()->get('category');
+        $post->post = request()->get('post');
+        $post->save();
+
+        session()->flash("message", "Post updated.");
+        return redirect()->back();
+    }
+
+    public function delete(Request $request) 
+    {
+
+        $id = request()->get('id');
+        $post = Post::find($id)->delete();
+
+        session()->flash("message", "Post deleted.");
+        return redirect('/');
+    }
 }
