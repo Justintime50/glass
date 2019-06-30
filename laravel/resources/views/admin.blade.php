@@ -1,97 +1,33 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <div class="container">
+        <h1>Create Post</h1>
+        <form action="/create-post" method="POST">
+        @csrf
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+        <label for="title">Title</label>
+        <input type="text" class="form-control" name="title" value="{{ old('title') }}">
 
-            .full-height {
-                height: 100vh;
-            }
+        <label for="slug">Slug (URL)</label>
+        <input type="text" class="form-control" name="slug" value="{{ old('slug') }}">
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+        <label for="reading_time">Reading Time (number of minutes)</label>
+        <input type="text" class="form-control" name="reading_time" value="{{ old('reading_time') }}">
 
-            .position-ref {
-                position: relative;
-            }
+        <label for="category">Category</label>
+        <input type="text" class="form-control" name="category" value="{{ old('category') }}">
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+        <label for="keywords">Keywords (separated by commas)</label>
+        <input type="text" class="form-control" name="keywords" value="{{ old('keywords') }}">
 
-            .content {
-                text-align: center;
-            }
+        <label for="post">Post</label>
+        <textarea name="post" class="form-control" rows="6" value="{{ old('post') }}"></textarea>
+        
+        <br />
+        <input type="submit" class="btn btn-primary" value="Create Post">
+    </div>
 
-            .title {
-                font-size: 84px;
-            }
+@endsection
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <form action="/create-post" method="POST">
-                @csrf
-
-                <input type="text" name="title">
-                <input type="text" name="slug">
-                <input type="text" name="reading_time">
-                <input type="text" name="category">
-                <input type="text" name="keywords">
-                <textarea name="post"></textarea>
-                
-                <input type="submit" value="Create Post">
-            </div>
-        </div>
-    </body>
-</html>

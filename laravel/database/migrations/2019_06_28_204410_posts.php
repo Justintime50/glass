@@ -20,7 +20,7 @@ class Posts extends Migration
             $table->string('reading_time');
             $table->text('keywords');
             $table->string('category');
-            $table->int('user_id'); // author
+            $table->integer('user_id'); // author
             $table->longText('post');
             $table->timestamps();
             $table->softDeletes();

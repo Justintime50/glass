@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('/logout', 'Auth\LoginController@logout');
 Auth::routes();
 
 Route::get('/', function () {
@@ -25,7 +26,10 @@ Route::get('/admin', function () {
 });
 
 // Posts
-Route::get('/create-post', 'PostsController@create');
+Route::get('/posts', 'PostsController@readPosts');
 Route::get('/{user}/{slug}', 'PostsController@read');
-Route::get('/edit-post', 'PostsController@edit');
-Route::get('/delete-post', 'PostsController@delete');
+Route::get('/edit-post/{user}/{slug}', 'PostsController@readEdit');
+
+Route::post('/create-post', 'PostsController@create');
+Route::post('/update-post', 'PostsController@update');
+Route::post('/delete-post', 'PostsController@delete');
