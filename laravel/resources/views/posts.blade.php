@@ -12,8 +12,13 @@
             </h2>
             <h4>{{$post->user->name}}</h4>
             <p>{{date_format($post->updated_at, 'm/d/Y')}}</p>
-            <p>{{ str_limit($post->post, 255) }}
-            <p>0 Comments</p>
+            <p>
+                {!! 
+                    Parsedown::instance()
+                        ->setSafeMode(true)
+                        ->text($post->post); 
+                !!}
+            </p>
         @endforeach
     </div>
 

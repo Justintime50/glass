@@ -33,3 +33,10 @@ Route::get('/edit-post/{user}/{slug}', 'PostsController@readEdit');
 Route::post('/create-post', 'PostsController@create');
 Route::post('/update-post', 'PostsController@update');
 Route::post('/delete-post', 'PostsController@delete');
+
+
+// Comments
+Route::get('/comments', 'CommentsController@readComments');
+
+Route::post('/create-comment', 'CommentsController@create');
+Route::post('/delete-comment', 'CommentsController@delete');

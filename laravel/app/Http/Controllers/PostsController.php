@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Comment;
 use Auth;
 
 class PostsController extends Controller
@@ -21,7 +22,7 @@ class PostsController extends Controller
     {
         request()->validate([
             'title'         => 'required|string',
-            'slug'          => 'required|string',
+            'slug'          => 'required|string|unique:post,slug,user_id,' . Auth::user()->id,
             'reading_time'  => 'nullable|numeric',
             'keywords'      => 'nullable|string',
             'category'      => 'string',
@@ -46,8 +47,10 @@ class PostsController extends Controller
     {
         $post = Post::where('slug', '=', $slug)
             ->first();
+        $comments = Comment::where('post_id', '=', $post->id)
+            ->get();
 
-        return view('/post', compact('post'));
+        return view('/post', compact('post', 'comments'));
     }
 
     public function readEdit($user, $slug) 
@@ -62,7 +65,7 @@ class PostsController extends Controller
     {
         request()->validate([
             'title'         => 'required|string',
-            'slug'          => 'required|string',
+            'slug'          => 'required|string|unique:post,slug,user_id,' . Auth::user()->id,
             'reading_time'  => 'nullable|numeric',
             'keywords'      => 'nullable|string',
             'category'      => 'string',
