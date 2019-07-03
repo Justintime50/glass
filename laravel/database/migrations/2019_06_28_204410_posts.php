@@ -17,9 +17,9 @@ class Posts extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('reading_time');
-            $table->text('keywords');
-            $table->string('category');
+            $table->string('reading_time')->nullable();
+            $table->text('keywords')->nullable();
+            $table->string('category')->nullable();
             $table->integer('user_id'); // author
             $table->longText('post');
             $table->timestamps();

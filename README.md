@@ -38,3 +38,6 @@ $ docker-compose up -d
 ```
 $ php artisan migrate
 ```
+
+## Dependencies
+- [Parsedown](https://github.com/erusev/parsedown) - A simple markdown parser.
