@@ -51,7 +51,7 @@
                         @else
                             <a class="nav-link" href="/admin">Create Post</a>
                             <a class="nav-link" href="/posts">Posts</a>
-                            <a class="nav-link" href="#">Comments</a>
+                            <a class="nav-link" href="/comments">Comments</a>
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
