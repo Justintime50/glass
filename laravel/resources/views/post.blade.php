@@ -6,24 +6,27 @@
 
     <div class="container">
 
-        <p><a href="/posts">< Back to Posts</a></p>
+        <a class="btn btn-primary" style="margin-bottom: 30px;" href="/posts">< Back to Posts</a>
 
         @if(Auth::check())
-            <p>
-                <a href="/edit-post/{{$post->user->name}}/{{$post->slug}}">Edit Post</a>
-                <br />
-                <form action="/delete-post" method="POST">
+                <form action="/delete-post" method="POST" style="margin-bottom: 30px;">
+                    <a class="btn btn-primary" style="display:inline-block" href="/edit-post/{{$post->user->name}}/{{$post->slug}}">Edit Post</a>
+
                     @csrf
                     <input name="id" value="{{$post->id}}" hidden>
-                    <input type="submit" value="Delete Post">
+                    <input type="submit" style="display:inline-block" class="btn btn-danger" value="Delete Post">
                 </form>
-            </p>
         @endif
 
         <h1>{{$post->title}}</h1>
         <h4>{{$post->user->name}}</h4>
         <p>{{date_format($post->updated_at, 'm/d/Y')}}</p>
-        <p>{{$post->post}}
+        <p>{!! 
+            Parsedown::instance()
+                ->setSafeMode(true)
+                ->text($post->post); 
+            !!}
+        </p>
 
         <hr>
 

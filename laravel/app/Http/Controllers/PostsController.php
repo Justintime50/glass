@@ -12,7 +12,6 @@ class PostsController extends Controller
 
     public function readPosts(Request $request) 
     {
-
         $posts = Post::all();
 
         return view('/posts', compact('posts'));
@@ -21,7 +20,12 @@ class PostsController extends Controller
     public function create(Request $request) 
     {
         request()->validate([
-            // TODO: Validate input
+            'title'         => 'required|string',
+            'slug'          => 'required|string',
+            'reading_time'  => 'nullable|numeric',
+            'keywords'      => 'nullable|string',
+            'category'      => 'string',
+            'post'          => 'required|string',
         ]);
 
         $post = new Post();
@@ -40,7 +44,6 @@ class PostsController extends Controller
 
     public function read($user, $slug) 
     {
-
         $post = Post::where('slug', '=', $slug)
             ->first();
 
@@ -49,7 +52,6 @@ class PostsController extends Controller
 
     public function readEdit($user, $slug) 
     {
-
         $post = Post::where('slug', '=', $slug)
             ->first();
 
@@ -59,7 +61,12 @@ class PostsController extends Controller
     public function update(Request $request) 
     {
         request()->validate([
-            // TODO: Validate input
+            'title'         => 'required|string',
+            'slug'          => 'required|string',
+            'reading_time'  => 'nullable|numeric',
+            'keywords'      => 'nullable|string',
+            'category'      => 'string',
+            'post'          => 'required|string',
         ]);
 
         $slug = request()->get('slug');
@@ -78,7 +85,6 @@ class PostsController extends Controller
 
     public function delete(Request $request) 
     {
-
         $id = request()->get('id');
         $post = Post::find($id)->delete();
 

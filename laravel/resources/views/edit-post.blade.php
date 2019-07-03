@@ -3,6 +3,8 @@
 @section('content')
 
     <div class="container">
+
+        <a class="btn btn-primary" style="margin-bottom: 30px;" href="/{{$post->user->name}}/{{$post->slug}}">< Back to Post</a>
         <h1>Edit Post</h1>
         <form action="/update-post" method="POST">
         @csrf
