@@ -1,7 +1,5 @@
-<h3 align="center">Laraview</h3>
-<p align="center">Laraview is a simple Laravel blog supporting multiple users, posts, and comments. Laraview draws its inspiration from [Medium's](medium.com) simplistic design, allowing you to quickly deploy a self-hosted blog in just a few steps.</p>
-
-#
+# Laraview
+Laraview is a simple Laravel blog supporting multiple users, posts, and comments. Laraview draws its inspiration from [Medium's](medium.com) simplistic design, allowing you to quickly deploy a self-hosted blog in just a few steps.
 
 ## Installation
 Laraview is deployed via Docker and can be proxied through Traefik (which is included, you can reconfigure Laraview to work without Traefik). It runs on basic MySQL, PHP and Nginx containers.

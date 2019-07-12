@@ -14,9 +14,9 @@
             <p>{{date_format($post->updated_at, 'm/d/Y')}}</p>
             <p>
                 {!! 
-                    Parsedown::instance()
+                    str_limit(Parsedown::instance()
                         ->setSafeMode(true)
-                        ->text($post->post); 
+                        ->text($post->post), 255); 
                 !!}
             </p>
         @endforeach

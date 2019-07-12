@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Comment;
@@ -22,7 +23,9 @@ class PostsController extends Controller
     {
         request()->validate([
             'title'         => 'required|string',
-            'slug'          => 'required|string|unique:post,slug,user_id,' . Auth::user()->id,
+            'slug' => Rule::unique('posts')->where(function ($query) {
+                return $query->where('user_id', Auth::user()->id);
+            }),
             'reading_time'  => 'nullable|numeric',
             'keywords'      => 'nullable|string',
             'category'      => 'string',
@@ -65,7 +68,11 @@ class PostsController extends Controller
     {
         request()->validate([
             'title'         => 'required|string',
-            'slug'          => 'required|string|unique:post,slug,user_id,' . Auth::user()->id,
+            /* TODO: fix validation to allow the same slug
+            'slug' => Rule::unique('posts')->where(function ($query) {
+                return $query->where('user_id', Auth::user()->id);
+            }),
+            */
             'reading_time'  => 'nullable|numeric',
             'keywords'      => 'nullable|string',
             'category'      => 'string',
