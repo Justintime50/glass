@@ -19,8 +19,8 @@
         @endif
 
         <h1>{{$post->title}}</h1>
-        <h4>{{$post->user->name}}</h4>
-        <p>{{date_format($post->updated_at, 'm/d/Y')}}</p>
+        <p><i class="fas fa-calendar"></i>&nbsp;&nbsp;{{date_format($post->updated_at, 'm/d/Y')}}&nbsp;&nbsp;<i class="fas fa-user"></i>&nbsp;&nbsp;{{$post->user->name}}&nbsp;&nbsp;<i class="fas fa-tag"></i>&nbsp;&nbsp;{{$post->category}}</p>
+
         <p>
             {!! 
             Parsedown::instance()
@@ -41,6 +41,8 @@
                 <br />
                 <input type="submit" class="btn btn-primary" value="Add Comment">
             </form>
+            @else
+            <p>Please <a href="/login">login</a> to leave a comment.</p>
         @endif
         @foreach($comments as $comment)
             <br /><hr /><br />

@@ -11,32 +11,34 @@
 |
 */
 
+// No middleware
 Route::get('/logout', 'Auth\LoginController@logout');
 Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-// Admin
-Route::get('/admin', function () {
-    return view('admin');
-});
-
-// Posts
+Route::get('/', 'PostsController@readPosts');
 Route::get('/posts', 'PostsController@readPosts');
 Route::get('/{user}/{slug}', 'PostsController@read');
-Route::get('/edit-post/{user}/{slug}', 'PostsController@readEdit');
-
-Route::post('/create-post', 'PostsController@create');
-Route::post('/update-post', 'PostsController@update');
-Route::post('/delete-post', 'PostsController@delete');
 
 
-// Comments
-Route::get('/comments', 'CommentsController@readComments');
+// Must be an Admin
+Route::middleware('Admin')->group(function () {
+    Route::get('/admin', 'AdminController@read');
+    Route::post('/update-settings', 'AdminController@update');
+    Route::get('/edit-post/{user}/{slug}', 'PostsController@readEdit');
+    Route::get('/create-post', function () {
+        return view('create-post');
+    });
 
-Route::post('/create-comment', 'CommentsController@create');
-Route::post('/delete-comment', 'CommentsController@delete');
+    Route::post('/create-post', 'PostsController@create');
+    Route::post('/update-post', 'PostsController@update');
+    Route::post('/delete-post', 'PostsController@delete');
+
+    Route::get('/comments', 'CommentsController@readComments');
+});
+
+
+// Must be logged in
+Route::middleware('auth')->group(function () {
+    Route::post('/create-comment', 'CommentsController@create');
+    Route::post('/delete-comment', 'CommentsController@delete');
+});

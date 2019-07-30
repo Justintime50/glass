@@ -7,11 +7,11 @@
 
         @foreach($posts as $post)
             <br /><hr><br />
+            <img src="#">
             <h2>
                 <a href="/{{$post->user->name}}/{{$post->slug}}">{{$post->title}}</a>
             </h2>
-            <h4>{{$post->user->name}}</h4>
-            <p>{{date_format($post->updated_at, 'm/d/Y')}}</p>
+            <p><i class="fas fa-calendar"></i>&nbsp;&nbsp;{{date_format($post->updated_at, 'm/d/Y')}}&nbsp;&nbsp;<i class="fas fa-user"></i>&nbsp;&nbsp;{{$post->user->name}}&nbsp;&nbsp;<i class="fas fa-tag"></i>&nbsp;&nbsp;{{$post->category}}</p>
             <p>
                 {!! 
                     str_limit(Parsedown::instance()
