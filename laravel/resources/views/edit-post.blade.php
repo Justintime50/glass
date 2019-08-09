@@ -4,7 +4,7 @@
 
     <div class="container">
 
-        <a class="btn btn-primary" style="margin-bottom: 30px;" href="/{{$post->user->name}}/{{$post->slug}}">< Back to Post</a>
+        <a class="btn btn-primary" style="margin-bottom: 30px;" href="/{{$post->user->name}}/{{$post->slug}}"><i class="fas fa-chevron-left"></i> Back to Post</a>
         <h1>Edit Post</h1>
         <form action="/update-post" method="POST">
         @csrf
@@ -12,7 +12,7 @@
         <label for="title">Title</label>
         <input type="text" class="form-control" name="title" value="{{ old('title', $post->title) }}">
 
-        <label for="slug">Slug (URL)</label>
+        <label for="slug">Slug (URL) - Must be a single string (eg: "my-new-post" OR "mynewpost")</label>
         <input type="text" class="form-control" name="slug" value="{{ old('slug', $post->slug) }}">
 
         <label for="reading_time">Reading Time (number of minutes)</label>

@@ -1,8 +1,8 @@
 # Laraview
-Laraview is a simple Laravel blog supporting multiple users, posts, and comments. Laraview draws its inspiration from [Medium's](medium.com) simplistic design, allowing you to quickly deploy a self-hosted blog in just a few steps.
+Laraview is a simple Laravel blog supporting multiple users, posts, and comments. Laraview draws its inspiration from [Medium](medium.com) and [Gatsby](https://www.gatsbyjs.org), using simplistic design - allowing you to quickly deploy a self-hosted blog in just a few simple steps.
 
 ## Installation
-Laraview is deployed via Docker and can be proxied through Traefik (which is included, you can reconfigure Laraview to work without Traefik). It runs on basic MySQL, PHP and Nginx containers.
+Laraview is deployed via Docker and can be proxied through Traefik (which is included, you can reconfigure Laraview to work without Traefik). It runs on basic MySQL, PHP and Nginx containers. The first user registered will become the admin user of the blog (see `gotchas` below).
 
 ### Traefik (optional)
 Change to the traefik directory and run `docker-compose up -d` in either the `insecure` or `ssl` directory. Configure the `traefik.toml` file in the `ssl` directory if using Traefik to create SSL certs.
@@ -37,6 +37,11 @@ docker-compose up -d
 ```
 php artisan migrate
 ```
+
+## Gotchas
+
+### Admins
+Currently, the only admin user is whatever user has `user->id = 1`. All other users will become normal users, able to comment but not create posts etc. Additional admin permissions coming later.
 
 ## Dependencies
 For an exhaustive list of dependencies, see the [composer.json](/composer.json) file.

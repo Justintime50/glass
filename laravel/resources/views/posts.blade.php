@@ -3,22 +3,35 @@
 @section('content')
 
     <div class="container">
-        <h1>Posts</h1>
 
         @foreach($posts as $post)
-            <br /><hr><br />
-            <img src="#">
-            <h2>
-                <a href="/{{$post->user->name}}/{{$post->slug}}">{{$post->title}}</a>
-            </h2>
-            <p><i class="fas fa-calendar"></i>&nbsp;&nbsp;{{date_format($post->updated_at, 'm/d/Y')}}&nbsp;&nbsp;<i class="fas fa-user"></i>&nbsp;&nbsp;{{$post->user->name}}&nbsp;&nbsp;<i class="fas fa-tag"></i>&nbsp;&nbsp;{{$post->category}}</p>
-            <p>
-                {!! 
-                    str_limit(Parsedown::instance()
-                        ->setSafeMode(true)
-                        ->text($post->post), 255); 
-                !!}
-            </p>
+            <div class="post-container-feed">
+                <a href="/{{$post->user->name}}/{{$post->slug}}" class="post-link">
+                    <div class="banner-image-container">
+                        <img src="/pics/banner.jpg" class="banner-image">
+                    </div>
+                    <div class="post-container-content-feed">
+                        <h2>
+                            {{$post->title}} <i class="fas fa-arrow-right" id="arrow"></i>
+                        </h2>
+                        <p class="post-meta">
+                            <i class="fas fa-calendar"></i>
+                                {{date_format($post->updated_at, 'm/d/Y')}}
+                            <i class="fas fa-user"></i>
+                                {{$post->user->name}}
+                            <i class="fas fa-clock"></i>
+                                {{$post->reading_time}} minutes
+                            <i class="fas fa-tag"></i>
+                                {{$post->category}}</p>
+                        <p>
+                        <?php 
+                            $strippedPost = preg_replace("/[^0-9a-zA-Z_.!?' \r\n+]/", "", $post->post);
+                        ?>
+                        {{ substr($strippedPost, 0, 255) }}
+                        ...
+                    </div>
+                </a>
+            </div>
         @endforeach
     </div>
 
