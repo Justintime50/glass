@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-        <h1>Blog Setup</h1>
+        <h1>Blog Settings</h1>
         <form action="/update-settings" method="POST">
         @csrf
 

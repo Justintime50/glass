@@ -6,8 +6,6 @@
 
     <div class="container">
 
-        <a class="btn btn-primary" style="margin-bottom: 30px;" href="/posts">< Back to Posts</a>
-
         @if(Auth::check())
             <form action="/delete-post" method="POST" style="margin-bottom: 30px;">
                 <a class="btn btn-primary" style="display:inline-block" href="/edit-post/{{$post->user->name}}/{{$post->slug}}">Edit Post</a>
@@ -18,9 +16,20 @@
             </form>
         @endif
 
-        <h1>{{$post->title}}</h1>
-        <p><i class="fas fa-calendar"></i>&nbsp;&nbsp;{{date_format($post->updated_at, 'm/d/Y')}}&nbsp;&nbsp;<i class="fas fa-user"></i>&nbsp;&nbsp;{{$post->user->name}}&nbsp;&nbsp;<i class="fas fa-tag"></i>&nbsp;&nbsp;{{$post->category}}</p>
-
+        <h1 class="post-title">{{$post->title}}</h1>
+        <p class="post-meta">
+            <i class="fas fa-calendar"></i>
+                {{date_format($post->updated_at, 'm/d/Y')}}
+            <i class="fas fa-user"></i>
+                {{$post->user->name}}
+            <i class="fas fa-clock"></i>
+                {{$post->reading_time}} minutes
+            <i class="fas fa-tag"></i>
+                {{$post->category}}</p>
+        <p>
+        <div class="banner-image-container">
+            <img src="/pics/banner.jpg" class="banner-image">
+        </div>
         <p>
             {!! 
             Parsedown::instance()
@@ -28,6 +37,12 @@
                 ->text($post->post); 
             !!}
         </p>
+
+        <hr>
+
+        <h4>Author</h4>
+
+        <p class="text-center">{{$post->user->name}}</p>
 
         <hr>
 

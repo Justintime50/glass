@@ -10,7 +10,7 @@
         <label for="title">Title</label>
         <input type="text" class="form-control" name="title" value="{{ old('title') }}">
 
-        <label for="slug">Slug (URL)</label>
+        <label for="slug">Slug (URL) - Must be a single string (eg: "my-new-post" OR "mynewpost")</label>
         <input type='text' class='form-control' name='slug' value="{{ old('slug') }}">
 
         <label for="reading_time">Reading Time (number of minutes)</label>
