@@ -35,6 +35,7 @@ class PostsController extends Controller
         $post = new Post();
         $post->title = request()->get('title');
         $post->slug = request()->get('slug');
+        $post->banner_image_url = request()->get('banner_image_url');
         $post->reading_time = request()->get('reading_time');
         $post->keywords = request()->get('keywords');
         $post->category = request()->get('category');
@@ -81,6 +82,7 @@ class PostsController extends Controller
 
         $slug = request()->get('slug');
         $post = Post::where('slug', '=', $slug)->first();
+        $post->banner_image_url = request()->get('banner_image_url');
         $post->title = request()->get('title');
         $post->slug = request()->get('slug');
         $post->reading_time = request()->get('reading_time');

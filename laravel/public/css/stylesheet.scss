@@ -15,14 +15,14 @@ pre {
 }
 
 .banner-image-container {
-    max-height: 300px;
+    max-height: 350px;
     overflow: hidden;
     display: flex;
     align-items: center;
+    justify-content: center;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     margin-bottom: 20px;
-    position: relative;
     transform: rotate(0deg);
     -webkit-transform: rotate(0deg); // Fix for Safari's GPU/CPU border-radius glitch (https://stackoverflow.com/questions/10314207/webkit-not-respecting-overflowhidden-with-border-radius)
     overflow: hidden;
@@ -39,7 +39,7 @@ pre {
 }
 /* For posts page */
 .post-container-feed {
-    margin: 80px 0px 20px 0px;
+    margin: 20px 0px 80px 0px;
     a {
         color: #000;
     }
