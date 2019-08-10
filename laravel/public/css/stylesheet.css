@@ -16,7 +16,7 @@ pre {
 }
 
 .banner-image-container {
-  max-height: 300px;
+  max-height: 350px;
   overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -24,10 +24,12 @@ pre {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   margin-bottom: 20px;
-  position: relative;
   transform: rotate(0deg);
   -webkit-transform: rotate(0deg);
   overflow: hidden;
@@ -49,7 +51,7 @@ pre {
 
 /* For posts page */
 .post-container-feed {
-  margin: 80px 0px 20px 0px;
+  margin: 20px 0px 80px 0px;
   -webkit-transition: -webkit-box-shadow 0.4s ease-in-out;
   transition: -webkit-box-shadow 0.4s ease-in-out;
   transition: box-shadow 0.4s ease-in-out;

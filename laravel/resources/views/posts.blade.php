@@ -6,9 +6,13 @@
 
         @foreach($posts as $post)
             <div class="post-container-feed">
-                <a href="/{{$post->user->name}}/{{$post->slug}}" class="post-link">
+                <a href="/{{str_replace(" ","-",$post->user->name)}}/{{$post->slug}}" class="post-link">
                     <div class="banner-image-container">
-                        <img src="/pics/banner.jpg" class="banner-image">
+                        @if ($post->banner_image_url == null)
+                            <img src="/pics/banner.jpg" class="banner-image">
+                        @else
+                            <img src="<?= $post->banner_image_url; ?> class='banner-image'>">
+                        @endif
                     </div>
                     <div class="post-container-content-feed">
                         <h2>

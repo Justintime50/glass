@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-<!-- TODO: Add keywords database entry to the keywords meta tag -->
-
 @section('content')
 
     <div class="container">
@@ -25,10 +23,14 @@
             <i class="fas fa-clock"></i>
                 {{$post->reading_time}} minutes
             <i class="fas fa-tag"></i>
-                {{$post->category}}</p>
-        <p>
+                {{$post->category}}
+        </p>
         <div class="banner-image-container">
-            <img src="/pics/banner.jpg" class="banner-image">
+            @if ($post->banner_image_url == null)
+                <img src="/pics/banner.jpg" class="banner-image">
+            @else
+                <img src="<?= $post->banner_image_url; ?> class='banner-image'>">
+            @endif
         </div>
         <p>
             {!! 
@@ -63,6 +65,15 @@
             <br /><hr /><br />
             <p>{{$comment->comment}}</p>
             <i>{{$comment->user->name}} - {{date_format($comment->updated_at, 'm/d/Y')}}</i>
+            @if(Auth::check())
+                <form action="/delete-comment" method="POST">
+                    @csrf
+                    <input type="text" name="id" value="{{$comment->id}}" hidden>
+                    <button class="btn btn-sm btn-danger" onclick="this.form.submit();">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </form>
+            @endif
         @endforeach
     </div>
 
