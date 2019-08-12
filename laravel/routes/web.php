@@ -41,4 +41,7 @@ Route::middleware('Admin')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/create-comment', 'CommentsController@create');
     Route::post('/delete-comment', 'CommentsController@delete');
+    Route::post('/update-profile', 'UsersController@update');
+    
+    Route::get('/profile', 'UsersController@read');
 });

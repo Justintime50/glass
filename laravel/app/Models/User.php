@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends Authenticatable
 {
     use Notifiable;
+    public $timestamps = true;
 
     /**
      * The attributes that are mass assignable.

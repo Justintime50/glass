@@ -29,8 +29,9 @@
 
         <label for="post">Post</label>
         <textarea name="post" class="form-control" id="post" rows="6">{{ old('post') }}</textarea>
+        <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown Cheat Sheet</a>
 
-        <br />
+        <br /><br />
         <input type="submit" class="btn btn-primary" value="Create Post">
     </div>
 

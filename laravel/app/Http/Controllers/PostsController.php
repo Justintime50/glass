@@ -14,7 +14,8 @@ class PostsController extends Controller
 
     public function readPosts(Request $request) 
     {
-        $posts = Post::all();
+        $posts = Post::all()
+            ->sortByDesc('created_at');
 
         return view('/posts', compact('posts'));
     }

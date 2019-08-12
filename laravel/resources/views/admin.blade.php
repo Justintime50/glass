@@ -8,10 +8,19 @@
         @csrf
 
         <label for="title">Blog Title</label>
-        <input type="text" class="form-control" name="title" value="{{ old('title') }}" disabled>
+        <input type="text" class="form-control" name="title" value="{{ old('title', $settings->title) }}">
 
+        <label for="title">Comments</label><br>
+
+        <label for="title">Theme</label><br>
         <br />
-        <input type="submit" class="btn btn-primary" value="Update Settings" disabled>
+        <input type="submit" class="btn btn-primary" value="Update Settings">
+        <hr />
+
+        <h2>Categories</h2>
+
+
+
         <hr />
 
     </div>
@@ -22,7 +31,7 @@
 
         <ul>
         @foreach($users as $user)
-            <li>{{ $user->name }}</li>
+            <li>{{ $user->name }} | POSITION | {{ $user->created_at }}</li>
         @endforeach
         </ul>
 
