@@ -32,19 +32,20 @@
                 <img src="<?= $post->banner_image_url; ?> class='banner-image'>">
             @endif
         </div>
-        <p>
+        <div style="width: 65%;">
             {!! 
             Parsedown::instance()
                 ->setSafeMode(true)
                 ->text($post->post); 
             !!}
-        </p>
+        </div>
 
         <hr>
 
         <h4>Author</h4>
 
-        <p class="text-center">{{$post->user->name}}</p>
+        <p><b>{{$post->user->name}}</b></p>
+        <p>{{ $post->user->bio }}</p>
 
         <hr>
 
