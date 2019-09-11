@@ -11,23 +11,23 @@ img {
 }
 
 .container {
-    width: 65%;
+    width: 55%;
 }
 @media only screen and (max-width: 768px) {
     .container {
-        max-width: initial;
+        width: 100%;
     } 
 }
 
 .banner-image-container {
-    max-height: 350px;
+    max-height: 400px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
     -webkit-border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     transform: rotate(0deg);
     -webkit-transform: rotate(0deg); // Fix for Safari's GPU/CPU border-radius glitch (https://stackoverflow.com/questions/10314207/webkit-not-respecting-overflowhidden-with-border-radius)
     overflow: hidden;
@@ -39,12 +39,32 @@ img {
     transition: transform .5s; /* Animation */
 }
 
+.author-icon {
+    padding-right: 20px;
+    padding: 10px 0px;
+    font-size: 30px /* TODO: Remove when a real image is inserted */
+}
+
+.post-content {
+    width: 45%;
+}
+@media only screen and (max-width: 992px) {
+    .post-content {
+        width: 75%;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    .post-content {
+        width: 100%;
+    }
+}
+
 .post-container-content-feed {
     padding: 10px 25px;
 }
 /* For posts page */
 .post-container-feed {
-    margin: 20px 0px 80px 0px;
+    margin: 20px 0px;
     a {
         color: #000;
     }
