@@ -11,17 +11,17 @@ img {
 }
 
 .container {
-  width: 65%;
+  width: 55%;
 }
 
 @media only screen and (max-width: 768px) {
   .container {
-    max-width: initial;
+    width: 100%;
   }
 }
 
 .banner-image-container {
-  max-height: 350px;
+  max-height: 400px;
   overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -34,7 +34,7 @@ img {
           justify-content: center;
   border-radius: 10px;
   -webkit-border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   transform: rotate(0deg);
   -webkit-transform: rotate(0deg);
   overflow: hidden;
@@ -50,13 +50,35 @@ img {
   /* Animation */
 }
 
+.author-icon {
+  padding-right: 20px;
+  padding: 10px 0px;
+  font-size: 30px;
+}
+
+.post-content {
+  width: 45%;
+}
+
+@media only screen and (max-width: 992px) {
+  .post-content {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .post-content {
+    width: 100%;
+  }
+}
+
 .post-container-content-feed {
   padding: 10px 25px;
 }
 
 /* For posts page */
 .post-container-feed {
-  margin: 20px 0px 80px 0px;
+  margin: 20px 0px;
   -webkit-transition: -webkit-box-shadow 0.4s ease-in-out;
   transition: -webkit-box-shadow 0.4s ease-in-out;
   transition: box-shadow 0.4s ease-in-out;

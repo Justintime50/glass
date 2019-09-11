@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container post-content">
 
         @if(Auth::check())
             <form action="/delete-post" method="POST" style="margin-bottom: 30px;">
@@ -42,10 +42,16 @@
 
         <hr>
 
-        <h4>Author</h4>
+        <div class="row author">
+                
+            <div class="col-md-1">
+                <i class="fas fa-user author-icon"></i>
+            </div>
+            <div class="col-md-11">
+                <p><b>{{$post->user->name}}</b><br />{{$post->user->bio}}</p>
+            </div>
 
-        <p><b>{{$post->user->name}}</b></p>
-        <p>{{ $post->user->bio }}</p>
+        </div>
 
         <hr>
 
@@ -79,4 +85,3 @@
     </div>
 
 @endsection
-
