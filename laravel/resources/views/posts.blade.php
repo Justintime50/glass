@@ -4,14 +4,14 @@
 
     <div class="container">
 
-        @foreach($posts as $post)
+        @forelse($posts as $post)
             <div class="post-container-feed">
-                <a href="/{{str_replace(" ","-",$post->user->name)}}/{{$post->slug}}" class="post-link">
+                <a href="{{ url('/'.str_replace(' ','-',$post->user->name).'/'.$post->slug) }}" class="post-link">
                     <div class="banner-image-container">
                         @if ($post->banner_image_url == null)
-                            <img src="/pics/banner.jpg" class="banner-image">
+                            <img src="{{ asset('pics/banner.jpg') }}" class="banner-image">
                         @else
-                            <img src="<?= $post->banner_image_url; ?> class='banner-image'>">
+                            <img src="{{ asset('<?= $post->banner_image_url; ?>') }}" class='banner-image'>">
                         @endif
                     </div>
                     <div class="post-container-content-feed">
@@ -36,8 +36,10 @@
                     </div>
                 </a>
             </div>
-        @endforeach
+            @empty
+            <h2>No posts yet.</h2>
+            <p>If you are the owner of this blog, you should <a href="{{ route('create-post') }}">create your first post</a>!</p>
+        @endforelse
     </div>
 
 @endsection
-

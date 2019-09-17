@@ -48,7 +48,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="/posts">Posts</a>
+                                <a class="nav-link" href="{{ route('posts') }}">Posts</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -59,9 +59,9 @@
                                 </li>
                             @endif
                         @else
-                            <a class="nav-link" href="/create-post">Create Post</a>
-                            <a class="nav-link" href="/posts">Posts</a>
-                            <a class="nav-link" href="/comments">Comments</a>
+                            <a class="nav-link" href="{{ route('create-post') }}">Create Post</a>
+                            <a class="nav-link" href="{{ route('posts') }}">Posts</a>
+                            <a class="nav-link" href="{{ route('comments') }}">Comments</a>
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -69,8 +69,8 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/profile">Profile</a>
-                                    <a class="dropdown-item" href="/admin">Admin</a>
+                                    <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
+                                    <a class="dropdown-item" href="{{ route('admin') }}">Admin</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

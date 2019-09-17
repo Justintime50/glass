@@ -6,7 +6,13 @@ Laraview is intended to remain lean. Currently, there is no support for photo st
 ## Installation
 Laraview is deployed via Docker and can be proxied through Traefik (which is included, you can reconfigure Laraview to work without Traefik). It runs on basic MySQL, PHP and Nginx containers. The first user registered will become the admin user of the blog (see `gotchas` below).
 
+### Database
+
 You must manually add a first user and manually configure a single `settings` entry in the `settings` table.
+
+### Install in Subfolder (Optional)
+
+There is a guide on how to do this [here](https://serversforhackers.com/c/nginx-php-in-subdirectory).
 
 ### Traefik (optional)
 Change to the traefik directory and run `docker-compose up -d` in either the `insecure` or `ssl` directory. Configure the `traefik.toml` file in the `ssl` directory if using Traefik to create SSL certs.
@@ -34,6 +40,8 @@ php artisan key:generate
 
 3) Start up docker containers:
 ```
+docker-compose build
+
 docker-compose up -d
 ```
 

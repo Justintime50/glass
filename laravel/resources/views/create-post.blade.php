@@ -4,7 +4,7 @@
 
     <div class="container">
         <h1>Create Post</h1>
-        <form action="/create-post" method="POST">
+        <form action="{{ route('create-post') }}" method="POST">
         @csrf
 
         <label for="title">Title</label>
@@ -62,4 +62,3 @@
     </script>
 
 @endsection
-

@@ -4,9 +4,9 @@
 
     <div class="container">
 
-        <a class="btn btn-primary" style="margin-bottom: 30px;" href="/{{$post->user->name}}/{{$post->slug}}"><i class="fas fa-chevron-left"></i> Back to Post</a>
+        <a class="btn btn-primary" style="margin-bottom: 30px;" href="{{ url('/'.$post->user->name.'/'.$post->slug) }}"><i class="fas fa-chevron-left"></i> Back to Post</a>
         <h1>Edit Post</h1>
-        <form action="/update-post" method="POST">
+        <form action="{{ route('update-post') }}" method="POST">
         @csrf
 
         <label for="title">Title</label>
@@ -63,4 +63,3 @@
     </script>
 
 @endsection
-
