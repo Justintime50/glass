@@ -4,7 +4,7 @@
 
     <div class="container">
         <h1>Profile</h1>
-        <form action="/update-profile" method="POST">
+        <form action="{{ route('update-profile') }}" method="POST">
         @csrf
 
         <label for="name">Name</label>
@@ -24,4 +24,3 @@
     </div>
 
 @endsection
-

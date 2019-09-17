@@ -5,8 +5,8 @@
     <div class="container post-content">
 
         @if(Auth::check())
-            <form action="/delete-post" method="POST" style="margin-bottom: 30px;">
-                <a class="btn btn-primary" style="display:inline-block" href="/edit-post/{{$post->user->name}}/{{$post->slug}}">Edit Post</a>
+            <form action="{{ route('delete-post') }}" method="POST" style="margin-bottom: 30px;">
+                <a class="btn btn-primary" style="display:inline-block" href="{{ url('/edit-post/'.$post->user->name.'/'.$post->slug) }}">Edit Post</a>
 
                 @csrf
                 <input name="id" value="{{$post->id}}" hidden>
@@ -27,7 +27,7 @@
         </p>
         <div class="banner-image-container">
             @if ($post->banner_image_url == null)
-                <img src="/pics/banner.jpg" class="banner-image">
+                <img src="{{ asset('pics/banner.jpg') }}" class="banner-image">
             @else
                 <img src="<?= $post->banner_image_url; ?> class='banner-image'>">
             @endif
@@ -57,7 +57,7 @@
 
         <h4>Comments</h4>
         @if(Auth::check())
-            <form action="/create-comment" method="POST">
+            <form action="{{ route('create-comment') }}" method="POST">
                 @csrf
 
                 <input type="text" name="post_id" value="{{$post->id}}" hidden>
@@ -66,14 +66,14 @@
                 <input type="submit" class="btn btn-primary" value="Add Comment">
             </form>
             @else
-            <p>Please <a href="/login">login</a> to leave a comment.</p>
+            <p>Please <a href="{{ route('login') }}">login</a> to leave a comment.</p>
         @endif
         @foreach($comments as $comment)
             <br /><hr /><br />
             <p>{{$comment->comment}}</p>
             <i>{{$comment->user->name}} - {{date_format($comment->updated_at, 'm/d/Y')}}</i>
             @if(Auth::check())
-                <form action="/delete-comment" method="POST">
+                <form action="{{ route('delete-comment') }}" method="POST">
                     @csrf
                     <input type="text" name="id" value="{{$comment->id}}" hidden>
                     <button class="btn btn-sm btn-danger" onclick="this.form.submit();">
