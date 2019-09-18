@@ -15,7 +15,7 @@ You must manually add a first user and manually configure a single `settings` en
 There is a guide on how to do this [here](https://serversforhackers.com/c/nginx-php-in-subdirectory).
 
 ### Traefik (optional)
-Change to the traefik directory and run `docker-compose up -d` in either the `insecure` or `ssl` directory. Configure the `traefik.toml` file in the `ssl` directory if using Traefik to create SSL certs.
+The `docker-compose` file in this project uses Traefik for routing web traffic to it. You can either toss those references or follow the guide [here](https://github.com/Justintime50/multisite-docker-server) about configuring Traefik for this project.
 
 ### MySQL
 Copy the `init-db.env.example` file and save it as `init-db.env`. This will initialize the MySQL database with the information provided on the first build. These items will need to match what's in the `/laravel/.env` file.
@@ -40,8 +40,6 @@ php artisan key:generate
 
 3) Start up docker containers:
 ```
-docker-compose build
-
 docker-compose up -d
 ```
 

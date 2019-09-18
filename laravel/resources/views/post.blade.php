@@ -32,7 +32,7 @@
                 <img src="<?= $post->banner_image_url; ?> class='banner-image'>">
             @endif
         </div>
-        <div style="width: 65%;">
+        <div>
             {!! 
             Parsedown::instance()
                 ->setSafeMode(true)

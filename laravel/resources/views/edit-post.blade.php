@@ -9,6 +9,8 @@
         <form action="{{ route('update-post') }}" method="POST">
         @csrf
 
+        <input name="id" value="{{$post->id}}" hidden>
+
         <label for="title">Title</label>
         <input type="text" class="form-control title" name="title" id="title" value="{{ old('title', $post->title) }}">
 
@@ -31,6 +33,7 @@
 
         <label for="post">Post</label>
         <textarea name="post" class="form-control" id="post" rows="6">{{ old('post', $post->post) }}</textarea>
+        <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown Cheat Sheet</a>
 
         <br />
         <input type="submit" class="btn btn-primary" value="Update Post">

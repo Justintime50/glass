@@ -81,8 +81,8 @@ class PostsController extends Controller
             'post'          => 'required|string',
         ]);
 
-        $slug = request()->get('slug');
-        $post = Post::where('slug', '=', $slug)->first();
+        $id = request()->get('id');
+        $post = Post::where('id', '=', $id)->first();
         $post->banner_image_url = request()->get('banner_image_url');
         $post->title = request()->get('title');
         $post->slug = request()->get('slug');
@@ -92,8 +92,9 @@ class PostsController extends Controller
         $post->post = request()->get('post');
         $post->save();
 
+        $url = str_replace(' ','-',$post->user->name).'/'.$post->slug;
         session()->flash("message", "Post updated.");
-        return redirect()->back();
+        return redirect($url);
     }
 
     public function delete(Request $request) 
