@@ -29,7 +29,7 @@
             @if ($post->banner_image_url == null)
                 <img src="{{ asset('pics/banner.jpg') }}" class="banner-image">
             @else
-                <img src="<?= $post->banner_image_url; ?> class='banner-image'>">
+                <img src="{{ asset($post->banner_image_url) }}" class='banner-image'>">
             @endif
         </div>
         <div>
