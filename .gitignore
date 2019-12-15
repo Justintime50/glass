@@ -3,3 +3,4 @@ db
 .DS_Store
 init-db.env
 vendor
+.php_cs.cache
