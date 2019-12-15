@@ -1,3 +1,9 @@
-FROM php:fpm
+FROM justintime50/nginx-php:latest
 
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+COPY --chown=www-data:www-data ./src /var/www/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+RUN php composer.phar install
+
+RUN chmod -R 775 storage \
+    && php artisan storage:link \
+    && chmod -R 775 bootstrap/cache

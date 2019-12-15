@@ -17,7 +17,7 @@ class AdminController extends Controller
         return view('/admin', compact('users', 'settings'));
     }
 
-    public function updateSettings(Request $request) 
+    public function updateSettings(Request $request)
     {
         request()->validate([
             'title'       => 'required|string',

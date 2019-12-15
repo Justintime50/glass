@@ -17,7 +17,7 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if(!request()->user() || Auth::user()->id != 1) {
+        if (!request()->user() || Auth::user()->id != 1) {
             session()->flash("error", "Access denied.");
             return redirect()->back();
         }

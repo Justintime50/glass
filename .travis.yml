@@ -1,0 +1,26 @@
+language: php
+
+services:
+  - docker
+
+php:
+  - 7.2
+  - 7.3
+  - 7.4
+
+before_install:
+  - cd src
+
+install:
+  - composer self-update
+  - composer install
+
+before_script:
+  - cd ..
+
+script:
+  - shellcheck setup.sh
+  - docker-compose up -d
+  - docker ps | grep -q laraview
+  - docker ps | grep -q laraview-db
+  - ./src/vendor/bin/phplint ./src --exclude=vendor
