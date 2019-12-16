@@ -12,10 +12,6 @@ before_install:
   - cd src
   - cp .env.example .env
 
-install:
-  - composer self-update
-  - composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
-
 before_script:
   - cd ..
   - cp init-db.env.example init-db.env
@@ -23,7 +19,7 @@ before_script:
 
 script:
   - shellcheck setup.sh
-  - ./setup.sh
+  - ./setup.sh # builds image, generates laravel key, migrates DB
   - docker ps | grep -q laraview
   - docker ps | grep -q laraview-db
   - ./src/vendor/bin/phplint ./src --exclude=vendor
