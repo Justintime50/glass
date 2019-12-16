@@ -11,7 +11,7 @@ Laraview is intended to remain lean. Currently, there is no support for photo st
 
 1) This project requires [Docker](https://www.docker.com/products/docker-desktop) and an account. Install and login to Docker.
 2) Run `cp init-db.env.example init-db.env` and change the values to your preferred details. This will initialize the MySQL database with the information provided on the first build. These items will need to match what's in the `/laravel/.env` file.
-3) Run `cp .env.example .env` and setup your `.env` variables.
+3) `cd` into `/src` and run `cp .env.example .env` and setup your `.env` variables.
 4) Run `./setup.sh` in the project's root directory.
 5) You must manually add a first user and configure a `settings` entry in the `settings` table.
 

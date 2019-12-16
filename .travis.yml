@@ -13,14 +13,14 @@ before_install:
 
 install:
   - composer self-update
-  - composer install
+  - composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
 before_script:
   - cd ..
 
 script:
   - shellcheck setup.sh
-  - docker-compose up -d
+  - ./setup.sh
   - docker ps | grep -q laraview
   - docker ps | grep -q laraview-db
   - ./src/vendor/bin/phplint ./src --exclude=vendor
