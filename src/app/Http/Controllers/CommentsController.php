@@ -8,14 +8,14 @@ use Auth;
 
 class CommentsController extends Controller
 {
-    public function readComments(Request $request) 
+    public function readComments(Request $request)
     {
         $comments = Comment::all();
 
         return view('/comments', compact('comments'));
     }
 
-    public function create(Request $request) 
+    public function create(Request $request)
     {
         request()->validate([
             'comment'       => 'required|string',
@@ -31,7 +31,7 @@ class CommentsController extends Controller
         return redirect()->back();
     }
 
-    public function delete(Request $request) 
+    public function delete(Request $request)
     {
         $id = request()->get('id');
         $comment = Comment::find($id)->delete();

@@ -28,7 +28,7 @@
                             <i class="fas fa-tag"></i>
                                 {{$post->category}}</p>
                         <p>
-                        <?php 
+                        <?php
                             $strippedPost = preg_replace("/[^0-9a-zA-Z_.!?' \r\n+]/", "", $post->post);
                         ?>
                         {{ substr($strippedPost, 0, 255) }}

@@ -11,8 +11,7 @@ use Auth;
 
 class PostsController extends Controller
 {
-
-    public function readPosts(Request $request) 
+    public function readPosts(Request $request)
     {
         $posts = Post::all()
             ->sortByDesc('created_at');
@@ -20,7 +19,7 @@ class PostsController extends Controller
         return view('/posts', compact('posts'));
     }
 
-    public function create(Request $request) 
+    public function create(Request $request)
     {
         request()->validate([
             'title'         => 'required|string',
@@ -48,7 +47,7 @@ class PostsController extends Controller
         return redirect('/');
     }
 
-    public function read($user, $slug) 
+    public function read($user, $slug)
     {
         $post = Post::where('slug', '=', $slug)
             ->first();
@@ -58,7 +57,7 @@ class PostsController extends Controller
         return view('/post', compact('post', 'comments'));
     }
 
-    public function readEdit($user, $slug) 
+    public function readEdit($user, $slug)
     {
         $post = Post::where('slug', '=', $slug)
             ->first();
@@ -66,7 +65,7 @@ class PostsController extends Controller
         return view('/edit-post', compact('post'));
     }
 
-    public function update(Request $request) 
+    public function update(Request $request)
     {
         request()->validate([
             'title'         => 'required|string',
@@ -92,12 +91,12 @@ class PostsController extends Controller
         $post->post = request()->get('post');
         $post->save();
 
-        $url = str_replace(' ','-',$post->user->name).'/'.$post->slug;
+        $url = str_replace(' ', '-', $post->user->name).'/'.$post->slug;
         session()->flash("message", "Post updated.");
         return redirect($url);
     }
 
-    public function delete(Request $request) 
+    public function delete(Request $request)
     {
         $id = request()->get('id');
         $post = Post::find($id)->delete();
