@@ -6,7 +6,7 @@ services:
         restart: always
         container_name: laraview
         volumes: 
-            - ./src/.env:/var/www/html/.env
+            - ./src:/var/www/html
             - ./src/storage/logs:/var/www/html/storage/logs
             - ./src/storage/app/public:/var/www/html/storage/app/public
         networks:

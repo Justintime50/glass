@@ -9,14 +9,14 @@ use App\Models\User;
 
 class UsersController extends Controller
 {
-    public function read(Request $request) 
+    public function read(Request $request)
     {
         // $profile = User::find(Auth::user());
 
         return view('/profile');
     }
 
-    public function update(Request $request) 
+    public function update(Request $request)
     {
         request()->validate([
             // 'name'          => 'required|string',

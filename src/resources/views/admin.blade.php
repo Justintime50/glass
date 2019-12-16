@@ -30,8 +30,12 @@
             @foreach($users as $user)
                 <?php
                     // TODO: Cleanup, there's a better way.
-                    if ($user->role == 1) $role = "Admin";
-                    if ($user->role == 2) $role = "User";
+                    if ($user->role == 1) {
+                        $role = "Admin";
+                    }
+                    if ($user->role == 2) {
+                        $role = "User";
+                    }
                 ?> 
                 <li>{{ $user->name }} | {{ $role }} | {{ $user->created_at }}</li>
             @endforeach
