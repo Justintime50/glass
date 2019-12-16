@@ -19,6 +19,7 @@ install:
 before_script:
   - cd ..
   - cp init-db.env.example init-db.env
+  - docker network create traefik # in place of Traefik container
 
 script:
   - shellcheck setup.sh
