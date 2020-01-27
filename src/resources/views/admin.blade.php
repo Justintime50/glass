@@ -19,6 +19,12 @@
 
         <h2>Categories</h2>
 
+        <ul>
+            @foreach($categories as $category)
+                <li>{{ $category->category }} | {{ $category->created_at }}</li>
+            @endforeach
+        </ul>
+
         <hr />
 
     </div>
@@ -37,6 +43,7 @@
                         $role = "User";
                     }
                 ?> 
+                <b>Name | Role | Created At</b>
                 <li>{{ $user->name }} | {{ $role }} | {{ $user->created_at }}</li>
             @endforeach
         </ul>

@@ -23,7 +23,7 @@ services:
             - laraview-db
 
     laraview-db:
-        image: mysql:5.7.26
+        image: mysql:8.0.18
         restart: always
         container_name: laraview-db
         env_file:

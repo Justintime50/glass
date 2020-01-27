@@ -9,6 +9,16 @@ class Post extends Model
 {
     use SoftDeletes;
 
+    protected $fillable = [
+        'title',
+        'slug',
+        'reading_time',
+        'keywords',
+        'category',
+        'user_id',
+        'post',
+    ];
+
     public function comment()
     {
         return $this->hasMany(Comment::class);

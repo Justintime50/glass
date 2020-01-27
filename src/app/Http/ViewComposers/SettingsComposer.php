@@ -9,7 +9,7 @@ class SettingsComposer
 {
     public function compose(View $view)
     {
-        $settings = \App\Models\Settings::first();
+        $settings = \App\Models\Setting::first();
         $view->with('settings', $settings);
     }
 }

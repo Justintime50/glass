@@ -19,7 +19,6 @@
 
         <br />
         <input type="submit" class="btn btn-primary" value="Update Profile">
-        <hr />
 
     </div>
 

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<title>{{$post->title}}</title>
 
 @section('content')
 
