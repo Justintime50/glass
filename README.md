@@ -7,15 +7,26 @@ Laraview is a simple Laravel blog supporting multiple users, posts, and comments
 
 Laraview is intended to remain lean. Currently, there is no support for photo storage (all files must be linked externally) and there is a single dependency aside from Laravel.
 
-## Installation
+## Install
 
-1) This project requires [Docker](https://www.docker.com/products/docker-desktop) and an account. Install and login to Docker.
-2) Run `cp init-db.env.example init-db.env` and change the values to your preferred details. This will initialize the MySQL database with the information provided on the first build. These items will need to match what's in the `/laravel/.env` file.
-3) `cd` into `/src` and run `cp .env.example .env` and setup your `.env` variables.
-4) Run `./setup.sh` in the project's root directory.
-5) You must manually add a first user and configure a `settings` entry in the `settings` table.
+```bash
+# Copy the env file and db init file, then edit both before continuing. The DB values must match in both files
+cp src/.env.example src/.env
+cp init-db.env.example init-db.env
 
-The first user registered will become the admin user of the blog (see `gotchas` below).
+# Start the Docker containers
+docker-compose up -d
+
+# Generate a Laravel key
+docker exec -it laraview php artisan key:generate
+
+# Run database migrations once the database container is up and able to access connections
+docker exec -it laraview php artisan migrate
+```
+
+## Usage
+
+The default login is `admin@laraview.com` and `password`. Currently, only this user can register as an admin. **Make sure to update the email/password after first login!**
 
 ### Install in Subfolder (Optional)
 
@@ -25,20 +36,24 @@ There is a guide on how to do this [here](https://serversforhackers.com/c/nginx-
 
 The `docker-compose` file in this project uses Traefik for routing web traffic to it. You can either toss those references or follow the guide [here](https://github.com/Justintime50/multisite-docker-server) about configuring Traefik for this project.
 
-## Testing/Development
+## Development & Testing
 
-### Development PHP Fixer
+### PHP Standards Fixer
 
 PHP coding standards can be fixed automatically by running: 
+
 ```bash
 php-cs-fixer fix laravel --verbose --show-progress=estimating
+```
+
+### Seeding Database
+
+You can seed the database with dummy data by running the following:
+
+```bash
+docker exec -it laraview php artisan db:seed
 ```
 
 ### Testing
 
 PHP linting and Docker build testing is handled via [Travis](https://travis-ci.org/Justintime50/laraview).
-
-## Gotchas
-
-### Admins
-Currently, the only admin user is whatever user has `user->id = 1`. All other users will become normal users, able to comment but not create posts etc. Additional admin permissions coming later.
