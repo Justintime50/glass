@@ -6,3 +6,4 @@ RUN php composer.phar install -q --no-ansi --no-interaction --no-scripts --no-su
     && chmod -R 775 storage \
     && php artisan storage:link \
     && chmod -R 775 bootstrap/cache
+RUN apk add libpng libpng-dev libjpeg-turbo-dev libwebp-dev zlib-dev libxpm-dev gd && docker-php-ext-install gd

@@ -14,8 +14,11 @@ class AdminController extends Controller
     public function read()
     {
         $users = User::all();
+        // TODO: Use pagination instead
+
         $settings = Setting::first();
         $categories = Category::where('user_id', '=', Auth::user()->id);
+        // TODO: Use pagination instead
 
         return view('/admin', compact('users', 'settings', 'categories'));
     }

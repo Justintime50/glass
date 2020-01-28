@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\Comment;
 use Auth;
 
-class CommentsController extends Controller
+class CommentController extends Controller
 {
     public function readComments(Request $request)
     {
         $comments = Comment::all();
+        // TODO: Use pagination instead
 
         return view('/comments', compact('comments'));
     }

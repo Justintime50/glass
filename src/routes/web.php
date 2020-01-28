@@ -15,33 +15,34 @@
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Auth::routes();
 
-Route::get('/', 'PostsController@readPosts')->name('/');
-Route::get('/posts', 'PostsController@readPosts')->name('posts');
-Route::get('/{user}/{slug}', 'PostsController@read');
+Route::get('/', 'PostController@readPosts')->name('/');
+Route::get('/posts', 'PostController@readPosts')->name('posts');
+Route::get('/{user}/{slug}', 'PostController@read');
 
 
 // Must be an Admin
 Route::middleware('Admin')->group(function () {
     Route::get('/admin', 'AdminController@read')->name('admin');
     Route::post('/update-settings', 'AdminController@update')->name('update-settings');
-    Route::get('/edit-post/{user}/{slug}', 'PostsController@readEdit');
+    Route::get('/edit-post/{user}/{slug}', 'PostController@readEdit');
     Route::get('/create-post', function () {
         return view('create-post');
     })->name('create-post');
 
-    Route::post('/create-post', 'PostsController@create')->name('create-post');
-    Route::post('/update-post', 'PostsController@update')->name('update-post');
-    Route::post('/delete-post', 'PostsController@delete')->name('delete-post');
+    Route::post('/create-post', 'PostController@create')->name('create-post');
+    Route::post('/update-post', 'PostController@update')->name('update-post');
+    Route::post('/delete-post', 'PostController@delete')->name('delete-post');
 
-    Route::get('/comments', 'CommentsController@readComments')->name('comments');
+    Route::get('/comments', 'CommentController@readComments')->name('comments');
 });
 
 
 // Must be logged in
 Route::middleware('auth')->group(function () {
-    Route::post('/create-comment', 'CommentsController@create')->name('create-comment');
-    Route::post('/delete-comment', 'CommentsController@delete')->name('delete-comment');
-    Route::post('/update-profile', 'UsersController@update')->name('update-profile');
-    
-    Route::get('/profile', 'UsersController@read')->name('profile');
+    Route::post('/create-comment', 'CommentController@create')->name('create-comment');
+    Route::post('/delete-comment', 'CommentController@delete')->name('delete-comment');
+    Route::post('/update-profile', 'UserController@update')->name('update-profile');
+    Route::post('/update-profile-pic', 'UserController@updateProfilePic');
+
+    Route::get('/profile', 'UserController@read')->name('profile');
 });

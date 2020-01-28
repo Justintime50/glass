@@ -9,7 +9,7 @@ use App\Models\Post;
 use App\Models\Comment;
 use Auth;
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     public function readPosts(Request $request)
     {

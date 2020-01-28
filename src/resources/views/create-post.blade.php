@@ -33,12 +33,12 @@
 
         <br /><br />
         <input type="submit" class="btn btn-primary" value="Create Post">
+
     </div>
 
     <script src="js/slugify/index.js"></script>
-
     <script>
         slugifyField(".title", ".slug");
     </script>
-
+    
 @endsection

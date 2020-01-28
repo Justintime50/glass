@@ -4,3 +4,4 @@ db
 init-db.env
 vendor
 .php_cs.cache
+*.css.map

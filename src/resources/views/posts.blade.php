@@ -40,7 +40,7 @@
             <h2>No posts yet.</h2>
             <p>If you are the owner of this blog, you should <a href="{{ route('create-post') }}">create your first post</a>!</p>
         @endforelse
-        <div class="pagination">
+        <div class="pagination-wrapper">
             {{ $posts->links() }}
         </div>
     </div>
