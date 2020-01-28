@@ -54,8 +54,22 @@ pre {
   opacity: 0.9;
 }
 
-input[type=text], textarea, select {
+input[type=text], input[type=email], input[type=password], textarea, select {
   background-color: #bbe1fa !important;
   color: #0f4c75 !important;
+}
+
+.card {
+  background-color: #0f4c75;
+  color: #bbe1fa;
+}
+
+.card-header {
+  background-color: #3282b8;
+}
+
+hr {
+  background-color: #3282b8;
+  height: 1px;
 }
 /*# sourceMappingURL=dark-mode.css.map */
