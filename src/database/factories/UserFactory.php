@@ -27,11 +27,3 @@ $factory->define(User::class, function (Faker $faker) {
         'bio' => $faker->sentence,
     ];
 });
-
-$factory->define(Setting::class, function (Faker $faker) {
-    return [
-        'title' => $faker->sentence,
-        'theme' => 1,
-        'comments' => 1,
-    ];
-});

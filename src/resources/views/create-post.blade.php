@@ -35,30 +35,10 @@
         <input type="submit" class="btn btn-primary" value="Create Post">
     </div>
 
+    <script src="js/slugify/index.js"></script>
+
     <script>
-        // slugify the title for a url slug
-        function slugify(text) {
-            // https://gist.github.com/mathewbyrne/1280286
-            return text.toString().toLowerCase()
-            .replace(/\s+/g, '-')           // Replace spaces with -
-            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-            .replace(/^-+/, '')             // Trim - from start of text
-            .replace(/-+$/, '')             // Trim - from end of text
-            .replace(/[\s_-]+/g, '-');
-        }
-
-        $('.title').keyup(function() {
-            $slug = slugify($(this).val());
-            $('.slug').val($slug);
-        })
-
-        // preview input
-        // var inputBox = document.getElementById('post');
-
-        //    inputBox.onkeyup = function(){
-        //    document.getElementById('postPreview').innerHTML = inputBox.value;
-        // }
+        slugifyField(".title", ".slug");
     </script>
 
 @endsection

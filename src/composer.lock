@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba56254df29ac7dd562c777590096db5",
+    "content-hash": "2d5b7cd6c67114730c1506cee6195eb8",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -697,6 +697,40 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "justintime50/slugify",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Justintime50/slugify.git",
+                "reference": "f8afaccf9a34d4e10667a5dc5c96d6383a456d72"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Justintime50/slugify/zipball/f8afaccf9a34d4e10667a5dc5c96d6383a456d72",
+                "reference": "f8afaccf9a34d4e10667a5dc5c96d6383a456d72",
+                "shasum": ""
+            },
+            "type": "project",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Justintime50",
+                    "homepage": "https://justinpaulhammond.com"
+                }
+            ],
+            "description": "Slugify a string. Perfect for URLs!",
+            "keywords": [
+                "slug",
+                "slugify",
+                "string",
+                "url"
+            ],
+            "time": "2020-01-14T18:57:52+00:00"
         },
         {
             "name": "laravel/framework",
