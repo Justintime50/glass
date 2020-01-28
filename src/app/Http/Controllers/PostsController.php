@@ -13,8 +13,8 @@ class PostsController extends Controller
 {
     public function readPosts(Request $request)
     {
-        $posts = Post::all()
-            ->sortByDesc('created_at');
+        $posts = Post::orderBy('created_at', 'desc')
+            ->paginate(10);
 
         return view('/posts', compact('posts'));
     }

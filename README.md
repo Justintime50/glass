@@ -48,7 +48,7 @@ php-cs-fixer fix laravel --verbose --show-progress=estimating
 
 ### Seeding Database
 
-You can seed the database with dummy data by running the following:
+You can seed the database with 5 dummy users and 5 dummy posts by running the following:
 
 ```bash
 docker exec -it laraview php artisan db:seed
