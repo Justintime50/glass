@@ -25,6 +25,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/stylesheet.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dark-mode.css') }}" rel="stylesheet">
+    <!--
+        TODO: Setup themes per blog
+    if (Auth::user()->settings->theme == 2) {
+        echo "<link href=\"{ asset('css/dark-mode.css') }}\" rel=\"stylesheet\">";
+    }
+    -->
+    
 </head>
 <body>
     <div id="app">

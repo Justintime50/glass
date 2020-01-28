@@ -1,0 +1,61 @@
+body {
+  background-color: #1b262c;
+  color: #bbe1fa;
+}
+
+code {
+  background-color: #0f4c75;
+  color: #bbe1fa;
+}
+
+.navbar {
+  background-color: #0f4c75 !important;
+}
+
+.navbar a {
+  color: #bbe1fa !important;
+}
+
+.navbar a:hover {
+  opacity: 0.8;
+}
+
+.navbar .dropdown-menu {
+  background-color: #0f4c75 !important;
+}
+
+.navbar .dropdown-menu a:hover {
+  background-color: #3282b8 !important;
+}
+
+/* Code blocks in markdown */
+pre {
+  background-color: #bbe1fa;
+  color: #3282b8;
+}
+
+/* For posts page */
+.post-container-feed a {
+  color: #bbe1fa;
+}
+
+.post-container-feed:hover {
+  -webkit-box-shadow: 2px 2px 10px #bbe1fa;
+          box-shadow: 2px 2px 10px #bbe1fa;
+}
+
+.pagination .page-item span, .pagination a {
+  background-color: #0f4c75 !important;
+  color: #bbe1fa;
+}
+
+.pagination .page-item span:hover, .pagination a:hover {
+  color: #bbe1fa;
+  opacity: 0.9;
+}
+
+input[type=text], textarea, select {
+  background-color: #bbe1fa !important;
+  color: #0f4c75 !important;
+}
+/*# sourceMappingURL=dark-mode.css.map */

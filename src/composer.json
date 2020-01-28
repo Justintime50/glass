@@ -12,6 +12,7 @@
         "erusev/parsedown": "^1.7",
         "facade/ignition": "^1.13",
         "fideloper/proxy": "^4.0",
+        "intervention/image": "^2.5",
         "justintime50/slugify": "^1.2",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0"

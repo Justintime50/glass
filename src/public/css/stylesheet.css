@@ -3,10 +3,12 @@ body {
 }
 
 /* Code blocks in markdown */
-pre {
+code {
   background-color: #eee;
-  padding: 15px;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 3px;
+  width: 100%;
+  display: block;
 }
 
 img {
@@ -146,7 +148,11 @@ label {
   padding-right: 3px;
 }
 
-.pagination {
-  margin: 25px 0px;
+.pagination-wrapper {
+  margin: 30px 0 40px 0;
+}
+
+.profile-thumbnail {
+  max-width: 100px;
 }
 /*# sourceMappingURL=stylesheet.css.map */

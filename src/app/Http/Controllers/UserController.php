@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Validation\Rule;
 use App\Models\User;
+use Illuminate\Support\Facades\Input;
+use Intervention\Image\ImageManagerStatic as Image;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     public function read(Request $request)
     {
@@ -31,6 +33,27 @@ class UsersController extends Controller
         $user->save();
 
         session()->flash("message", "Profile updated.");
+        return redirect()->back();
+    }
+
+/**
+     * LOGIC TO UPDATE THE USER PROFILE PIC
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function updateProfilePic(Request $request)
+    {
+        $request->validate([
+            'upload' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+        ]);
+
+        $id = request()->get('id');
+        Image::make(Input::file('upload'))->fit(150, 150)->save('/storage/avatars/'.$id.'.png');
+
+        // TODO: Add check that the file was actually uploaded before giving message
+
+        session()->flash("message", "Profile picture updated successfully.");
         return redirect()->back();
     }
 }
