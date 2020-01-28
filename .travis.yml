@@ -9,9 +9,9 @@ php:
   - 7.4
 
 before_install:
+  - cp init-db.env.example init-db.env
   - cd src
   - cp .env.example .env
-  - cp init-db.env.example init-db.env
 
 install:
   - composer self-update
