@@ -7,6 +7,7 @@ use Auth;
 use Illuminate\Validation\Rule;
 use App\Models\User;
 use Illuminate\Support\Facades\Input;
+use App\Http\Requests;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class UserController extends Controller
@@ -36,7 +37,7 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-/**
+    /**
      * LOGIC TO UPDATE THE USER PROFILE PIC
      *
      * @param Request $request
@@ -45,15 +46,15 @@ class UserController extends Controller
     public function updateProfilePic(Request $request)
     {
         $request->validate([
-            'upload' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'upload_profile_pic' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
-
         $id = request()->get('id');
-        Image::make(Input::file('upload'))->fit(150, 150)->save('/storage/avatars/'.$id.'.png');
 
-        // TODO: Add check that the file was actually uploaded before giving message
+        // Upload Profil Pic (IMAGE INTERVENTION - LARAVEL)
+        Image::make(Input::file('upload_profile_pic'))->fit(150, 150)->save(storage_path('avatars/'.$id.'.png'));
 
         session()->flash("message", "Profile picture updated successfully.");
         return redirect()->back();
     }
+
 }
