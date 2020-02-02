@@ -24,25 +24,22 @@
 
         <!-- UPLOAD BUTTONS -->
         <form action="/update-profile-pic" method="post" enctype="multipart/form-data" id="submit_profile_pic">
-            @csrf
+            {{ csrf_field() }}
             <label>Profile Picture</label>
-            <input type="text" name="id" value="{{Auth::user()->id}}" hidden>
-            @php
-                if (!file_exists("/storage/avatars/".Auth::user()->id.".png")) {
-                    echo '<img src="/storage/avatars/user-icon.png" class="profile-thumbnail">';
-                } else {
-                    echo '<img src="/storage/avatars/'.Auth::user()->id.'.png" class="profile-thumbnail">';
-                }
-            @endphp
+            <?php
+            if (!file_exists("storage/profile-pics/".Auth::user()->id.".png")) {
+                echo '<img src="/assets/pics/user_icon.png" class="profile-thumbnail">';
+            } else {
+                echo '<img src="/storage/profile-pics/'.Auth::user()->id.'.png" class="profile-thumbnail">';
+            }
+            ?>
             <br>
             <small>Picture must be a jpg or png no bigger than 2mb.</small>
             <br><br>
 
-            <label for="upload" class="btn btn-primary">Update Profile Picture</label>
-            <input type="file" id="upload" name="Upload Picture" hidden>
-
-            <br><br>
-            <input type="submit" name="Submit" id="submit" class="btn btn-primary">
+            <input type="text" name="id" value="{{Auth::user()->id}}" hidden>
+            <label for="profile_pic" class="btn btn-primary">Update Profile Picture</label>
+            <input type="file" name="upload_profile_pic" id="profile_pic" onchange="this.form.submit()" hidden>
         </form>
 
     </div>
