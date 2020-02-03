@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^laraview.localhost$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^laraview.localhost$
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /public/$1 [L]

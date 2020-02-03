@@ -15,6 +15,10 @@
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Auth::routes();
 
+Route::get('/info', function () {
+    return view('info');
+});
+
 Route::get('/', 'PostController@readPosts')->name('/');
 Route::get('/posts', 'PostController@readPosts')->name('posts');
 Route::get('/{user}/{slug}', 'PostController@read');
@@ -42,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/create-comment', 'CommentController@create')->name('create-comment');
     Route::post('/delete-comment', 'CommentController@delete')->name('delete-comment');
     Route::post('/update-profile', 'UserController@update')->name('update-profile');
-    Route::post('/update-profile-pic', 'UserController@updateProfilePic');
+    Route::post('/update-profile-pic', 'UserController@updateProfilePic')->name('update-profile-pic');
 
     Route::get('/profile', 'UserController@read')->name('profile');
 });

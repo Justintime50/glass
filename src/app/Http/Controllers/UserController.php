@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Validation\Rule;
 use App\Models\User;
-use Illuminate\Support\Facades\Input;
-use App\Http\Requests;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -50,8 +49,12 @@ class UserController extends Controller
         ]);
         $id = request()->get('id');
 
+        if(!Storage::exists('avatars')) {
+            Storage::makeDirectory('avatars');
+        }
+
         // Upload Profil Pic (IMAGE INTERVENTION - LARAVEL)
-        Image::make(Input::file('upload_profile_pic'))->fit(150, 150)->save(storage_path('avatars/'.$id.'.png'));
+        Image::make($request->file('upload_profile_pic'))->fit(150, 150)->save(storage_path('avatars/'.$id.'.png'));
 
         session()->flash("message", "Profile picture updated successfully.");
         return redirect()->back();
