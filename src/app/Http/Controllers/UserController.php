@@ -49,12 +49,19 @@ class UserController extends Controller
         ]);
         $id = request()->get('id');
 
+        /*
         if(!Storage::exists('avatars')) {
             Storage::makeDirectory('avatars');
         }
+        */
+
+        $file = $request->file('upload_profile_pic');
+        $img = Image::make($file)
+            ->resize(320, 240)
+            ->save(storage_path(), $file->getClientOriginalName());
 
         // Upload Profil Pic (IMAGE INTERVENTION - LARAVEL)
-        Image::make($request->file('upload_profile_pic'))->fit(150, 150)->save(storage_path('avatars/'.$id.'.png'));
+        // Image::make($request->file('upload_profile_pic'))->fit(150, 150)->save(storage_path('avatars/'.$id.'.png'));
 
         session()->flash("message", "Profile picture updated successfully.");
         return redirect()->back();

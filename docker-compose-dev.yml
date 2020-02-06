@@ -6,8 +6,10 @@ services:
         restart: always
         container_name: laraview
         volumes: 
-            - ./src:/var/www/html
+            #- ./src:/var/www/html
             - ./nginx.conf:/etc/nginx/conf.d/default.conf # will still require an nginx restart for changes to take effect
+        environment:
+            XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9000 remote_enable=1 remote_autostart=1 remote_connect_back=1 idekey=VSCODE
         networks:
             - traefik
             - laraview
