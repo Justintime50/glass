@@ -8,6 +8,13 @@
         <br /><hr /><br />
         <p>{{$comment->comment}}</p>
         <i>{{$comment->user->name}} - {{date_format($comment->updated_at, 'm/d/Y')}} | On: {{$comment->post->title}}</i>
+        <form action="{{ route('delete-comment') }}" method="POST">
+            @csrf
+            <input type="text" name="id" value="{{$comment->id}}" hidden>
+            <button class="btn btn-sm btn-danger" onclick="this.form.submit();">
+                <i class="fas fa-trash"></i>
+            </button>
+        </form>
         @empty
         <p>No comments yet.</p>
     @endforelse

@@ -16,6 +16,12 @@
 
         <label for="slug">Slug (URL) - Must be a single string (eg: "my-new-post" OR "mynewpost")</label>
         <input type='text' class='form-control slug' name='slug' id="slug" value="{{ old('slug', $post->slug) }}">
+
+        <label for="published">Post Status</label>
+        <select class="form-control" name="published">
+            <option value="1" <?php if ($post->published == 1) echo "selected"; ?>>Published</option>
+            <option value="0" <?php if ($post->published == 0) echo "selected"; ?>>Draft</option>
+        </select>
         
         <label for="banner-image">Banner Image URL</label>
         <input type="text" class="form-control" name="banner_image_url" value="{{ old('banner_image_url', $post->banner_image_url) }}">
@@ -23,9 +29,11 @@
         <label for="reading_time">Reading Time (number of minutes)</label>
         <input type="text" class="form-control" name="reading_time" value="{{ old('reading_time', $post->reading_time) }}">
 
-        <label for="category">Category</label>
-        <select class="form-control" name="category">
-            <option value="Uncategorized">Uncategorized</option>
+        <label for="category_id">Category</label>
+        <select class="form-control" name="category_id">
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}" <?php if ($post->category_id == $category->id) echo "selected"; ?>>{{ $category->category }}</option>
+            @endforeach
         </select>
 
         <label for="keywords">Keywords (separated by commas)</label>
@@ -39,30 +47,9 @@
         <input type="submit" class="btn btn-primary" value="Update Post">
     </div>
 
+    <script src="js/slugify/index.js"></script>
     <script>
-        // slugify the title for a url slug
-        function slugify(text) {
-            // https://gist.github.com/mathewbyrne/1280286
-            return text.toString().toLowerCase()
-            .replace(/\s+/g, '-')           // Replace spaces with -
-            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-            .replace(/^-+/, '')             // Trim - from start of text
-            .replace(/-+$/, '')             // Trim - from end of text
-            .replace(/[\s_-]+/g, '-');
-        }
-
-        $('.title').keyup(function() {
-            $slug = slugify($(this).val());
-            $('.slug').val($slug);
-        })
-
-        // preview input
-        // var inputBox = document.getElementById('post');
-
-        //    inputBox.onkeyup = function(){
-        //    document.getElementById('postPreview').innerHTML = inputBox.value;
-        // }
+        slugifyField(".title", ".slug");
     </script>
 
 @endsection

@@ -1,12 +1,17 @@
 @extends('layouts.app')
-<title>{{$post->title}}</title>
+<title>{{ $post->title }}</title>
 
 @section('content')
 
     <div class="container post-content">
 
+        @if(!Auth::check())
+            <a class="btn btn-primary" style="display:inline-block" href="/"><i class="fas fa-chevron-left"></i> Back to Posts</a>
+        @endif
+
         @if(Auth::check())
             <form action="{{ route('delete-post') }}" method="POST" style="margin-bottom: 30px;">
+                <a class="btn btn-primary" style="display:inline-block" href="/"><i class="fas fa-chevron-left"></i> Back to Posts</a>
                 <a class="btn btn-primary" style="display:inline-block" href="{{ url('/edit-post/'.$post->user->name.'/'.$post->slug) }}">Edit Post</a>
 
                 @csrf
@@ -15,16 +20,16 @@
             </form>
         @endif
 
-        <h1 class="post-title">{{$post->title}}</h1>
+        <h1 class="post-title">{{ $post->title }}</h1>
         <p class="post-meta">
             <i class="fas fa-calendar"></i>
                 {{date_format($post->updated_at, 'm/d/Y')}}
             <i class="fas fa-user"></i>
-                {{$post->user->name}}
+                {{ $post->user->name }}
             <i class="fas fa-clock"></i>
-                {{$post->reading_time}} minutes
+                {{ $post->reading_time }} minutes
             <i class="fas fa-tag"></i>
-                {{$post->category}}
+                {{ $post->category->category }}
         </p>
         <div class="banner-image-container">
             @if ($post->banner_image_url == null)
@@ -54,35 +59,42 @@
 
         </div>
 
-        <hr>
+        @if ($settings->comments == 1)
 
-        <h4>Comments</h4>
-        @if(Auth::check())
-            <form action="{{ route('create-comment') }}" method="POST">
-                @csrf
+            <hr>
 
-                <input type="text" name="post_id" value="{{$post->id}}" hidden>
-                <textarea name="comment" class="form-control" rows="3" placeholder="Commenting as {{ Auth::user()->name }}...">{{ old('comment') }}</textarea>
-                <br />
-                <input type="submit" class="btn btn-primary" value="Add Comment">
-            </form>
-            @else
-            <p>Please <a href="{{ route('login') }}">login</a> to leave a comment.</p>
-        @endif
-        @foreach($comments as $comment)
-            <br /><hr /><br />
-            <p>{{$comment->comment}}</p>
-            <i>{{$comment->user->name}} - {{date_format($comment->updated_at, 'm/d/Y')}}</i>
+            <h4>Comments</h4>
             @if(Auth::check())
-                <form action="{{ route('delete-comment') }}" method="POST">
+                <form action="{{ route('create-comment') }}" method="POST">
                     @csrf
-                    <input type="text" name="id" value="{{$comment->id}}" hidden>
-                    <button class="btn btn-sm btn-danger" onclick="this.form.submit();">
-                        <i class="fas fa-trash"></i>
-                    </button>
+
+                    <input type="text" name="post_id" value="{{$post->id}}" hidden>
+                    <textarea name="comment" class="form-control" rows="3" placeholder="Commenting as {{ Auth::user()->name }}...">{{ old('comment') }}</textarea>
+                    <br />
+                    <input type="submit" class="btn btn-primary" value="Add Comment">
                 </form>
+                @else
+                <p>Please <a href="{{ route('login') }}">login</a> to leave a comment.</p>
             @endif
-        @endforeach
+            @forelse($comments as $comment)
+                <br /><hr /><br />
+                <p>{{$comment->comment}}</p>
+                <i>{{$comment->user->name}} - {{date_format($comment->updated_at, 'm/d/Y')}}</i>
+                @if(Auth::check())
+                    <form action="{{ route('delete-comment') }}" method="POST">
+                        @csrf
+                        <input type="text" name="id" value="{{$comment->id}}" hidden>
+                        <button class="btn btn-sm btn-danger" onclick="this.form.submit();">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
+                @endif
+                @empty
+                <p>No comments yet.</p>
+            @endforelse
+
+        @endif
+
     </div>
 
 @endsection

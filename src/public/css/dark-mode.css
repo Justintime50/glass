@@ -72,4 +72,9 @@ hr {
   background-color: #3282b8;
   height: 1px;
 }
+
+.btn-danger {
+  background-color: #b20000;
+  border-color: #b20000;
+}
 /*# sourceMappingURL=dark-mode.css.map */

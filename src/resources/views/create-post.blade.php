@@ -13,15 +13,23 @@
         <label for="slug">Slug (URL) - Must be a single string (eg: "my-new-post" OR "mynewpost")</label>
         <input type='text' class='form-control slug' name='slug' id="slug" value="{{ old('slug') }}">
 
+        <label for="published">Post Status</label>
+        <select class="form-control" name="published">
+            <option value="1">Published</option>
+            <option value="0">Draft</option>
+        </select>
+
         <label for="banner-image">Banner Image URL</label>
         <input type="text" class="form-control" name="banner_image_url" value="{{ old('banner_image_url') }}">
 
         <label for="reading_time">Reading Time (number of minutes)</label>
         <input type="text" class="form-control" name="reading_time" value="{{ old('reading_time') }}">
 
-        <label for="category">Category</label>
-        <select class="form-control" name="category">
-            <option value="Uncategorized">Uncategorized</option>
+        <label for="category_id">Category</label>
+        <select class="form-control" name="category_id">
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->category }}</option>
+            @endforeach
         </select>
 
         <label for="keywords">Keywords (separated by commas)</label>

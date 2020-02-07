@@ -6,13 +6,13 @@
     @if (isset($post->keywords))
         <meta name="keywords" content="<?= $post->keywords; ?>">
     @else 
-        <meta name="keywords" content="Laraview">
+        <meta name="keywords" content="{{ $settings->title }}">
     @endif
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laraview') }}</title>
+    <title>{{ $settings->title }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
@@ -25,21 +25,17 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/stylesheet.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/dark-mode.css') }}" rel="stylesheet">
-    <!--
-        TODO: Setup themes per blog
-    if (Auth::user()->settings->theme == 2) {
-        echo "<link href=\"{ asset('css/dark-mode.css') }}\" rel=\"stylesheet\">";
-    }
-    -->
-    
+    @if ($settings->theme == 2)
+        <link href="{{ asset('css/dark-mode.css') }}" rel='stylesheet'>
+    @endif
+
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laraview') }}
+                    {{ $settings->title }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
