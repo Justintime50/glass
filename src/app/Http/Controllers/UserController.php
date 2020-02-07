@@ -57,4 +57,13 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function delete(Request $request)
+    {
+        $id = request()->get('id');
+        $user = User::find($id)->delete();
+
+        session()->flash("message", "User deleted.");
+        return redirect('/');
+    }
+
 }

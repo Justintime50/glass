@@ -14,9 +14,10 @@ class Post extends Model
         'slug',
         'reading_time',
         'keywords',
-        'category',
+        'category_id',
         'user_id',
         'post',
+        'published',
     ];
 
     public function comment()
@@ -27,5 +28,10 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

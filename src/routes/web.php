@@ -23,17 +23,19 @@ Route::get('/{user}/{slug}', 'PostController@read');
 // Must be an Admin
 Route::middleware('Admin')->group(function () {
     Route::get('/admin', 'AdminController@read')->name('admin');
-    Route::post('/update-settings', 'AdminController@update')->name('update-settings');
-    Route::get('/edit-post/{user}/{slug}', 'PostController@readEdit');
-    Route::get('/create-post', function () {
-        return view('create-post');
-    })->name('create-post');
+    Route::get('/edit-post/{user}/{slug}', 'PostController@readEdit')->name('edit-post');
+    Route::get('/create-post', 'PostController@readCreate')->name('create-post');
+    Route::get('/comments', 'CommentController@readComments')->name('comments');
 
+    Route::post('/update-settings', 'AdminController@update')->name('update-settings');
+    Route::post('/update-user-role', 'AdminController@updateUserRole')->name('update-user-role');
     Route::post('/create-post', 'PostController@create')->name('create-post');
     Route::post('/update-post', 'PostController@update')->name('update-post');
     Route::post('/delete-post', 'PostController@delete')->name('delete-post');
-
-    Route::get('/comments', 'CommentController@readComments')->name('comments');
+    Route::post('/create-category', 'CategoryController@create')->name('create-category');
+    Route::post('/update-category', 'CategoryController@update')->name('update-category');
+    Route::post('/delete-category', 'CategoryController@delete')->name('delete-category');
+    Route::post('/delete-user', 'UserController@delete')->name('delete-user');
 });
 
 
@@ -42,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/create-comment', 'CommentController@create')->name('create-comment');
     Route::post('/delete-comment', 'CommentController@delete')->name('delete-comment');
     Route::post('/update-profile', 'UserController@update')->name('update-profile');
-    Route::post('/update-profile-pic', 'UserController@updateProfilePic');
+    Route::post('/update-profile-pic', 'UserController@updateProfilePic')->name('update-profile-pic');
 
     Route::get('/profile', 'UserController@read')->name('profile');
 });

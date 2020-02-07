@@ -8,31 +8,101 @@
         @csrf
 
         <label for="title">Blog Title</label>
-        <input type="text" class="form-control" name="title" value="{{ old('title', $settings->title) }}" disabled>
+        <input type="text" class="form-control" name="title" value="{{ old('title', $settings->title) }}">
 
-        <label for="title">Comments</label><br>
+        <label for="title">Comments</label>
+        <select name="comments" class="form-control">
+            <option value="1" <?php if ($settings->comments == 1) echo "selected"; ?>>On</option>
+            <option value="0" <?php if ($settings->comments == 0) echo "selected"; ?>>Off</option>
+        </select>
 
-        <label for="title">Theme</label><br>
-        <br />
+        <label for="title">Blog Theme</label>
+        <select name="theme" class="form-control">
+            <option value="1" <?php if ($settings->theme == 1) echo "selected"; ?>>Default</option>
+            <option value="2" <?php if ($settings->theme == 2) echo "selected"; ?>>Dark Mode</option>
+        </select>
+
         <input type="submit" class="btn btn-primary" value="Update Settings">
-        <hr />
+        
+        </form>
 
+    </div>
+
+    <div class="container section-space">
         <h2>Categories</h2>
 
-        <ul>
+        <!-- TODO: Paginate -->
+        <table class="table">
+            <th>Name</th>
+            <th>Created At</th>
+            <th>Actions</th>
             @foreach($categories as $category)
-                <li>{{ $category->category }} | {{ $category->created_at }}</li>
+                <tr>
+                    <td>{{ $category->category }}</td>
+                    <td>{{ $category->created_at }}</td>
+                    <td>
+                        <form action="/delete-category" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $category->id }}">
+                            <input type="submit" style="display:inline-block" value="Delete Category" class="btn btn-sm btn-danger">
+                        </form>
+                    </td>
+                </tr>
             @endforeach
-        </ul>
+        </table>
 
-        <hr />
+        <h3>Create New Category</h3>
+        <form action="/create-category" method="post">
+            @csrf
+            <input type="text" class="form-control" name="category" value="{{ old('category') }}" placeholder="New category name...">
+            <input type="submit" style="display:inline-block" value="Create category" class="btn btn-primary">
+        </form>
+
+    </div>
+
+    <div class="container section-space">
+        <h2>Blog Posts</h2>
+
+        <!-- TODO: Paginate -->
+        <table class="table">
+            <th>Title</th>
+            <th>Status</th>
+            <th>Author</th>
+            <th>Created At</th>
+            <th>Actions</th>
+            @foreach($posts as $post)
+                <tr>
+                    <td><a href="{{ url('/'.str_replace(' ','-',$post->user->name).'/'.$post->slug) }}">{{ $post->title }}</a></td>
+                    <td>
+                        <?php if ($post->published == 1) {echo "Published";} else {echo "Draft";} ?>
+                    </td>
+                    <td>{{ $post->user->name }}</td>
+                    <td>{{ $post->created_at }}</td>
+                    <td>
+                        <form action="/delete-post" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $post->id }}">
+                            <a class="btn btn-sm btn-primary" style="display:inline-block" href="{{ url('/edit-post/'.$post->user->name.'/'.$post->slug) }}">Edit Post</a>
+                            <input type="submit" style="display:inline-block" value="Delete Post" class="btn btn-sm btn-danger">
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </table>
+
+        <a href="/create-post" class="btn btn-primary">Create Post</a>
 
     </div>
         
-    <div class="container">
-        <h2>All Blog Users</h2>
+    <div class="container section-space">
+        <h2>Blog Users</h2>
 
-        <ul>
+        <!-- TODO: Paginate -->
+        <table class="table">
+            <th>Name</th>
+            <th>Role</th>
+            <th>Created At</th>
+            <th>Actions</th>
             @foreach($users as $user)
                 <?php
                     // TODO: Cleanup, there's a better way.
@@ -42,11 +112,30 @@
                     if ($user->role == 2) {
                         $role = "User";
                     }
-                ?> 
-                <b>Name | Role | Created At</b>
-                <li>{{ $user->name }} | {{ $role }} | {{ $user->created_at }}</li>
+                ?>
+                <tr>
+                    <td>{{ $user->name }}</td>
+                    <td>
+                        <form action="/update-user-role" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $user->id }}">
+                            <select name="role" onchange="this.form.submit()">
+                                <option value="1" <?php if ($user->role == 1) echo "selected"; ?>>Admin</option>
+                                <option value="2" <?php if ($user->role == 2) echo "selected"; ?>>User</option>
+                            <select>
+                        </form>
+                    </td>
+                    <td>{{ $user->created_at }}</td>
+                    <td>
+                        <form action="/delete-user" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $user->id }}">
+                            <input type="submit" value="Delete User" class="btn btn-sm btn-danger">
+                        </form>
+                    </td>
+                </tr>
             @endforeach
-        </ul>
+        </table>
 
     </div>
 

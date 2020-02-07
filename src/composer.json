@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "doctrine/dbal": "^2.10",
         "erusev/parsedown": "^1.7",
         "facade/ignition": "^1.13",
         "fideloper/proxy": "^4.0",
