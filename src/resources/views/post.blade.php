@@ -51,7 +51,13 @@
         <div class="row author">
                 
             <div class="col-md-1">
-                <i class="fas fa-user author-icon"></i>
+                <?php $avatar_path = "/storage/avatars/".$post->user->id.".png"; ?>
+                @if (!file_exists($avatar_path))
+                    <i class="fas fa-user fa-3x avatar"></i>
+                @else
+                    <img src="{{$avatar_path}}" class="avatar">
+                @endif
+
             </div>
             <div class="col-md-11">
                 <p><b>{{$post->user->name}}</b><br />{{$post->user->bio}}</p>
