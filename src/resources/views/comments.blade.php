@@ -5,9 +5,9 @@
 <div class="container">
     <h1>Comments</h1>
     @forelse($comments as $comment)
-        <br /><hr /><br />
+        <hr>
         <p>{{$comment->comment}}</p>
-        <i>{{$comment->user->name}} - {{date_format($comment->updated_at, 'm/d/Y')}} | On: {{$comment->post->title}}</i>
+        <i>{{$comment->user->name}} - {{date_format($comment->updated_at, 'm/d/Y')}} | On Post: <a href="/{{$comment->post->user->name}}/{{$comment->post->slug}}">{{$comment->post->title}}</a></i>
         <form action="{{ route('delete-comment') }}" method="POST">
             @csrf
             <input type="text" name="id" value="{{$comment->id}}" hidden>

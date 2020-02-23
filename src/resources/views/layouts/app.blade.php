@@ -64,9 +64,10 @@
                                 </li>
                             @endif
                         @else
-                            <a class="nav-link" href="{{ route('create-post') }}">Create Post</a>
+                            @if (Auth::user()->role == 1)
+                                <a class="nav-link" href="{{ route('create-post') }}">Create Post</a>
+                            @endif
                             <a class="nav-link" href="{{ route('posts') }}">Posts</a>
-                            <a class="nav-link" href="{{ route('comments') }}">Comments</a>
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -75,7 +76,11 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
-                                    <a class="dropdown-item" href="{{ route('admin') }}">Admin</a>
+                                    @if (Auth::user()->role == 1)
+                                        <a class="dropdown-item" href="{{ route('images') }}">Images</a>
+                                        <a class="dropdown-item" href="{{ route('comments') }}">Comments</a>
+                                        <a class="dropdown-item" href="{{ route('admin') }}">Admin</a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

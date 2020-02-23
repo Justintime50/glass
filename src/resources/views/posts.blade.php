@@ -9,10 +9,10 @@
                 <a href="{{ url('/'.str_replace(' ','-',$post->user->name).'/'.$post->slug) }}" class="post-link">
                     <div class="banner-image-container">
                         @if ($post->banner_image_url == null)
-                            <img src="{{ asset('pics/banner.jpg') }}" class="banner-image">
-                        @else
-                            <img src="{{ asset($post->banner_image_url) }}" class="banner-image">
-                        @endif
+                        <img src="{{ asset('pics/banner.jpg') }}" class="banner-image">
+                    @else
+                        <img src="{{ asset("storage/post-images/$post->banner_image_url") }}" class="banner-image">
+                    @endif
                     </div>
                     <div class="post-container-content-feed">
                         <h2>
@@ -26,13 +26,13 @@
                             <i class="fas fa-clock"></i>
                                 {{ $post->reading_time }} minutes
                             <i class="fas fa-tag"></i>
-                                {{ !empty($post->category->category) }}</p>
+                                {{ $post->category->category }}
+                        </p>
                         <p>
-                        <?php
-                            $strippedPost = preg_replace("/[^0-9a-zA-Z_.!?' \r\n+]/", "", $post->post);
-                        ?>
-                        {{ substr($strippedPost, 0, 255) }}
-                        ...
+                            <?php $strippedPost = preg_replace("/[^0-9a-zA-Z_.!?' \r\n+]/", "", $post->post); ?>
+                            {{ substr($strippedPost, 0, 255) }}
+                            ...
+                        </p>
                     </div>
                 </a>
             </div>

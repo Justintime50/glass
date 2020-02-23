@@ -25,6 +25,7 @@ Route::middleware('Admin')->group(function () {
     Route::get('/admin', 'AdminController@read')->name('admin');
     Route::get('/edit-post/{user}/{slug}', 'PostController@readEdit')->name('edit-post');
     Route::get('/create-post', 'PostController@readCreate')->name('create-post');
+    Route::get('/images', 'PostController@readImages')->name('images');
     Route::get('/comments', 'CommentController@readComments')->name('comments');
 
     Route::post('/update-settings', 'AdminController@update')->name('update-settings');
@@ -32,6 +33,8 @@ Route::middleware('Admin')->group(function () {
     Route::post('/create-post', 'PostController@create')->name('create-post');
     Route::post('/update-post', 'PostController@update')->name('update-post');
     Route::post('/delete-post', 'PostController@delete')->name('delete-post');
+    Route::post('/upload-image', 'PostController@uploadPostImage')->name('upload-image');
+    Route::post('/delete-image', 'PostController@deletePostImage')->name('delete-image');
     Route::post('/create-category', 'CategoryController@create')->name('create-category');
     Route::post('/update-category', 'CategoryController@update')->name('update-category');
     Route::post('/delete-category', 'CategoryController@delete')->name('delete-category');
