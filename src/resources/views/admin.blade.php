@@ -34,11 +34,13 @@
         <!-- TODO: Paginate -->
         <table class="table">
             <th>Name</th>
+            <th>Created By</th>
             <th>Created At</th>
             <th>Actions</th>
             @foreach($categories as $category)
                 <tr>
                     <td>{{ $category->category }}</td>
+                    <td>{{ $category->user->name }}</td>
                     <td>{{ $category->created_at }}</td>
                     <td>
                         <form action="/delete-category" method="post">
@@ -114,7 +116,15 @@
                     }
                 ?>
                 <tr>
-                    <td>{{ $user->name }}</td>
+                    <td>
+                        <?php $avatar_path = "storage/avatars/".$user->id.".png"; ?>
+                        @if (!file_exists($avatar_path))
+                            <i class="fas fa-user fa-2x avatar-small"></i>
+                        @else
+                            <img src="{{$avatar_path}}" class="avatar-small">
+                        @endif
+                            {{ $user->name }}
+                    </td>
                     <td>
                         <form action="/update-user-role" method="post">
                             @csrf

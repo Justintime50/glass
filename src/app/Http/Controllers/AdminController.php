@@ -15,10 +15,12 @@ class AdminController extends Controller
     public function read()
     {
         // TODO: Use pagination instead
-        $users = User::all();
+        $users = User::orderBy('name', 'asc')
+            ->get();
         $settings = Setting::first();
-        $posts = Post::all();
-        $categories = Category::where('user_id', '=', Auth::user()->id)
+        $posts = Post::orderBy('created_at', 'desc')
+            ->get();
+        $categories = Category::orderBy('category', 'asc')
             ->get();
 
         return view('/admin', compact('users', 'settings', 'posts', 'categories'));
