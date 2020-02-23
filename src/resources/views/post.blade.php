@@ -29,7 +29,7 @@
             <i class="fas fa-clock"></i>
                 {{ $post->reading_time }} minutes
             <i class="fas fa-tag"></i>
-                {{ $post->category->category }}
+                {{ !empty($post->category->category) }}
         </p>
         <div class="banner-image-container">
             @if ($post->banner_image_url == null)

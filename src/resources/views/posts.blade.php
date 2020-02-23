@@ -26,7 +26,7 @@
                             <i class="fas fa-clock"></i>
                                 {{ $post->reading_time }} minutes
                             <i class="fas fa-tag"></i>
-                                {{ $post->category->category }}</p>
+                                {{ !empty($post->category->category) }}</p>
                         <p>
                         <?php
                             $strippedPost = preg_replace("/[^0-9a-zA-Z_.!?' \r\n+]/", "", $post->post);
