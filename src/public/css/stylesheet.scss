@@ -26,7 +26,7 @@ img {
 }
 
 .banner-image-container {
-    max-height: 400px;
+    height: 400px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -70,7 +70,7 @@ img {
 }
 /* For posts page */
 .post-container-feed {
-    margin: 20px 0px;
+    margin: 40px 0px;
     a {
         color: #000;
     }
@@ -151,4 +151,14 @@ label {
 .avatar-upload-criteria {
     margin-bottom: 20px;
     display: block;
+}
+
+.image-container {
+    padding: 50px 0;
+}
+
+.image-preview {
+    max-width: 150px;
+    max-height: 150px;
+    margin: 30px;
 }

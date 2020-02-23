@@ -9,6 +9,8 @@ use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Category;
 use Auth;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -63,8 +65,7 @@ class PostController extends Controller
 
     public function readCreate(Request $request)
     {
-        $categories = Category::where('user_id', '=', Auth::user()->id)
-            ->get();
+        $categories = Category::all();
 
         return view('/create-post', compact('categories'));
     }
@@ -73,8 +74,7 @@ class PostController extends Controller
     {
         $post = Post::where('slug', '=', $slug)
             ->firstOrFail();
-        $categories = Category::where('user_id', '=', Auth::user()->id)
-            ->get();
+        $categories = Category::all();
 
         return view('/edit-post', compact('post', 'categories'));
     }
@@ -117,6 +117,48 @@ class PostController extends Controller
         $post = Post::find($id)->delete();
 
         session()->flash("message", "Post deleted.");
+        return redirect('/');
+    }
+
+    public function readImages(Request $request)
+    {
+        if (!is_dir(storage_path("app/public/post-images"))) {
+            mkdir(storage_path("app/public/post-images"), 0775, true);
+        }
+
+        return view('/images');
+    }
+
+    /**
+     * LOGIC TO UPLOAD A POST IMAGE
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function uploadPostImage(Request $request)
+    {
+        $request->validate([
+            'upload_image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+        ]);
+        $id = mt_rand(100000000000, 999999999999); # TODO: This is hacky, fix down the road
+
+        if (!is_dir(storage_path("app/public/post-images"))) {
+            mkdir(storage_path("app/public/post-images"), 0775, true);
+        }
+
+        // Upload Avatar (IMAGE INTERVENTION - LARAVEL)
+        Image::make($request->file("upload_image"))->save(storage_path("app/public/post-images/".$id.".png"));
+
+        session()->flash("message", "Image uploaded successfully.");
+        return redirect()->back();
+    }
+
+    public function deletePostImage(Request $request)
+    {
+        $id = request()->get('id');
+        Storage::delete("post-images/$id");
+
+        session()->flash("message", "Image deleted.");
         return redirect('/');
     }
 }

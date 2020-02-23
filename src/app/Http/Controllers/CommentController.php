@@ -10,8 +10,8 @@ class CommentController extends Controller
 {
     public function readComments(Request $request)
     {
-        $comments = Comment::all();
-        // TODO: Use pagination instead
+        $comments = Comment::orderBy('created_at', 'desc')
+            ->paginate(20);
 
         return view('/comments', compact('comments'));
     }

@@ -27,7 +27,7 @@ img {
 }
 
 .banner-image-container {
-  max-height: 400px;
+  height: 400px;
   overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -84,7 +84,7 @@ img {
 
 /* For posts page */
 .post-container-feed {
-  margin: 20px 0px;
+  margin: 40px 0px;
   -webkit-transition: -webkit-box-shadow 0.4s ease-in-out;
   transition: -webkit-box-shadow 0.4s ease-in-out;
   transition: box-shadow 0.4s ease-in-out;
@@ -171,5 +171,15 @@ label {
 .avatar-upload-criteria {
   margin-bottom: 20px;
   display: block;
+}
+
+.image-container {
+  padding: 50px 0;
+}
+
+.image-preview {
+  max-width: 150px;
+  max-height: 150px;
+  margin: 30px;
 }
 /*# sourceMappingURL=stylesheet.css.map */

@@ -5,19 +5,16 @@
 
     <div class="container post-content">
 
-        @if(!Auth::check())
-            <a class="btn btn-primary" style="display:inline-block" href="/"><i class="fas fa-chevron-left"></i> Back to Posts</a>
-        @endif
-
-        @if(Auth::check())
+        @if (Auth::check() && Auth::user()->role == 1)
             <form action="{{ route('delete-post') }}" method="POST" style="margin-bottom: 30px;">
+                @csrf
                 <a class="btn btn-primary" style="display:inline-block" href="/"><i class="fas fa-chevron-left"></i> Back to Posts</a>
                 <a class="btn btn-primary" style="display:inline-block" href="{{ url('/edit-post/'.$post->user->name.'/'.$post->slug) }}">Edit Post</a>
-
-                @csrf
                 <input name="id" value="{{$post->id}}" hidden>
                 <input type="submit" style="display:inline-block" class="btn btn-danger" value="Delete Post">
             </form>
+        @else
+            <a class="btn btn-primary" style="display:inline-block" href="/"><i class="fas fa-chevron-left"></i> Back to Posts</a>
         @endif
 
         <h1 class="post-title">{{ $post->title }}</h1>
@@ -29,13 +26,13 @@
             <i class="fas fa-clock"></i>
                 {{ $post->reading_time }} minutes
             <i class="fas fa-tag"></i>
-                {{ !empty($post->category->category) }}
+                {{ $post->category->category }}
         </p>
         <div class="banner-image-container">
             @if ($post->banner_image_url == null)
                 <img src="{{ asset('pics/banner.jpg') }}" class="banner-image">
             @else
-                <img src="{{ asset($post->banner_image_url) }}" class="banner-image">
+                <img src="{{ asset("storage/post-images/$post->banner_image_url") }}" class="banner-image">
             @endif
         </div>
         <div>
