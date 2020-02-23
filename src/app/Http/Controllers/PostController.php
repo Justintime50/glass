@@ -53,7 +53,7 @@ class PostController extends Controller
     public function read($user, $slug)
     {
         $post = Post::where('slug', '=', $slug)
-            //->where('published', '=', 1) // TODO: Fix this for admins so they can still access their posts even when on "draft"
+            // ->where('published', '=', 1) // TODO: Fix this for admins so they can still access their posts even when on "draft"
             ->firstOrFail();
         $comments = Comment::where('post_id', '=', $post->id)
             ->get();
