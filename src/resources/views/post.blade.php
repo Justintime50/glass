@@ -8,13 +8,13 @@
         @if (Auth::check() && Auth::user()->role == 1)
             <form action="{{ route('delete-post') }}" method="POST" style="margin-bottom: 30px;">
                 @csrf
-                <a class="btn btn-primary" style="display:inline-block" href="/"><i class="fas fa-chevron-left"></i> Back to Posts</a>
-                <a class="btn btn-primary" style="display:inline-block" href="{{ url('/edit-post/'.$post->user->name.'/'.$post->slug) }}">Edit Post</a>
+                <a class="btn btn-primary" style="display:inline-block" href="{{ route('/') }}"><i class="fas fa-chevron-left"></i> Back to Posts</a>
+                <a class="btn btn-primary" style="display:inline-block" href="{{ url('/edit-post/'.str_replace(' ','-',$post->user->name).'/'.$post->slug) }}">Edit Post</a>
                 <input name="id" value="{{$post->id}}" hidden>
                 <input type="submit" style="display:inline-block" class="btn btn-danger" value="Delete Post">
             </form>
         @else
-            <a class="btn btn-primary" style="display:inline-block" href="/"><i class="fas fa-chevron-left"></i> Back to Posts</a>
+            <a class="btn btn-primary" style="display:inline-block" href="{{ route('/') }}"><i class="fas fa-chevron-left"></i> Back to Posts</a>
         @endif
 
         <h1 class="post-title">{{ $post->title }}</h1>
@@ -45,7 +45,7 @@
 
         <div class="social">
 
-            <?php $url = config('app.url')."/".$post->user->name."/".$post->slug; ?>
+            <?php $url = config('app.url')."/".str_replace(' ','-',$post->user->name)."/".$post->slug; ?>
             <!-- https://sharingbuttons.io -->
             <!-- Sharingbutton Facebook -->
             <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u={{$url}}" target="_blank" rel="noopener" aria-label="">

@@ -23,7 +23,7 @@
             <option value="0" <?php if ($post->published == 0) echo "selected"; ?>>Draft</option>
         </select>
         
-        <label for="banner-image">Banner Image (eg: 1234567890.png) <i class="fas fa-chevron-right"></i> <a href="/images">Image Library</a></label>
+        <label for="banner-image">Banner Image (eg: 1234567890.png) <i class="fas fa-chevron-right"></i> <a href="{{ route('images') }}">Image Library</a></label>
         <input type="text" class="form-control" name="banner_image_url" value="{{ old('banner_image_url', $post->banner_image_url) }}">
 
         <label for="reading_time">Reading Time (number of minutes)</label>

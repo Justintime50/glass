@@ -159,6 +159,6 @@ class PostController extends Controller
         Storage::delete("post-images/$id");
 
         session()->flash("message", "Image deleted.");
-        return redirect('/');
+        return redirect()->back();
     }
 }

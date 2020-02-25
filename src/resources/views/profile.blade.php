@@ -8,7 +8,7 @@
             @csrf
 
             <label for="name">Name</label>
-            <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" disabled>
+            <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}">
 
             <label for="name">Password</label>
             <input type="password" class="form-control" name="password" value="" disabled>
@@ -24,7 +24,7 @@
         <hr>
 
         <!-- UPLOAD BUTTONS -->
-        <form action="/update-profile-pic" method="post" enctype="multipart/form-data" id="submit_profile_pic">
+        <form action="{{ route('update-profile-pic') }}" method="post" enctype="multipart/form-data" id="submit_profile_pic">
             {{ csrf_field() }}
             <label>Profile Picture</label>
             <small class="avatar-upload-criteria">Picture must be a jpg or png no bigger than 2mb.</small>
