@@ -56,12 +56,6 @@ img {
   /* Animation */
 }
 
-.author-icon {
-  padding-right: 20px;
-  padding: 10px 0px;
-  font-size: 30px;
-}
-
 .post-content {
   width: 45%;
 }
@@ -154,14 +148,13 @@ label {
 }
 
 .avatar {
-  max-width: 80px;
+  max-width: 100%;
   display: block;
-  margin: 10px 0;
+  margin: 5px 0 10px 0;
 }
 
 .avatar-small {
   max-width: 32px;
-  margin: 0 10px;
 }
 
 .section-space {
