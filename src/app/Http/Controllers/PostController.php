@@ -58,7 +58,8 @@ class PostController extends Controller
             // ->where('published', '=', 1) // TODO: Fix this for admins so they can still access their posts even when on "draft"
             ->firstOrFail();
         $comments = Comment::where('post_id', '=', $post->id)
-            ->get();
+            ->orderBy('created_at', 'asc')
+            ->paginate(15);
 
         return view('/post', compact('post', 'comments'));
     }

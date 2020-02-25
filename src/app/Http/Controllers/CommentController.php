@@ -38,6 +38,6 @@ class CommentController extends Controller
         $comment = Comment::find($id)->delete();
 
         session()->flash("message", "Comment deleted.");
-        return redirect("/");
+        return redirect()->back();
     }
 }

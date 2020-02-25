@@ -11,7 +11,6 @@ class CategoryController extends Controller
     public function readCategories(Request $request)
     {
         $categories = Category::all();
-        // TODO: Use pagination instead
 
         return view('/categories', compact('categories'));
     }

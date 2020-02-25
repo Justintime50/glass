@@ -85,16 +85,16 @@
 
         <div class="row author">
                 
-            <div class="col-md-1">
-                <?php $avatar_path = "/storage/avatars/".$post->user->id.".png"; ?>
+            <div class="col-md-2">
+                <?php $avatar_path = "storage/avatars/".$post->user->id.".png"; ?>
                 @if (!file_exists($avatar_path))
                     <i class="fas fa-user fa-3x avatar"></i>
                 @else
-                    <img src="{{$avatar_path}}" class="avatar">
+                    <img src="{{ asset($avatar_path) }}" class="avatar">
                 @endif
 
             </div>
-            <div class="col-md-11">
+            <div class="col-md-10">
                 <p><b>{{$post->user->name}}</b><br />{{$post->user->bio}}</p>
             </div>
 
@@ -111,23 +111,27 @@
 
                     <input type="text" name="post_id" value="{{$post->id}}" hidden>
                     <textarea name="comment" class="form-control" rows="3" placeholder="Commenting as {{ Auth::user()->name }}...">{{ old('comment') }}</textarea>
-                    <br />
                     <input type="submit" class="btn btn-primary" value="Add Comment">
                 </form>
                 @else
                 <p>Please <a href="{{ route('login') }}">login</a> to leave a comment.</p>
             @endif
             @forelse($comments as $comment)
-                <br /><hr /><br />
+                <hr>
                 <p>{{$comment->comment}}</p>
-                <i>{{$comment->user->name}} - {{date_format($comment->updated_at, 'm/d/Y')}}</i>
+                <?php $avatar_path = "storage/avatars/".$comment->user->id.".png"; ?>
+                @if (!file_exists($avatar_path))
+                    <i class="fas fa-user fa-2x avatar-small"></i>
+                @else
+                    <img src="{{ asset($avatar_path) }}" class="avatar-small">
+                @endif
+                <i>&nbsp;{{$comment->user->name}} - {{date_format($comment->updated_at, 'm/d/Y')}}</i>
                 @if(Auth::check())
                     <form action="{{ route('delete-comment') }}" method="POST">
                         @csrf
+                        <br />
                         <input type="text" name="id" value="{{$comment->id}}" hidden>
-                        <button class="btn btn-sm btn-danger" onclick="this.form.submit();">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                        <button class="btn btn-sm btn-danger" onclick="this.form.submit();">Delete Comment</button>
                     </form>
                 @endif
                 @empty

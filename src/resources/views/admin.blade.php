@@ -31,7 +31,6 @@
     <div class="container section-space">
         <h2>Categories</h2>
 
-        <!-- TODO: Paginate -->
         <table class="table">
             <th>Name</th>
             <th>Created By</th>
@@ -52,6 +51,9 @@
                 </tr>
             @endforeach
         </table>
+        <div class="pagination-wrapper">
+            {{ $categories->links() }}
+        </div>
 
         <h3>Create New Category</h3>
         <form action="{{ route('create-category') }}" method="post">
@@ -65,7 +67,6 @@
     <div class="container section-space">
         <h2>Blog Posts</h2>
 
-        <!-- TODO: Paginate -->
         <table class="table">
             <th>Title</th>
             <th>Status</th>
@@ -91,6 +92,9 @@
                 </tr>
             @endforeach
         </table>
+        <div class="pagination-wrapper">
+            {{ $posts->links() }}
+        </div>
 
         <a href="{{ route('create-post') }}" class="btn btn-primary">Create Post</a>
 
@@ -99,7 +103,6 @@
     <div class="container section-space">
         <h2>Blog Users</h2>
 
-        <!-- TODO: Paginate -->
         <table class="table">
             <th>Name</th>
             <th>Role</th>
@@ -121,7 +124,7 @@
                         @if (!file_exists($avatar_path))
                             <i class="fas fa-user fa-2x avatar-small"></i>
                         @else
-                            <img src="{{$avatar_path}}" class="avatar-small">
+                            <img src="{{ asset($avatar_path) }}" class="avatar-small">
                         @endif
                             {{ $user->name }}
                     </td>
@@ -146,6 +149,9 @@
                 </tr>
             @endforeach
         </table>
+        <div class="pagination-wrapper">
+            {{ $users->links() }}
+        </div>
 
     </div>
 
