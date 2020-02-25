@@ -52,6 +52,6 @@ class CategoryController extends Controller
         $category = Category::find($id)->delete();
 
         session()->flash("message", "Category deleted.");
-        return redirect('/');
+        return redirect("/");
     }
 }

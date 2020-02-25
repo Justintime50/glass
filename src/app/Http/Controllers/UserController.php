@@ -21,13 +21,13 @@ class UserController extends Controller
     public function update(Request $request)
     {
         request()->validate([
-            // 'name'          => 'required|string',
+            'name'          => 'required|string',
             // 'password'      => 'nullable',
             'bio'           => 'nullable',
         ]);
 
         $user = User::where('id', '=', Auth::user()->id)->first();
-        // $user->name = request()->get('name');
+        $user->name = request()->get('name');
         // $user->password = request()->get('password');
         $user->bio = request()->get('bio');
         $user->save();

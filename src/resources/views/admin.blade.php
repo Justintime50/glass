@@ -43,7 +43,7 @@
                     <td>{{ $category->user->name }}</td>
                     <td>{{ $category->created_at }}</td>
                     <td>
-                        <form action="/delete-category" method="post">
+                        <form action="{{ route('delete-category') }}" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{ $category->id }}">
                             <input type="submit" style="display:inline-block" value="Delete Category" class="btn btn-sm btn-danger">
@@ -54,7 +54,7 @@
         </table>
 
         <h3>Create New Category</h3>
-        <form action="/create-category" method="post">
+        <form action="{{ route('create-category') }}" method="post">
             @csrf
             <input type="text" class="form-control" name="category" value="{{ old('category') }}" placeholder="New category name...">
             <input type="submit" style="display:inline-block" value="Create category" class="btn btn-primary">
@@ -81,7 +81,7 @@
                     <td>{{ $post->user->name }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
-                        <form action="/delete-post" method="post">
+                        <form action="{{ route('delete-post') }}" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{ $post->id }}">
                             <a class="btn btn-sm btn-primary" style="display:inline-block" href="{{ url('/edit-post/'.$post->user->name.'/'.$post->slug) }}">Edit Post</a>
@@ -92,7 +92,7 @@
             @endforeach
         </table>
 
-        <a href="/create-post" class="btn btn-primary">Create Post</a>
+        <a href="{{ route('create-post') }}" class="btn btn-primary">Create Post</a>
 
     </div>
         
@@ -126,7 +126,7 @@
                             {{ $user->name }}
                     </td>
                     <td>
-                        <form action="/update-user-role" method="post">
+                        <form action="{{ route('update-user-role') }}" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{ $user->id }}">
                             <select name="role" onchange="this.form.submit()">
@@ -137,7 +137,7 @@
                     </td>
                     <td>{{ $user->created_at }}</td>
                     <td>
-                        <form action="/delete-user" method="post">
+                        <form action="{{ route('delete-user') }}" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{ $user->id }}">
                             <input type="submit" value="Delete User" class="btn btn-sm btn-danger">
