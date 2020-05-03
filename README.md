@@ -4,7 +4,7 @@
 
 Laraview is a minimalist Laravel blog supporting multiple users, posts, and comments.
 
-[![Build Status](https://travis-ci.org/Justintime50/laraview.svg?branch=master)](https://travis-ci.org/Justintime50/laraview)
+[![Build Status](https://travis-ci.com/Justintime50/laraview.svg?branch=master)](https://travis-ci.com/Justintime50/laraview)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
 <img src="assets/showcase.png">
