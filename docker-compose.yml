@@ -13,7 +13,7 @@ services:
         labels:
             - traefik.enable=true
             - traefik.docker.network=traefik
-            - traefik.frontend.rule=Host:laraview.localhost
+            - traefik.frontend.rule=Host:blog.justinpaulhammond.com,www.blog.justinpaulhammond.com
             - traefik.port=80
         env_file:
             - init-db.env

@@ -22,7 +22,7 @@ Laraview draws its inspiration from [Medium](https://medium.com) and [Gatsby](ht
 cp src/.env.example src/.env
 cp init-db.env.example init-db.env
 
-# Start the Docker containers
+# Start the Docker containers (edit docker-compose.yml to your needs prior)
 docker-compose up -d
 
 # Generate a Laravel key
