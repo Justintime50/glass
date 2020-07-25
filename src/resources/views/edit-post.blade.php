@@ -25,6 +25,9 @@
         
         <label for="banner-image">Banner Image (eg: 1234567890.png) <i class="fas fa-chevron-right"></i> <a href="{{ route('images') }}">Image Library</a></label>
         <input type="text" class="form-control" name="banner_image_url" value="{{ old('banner_image_url', $post->banner_image_url) }}">
+        @if ($post->banner_image_url != null && !file_exists(asset("storage/post-images/$post->banner_image_url")))
+            <p class="text-danger">Warning: The image provided could not be found.</p>
+        @endif
 
         <label for="reading_time">Reading Time (number of minutes)</label>
         <input type="text" class="form-control" name="reading_time" value="{{ old('reading_time', $post->reading_time) }}">

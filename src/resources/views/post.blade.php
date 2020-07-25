@@ -29,7 +29,7 @@
                 {{ $post->category->category }}
         </p>
         <div class="banner-image-container">
-            @if ($post->banner_image_url == null)
+            @if ($post->banner_image_url == null || !file_exists(asset("storage/post-images/$post->banner_image_url")))
                 <img src="{{ asset('pics/banner.jpg') }}" class="banner-image">
             @else
                 <img src="{{ asset("storage/post-images/$post->banner_image_url") }}" class="banner-image">
