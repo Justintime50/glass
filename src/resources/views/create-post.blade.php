@@ -44,9 +44,12 @@
 
     </div>
 
-    <script src="js/slugify/index.js"></script>
+    {{-- <script src="js/slugify.js"></script> --}}
+    <script src="{{ asset('js/app.js') }}"></script>
+
     <script>
         slugifyField(".title", ".slug");
     </script>
+    
     
 @endsection

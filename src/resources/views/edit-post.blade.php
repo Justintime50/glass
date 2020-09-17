@@ -50,8 +50,8 @@
         <input type="submit" class="btn btn-primary" value="Update Post">
     </div>
 
-    <script src="js/slugify/index.js"></script>
     <script>
+        require('justintime50-slugify')
         slugifyField(".title", ".slug");
     </script>
 
