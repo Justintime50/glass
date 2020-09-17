@@ -74,11 +74,11 @@ img {
   }
 }
 
+/* For posts page (feed) */
 .post-container-content-feed {
   padding: 10px 25px;
 }
 
-/* For posts page */
 .post-container-feed {
   margin: 20px 0;
   -webkit-transition: -webkit-box-shadow 0.4s ease-in-out;
@@ -96,20 +96,6 @@ img {
   opacity: 0;
   -webkit-transition: opacity 0.3s ease-in;
   transition: opacity 0.3s ease-in;
-}
-
-@media only screen and (max-width: 768px) {
-  .post-container-feed {
-    margin: 10px 0px;
-  }
-  .post-container-feed img {
-    -webkit-transform: scale(1.8);
-            transform: scale(1.8);
-  }
-  .post-container-feed:hover img {
-    -webkit-transform: scale(2.2) !important;
-            transform: scale(2.2) !important;
-  }
 }
 
 .post-container-feed:hover {
@@ -135,6 +121,24 @@ img {
   opacity: 1;
   -webkit-transition: opacity 0.4s ease-in;
   transition: opacity 0.4s ease-in;
+}
+
+@media only screen and (max-width: 768px) {
+  .post-container-feed {
+    margin: 10px 0px;
+  }
+  .post-container-feed img {
+    -webkit-transform: scale(1.8);
+            transform: scale(1.8);
+  }
+  .post-container-feed:hover img {
+    -webkit-transform: scale(2.2) !important;
+            transform: scale(2.2) !important;
+  }
+  .banner-image-container img {
+    -webkit-transform: scale(1.8);
+            transform: scale(1.8);
+  }
 }
 
 .form-control {
