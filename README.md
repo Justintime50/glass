@@ -5,7 +5,8 @@
 Laraview is a minimalist Laravel blog supporting multiple users, posts, and comments.
 
 [![Build Status](https://travis-ci.com/Justintime50/laraview.svg?branch=master)](https://travis-ci.com/Justintime50/laraview)
-[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+[![Coverage Status](https://coveralls.io/repos/github/Justintime50/laraview/badge.svg?branch=master)](https://coveralls.io/github/Justintime50/laraview?branch=master)
+[![Licence](https://img.shields.io/github/license/justintime50/laraview)](LICENSE)
 
 <img src="assets/showcase.png">
 
@@ -46,7 +47,15 @@ There is a guide on how to do this [here](https://serversforhackers.com/c/nginx-
 
 The `docker-compose` file in this project uses Traefik for routing web traffic to it. You can either toss those references or follow the guide [here](https://github.com/Justintime50/multisite-docker-server) about configuring Traefik for this project.
 
-## Development & Testing
+## Development
+
+```bash
+# Install dev dependencies
+cd src && php composer.phar install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+
+# Run tests
+./src/vendor/bin/phpunit
+```
 
 ### PHP Standards Fixer
 
@@ -63,7 +72,3 @@ You can seed the database with 5 dummy users and 5 dummy posts by running the fo
 ```bash
 docker exec -it laraview php artisan db:seed
 ```
-
-### Testing
-
-PHP linting and Docker build testing is handled via [Travis](https://travis-ci.org/Justintime50/laraview).
