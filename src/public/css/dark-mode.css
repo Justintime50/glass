@@ -3,9 +3,8 @@ body {
   color: #bbe1fa;
 }
 
-code {
-  background-color: #0f4c75;
-  color: #bbe1fa;
+pre, code {
+  background-color: #bbe1fa !important;
 }
 
 .navbar {

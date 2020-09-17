@@ -4,11 +4,13 @@ body {
 
 /* Code blocks in markdown */
 code {
-  background-color: #eee;
-  padding: 10px;
-  border-radius: 3px;
+  padding: 15px 20px !important;
   width: 100%;
   display: block;
+}
+
+pre {
+  border-radius: 6px;
 }
 
 img {
