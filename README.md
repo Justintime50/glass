@@ -2,7 +2,7 @@
 
 # Laraview
 
-Laraview is a minimalist Laravel blog supporting multiple users, posts, and comments.
+Minimalist blog featuring syntax highlighting, images, comments, themes, and SEO out of the box.
 
 [![Build Status](https://travis-ci.com/Justintime50/laraview.svg?branch=master)](https://travis-ci.com/Justintime50/laraview)
 [![Coverage Status](https://coveralls.io/repos/github/Justintime50/laraview/badge.svg?branch=master)](https://coveralls.io/github/Justintime50/laraview?branch=master)
@@ -12,9 +12,16 @@ Laraview is a minimalist Laravel blog supporting multiple users, posts, and comm
 
 </div>
 
-<br />
+Laraview draws its simplistic design inspiration from [Medium](https://medium.com) and [Gatsby](https://www.gatsbyjs.org). Laraview allows you to quickly deploy a self-hosted blog in just a few simple steps.
 
-Laraview draws its inspiration from [Medium](https://medium.com) and [Gatsby](https://www.gatsbyjs.org), using simplistic design - allowing you to quickly deploy a self-hosted blog in just a few simple steps.
+**Features**
+
+* Custom image support per post
+* Comments (can be enabled/disabled)
+* Syntax highlighting for code snippets
+* Themes to style your blog instance
+* SEO built right in with custom tags per post
+* Admin panel to manage posts, comments, and users
 
 ## Install
 
