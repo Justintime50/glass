@@ -8,10 +8,10 @@
             <div class="post-container-feed">
                 <a href="{{ url('/'.str_replace(' ','-',$post->user->name).'/'.$post->slug) }}" class="post-link">
                     <div class="banner-image-container">
-                        @if ($post->banner_image_url == null || !file_exists(asset("storage/post-images/$post->banner_image_url")))
-                            <img src="{{ asset('pics/banner.jpg') }}" class="banner-image">
-                        @else
+                        @if (file_exists("storage/post-images/$post->banner_image_url") && $post->banner_image_url != null)
                             <img src="{{ asset("storage/post-images/$post->banner_image_url") }}" class="banner-image">
+                        @else
+                            <img src="{{ asset("pics/banner.jpg") }}" class="banner-image">
                         @endif
                     </div>
                     <div class="post-container-content-feed">

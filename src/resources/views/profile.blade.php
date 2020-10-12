@@ -29,10 +29,10 @@
             <label>Profile Picture</label>
             <small class="avatar-upload-criteria">Picture must be a jpg or png no bigger than 2mb.</small>
             <?php $avatar_path = "storage/avatars/".Auth::user()->id.".png"; ?>
-            @if (!file_exists($avatar_path))
-                <i class="fas fa-user fa-3x avatar"></i>
-            @else
+            @if (file_exists($avatar_path))
                 <img src="{{$avatar_path}}" class="avatar">
+            @else
+                <i class="fas fa-user fa-3x avatar"></i>
             @endif
             <input type="text" name="id" value="{{Auth::user()->id}}" hidden>
             <label for="profile_pic" class="btn btn-primary">Update Profile Picture</label>

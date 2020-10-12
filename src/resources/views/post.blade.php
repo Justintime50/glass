@@ -29,10 +29,10 @@
                 {{ $post->category->category }}
         </p>
         <div class="banner-image-container">
-            @if ($post->banner_image_url == null || !file_exists(asset("storage/post-images/$post->banner_image_url")))
-                <img src="{{ asset('pics/banner.jpg') }}" class="banner-image">
-            @else
+            @if (file_exists("storage/post-images/$post->banner_image_url") && $post->banner_image_url != null)
                 <img src="{{ asset("storage/post-images/$post->banner_image_url") }}" class="banner-image">
+            @else
+                <img src="{{ asset("pics/banner.jpg") }}" class="banner-image">
             @endif
         </div>
         <div>
@@ -87,10 +87,10 @@
                 
             <div class="col-md-2">
                 <?php $avatar_path = "storage/avatars/".$post->user->id.".png"; ?>
-                @if (!file_exists($avatar_path))
-                    <i class="fas fa-user fa-3x avatar"></i>
-                @else
+                @if (file_exists($avatar_path))
                     <img src="{{ asset($avatar_path) }}" class="avatar">
+                @else
+                    <i class="fas fa-user fa-3x avatar"></i>
                 @endif
 
             </div>
@@ -120,10 +120,10 @@
                 <hr>
                 <p>{{$comment->comment}}</p>
                 <?php $avatar_path = "storage/avatars/".$comment->user->id.".png"; ?>
-                @if (!file_exists($avatar_path))
-                    <i class="fas fa-user fa-2x avatar-small"></i>
-                @else
+                @if (file_exists($avatar_path))
                     <img src="{{ asset($avatar_path) }}" class="avatar-small">
+                @else
+                    <i class="fas fa-user fa-2x avatar-small"></i>
                 @endif
                 <i>&nbsp;{{$comment->user->name}} - {{date_format($comment->updated_at, 'm/d/Y')}}</i>
                 @if(Auth::check())
