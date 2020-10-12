@@ -24,7 +24,7 @@
             <?php $images_path = array_diff(scandir("storage/post-images/"), array('.', '..')); ?>
             @foreach($images_path as $image)
                 <div class="col">
-                    <img src="storage/post-images/{{$image}}" class="image-preview">
+                    <img src="{{ asset("storage/post-images/$image") }}" class="image-preview">
                     <p>{{$image}}</p>
                     <form action="{{ route('delete-image') }}" method="post">
                         @csrf

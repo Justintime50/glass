@@ -121,10 +121,10 @@
                 <tr>
                     <td>
                         <?php $avatar_path = "storage/avatars/".$user->id.".png"; ?>
-                        @if (!file_exists($avatar_path))
-                            <i class="fas fa-user fa-2x avatar-small"></i>
-                        @else
+                        @if (file_exists($avatar_path))
                             <img src="{{ asset($avatar_path) }}" class="avatar-small">
+                        @else
+                            <i class="fas fa-user fa-2x avatar-small"></i>
                         @endif
                             {{ $user->name }}
                     </td>
