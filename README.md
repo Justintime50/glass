@@ -4,11 +4,10 @@
 
 Minimalist blog featuring syntax highlighting, images, comments, themes, and SEO out of the box.
 
-[![Build Status](https://travis-ci.com/Justintime50/laraview.svg?branch=master)](https://travis-ci.com/Justintime50/laraview)
-[![Coverage Status](https://coveralls.io/repos/github/Justintime50/laraview/badge.svg?branch=master)](https://coveralls.io/github/Justintime50/laraview?branch=master)
+[![Build Status](https://github.com/Justintime50/laraview/workflows/build/badge.svg)](https://github.com/Justintime50/laraview/actions)
 [![Licence](https://img.shields.io/github/license/justintime50/laraview)](LICENSE)
 
-<img src="assets/showcase.png">
+<img src="assets/showcase.png" alt="Showcase">
 
 </div>
 
