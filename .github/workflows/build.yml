@@ -1,0 +1,34 @@
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Setup Traefik
+        run: docker network create traefik
+      - name: Setup Docker container
+        run: |
+          cp src/.env.example src/.env
+          cp init-db.env.example init-db.env
+          docker-compose up -d
+          docker ps | grep -q laraview
+          docker ps | grep -q laraview-db
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+      - name: Install Composer
+        run: cd src && composer self-update
+      - name: Install Dependencies
+        run: cd src && composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Lint
+        run: cd src && ./bin/phplint . --exclude=vendor

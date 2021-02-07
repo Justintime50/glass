@@ -1,11 +1,9 @@
-version: "3.7"
 services:
-
     laraview:
         build: .
         restart: always
         container_name: laraview
-        volumes: 
+        volumes:
             - ./src/storage:/var/www/html/storage
         networks:
             - traefik
@@ -19,7 +17,6 @@ services:
             - init-db.env
         depends_on:
             - laraview-db
-
     laraview-db:
         image: mysql:8.0.18
         restart: always
@@ -30,11 +27,10 @@ services:
             - ./db:/var/lib/mysql
         networks:
             - laraview
-        ports:
-            - "3306:3306"
+        # ports:
+        #     - "3306:3306"
         labels:
             - traefik.enable=false
-
 networks:
     traefik:
         external:
