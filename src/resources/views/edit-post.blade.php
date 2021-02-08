@@ -12,10 +12,10 @@
         <input name="id" value="{{$post->id}}" hidden>
 
         <label for="title">Title</label>
-        <input type="text" class="form-control title" name="title" id="title" value="{{ old('title', $post->title) }}">
+        <input type="text" class="form-control" name="title" id="title" value="{{ old('title', $post->title) }}" oninput="slugifyField('title', 'slug')">
 
         <label for="slug">Slug (URL) - Must be a single string (eg: "my-new-post" OR "mynewpost")</label>
-        <input type='text' class='form-control slug' name='slug' id="slug" value="{{ old('slug', $post->slug) }}">
+        <input type='text' class='form-control' name='slug' id="slug" value="{{ old('slug', $post->slug) }}">
 
         <label for="published">Post Status</label>
         <select class="form-control" name="published">
@@ -50,9 +50,14 @@
         <input type="submit" class="btn btn-primary" value="Update Post">
     </div>
 
-    <script src="js/slugify/index.js"></script>
     <script>
-        slugifyField(".title", ".slug");
+        // slugifyField slugs the title field to create a url slug
+        // slugify imported in "resources/js/app.js"
+        function slugifyField(textfield, slugField) {
+            let textFieldValue = document.getElementById(textfield).value
+            let slug = slugify(textFieldValue)
+            document.getElementById(slugField).value = slug
+        }
     </script>
 
 @endsection

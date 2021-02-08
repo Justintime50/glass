@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "58d8ae5a3dc7eca4eeba6229587528c6",
+    "content-hash": "09b6816cd789313ee6510bcb433811bb",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1274,45 +1274,6 @@
             },
             "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
-        },
-        {
-            "name": "justintime50/slugify",
-            "version": "v1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Justintime50/slugify.git",
-                "reference": "7a1be7c9249383ab15179642afde68bf4c6296f8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Justintime50/slugify/zipball/7a1be7c9249383ab15179642afde68bf4c6296f8",
-                "reference": "7a1be7c9249383ab15179642afde68bf4c6296f8",
-                "shasum": ""
-            },
-            "type": "project",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Justintime50",
-                    "homepage": "https://justinpaulhammond.com"
-                }
-            ],
-            "description": "Slugify a string. Perfect for URLs!",
-            "keywords": [
-                "slug",
-                "slugify",
-                "string",
-                "url"
-            ],
-            "support": {
-                "issues": "https://github.com/Justintime50/slugify/issues",
-                "source": "https://github.com/Justintime50/slugify/tree/master"
-            },
-            "abandoned": true,
-            "time": "2020-07-16T06:19:13+00:00"
         },
         {
             "name": "laravel/framework",
