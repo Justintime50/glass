@@ -15,10 +15,10 @@
     <title>{{ $settings->title }}</title>
 
     <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://kit.fontawesome.com/0dd4ecd465.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
