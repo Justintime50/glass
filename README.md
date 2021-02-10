@@ -57,7 +57,7 @@ The `docker-compose` file in this project uses Traefik for routing web traffic t
 
 ```bash
 # Install dev dependencies
-cd src && php composer.phar install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+cd src && composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
 # Run tests
 ./src/vendor/bin/phpunit
