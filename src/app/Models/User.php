@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends Authenticatable
 {
     use SoftDeletes;
-
     use Notifiable;
+
     public $timestamps = true;
 
     /**
@@ -20,7 +20,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'email_verified_at', 'role', 'bio', 'created_at', 'updated_at'
+        'bio', 
+        'created_at', 
+        'email_verified_at', 
+        'email', 
+        'name', 
+        'password', 
+        'role', 
+        'updated_at'
     ];
 
     /**
@@ -29,7 +36,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 
+        'remember_token',
     ];
 
     /**

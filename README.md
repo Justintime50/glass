@@ -61,14 +61,18 @@ cd src && composer install -q --no-ansi --no-interaction --no-scripts --no-sugge
 
 # Run tests
 ./src/vendor/bin/phpunit
-```
 
-### PHP Standards Fixer
+# Lint the project
+./src/bin/phplint . --exclude=vendor
 
-PHP coding standards can be fixed automatically by running: 
+# Compile SASS and Javascript during development
+npm run dev
 
-```bash
-php-cs-fixer fix laravel --verbose --show-progress=estimating
+# Compile for production
+npm run prod
+
+# Watch for CSS and Javascript changes
+npm run watch
 ```
 
 ### Seeding Database

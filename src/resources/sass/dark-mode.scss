@@ -1,24 +1,30 @@
+$background-color: #1b262c;
+$font-color: #bbe1fa;
+$nav-background: #0f4c75;
+$red: #b20000;
+$accent-color: #3282b8;
+
 body {
-    background-color: #1b262c;
-    color: #bbe1fa;
+    background-color: $background-color;
+    color: $font-color;
 }
 
 pre, code {
-    background-color: #bbe1fa !important;
+    background-color: $font-color !important;
 }
 
 .navbar {
-    background-color: #0f4c75 !important;
+    background-color: $nav-background !important;
     a {
-        color: #bbe1fa !important;
+        color: $font-color !important;
     }
     a:hover {
         opacity: 0.8;
     }
     .dropdown-menu {
-        background-color: #0f4c75 !important;
+        background-color: $nav-background !important;
             a:hover {
-                background-color: #3282b8 !important;
+                background-color: $accent-color !important;
             }
     }
 }
@@ -37,56 +43,56 @@ pre, code {
 
 /* Code blocks in markdown */
 pre {
-    background-color: #bbe1fa;
-    color: #3282b8;
+    background-color: $font-color;
+    color: $accent-color;
 }
 
 /* For posts page */
 .post-container-feed {
     a {
-        color: #bbe1fa;
+        color: $font-color;
     }
 }
 
 .post-container-feed:hover {
-    box-shadow: 2px 2px 10px #bbe1fa;
+    box-shadow: 2px 2px 10px $font-color;
 }
 
 .pagination {
     .page-item span, a {
-        background-color: #0f4c75 !important;
-        color: #bbe1fa;
+        background-color: $nav-background !important;
+        color: $font-color;
     }
     .page-item span:hover, a:hover {
-        color: #bbe1fa;
+        color: $font-color;
         opacity: 0.9;
     }
 }
 
 input[type=text], input[type=email], input[type=password], textarea, select {
-    background-color: #bbe1fa !important;
-    color: #0f4c75 !important;
+    background-color: $font-color !important;
+    color: $nav-background !important;
 }
 
 .card {
-    background-color: #0f4c75;
-    color: #bbe1fa;
+    background-color: $nav-background;
+    color: $font-color;
 }
 
 .card-header {
-    background-color: #3282b8;
+    background-color: $accent-color;
 }
 
 hr {
-    background-color: #3282b8;
+    background-color: $accent-color;
     height: 1px;
 }
 
 .btn-danger {
-    background-color: #b20000;
-    border-color: #b20000;
+    background-color: $red;
+    border-color: $red;
 }
 
 .table {
-    color: #bbe1fa;
+    color: $font-color;
 }
