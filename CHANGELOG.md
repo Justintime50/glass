@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.4.2 (2021-02-12)
+
+* Updates database seeders
+    * Adds comments
+    * Adds categories
+    * Updates previously broken seeds from database changes
+    * Added seeding to GitHub Actions so we can know if seeds break in the future
+
 ## v0.4.1 (2021-02-12)
 
 * Various bug fixes (closes #26)
