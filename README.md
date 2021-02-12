@@ -63,7 +63,7 @@ cd src && composer install -q --no-ansi --no-interaction --no-scripts --no-sugge
 ./src/vendor/bin/phpunit
 
 # Lint the project
-./src/bin/phplint . --exclude=vendor
+./bin/phplint . --exclude=vendor
 
 # Compile SASS and Javascript during development
 npm run dev
