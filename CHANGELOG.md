@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v0.4.1 (2021-02-12)
+
+* Various bug fixes (closes #26)
+    * Admins can now access their draft posts without an error being thrown
+    * There is now a unique check in place for post slug names that now ignores the post being updated and only checks against other posts
+    * Fixed a development bug where data wasn't seeded correctly for categories and rollbacks wouldn't remove that data
+    * The dark mode theme had text the same color as the background on the admin page which has been fixed
+    * Reading time and categories now have visual fallbacks if they are not set properly
+
 ## v0.4.0 (2021-02-09)
 
 * Fixed slugify integration and dependencies

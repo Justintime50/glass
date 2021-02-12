@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
+use App\Models\Setting;
+use App\Models\Category;
 
 class InsertAdminAccount extends Migration
 {
@@ -14,21 +17,29 @@ class InsertAdminAccount extends Migration
     public function up()
     {
         // Seed User's table with initial account
-        DB::table('users')->insert([
-            'name' => "admin",
-            'email' => "admin@laraview.com",
-            'email_verified_at' => now(),
-            'password' => '$2y$10$P/XLoBoBIkfD6QBxhV5GB.2jXL5OZkc9E2pWAVkm9IKoAUQ0zct52', // password = "password"
-            'remember_token' => Str::random(10),
-            'role' => 1,
-        ]);
+        $user = new User();
+        $user->id = 1;
+        $user->name = "admin";
+        $user->email = "admin@laraview.com";
+        $user->email_verified_at = now();
+        $user->password = '$2y$10$P/XLoBoBIkfD6QBxhV5GB.2jXL5OZkc9E2pWAVkm9IKoAUQ0zct52'; // secret
+        $user->remember_token = Str::random(10);
+        $user->role = 1;
+        $user->save();
 
         // Seed settings table with initial settings
-        DB::table('settings')->insert([
-            'title' => "Blog",
-            'theme' => 1,
-            'comments' => 1,
-        ]);
+        $setting = new Setting();
+        $setting-> id = 1;
+        $setting->title = "Blog";
+        $setting->theme = 1;
+        $setting->comments = 1;
+        $setting->save();
+
+        // Seed an initial category
+        $category = new Category();
+        $category->user_id = 1;
+        $category->category = 'Uncategorized';
+        $category->save();
     }
 
     /**
@@ -38,6 +49,8 @@ class InsertAdminAccount extends Migration
      */
     public function down()
     {
-        // TODO: Add in a way to delete this
+        User::truncate();
+        Setting::truncate();
+        Category::truncate();
     }
 }
