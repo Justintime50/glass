@@ -20,7 +20,7 @@ jobs:
           docker ps | grep -q laraview-db
       - name: Migrate and seed database
         run: |
-          sleep 10
+          sleep 15
           docker exec -t laraview php artisan migrate
           docker exec -t laraview php artisan db:seed
   lint:
