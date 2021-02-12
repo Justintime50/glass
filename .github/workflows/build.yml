@@ -18,7 +18,7 @@ jobs:
           docker ps | grep -q laraview
           docker ps | grep -q laraview-db
       - name: Seed database
-        run: docker exec -it laraview php artisan db:seed
+        run: docker exec -t laraview php artisan db:seed
   lint:
     runs-on: ubuntu-latest
     steps:
