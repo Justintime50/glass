@@ -110,12 +110,12 @@
             <th>Actions</th>
             @foreach($users as $user)
                 <?php
-                    // TODO: Cleanup, there's a better way.
                     if ($user->role == 1) {
                         $role = "Admin";
-                    }
-                    if ($user->role == 2) {
+                    } elseif ($user->role == 2) {
                         $role = "User";
+                    } else {
+                        $role = "Undefined";
                     }
                 ?>
                 <tr>

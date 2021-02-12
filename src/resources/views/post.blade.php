@@ -24,9 +24,9 @@
             <i class="fas fa-user"></i>
                 {{ $post->user->name }}
             <i class="fas fa-clock"></i>
-                {{ $post->reading_time }} minutes
+                @if (isset($post->reading_time)) {{ $post->reading_time }} @else {{ '0' }} @endif minutes
             <i class="fas fa-tag"></i>
-                {{ $post->category->category }}
+                @if (isset($post->category->category)) {{ $post->category->category }} @else {{ 'Uncategorized' }} @endif
         </p>
         <div class="banner-image-container">
             @if (file_exists("storage/post-images/$post->banner_image_url") && $post->banner_image_url != null)

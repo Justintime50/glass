@@ -25,18 +25,22 @@ class PostController extends Controller
 
     public function create(Request $request)
     {
+        $post = new Post();
+
         request()->validate([
             'title'         => 'required|string',
-            'slug' => Rule::unique('posts')->where(function ($query) {
-                return $query->where('user_id', Auth::user()->id);
-            }),
+            'slug' => [
+                'required',
+                Rule::unique('posts')->ignore($post->id)->where(function ($query) {
+                    return $query->where('user_id', Auth::user()->id);
+                })
+            ],
             'reading_time'  => 'nullable|numeric',
             'keywords'      => 'nullable|string',
             'category'      => 'string',
             'post'          => 'required|string',
         ]);
 
-        $post = new Post();
         $post->title = request()->get('title');
         $post->slug = request()->get('slug');
         $post->published = request()->get('published');
@@ -54,9 +58,14 @@ class PostController extends Controller
 
     public function read($user, $slug)
     {
-        $post = Post::where('slug', '=', $slug)
-            // ->where('published', '=', 1) // TODO: Fix this for admins so they can still access their posts even when on "draft"
-            ->firstOrFail();
+        if (Auth::user()->role = 1) {
+            $post = Post::where('slug', '=', $slug)
+                ->firstOrFail();
+        } else {
+            $post = Post::where('slug', '=', $slug)
+                ->where('published', '=', 1)
+                ->firstOrFail();
+        }
         $comments = Comment::where('post_id', '=', $post->id)
             ->orderBy('created_at', 'asc')
             ->paginate(15);
@@ -82,21 +91,23 @@ class PostController extends Controller
 
     public function update(Request $request)
     {
+        $id = request()->get('id');
+        $post = Post::where('id', '=', $id)->first();
+
         request()->validate([
             'title'         => 'required|string',
-            /* TODO: fix validation to allow the same slug as the current one when updating
-            'slug' => Rule::unique('posts')->where(function ($query) {
-                return $query->where('user_id', Auth::user()->id);
-            }),
-            */
+            'slug' => [
+                'required',
+                Rule::unique('posts')->ignore($post->id)->where(function ($query) {
+                    return $query->where('user_id', Auth::user()->id);
+                })
+            ],
             'reading_time'  => 'nullable|numeric',
             'keywords'      => 'nullable|string',
             'category'      => 'string',
             'post'          => 'required|string',
         ]);
 
-        $id = request()->get('id');
-        $post = Post::where('id', '=', $id)->first();
         $post->published = request()->get('published');
         $post->banner_image_url = request()->get('banner_image_url');
         $post->title = request()->get('title');
@@ -141,7 +152,11 @@ class PostController extends Controller
         $request->validate([
             'upload_image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
-        $id = mt_rand(100000000000, 999999999999); # TODO: This is hacky, fix down the road
+
+        // ~1 billion possible id's, overlap potential should be small
+        $id_min = 1000000000;
+        $id_max = 9999999999;
+        $id = mt_rand($id_min, $id_max);
 
         if (!is_dir(storage_path("app/public/post-images"))) {
             mkdir(storage_path("app/public/post-images"), 0775, true);
