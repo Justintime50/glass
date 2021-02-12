@@ -19,8 +19,8 @@ class InsertAdminAccount extends Migration
         // Seed User's table with initial account
         $user = new User();
         $user->id = 1;
-        $user->name = "admin";
-        $user->email = "admin@laraview.com";
+        $user->name = 'admin';
+        $user->email = 'admin@laraview.com';
         $user->email_verified_at = now();
         $user->password = '$2y$10$P/XLoBoBIkfD6QBxhV5GB.2jXL5OZkc9E2pWAVkm9IKoAUQ0zct52'; // secret
         $user->remember_token = Str::random(10);
@@ -29,8 +29,7 @@ class InsertAdminAccount extends Migration
 
         // Seed settings table with initial settings
         $setting = new Setting();
-        $setting-> id = 1;
-        $setting->title = "Blog";
+        $setting->title = 'Blog';
         $setting->theme = 1;
         $setting->comments = 1;
         $setting->save();

@@ -14,12 +14,6 @@
 
     <title>{{ $settings->title }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://kit.fontawesome.com/0dd4ecd465.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -28,8 +22,6 @@
     <link rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/social.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/stylesheet.css') }}" rel="stylesheet">
     @if ($settings->theme == 2)
         <link href="{{ asset('css/dark-mode.css') }}" rel='stylesheet'>
     @endif
@@ -127,5 +119,12 @@
             @yield('content')
         </main>
     </div>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://kit.fontawesome.com/0dd4ecd465.js"></script>
+    <!-- Syntax highlighting for posts -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

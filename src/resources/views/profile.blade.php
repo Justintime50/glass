@@ -10,7 +10,7 @@
             <label for="name">Name</label>
             <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}">
 
-            <label for="name">Password</label>
+            <label for="name">Password (coming soon)</label>
             <input type="password" class="form-control" name="password" value="" disabled>
             <input type="password" class="form-control" name="password" value="" disabled>
 

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.4.3 (2021-02-12)
+
+* Switches to Laravel Mix for JS and CSS assets which improves load times and dependencies
+
 ## v0.4.2 (2021-02-12)
 
 * Updates database seeders

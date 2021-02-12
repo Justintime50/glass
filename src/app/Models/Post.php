@@ -10,14 +10,14 @@ class Post extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title',
-        'slug',
-        'reading_time',
-        'keywords',
         'category_id',
-        'user_id',
+        'keywords',
         'post',
         'published',
+        'reading_time',
+        'slug',
+        'title',
+        'user_id',
     ];
 
     public function comment()
