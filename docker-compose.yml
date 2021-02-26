@@ -1,39 +1,35 @@
 services:
-    laraview:
-        build: .
-        restart: always
-        container_name: laraview
-        volumes:
-            - ./src/storage:/var/www/html/storage
-        networks:
-            - traefik
-            - laraview
-        labels:
-            - traefik.enable=true
-            - traefik.docker.network=traefik
-            - traefik.frontend.rule=Host:blog.justinpaulhammond.com,www.blog.justinpaulhammond.com
-            - traefik.port=80
-        env_file:
-            - init-db.env
-        depends_on:
-            - laraview-db
-    laraview-db:
-        image: mysql:8.0.18
-        restart: always
-        container_name: laraview-db
-        env_file:
-            - init-db.env
-        volumes:
-            - ./db:/var/lib/mysql
-        networks:
-            - laraview
-        # ports:
-        #     - "3306:3306"
-        labels:
-            - traefik.enable=false
+  laraview:
+    build: .
+    restart: always
+    container_name: laraview
+    networks:
+      - traefik
+      - laraview
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik
+      - traefik.port=80
+    env_file:
+      - src/.env
+    depends_on:
+      - laraview-db
+  laraview-db:
+    image: mysql:8.0.23
+    restart: always
+    container_name: laraview-db
+    env_file:
+      - init-db.env
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - laraview
+    labels:
+      - traefik.enable=false
+
 networks:
-    traefik:
-        external:
-            name: traefik
-    laraview:
-        name: laraview
+  traefik:
+    external:
+      name: traefik
+  laraview:
+    name: laraview
