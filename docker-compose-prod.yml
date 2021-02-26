@@ -2,3 +2,5 @@ services:
   laraview:
     labels:
       - traefik.frontend.rule=Host:blog.justinpaulhammond.com,www.blog.justinpaulhammond.com
+    volumes:
+      - ./src/storage:/var/www/html/storage
