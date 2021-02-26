@@ -29,15 +29,19 @@ Laraview draws its simplistic design inspiration from [Medium](https://medium.co
 cp src/.env.example src/.env
 cp init-db.env.example init-db.env
 
-# Start the Docker containers (edit docker-compose.yml to your needs prior)
+# Start the dev environment (assumes you have Traefik setup)
 docker-compose up -d
 
 # Generate a Laravel key
-docker exec -it laraview php artisan key:generate
+cd src && php artisan key:generate
 
 # Run database migrations once the database container is up and able to access connections
 docker exec -it laraview php artisan migrate
 ```
+
+### Install in Subfolder (Optional)
+
+There is a guide on how to do this [here](https://serversforhackers.com/c/nginx-php-in-subdirectory).
 
 ## Usage
 
@@ -45,13 +49,14 @@ docker exec -it laraview php artisan migrate
 
 The default login is `admin@laraview.com` and `password`. **Make sure to update the email/password after first login!**
 
-### Install in Subfolder (Optional)
+Visit `laraview.localhost` in a browser to get started.
 
-There is a guide on how to do this [here](https://serversforhackers.com/c/nginx-php-in-subdirectory).
+### Deploy to Production
 
-### Traefik (Optional)
-
-The `docker-compose` file in this project uses Traefik for routing web traffic to it. You can either toss those references or follow the guide [here](https://github.com/Justintime50/multisite-docker-server) about configuring Traefik for this project.
+```bash
+# Deploy the project to production
+docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d
+```
 
 ## Development
 
