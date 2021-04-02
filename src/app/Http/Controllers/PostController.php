@@ -58,7 +58,7 @@ class PostController extends Controller
 
     public function read($user, $slug)
     {
-        if (Auth::user()->role = 1) {
+        if (Auth::user() && Auth::user()->role = 1) {
             $post = Post::where('slug', '=', $slug)
                 ->firstOrFail();
         } else {

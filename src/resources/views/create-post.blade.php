@@ -15,8 +15,8 @@
 
         <label for="published">Post Status</label>
         <select class="form-control" name="published">
-            <option value="1">Published</option>
-            <option value="0">Draft</option>
+            <option value="1" @if (old('published') == "1") {{ "selected" }} @endif>Published</option>
+            <option value="0" @if (old('published') == "0") {{ "selected" }} @endif>Draft</option>
         </select>
 
         <label for="banner-image">Banner Image (eg: 1234567890.png) <i class="fas fa-chevron-right"></i> <a href="{{ route('images') }}">Image Library</a></label>

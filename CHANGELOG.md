@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.4.4 (2021-04-02)
+
+* Fixes a bug that doesn't allow non-admins to see posts
+* Fixes a bug that did not preserve old value of `post status` field when there were validation errors
+
 ## v0.4.3 (2021-02-12)
 
 * Switches to Laravel Mix for JS and CSS assets which improves load times and dependencies
