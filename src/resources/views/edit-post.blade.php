@@ -19,8 +19,8 @@
 
         <label for="published">Post Status</label>
         <select class="form-control" name="published">
-            <option value="1" <?php if ($post->published == 1) echo "selected"; ?>>Published</option>
-            <option value="0" <?php if ($post->published == 0) echo "selected"; ?>>Draft</option>
+            <option value="1" @if ($post->published == 1 || old('published') == "1") {{ "selected" }} @endif>Published</option>
+            <option value="0" @if ($post->published == 0 || old('published') == "0") {{ "selected" }} @endif>Draft</option>
         </select>
         
         <label for="banner-image">Banner Image (eg: 1234567890.png) <i class="fas fa-chevron-right"></i> <a href="{{ route('images') }}">Image Library</a></label>
