@@ -19,6 +19,7 @@ Route::get('/', 'PostController@readPosts')->name('/');
 Route::get('/blog', 'PostController@readPosts')->name('/blog');
 Route::get('/posts', 'PostController@readPosts')->name('posts');
 Route::get('/{user}/{slug}', 'PostController@read');
+Route::get('feed', 'RssFeedController@feed');
 
 
 // Must be an Admin

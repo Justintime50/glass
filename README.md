@@ -2,7 +2,7 @@
 
 # Laraview
 
-Minimalist blog featuring syntax highlighting, images, comments, themes, and SEO out of the box.
+Minimalist blog featuring syntax highlighting, images, comments, themes, RSS, and SEO out of the box.
 
 [![Build Status](https://github.com/Justintime50/laraview/workflows/build/badge.svg)](https://github.com/Justintime50/laraview/actions)
 [![Licence](https://img.shields.io/github/license/justintime50/laraview)](LICENSE)
@@ -19,6 +19,7 @@ Laraview draws its simplistic design inspiration from [Medium](https://medium.co
 * Comments (can be enabled/disabled)
 * Syntax highlighting for code snippets
 * Themes to style your blog instance
+* RSS feed so users can easily stay up-to-date with the latest posts `/feed`
 * SEO built right in with custom tags per post
 * Admin panel to manage posts, comments, and users
 
