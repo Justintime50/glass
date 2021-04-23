@@ -12,7 +12,7 @@
         @foreach($posts as $post)
             <item>
                 <title><![CDATA[{{ $post->title }}]]></title>
-                <link>{{ $post->slug }}</link>
+                <link>{{ url('/'.str_replace(' ','-',$post->user->name).'/'.$post->slug) }}</link>
                 <description><![CDATA[{!! $post->post !!}]]></description>
                 <category>@if (isset($post->category->category)) {{ $post->category->category }} @else {{ 'Uncategorized' }} @endif</category>
                 <author><![CDATA[{{ $post->user->name  }}]]></author>
