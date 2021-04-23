@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.5.0 (2021-04-22)
+
+* Added an RSS feed `/feed` where you can retrieve the most recent  `50` posts via RSS. Perfect for staying up to date with the latest posts or automating blog entries via other feeds.
+* Dependency bumps
+
 ## v0.4.4 (2021-04-02)
 
 * Fixes a bug that doesn't allow non-admins to see posts
