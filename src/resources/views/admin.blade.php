@@ -24,7 +24,7 @@
         <select name="theme" class="form-control">
             <option value="1" <?php if ($settings->theme == 1) {
                 echo "selected";
-            } ?>>Default</option>
+                              } ?>>Default</option>
             <option value="2" <?php if ($settings->theme == 2) {
                 echo "selected";
                               } ?>>Dark Mode</option>
