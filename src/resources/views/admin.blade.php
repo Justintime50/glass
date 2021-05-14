@@ -12,14 +12,22 @@
 
         <label for="title">Comments</label>
         <select name="comments" class="form-control">
-            <option value="1" <?php if ($settings->comments == 1) echo "selected"; ?>>On</option>
-            <option value="0" <?php if ($settings->comments == 0) echo "selected"; ?>>Off</option>
+            <option value="1" <?php if ($settings->comments == 1) {
+                echo "selected";
+                              } ?>>On</option>
+            <option value="0" <?php if ($settings->comments == 0) {
+                echo "selected";
+                              } ?>>Off</option>
         </select>
 
         <label for="title">Blog Theme</label>
         <select name="theme" class="form-control">
-            <option value="1" <?php if ($settings->theme == 1) echo "selected"; ?>>Default</option>
-            <option value="2" <?php if ($settings->theme == 2) echo "selected"; ?>>Dark Mode</option>
+            <option value="1" <?php if ($settings->theme == 1) {
+                echo "selected";
+            } ?>>Default</option>
+            <option value="2" <?php if ($settings->theme == 2) {
+                echo "selected";
+                              } ?>>Dark Mode</option>
         </select>
 
         <input type="submit" class="btn btn-primary" value="Update Settings">
@@ -77,7 +85,13 @@
                 <tr>
                     <td><a href="{{ url('/'.str_replace(' ','-',$post->user->name).'/'.$post->slug) }}">{{ $post->title }}</a></td>
                     <td>
-                        <?php if ($post->published == 1) {echo "Published";} else {echo "Draft";} ?>
+                        <?php
+                        if ($post->published == 1) {
+                            echo "Published";
+                        } else {
+                            echo "Draft";
+                        }
+                        ?>
                     </td>
                     <td>{{ $post->user->name }}</td>
                     <td>{{ $post->created_at }}</td>
@@ -110,17 +124,17 @@
             <th>Actions</th>
             @foreach($users as $user)
                 <?php
-                    if ($user->role == 1) {
-                        $role = "Admin";
-                    } elseif ($user->role == 2) {
-                        $role = "User";
-                    } else {
-                        $role = "Undefined";
-                    }
+                if ($user->role == 1) {
+                    $role = "Admin";
+                } elseif ($user->role == 2) {
+                    $role = "User";
+                } else {
+                    $role = "Undefined";
+                }
                 ?>
                 <tr>
                     <td>
-                        <?php $avatar_path = "storage/avatars/".$user->id.".png"; ?>
+                        <?php $avatar_path = "storage/avatars/" . $user->id . ".png"; ?>
                         @if (file_exists($avatar_path))
                             <img src="{{ asset($avatar_path) }}" class="avatar-small">
                         @else
@@ -133,8 +147,12 @@
                             @csrf
                             <input type="hidden" name="id" value="{{ $user->id }}">
                             <select name="role" onchange="this.form.submit()">
-                                <option value="1" <?php if ($user->role == 1) echo "selected"; ?>>Admin</option>
-                                <option value="2" <?php if ($user->role == 2) echo "selected"; ?>>User</option>
+                                <option value="1" <?php if ($user->role == 1) {
+                                    echo "selected";
+                                                  } ?>>Admin</option>
+                                <option value="2" <?php if ($user->role == 2) {
+                                    echo "selected";
+                                                  } ?>>User</option>
                             <select>
                         </form>
                     </td>

@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Setting;
 use App\Models\Category;
 use App\Models\Post;
-
 use Auth;
 
 class AdminController extends Controller
@@ -21,7 +20,7 @@ class AdminController extends Controller
             ->paginate(10, ['*'], 'posts');
         $categories = Category::orderBy('category', 'asc')
             ->paginate(10, ['*'], 'categories');
-            
+
         return view('/admin', compact('users', 'settings', 'posts', 'categories'));
     }
 

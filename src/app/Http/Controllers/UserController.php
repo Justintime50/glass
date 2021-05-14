@@ -54,7 +54,7 @@ class UserController extends Controller
         }
 
         // Upload Avatar (IMAGE INTERVENTION - LARAVEL)
-        Image::make($request->file("upload_profile_pic"))->fit(150, 150)->save(storage_path("app/public/avatars/".$id.".png"));
+        Image::make($request->file("upload_profile_pic"))->fit(150, 150)->save(storage_path("app/public/avatars/" . $id . ".png"));
 
         session()->flash("message", "Avatar updated successfully.");
         return redirect()->back();
@@ -68,5 +68,4 @@ class UserController extends Controller
         session()->flash("message", "User deleted.");
         return redirect()->back();
     }
-
 }

@@ -28,7 +28,7 @@
             {{ csrf_field() }}
             <label>Profile Picture</label>
             <small class="avatar-upload-criteria">Picture must be a jpg or png no bigger than 2mb.</small>
-            <?php $avatar_path = "storage/avatars/".Auth::user()->id.".png"; ?>
+            <?php $avatar_path = "storage/avatars/" . Auth::user()->id . ".png"; ?>
             @if (file_exists($avatar_path))
                 <img src="{{$avatar_path}}" class="avatar">
             @else

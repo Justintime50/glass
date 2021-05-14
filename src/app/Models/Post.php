@@ -27,11 +27,11 @@ class Post extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class)->withTrashed();;
+        return $this->belongsTo(User::class)->withTrashed();
     }
 
     public function category()
     {
-        return $this->belongsTo(Category::class)->withTrashed();;
+        return $this->belongsTo(Category::class)->withTrashed();
     }
 }
