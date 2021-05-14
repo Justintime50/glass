@@ -118,7 +118,7 @@ class PostController extends Controller
         $post->post = request()->get('post');
         $post->save();
 
-        $url = str_replace(' ', '-', $post->user->name).'/'.$post->slug;
+        $url = str_replace(' ', '-', $post->user->name) . '/' . $post->slug;
         session()->flash("message", "Post updated.");
         return redirect($url);
     }
@@ -163,7 +163,7 @@ class PostController extends Controller
         }
 
         // Upload Avatar (IMAGE INTERVENTION - LARAVEL)
-        Image::make($request->file("upload_image"))->save(storage_path("app/public/post-images/".$id.".png"));
+        Image::make($request->file("upload_image"))->save(storage_path("app/public/post-images/" . $id . ".png"));
 
         session()->flash("message", "Image uploaded successfully.");
         return redirect()->back();

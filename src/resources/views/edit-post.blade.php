@@ -35,7 +35,9 @@
         <label for="category_id">Category</label>
         <select class="form-control" name="category_id">
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}" <?php if ($post->category_id == $category->id) echo "selected"; ?>>{{ $category->category }}</option>
+                <option value="{{ $category->id }}" <?php if ($post->category_id == $category->id) {
+                    echo "selected";
+                                                    } ?>>{{ $category->category }}</option>
             @endforeach
         </select>
 
