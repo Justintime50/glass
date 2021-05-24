@@ -66,10 +66,10 @@ docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d
 cd src && composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
 # Run tests
-./src/vendor/bin/phpunit
+composer test
 
 # Lint the project
-./bin/phplint . --exclude=vendor
+composer lint
 
 # Compile SASS and Javascript during development
 npm run dev
