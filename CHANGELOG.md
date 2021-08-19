@@ -3,6 +3,7 @@
 ## v0.5.2 (2021-08-18)
 
 * Fixes a bug that did not properly round corners on post banner images depending on screen size (closes #54)
+* Adds SASS linting and lints SASS files
 
 ## v0.5.1 (2021-04-22)
 
