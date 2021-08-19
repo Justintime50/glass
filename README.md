@@ -68,8 +68,10 @@ cd src && composer install -q --no-ansi --no-interaction --no-scripts --no-sugge
 # Run tests
 composer test
 
-# Lint the project
+# Lint the PHP files
 composer lint
+# Lint the SASS files
+npm run lint
 
 # Compile SASS and Javascript during development
 npm run dev
