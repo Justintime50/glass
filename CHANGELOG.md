@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.5.2 (2021-08-18)
+
+* Fixes a bug that did not properly round corners on post banner images depending on screen size (closes #54)
+
 ## v0.5.1 (2021-04-22)
 
 * Bug fix to correct URLs on RSS feed entries
