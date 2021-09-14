@@ -30,7 +30,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: 8.0
       - name: Install Composer
         run: cd src && composer self-update
       - name: Install Dependencies
@@ -50,3 +50,15 @@ jobs:
         run: cd src && npm install
       - name: Run SASS lint
         run: cd src && npm run lint
+  deploy:
+    needs: ["docker", "lint-php", "lint-sass"]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Harvey
+        if: github.ref == 'refs/heads/main'
+        uses: distributhor/workflow-webhook@v2
+        env:
+          webhook_type: "json-extended"
+          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
+          data: '{ "pipeline": "deploy", "compose" : "docker-compose.yml -f docker-compose-prod.yml" }'
