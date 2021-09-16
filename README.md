@@ -7,7 +7,7 @@ Minimalist blog featuring syntax highlighting, images, comments, themes, RSS, an
 [![Build Status](https://github.com/Justintime50/laraview/workflows/build/badge.svg)](https://github.com/Justintime50/laraview/actions)
 [![Licence](https://img.shields.io/github/license/justintime50/laraview)](LICENSE)
 
-<img src="assets/showcase.png" alt="Showcase">
+<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/laraview/showcase.png" alt="Showcase">
 
 </div>
 
