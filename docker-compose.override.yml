@@ -4,5 +4,3 @@ services:
       - traefik.frontend.rule=Host:laraview.localhost
     volumes:
       - ./src:/var/www/html
-    # ports:
-    #   - "3306:3306"

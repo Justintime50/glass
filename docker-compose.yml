@@ -15,8 +15,7 @@ services:
     depends_on:
       - laraview-db
   laraview-db:
-    image: mysql:8.0.23
-    platform: linux/amd64  # Emulation compatibility with M1 Macs (alternative is to switch to MongoDB)
+    image: mariadb:10.6.4
     restart: always
     container_name: laraview-db
     env_file:
