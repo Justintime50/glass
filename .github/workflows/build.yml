@@ -8,20 +8,26 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+      # TODO: Once GitHub Actions runs `docker-compose` v2, remove this step
+      - name: Setup Docker Compose v2
+        run: |
+          curl -LJs https://github.com/docker/compose/releases/download/v2.1.0/docker-compose-linux-x86_64 > /usr/local/bin/docker-compose
       - name: Setup Traefik
         run: docker network create traefik
       - name: Setup Docker container
         run: |
-          cp src/.env.example src/.env
-          cp init-db.env.example init-db.env
+          cp src/.env-example src/.env
+          cp database.env-example database.env
           docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d
-          docker ps | grep -q laraview
-          docker ps | grep -q laraview-db
+          docker ps | grep -q laraview-laraview-1
+          docker ps | grep -q laraview-laraview-2
+          docker ps | grep -q laraview-laraview-db-1
+          docker ps | grep -q laraview-laraview-db-replica-1
       - name: Migrate and seed database
         run: |
           sleep 15
-          docker exec -t laraview php artisan migrate
-          docker exec -t laraview php artisan db:seed
+          docker exec -t laraview-laraview-1 php artisan migrate
+          docker exec -t laraview-laraview-1 php artisan db:seed
   lint-php:
     runs-on: ubuntu-latest
     steps:

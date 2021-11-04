@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.6.0 (2021-11-04)
+
+* Adds database replication where a main database accepts writes and a replica is read from (overhauls the required env variables to properly set this up)
+* Scales production deployments to 2 instances of the blog container
+
 ## v0.5.2 (2021-08-18)
 
 * Fixes a bug that did not properly round corners on post banner images depending on screen size (closes #54)

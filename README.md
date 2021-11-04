@@ -27,8 +27,8 @@ Laraview draws its simplistic design inspiration from [Medium](https://medium.co
 
 ```bash
 # Copy the env file and db init file, then edit both before continuing. The DB values must match in both files
-cp src/.env.example src/.env
-cp init-db.env.example init-db.env
+cp src/.env-example src/.env
+cp database.env-example database.env
 
 # Start the dev environment (assumes you have Traefik setup)
 docker-compose up -d
@@ -37,7 +37,7 @@ docker-compose up -d
 cd src && php artisan key:generate
 
 # Run database migrations once the database container is up and able to access connections
-docker exec -it laraview php artisan migrate
+docker exec -it laraview-laraview-1 php artisan migrate
 ```
 
 ### Install in Subfolder (Optional)
@@ -88,5 +88,5 @@ npm run watch
 You can seed the database with 5 dummy users and 5 dummy posts by running the following:
 
 ```bash
-docker exec -it laraview php artisan db:seed
+docker exec -it laraview-laraview-1 php artisan db:seed
 ```

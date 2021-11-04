@@ -1,8 +1,7 @@
 services:
   laraview:
     build: .
-    restart: always
-    container_name: laraview
+    restart: unless-stopped
     networks:
       - traefik
       - laraview
@@ -14,22 +13,42 @@ services:
       - src/.env
     depends_on:
       - laraview-db
+      - laraview-db-replica
   laraview-db:
-    image: mariadb:10.6.4
-    restart: always
-    container_name: laraview-db
-    env_file:
-      - init-db.env
+    image: 'bitnami/mariadb:10.6.4'
+    restart: unless-stopped
     volumes:
-      - ./db:/var/lib/mysql
+      - database-data:/bitnami/mariadb
+    environment:
+      - MARIADB_REPLICATION_MODE=master
+      - MARIADB_SKIP_TEST_DB=yes
+    env_file:
+      - database.env
+    networks:
+      - laraview
+    labels:
+      - traefik.enable=false
+  laraview-db-replica:
+    image: 'bitnami/mariadb:10.6.4'
+    restart: unless-stopped
+    depends_on:
+      - laraview-db
+    environment:
+      - MARIADB_REPLICATION_MODE=slave
+      - MARIADB_MASTER_HOST=laraview-db
+    env_file:
+      - database.env
     networks:
       - laraview
     labels:
       - traefik.enable=false
 
+volumes:
+  database-data:
+    driver: local
+
 networks:
   traefik:
-    external:
-      name: traefik
+    name: traefik
   laraview:
     name: laraview
