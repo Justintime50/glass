@@ -1,5 +1,7 @@
 services:
   laraview:
+    deploy:
+      replicas: 2
     labels:
       - traefik.frontend.rule=Host:blog.justinpaulhammond.com,www.blog.justinpaulhammond.com
     volumes:

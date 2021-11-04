@@ -1,7 +1,16 @@
-db
+# General
 .idea
 .DS_Store
-init-db.env
+
+# Database
+database_data
+
+# Secrets
+*.env
+
+# PHP
 vendor
-.php_cs.cache
+*.cache
+
+# Other
 *.css.map
