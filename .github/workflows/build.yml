@@ -14,7 +14,7 @@ jobs:
         # TODO: Once GitHub Actions runs `docker-compose` v2, swap the underscores
         # for dashes in the container names
         run: |
-          cp src/.env.example src/.env
+          cp src/.env.ci src/.env
           cp database.env.example database.env
           docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d
           docker ps | grep -q laraview_laraview_1
@@ -24,7 +24,7 @@ jobs:
       - name: Migrate and seed database
         run: |
           sleep 15
-          docker exec -t laraview_laraview_1 php artisan migrate -v
+          docker exec -t laraview_laraview_1 php artisan migrate
           docker exec -t laraview_laraview_1 php artisan db:seed
   lint-php:
     runs-on: ubuntu-latest
