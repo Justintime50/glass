@@ -27,8 +27,8 @@ Laraview draws its simplistic design inspiration from [Medium](https://medium.co
 
 ```bash
 # Copy the env file and db init file, then edit both before continuing. The DB values must match in both files
-cp src/.env.example src/.env
-cp init-db.env.example init-db.env
+cp src/.env-example src/.env
+cp database.env-example database.env
 
 # Start the dev environment (assumes you have Traefik setup)
 docker-compose up -d
