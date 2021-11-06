@@ -9,9 +9,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - name: Setup Docker Compose v2
-        run: |
-          curl -LJs https://github.com/docker/compose/releases/download/v2.1.0/docker-compose-darwin-x86_64 $HOME/.docker/cli-plugins/docker-compose
-          chmod +x $HOME/.docker/cli-plugins/docker-compose
+        uses: KengoTODA/actions-setup-docker-compose@main
+        with:
+          version: "2.0.0"
       - name: Setup Traefik
         run: docker network create traefik
       - name: Setup Docker container
