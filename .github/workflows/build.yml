@@ -23,8 +23,8 @@ jobs:
           docker ps | grep -q laraview_laraview-db-replica_1
       - name: Migrate and seed database
         run: |
-          sleep 30
-          docker exec -t laraview_laraview_1 php artisan migrate
+          sleep 15
+          docker exec -t laraview_laraview_1 php artisan migrate -v
           docker exec -t laraview_laraview_1 php artisan db:seed
   lint-php:
     runs-on: ubuntu-latest
