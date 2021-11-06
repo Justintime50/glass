@@ -37,7 +37,7 @@ docker-compose up -d
 cd src && php artisan key:generate
 
 # Run database migrations once the database container is up and able to access connections
-docker exec -it laraview php artisan migrate
+docker exec -it laraview-laraview-1 php artisan migrate
 ```
 
 ### Install in Subfolder (Optional)
@@ -88,5 +88,5 @@ npm run watch
 You can seed the database with 5 dummy users and 5 dummy posts by running the following:
 
 ```bash
-docker exec -it laraview php artisan db:seed
+docker exec -it laraview-laraview-1 php artisan db:seed
 ```
