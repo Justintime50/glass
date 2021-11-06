@@ -2,9 +2,6 @@
 .idea
 .DS_Store
 
-# Database
-database_data
-
 # Secrets
 *.env
 

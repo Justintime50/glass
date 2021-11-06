@@ -18,7 +18,7 @@ services:
     image: 'bitnami/mariadb:10.6.4'
     restart: unless-stopped
     volumes:
-      - ./database_data:/bitnami/mariadb
+      - database-data:/bitnami/mariadb
     environment:
       - MARIADB_REPLICATION_MODE=master
       - MARIADB_SKIP_TEST_DB=yes
@@ -42,6 +42,10 @@ services:
       - laraview
     labels:
       - traefik.enable=false
+
+volumes:
+  database-data:
+    driver: local
 
 networks:
   traefik:

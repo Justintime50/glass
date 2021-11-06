@@ -4,5 +4,6 @@ services:
       replicas: 2
     labels:
       - traefik.frontend.rule=Host:blog.justinpaulhammond.com,www.blog.justinpaulhammond.com
+    # TODO: Do we use a named volume here or backup this folder somewhere?
     volumes:
       - ./src/storage:/var/www/html/storage

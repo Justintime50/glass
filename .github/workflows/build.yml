@@ -8,8 +8,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
       # TODO: Once GitHub Actions runs `docker-compose` v2, remove this step
       - name: Setup Docker Compose v2
         run: |
@@ -27,8 +25,8 @@ jobs:
           docker ps | grep -q laraview-laraview-db-replica-1
       - name: Migrate and seed database
         run: |
-          sleep 20
-          docker exec -t laraview-laraview-1 php artisan migrate -v
+          sleep 15
+          docker exec -t laraview-laraview-1 php artisan migrate
           docker exec -t laraview-laraview-1 php artisan db:seed
   lint-php:
     runs-on: ubuntu-latest
