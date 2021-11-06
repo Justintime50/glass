@@ -11,21 +11,21 @@ jobs:
       - name: Setup Traefik
         run: docker network create traefik
       - name: Setup Docker container
+        # TODO: Once GitHub Actions runs `docker-compose` v2, swap the underscores
+        # for dashes in the container names
         run: |
-          docker --version
-          docker-compose --version
           cp src/.env.example src/.env
           cp database.env.example database.env
           docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d
-          docker ps | grep -q laraview-laraview-1
-          docker ps | grep -q laraview-laraview-2
-          docker ps | grep -q laraview-laraview-db-1
-          docker ps | grep -q laraview-laraview-db-replica-1
+          docker ps | grep -q laraview_laraview_1
+          docker ps | grep -q laraview_laraview_2
+          docker ps | grep -q laraview_laraview-db_1
+          docker ps | grep -q laraview_laraview-db-replica_1
       - name: Migrate and seed database
         run: |
           sleep 15
-          docker exec -t laraview-laraview-1 php artisan migrate
-          docker exec -t laraview-laraview-1 php artisan db:seed
+          docker exec -t laraview_laraview_1 php artisan migrate
+          docker exec -t laraview_laraview_1 php artisan db:seed
   lint-php:
     runs-on: ubuntu-latest
     steps:
