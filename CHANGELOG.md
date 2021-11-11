@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.7.0 (2021-11-11)
+
+* Rebrands the project from `Laraview` to `Glass`, this also includes the database name and user. It's highly encouraged to backup your database prior to upgrading and re-import your data after a fresh installation or manually change the database users and names
+
 ## v0.6.0 (2021-11-04)
 
 * Adds database replication where a main database accepts writes and a replica is read from (overhauls the required env variables to properly set this up)
