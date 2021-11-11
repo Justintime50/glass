@@ -1,17 +1,17 @@
 <div align="center">
 
-# Laraview
+# Glass
 
 Minimalist blog featuring syntax highlighting, images, comments, themes, RSS, and SEO out of the box.
 
-[![Build Status](https://github.com/Justintime50/laraview/workflows/build/badge.svg)](https://github.com/Justintime50/laraview/actions)
-[![Licence](https://img.shields.io/github/license/justintime50/laraview)](LICENSE)
+[![Build Status](https://github.com/Justintime50/glass/workflows/build/badge.svg)](https://github.com/Justintime50/glass/actions)
+[![Licence](https://img.shields.io/github/license/justintime50/glass)](LICENSE)
 
-<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/laraview/showcase.png" alt="Showcase">
+<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/glass/showcase.png" alt="Showcase">
 
 </div>
 
-Laraview draws its simplistic design inspiration from [Medium](https://medium.com) and [Gatsby](https://www.gatsbyjs.org). Laraview allows you to quickly deploy a self-hosted blog in just a few simple steps.
+Glass draws its simplistic design inspiration from [Medium](https://medium.com) and [Gatsby](https://www.gatsbyjs.org). Glass allows you to quickly deploy a self-hosted blog in just a few simple steps.
 
 **Features**
 
@@ -37,7 +37,7 @@ docker-compose up -d
 cd src && php artisan key:generate
 
 # Run database migrations once the database container is up and able to access connections
-docker exec -it laraview-laraview-1 php artisan migrate
+docker exec -it glass-glass-1 php artisan migrate
 ```
 
 ### Install in Subfolder (Optional)
@@ -48,9 +48,9 @@ There is a guide on how to do this [here](https://serversforhackers.com/c/nginx-
 
 ### Default Login
 
-The default login is `admin@laraview.com` and `password`. **Make sure to update the email/password after first login!**
+The default login is `admin@glass.com` and `password`. **Make sure to update the email/password after first login!**
 
-Visit `laraview.localhost` in a browser to get started.
+Visit `glass.localhost` in a browser to get started.
 
 ### Deploy to Production
 
@@ -88,5 +88,5 @@ npm run watch
 You can seed the database with 5 dummy users and 5 dummy posts by running the following:
 
 ```bash
-docker exec -it laraview-laraview-1 php artisan db:seed
+docker exec -it glass-glass-1 php artisan db:seed
 ```

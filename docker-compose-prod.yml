@@ -1,5 +1,5 @@
 services:
-  laraview:
+  glass:
     deploy:
       replicas: 2
     labels:

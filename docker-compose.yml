@@ -1,10 +1,10 @@
 services:
-  laraview:
+  glass:
     build: .
     restart: unless-stopped
     networks:
       - traefik
-      - laraview
+      - glass
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik
@@ -12,9 +12,9 @@ services:
     env_file:
       - src/.env
     depends_on:
-      - laraview-db
-      - laraview-db-replica
-  laraview-db:
+      - glass-db
+      - glass-db-replica
+  glass-db:
     image: 'bitnami/mariadb:10.6.4'
     restart: unless-stopped
     volumes:
@@ -25,21 +25,21 @@ services:
     env_file:
       - database.env
     networks:
-      - laraview
+      - glass
     labels:
       - traefik.enable=false
-  laraview-db-replica:
+  glass-db-replica:
     image: 'bitnami/mariadb:10.6.4'
     restart: unless-stopped
     depends_on:
-      - laraview-db
+      - glass-db
     environment:
       - MARIADB_REPLICATION_MODE=slave
-      - MARIADB_MASTER_HOST=laraview-db
+      - MARIADB_MASTER_HOST=glass-db
     env_file:
       - database.env
     networks:
-      - laraview
+      - glass
     labels:
       - traefik.enable=false
 
@@ -50,5 +50,5 @@ volumes:
 networks:
   traefik:
     name: traefik
-  laraview:
-    name: laraview
+  glass:
+    name: glass

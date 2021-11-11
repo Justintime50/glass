@@ -19,15 +19,15 @@ jobs:
           cp src/.env-example src/.env
           cp database.env-example database.env
           docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d
-          docker ps | grep -q laraview-laraview-1
-          docker ps | grep -q laraview-laraview-2
-          docker ps | grep -q laraview-laraview-db-1
-          docker ps | grep -q laraview-laraview-db-replica-1
+          docker ps | grep -q glass-glass-1
+          docker ps | grep -q glass-glass-2
+          docker ps | grep -q glass-glass-db-1
+          docker ps | grep -q glass-glass-db-replica-1
       - name: Migrate and seed database
         run: |
           sleep 15
-          docker exec -t laraview-laraview-1 php artisan migrate
-          docker exec -t laraview-laraview-1 php artisan db:seed
+          docker exec -t glass-glass-1 php artisan migrate
+          docker exec -t glass-glass-1 php artisan db:seed
   lint-php:
     runs-on: ubuntu-latest
     steps:
