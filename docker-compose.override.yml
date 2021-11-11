@@ -1,6 +1,6 @@
 services:
-  laraview:
+  glass:
     labels:
-      - traefik.frontend.rule=Host:laraview.localhost
+      - traefik.frontend.rule=Host:glass.localhost
     volumes:
       - ./src:/var/www/html

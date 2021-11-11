@@ -20,7 +20,7 @@ class InsertAdminAccount extends Migration
         $user = new User();
         $user->id = 1;
         $user->name = 'admin';
-        $user->email = 'admin@laraview.com';
+        $user->email = 'admin@glass.com';
         $user->email_verified_at = now();
         $user->password = '$2y$10$P/XLoBoBIkfD6QBxhV5GB.2jXL5OZkc9E2pWAVkm9IKoAUQ0zct52'; // secret
         $user->remember_token = Str::random(10);
