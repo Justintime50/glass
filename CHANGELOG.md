@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.7.1 (2021-12-09)
+
+* Bumps dependencies
+* Reworks the instructions for starting the service along with introducing a `setup` script
+* Added various new `composer ...` convenience commands
+
 ## v0.7.0 (2021-11-11)
 
 * Rebrands the project from `Laraview` to `Glass`, this also includes the database name and user. It's highly encouraged to backup your database prior to upgrading and re-import your data after a fresh installation or manually change the database users and names

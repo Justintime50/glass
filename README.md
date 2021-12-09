@@ -26,18 +26,11 @@ Glass draws its simplistic design inspiration from [Medium](https://medium.com) 
 ## Install
 
 ```bash
-# Copy the env file and db init file, then edit both before continuing. The DB values must match in both files
-cp src/.env-example src/.env
-cp database.env-example database.env
+# Copy the env files, and edit as needed
+cp src/.env-example src/.env && cp database.env-example database.env
 
-# Start the dev environment (assumes you have Traefik setup)
-docker-compose up -d
-
-# Generate a Laravel key
-cd src && php artisan key:generate
-
-# Run database migrations once the database container is up and able to access connections
-docker exec -it glass-glass-1 php artisan migrate
+# Run the setup script which will bootstrap all the requirements, spin up the service, and migrate the database
+./setup.sh
 ```
 
 ### Install in Subfolder (Optional)
@@ -56,20 +49,28 @@ Visit `glass.localhost` in a browser to get started.
 
 ```bash
 # Deploy the project to production
-docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d
+docker compose -f docker-compose.yml -f docker-compose-prod.yml up -d
 ```
 
 ## Development
 
 ```bash
-# Install dev dependencies
-cd src && composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+# Install dependencies
+composer install
 
-# Run tests
-composer test
+# Migrate the database
+composer migrate
+composer migrate-fresh
+
+# Clean the database
+composer db-clean
+
+# Seed the database
+composer seed
 
 # Lint the PHP files
 composer lint
+
 # Lint the SASS files
 npm run lint
 
@@ -81,12 +82,4 @@ npm run prod
 
 # Watch for CSS and Javascript changes
 npm run watch
-```
-
-### Seeding Database
-
-You can seed the database with 5 dummy users and 5 dummy posts by running the following:
-
-```bash
-docker exec -it glass-glass-1 php artisan db:seed
 ```

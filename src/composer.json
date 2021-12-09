@@ -52,9 +52,11 @@
   "prefer-stable": true,
   "scripts": {
     "coverage": "XDEBUG_MODE=coverage ./bin/phpunit --coverage-html clover.html --coverage-clover clover.xml",
+    "db-clean": "docker exec -it glass-glass-1 php artisan db:wipe",
     "fix": "./bin/phpcbf",
     "lint": "./bin/phpcs",
-    "test": "./bin/phpunit",
+    "migrate": "docker exec -it glass-glass-1 php artisan migrate",
+    "migrate-fresh": "docker exec -it glass-glass-1 php artisan migrate:fresh",
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover --ansi"
@@ -64,6 +66,8 @@
     ],
     "post-create-project-cmd": [
       "@php artisan key:generate --ansi"
-    ]
+    ],
+    "seed": "docker exec -it glass-glass-1 php artisan db:seed",
+    "test": "./bin/phpunit"
   }
 }
