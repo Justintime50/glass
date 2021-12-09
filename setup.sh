@@ -22,7 +22,7 @@ main() {
     # Run database migrations once the database container is up and able to accept connections
     echo "Waiting for database container to boot before migrating..."
     sleep 15
-    composer migrate-fresh
+    composer migrate-seed
 
     # Seed the database
     composer seed

@@ -57,6 +57,7 @@
     "lint": "./bin/phpcs",
     "migrate": "docker exec -it glass-glass-1 php artisan migrate",
     "migrate-fresh": "docker exec -it glass-glass-1 php artisan migrate:fresh",
+    "migrate-seed": "docker exec -it glass-glass-1 php artisan migrate:fresh --seed",
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover --ansi"

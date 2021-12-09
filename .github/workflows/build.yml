@@ -10,20 +10,14 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup Traefik
         run: docker network create traefik
-      - name: Setup Docker container
+      - name: Setup Project
         run: |
-          cp src/.env-example src/.env
-          cp database.env-example database.env
-          docker compose -f docker-compose.yml -f docker-compose-prod.yml up -d
+          cp src/.env-example src/.env && cp database.env-example database.env
+          cd .. && ./setup.sh
           docker ps | grep -q glass-glass-1
           docker ps | grep -q glass-glass-2
           docker ps | grep -q glass-glass-db-1
           docker ps | grep -q glass-glass-db-replica-1
-      - name: Migrate and seed database
-        run: |
-          sleep 15
-          docker exec -t glass-glass-1 php artisan migrate
-          docker exec -t glass-glass-1 php artisan db:seed
   lint-php:
     runs-on: ubuntu-latest
     steps:
