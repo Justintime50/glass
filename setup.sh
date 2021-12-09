@@ -6,7 +6,7 @@
 main() {
     cd src || exit 1
 
-    # Install dev dependencies
+    # Install dependencies
     composer install
 
     # Generate a Laravel key
@@ -20,12 +20,9 @@ main() {
     cd src || exit 1
 
     # Run database migrations once the database container is up and able to accept connections
-    echo "Waiting for database container to boot before migrating..."
+    echo "Waiting for database container to boot before migrating and seeding..."
     sleep 15
     composer migrate-seed
-
-    # Seed the database
-    composer seed
 }
 
 main
