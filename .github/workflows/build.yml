@@ -19,7 +19,6 @@ jobs:
           cp src/.env-example src/.env && cp database.env-example database.env
           ./setup.sh
           docker ps | grep -q glass-glass-1
-          docker ps | grep -q glass-glass-2
           docker ps | grep -q glass-glass-db-1
           docker ps | grep -q glass-glass-db-replica-1
   lint-php:
