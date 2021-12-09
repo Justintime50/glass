@@ -13,7 +13,7 @@ jobs:
       - name: Setup Project
         run: |
           cp src/.env-example src/.env && cp database.env-example database.env
-          cd .. && ./setup.sh
+          ./setup.sh
           docker ps | grep -q glass-glass-1
           docker ps | grep -q glass-glass-2
           docker ps | grep -q glass-glass-db-1
