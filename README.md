@@ -39,16 +39,19 @@ There is a guide on how to do this [here](https://serversforhackers.com/c/nginx-
 
 ## Usage
 
+Visit `glass.localhost` in a browser to get started.
+
 ### Default Login
 
 The default login is `admin@glass.com` and `password`. **Make sure to update the email/password after first login!**
 
-Visit `glass.localhost` in a browser to get started.
-
-### Deploy to Production
+## Deploy
 
 ```bash
-# Deploy the project to production
+# Deploy the project locally
+docker compose up -d
+
+# Deploy the project in production
 docker compose -f docker-compose.yml -f docker-compose-prod.yml up -d
 ```
 
