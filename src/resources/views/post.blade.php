@@ -9,7 +9,7 @@
             <form action="{{ route('delete-post') }}" method="POST" style="margin-bottom: 30px;">
                 @csrf
                 <a class="btn btn-primary" style="display:inline-block" href="{{ route('/') }}"><i class="fas fa-chevron-left"></i> Back to Posts</a>
-                <a class="btn btn-primary" style="display:inline-block" href="{{ url('/edit-post/'.str_replace(' ','-',$post->user->name).'/'.$post->slug) }}">Edit Post</a>
+                <a class="btn btn-primary" style="display:inline-block" href="{{ strtolower(url('/edit-post/'.str_replace(' ','-',$post->user->name).'/'.$post->slug)) }}">Edit Post</a>
                 <input name="id" value="{{$post->id}}" hidden>
                 <input type="submit" style="display:inline-block" class="btn btn-danger" value="Delete Post">
             </form>

@@ -6,7 +6,7 @@
 
         @forelse($posts as $post)
             <div class="post-container-feed">
-                <a href="{{ url('/'.str_replace(' ','-',$post->user->name).'/'.$post->slug) }}" class="post-link">
+                <a href="{{ strtolower(url('/'.str_replace(' ','-',$post->user->name).'/'.$post->slug)) }}" class="post-link">
                     <div class="banner-image-container">
                         @if (file_exists("storage/post-images/$post->banner_image_url") && $post->banner_image_url != null)
                             <img src="{{ asset("storage/post-images/$post->banner_image_url") }}" class="banner-image">

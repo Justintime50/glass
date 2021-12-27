@@ -83,7 +83,7 @@
             <th>Actions</th>
             @foreach($posts as $post)
                 <tr>
-                    <td><a href="{{ url('/'.str_replace(' ','-',$post->user->name).'/'.$post->slug) }}">{{ $post->title }}</a></td>
+                    <td><a href="{{ strtolower(url('/'.str_replace(' ','-',$post->user->name).'/'.$post->slug)) }}">{{ $post->title }}</a></td>
                     <td>
                         <?php
                         if ($post->published == 1) {
@@ -99,7 +99,7 @@
                         <form action="{{ route('delete-post') }}" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{ $post->id }}">
-                            <a class="btn btn-sm btn-primary" style="display:inline-block" href="{{ url('/edit-post/'.$post->user->name.'/'.$post->slug) }}">Edit Post</a>
+                            <a class="btn btn-sm btn-primary" style="display:inline-block" href="{{ strtolower(url('/edit-post/'.$post->user->name.'/'.$post->slug)) }}">Edit Post</a>
                             <input type="submit" style="display:inline-block" value="Delete Post" class="btn btn-sm btn-danger">
                         </form>
                     </td>
