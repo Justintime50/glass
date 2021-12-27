@@ -11,24 +11,32 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class UserController extends Controller
 {
-    public function read(Request $request)
+    /**
+     * Return the profile page.
+     *
+     * @return Illuminate\View\View
+     */
+    public function read()
     {
-        // $profile = User::find(Auth::user());
-
         return view('/profile');
     }
 
-    public function update(Request $request)
+    /**
+     * Update a user profile.
+     *
+     * @return Illuminate\View\View
+     */
+    public function update()
     {
         request()->validate([
             'name'          => 'required|string',
-            // 'password'      => 'nullable',
+            // 'password'      => 'nullable', // TODO: Add this functionality
             'bio'           => 'nullable',
         ]);
 
         $user = User::where('id', '=', Auth::user()->id)->first();
         $user->name = request()->get('name');
-        // $user->password = request()->get('password');
+        // $user->password = request()->get('password'); // TODO: Add this functionality
         $user->bio = request()->get('bio');
         $user->save();
 
@@ -37,14 +45,13 @@ class UserController extends Controller
     }
 
     /**
-     * LOGIC TO UPDATE THE USER PROFILE PIC
+     * Update the user profile picture.
      *
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function updateProfilePic(Request $request)
+    public function updateProfilePic()
     {
-        $request->validate([
+        request()->validate([
             'upload_profile_pic' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
         $id = request()->get('id');
@@ -54,13 +61,18 @@ class UserController extends Controller
         }
 
         // Upload Avatar (IMAGE INTERVENTION - LARAVEL)
-        Image::make($request->file("upload_profile_pic"))->fit(150, 150)->save(storage_path("app/public/avatars/" . $id . ".png"));
+        Image::make(request()->file("upload_profile_pic"))->fit(150, 150)->save(storage_path("app/public/avatars/" . $id . ".png"));
 
         session()->flash("message", "Avatar updated successfully.");
         return redirect()->back();
     }
 
-    public function delete(Request $request)
+    /**
+     * Delete a user profile (account).
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function delete()
     {
         $id = request()->get('id');
         $user = User::find($id)->delete();

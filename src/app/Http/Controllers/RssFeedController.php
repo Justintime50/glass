@@ -7,6 +7,11 @@ use App\Models\Post;
 
 class RssFeedController extends Controller
 {
+    /**
+     * Return an RSS feed of the most recent posts.
+     *
+     * @return Illuminate\View\View
+     */
     public function feed()
     {
         $posts = Post::orderBy('created_at', 'desc')

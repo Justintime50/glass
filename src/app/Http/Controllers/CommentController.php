@@ -8,7 +8,12 @@ use Auth;
 
 class CommentController extends Controller
 {
-    public function readComments(Request $request)
+    /**
+     * Show all the blog's comments on one page.
+     *
+     * @return Illuminate\View\View
+     */
+    public function readComments()
     {
         $comments = Comment::orderBy('created_at', 'desc')
             ->paginate(20);
@@ -16,7 +21,12 @@ class CommentController extends Controller
         return view('/comments', compact('comments'));
     }
 
-    public function create(Request $request)
+    /**
+     * Create (or leave) a comment on a post.
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function create()
     {
         request()->validate([
             'comment'       => 'required|string',
@@ -32,7 +42,12 @@ class CommentController extends Controller
         return redirect()->back();
     }
 
-    public function delete(Request $request)
+    /**
+     * Delete a comment.
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function delete()
     {
         $id = request()->get('id');
         $comment = Comment::find($id)->delete();

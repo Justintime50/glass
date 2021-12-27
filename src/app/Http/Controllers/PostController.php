@@ -14,7 +14,12 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    public function readPosts(Request $request)
+    /**
+     * Show all of the blogs posts (paginated).
+     *
+     * @return Illuminate\View\View
+     */
+    public function readPosts()
     {
         $posts = Post::orderBy('created_at', 'desc')
             ->where('published', '=', 1)
@@ -23,7 +28,14 @@ class PostController extends Controller
         return view('/posts', compact('posts'));
     }
 
-    public function create(Request $request)
+    /**
+     * Create a new post.
+     *
+     * Only admins can create posts.
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function create()
     {
         $post = new Post();
 
@@ -56,6 +68,15 @@ class PostController extends Controller
         return redirect('/');
     }
 
+    /**
+     * Show the post content on a single page.
+     *
+     * The page will be viewable regardless of published status for admins and only viewable if published for normal users.
+     *
+     * @param str $user
+     * @param str $slug
+     * @return Illuminate\View\View
+     */
     public function read($user, $slug)
     {
         if (Auth::user() && Auth::user()->role = 1) {
@@ -73,13 +94,25 @@ class PostController extends Controller
         return view('/post', compact('post', 'comments'));
     }
 
-    public function readCreate(Request $request)
+    /**
+     * Show the "create post" page.
+     *
+     * @return Illuminate\View\View
+     */
+    public function readCreate()
     {
         $categories = Category::all();
 
         return view('/create-post', compact('categories'));
     }
 
+    /**
+     * Show the "edit post" page.
+     *
+     * @param str $user
+     * @param str $slug
+     * @return Illuminate\View\View
+     */
     public function readEdit($user, $slug)
     {
         $post = Post::where('slug', '=', $slug)
@@ -89,7 +122,12 @@ class PostController extends Controller
         return view('/edit-post', compact('post', 'categories'));
     }
 
-    public function update(Request $request)
+    /**
+     * Update a post.
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update()
     {
         $id = request()->get('id');
         $post = Post::where('id', '=', $id)->first();
@@ -123,6 +161,12 @@ class PostController extends Controller
         return redirect($url);
     }
 
+    /**
+     * Delete a post.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function delete(Request $request)
     {
         $id = request()->get('id');
@@ -132,7 +176,14 @@ class PostController extends Controller
         return redirect('/');
     }
 
-    public function readImages(Request $request)
+    /**
+     * Show the image gallery.
+     *
+     * Images will have a unique ID associated with them which can be referenced to show the images in posts.
+     *
+     * @return Illuminate\View\View
+     */
+    public function readImages()
     {
         if (!is_dir(storage_path("app/public/post-images"))) {
             mkdir(storage_path("app/public/post-images"), 0775, true);
@@ -142,7 +193,7 @@ class PostController extends Controller
     }
 
     /**
-     * LOGIC TO UPLOAD A POST IMAGE
+     * Upload an image to local storage.
      *
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -169,6 +220,12 @@ class PostController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Delete an image.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function deletePostImage(Request $request)
     {
         $id = request()->get('id');

@@ -11,6 +11,11 @@ use Auth;
 
 class AdminController extends Controller
 {
+    /**
+     * Show the admin page including users, settings, posts, and categories.
+     *
+     * @return Illuminate\View\View
+     */
     public function read()
     {
         $users = User::orderBy('name', 'asc')
@@ -24,7 +29,12 @@ class AdminController extends Controller
         return view('/admin', compact('users', 'settings', 'posts', 'categories'));
     }
 
-    public function update(Request $request)
+    /**
+     * Update the settings of the blog.
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update()
     {
         request()->validate([
             'title'       => 'required|string',
@@ -43,7 +53,12 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function updateUserRole(Request $request)
+    /**
+     * Update a user's role (eg: switch someone from a user to an admin)
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function updateUserRole()
     {
         request()->validate([
             'role'  => 'integer',

@@ -8,14 +8,12 @@ use Auth;
 
 class CategoryController extends Controller
 {
-    public function readCategories(Request $request)
-    {
-        $categories = Category::all();
-
-        return view('/categories', compact('categories'));
-    }
-
-    public function create(Request $request)
+    /**
+     * Create a new category.
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function create()
     {
         request()->validate([
             'category'       => 'required|string',
@@ -30,7 +28,12 @@ class CategoryController extends Controller
         return redirect()->back();
     }
 
-    public function update(Request $request)
+    /**
+     * Update a category.
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update()
     {
         request()->validate([
             'category'       => 'required|string',
@@ -45,7 +48,12 @@ class CategoryController extends Controller
         return redirect()->back();
     }
 
-    public function delete(Request $request)
+    /**
+     * Delete a category.
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function delete()
     {
         $id = request()->get('id');
         $category = Category::find($id)->delete();
