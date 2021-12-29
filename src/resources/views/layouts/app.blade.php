@@ -8,15 +8,8 @@
     @else 
         <meta name="keywords" content="{{ $settings->title }}">
     @endif
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ $settings->title }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet"
@@ -83,7 +76,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="display-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -95,7 +88,7 @@
         </nav>
 
         <!-- LARAVEL ERRORS -->
-        <div class="container-fluid" style="padding:0px;">
+        <div class="container-fluid padding-0">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

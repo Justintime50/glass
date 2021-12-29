@@ -29,7 +29,7 @@
                     <form action="{{ route('delete-image') }}" method="post">
                         @csrf
                         <input type="hidden" name="id" value="{{$image}}">
-                        <input type="submit" style="display:inline-block" value="Delete Image" class="btn btn-sm btn-danger">
+                        <input type="submit" value="Delete Image" class="btn btn-sm btn-danger inline-block">
                     </form>
                 </div>
             @endforeach

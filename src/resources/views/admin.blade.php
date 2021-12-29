@@ -53,7 +53,7 @@
                         <form action="{{ route('delete-category') }}" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{ $category->id }}">
-                            <input type="submit" style="display:inline-block" value="Delete Category" class="btn btn-sm btn-danger">
+                            <input type="submit" value="Delete Category" class="btn btn-sm btn-danger inline-block">
                         </form>
                     </td>
                 </tr>
@@ -67,7 +67,7 @@
         <form action="{{ route('create-category') }}" method="post">
             @csrf
             <input type="text" class="form-control" name="category" value="{{ old('category') }}" placeholder="New category name...">
-            <input type="submit" style="display:inline-block" value="Create category" class="btn btn-primary">
+            <input type="submit" value="Create category" class="btn btn-primary inline-block">
         </form>
 
     </div>
@@ -99,8 +99,8 @@
                         <form action="{{ route('delete-post') }}" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{ $post->id }}">
-                            <a class="btn btn-sm btn-primary" style="display:inline-block" href="{{ strtolower(url('/edit-post/'.$post->user->name.'/'.$post->slug)) }}">Edit Post</a>
-                            <input type="submit" style="display:inline-block" value="Delete Post" class="btn btn-sm btn-danger">
+                            <a class="btn btn-sm btn-primary inline-block" href="{{ strtolower(url('/edit-post/'.$post->user->name.'/'.$post->slug)) }}">Edit Post</a>
+                            <input type="submit" value="Delete Post" class="btn btn-sm btn-danger inline-block">
                         </form>
                     </td>
                 </tr>
