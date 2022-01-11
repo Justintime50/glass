@@ -12,5 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/dark-mode.scss', 'public/css');
+  .sass('resources/sass/app.scss', 'public/css')
+  .sass('resources/sass/themes/dark.scss', 'public/css/themes')
+  .sass('resources/sass/themes/midnight.scss', 'public/css/themes')
+  .sass('resources/sass/themes/amethyst.scss', 'public/css/themes');

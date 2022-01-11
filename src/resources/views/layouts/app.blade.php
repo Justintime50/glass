@@ -12,11 +12,14 @@
     <title>{{ $settings->title }}</title>
 
     <!-- Styles -->
-    <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css" rel="stylesheet"> <!-- Syntax highlighting -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @if ($settings->theme == 2)
-        <link href="{{ asset('css/dark-mode.css') }}" rel='stylesheet'>
+        <link href="{{ asset('css/themes/dark.css') }}" rel='stylesheet'>
+    @elseif ($settings->theme == 3)
+        <link href="{{ asset('css/themes/midnight.css') }}" rel='stylesheet'>
+    @elseif ($settings->theme == 4)
+        <link href="{{ asset('css/themes/amethyst.css') }}" rel='stylesheet'>
     @endif
 
 </head>

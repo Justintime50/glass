@@ -24,10 +24,16 @@
         <select name="theme" class="form-control">
             <option value="1" <?php if ($settings->theme == 1) {
                 echo "selected";
-                              } ?>>Default</option>
+                              } ?>>Light</option>
             <option value="2" <?php if ($settings->theme == 2) {
                 echo "selected";
-                              } ?>>Dark Mode</option>
+                              } ?>>Dark</option>
+            <option value="3" <?php if ($settings->theme == 3) {
+                echo "selected";
+                              } ?>>Midnight</option>
+            <option value="4" <?php if ($settings->theme == 4) {
+                echo "selected";
+                              } ?>>Amethyst</option>
         </select>
 
         <input type="submit" class="btn btn-primary" value="Update Settings">

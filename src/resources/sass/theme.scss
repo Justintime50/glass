@@ -1,8 +1,5 @@
-$background-color: #1b262c;
-$font-color: #bbe1fa;
-$nav-background: #0f4c75;
-$red: #b20000;
-$accent-color: #3282b8;
+// Theme Elements
+// NOTE: Themes overwrite the default color scheme of the app, the "default" (light) theme is simply a lack of color alterations
 
 body {
   background-color: $background-color;
@@ -101,8 +98,8 @@ hr {
 }
 
 .btn-danger {
-  background-color: $red;
-  border-color: $red;
+  background-color: $danger-color;
+  border-color: $danger-color;
 }
 
 .table {
