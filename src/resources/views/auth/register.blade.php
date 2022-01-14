@@ -61,6 +61,15 @@
                             </div>
                         </div>
 
+                        @if (env('APP_ENV') == 'production')
+                            {!! NoCaptcha::renderJs() !!}
+                            <div class="inline-block">
+                                <p class="text-center">
+                                    {!! NoCaptcha::display() !!}
+                                </p>
+                            </div>
+                        @endif
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
