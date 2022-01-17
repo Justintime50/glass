@@ -22,6 +22,7 @@ Glass draws its simplistic design inspiration from [Medium](https://medium.com) 
 * RSS feed so users can easily stay up-to-date with the latest posts `/feed`
 * SEO built right in with custom tags per post
 * Admin panel to manage posts, comments, and users
+* ReCaptcha on user signup by populating the `NOCAPTCHA_SECRET` and `NOCAPTCHA_SITEKEY` env variables in production
 
 ## Install
 
