@@ -1,7 +1,9 @@
 # CHANGELOG
 
-## v0.7.1 (2021-12-09)
+## v0.8.0 (2022-01-17)
 
+* Adds `ReCaptcha` to user signups if `NOCAPTCHA_SECRET` and `NOCAPTCHA_SITEKEY` env variables are set when `APP_ENV` is `production`
+* Reworks themes, adds a new `dark` theme as well as a `amethyst` theme
 * Bumps dependencies
 * Reworks the instructions for starting the service along with introducing a `setup` script
 * Added various new `composer ...` convenience commands
