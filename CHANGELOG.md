@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## v0.9.0 (2022-02-26)
+## v0.9.0 (2022-02-27)
 
 * Bumped Laravel from v6 to v9
 * Bumped PHP from 7.4 to 8.1
