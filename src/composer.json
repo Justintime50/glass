@@ -11,17 +11,17 @@
         "anhskohbo/no-captcha": "^3.3",
         "doctrine/dbal": "^2.10",
         "erusev/parsedown": "^1.7",
-        "facade/ignition": "^2.0",
+        "facade/ignition": "^2.3.6",
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.5",
-        "laravel/framework": "^7.0",
+        "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.0"
+        "laravel/ui": "^3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^4.1",
+        "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.0",
         "squizlabs/php_codesniffer": "^3.0"
     },
@@ -38,12 +38,10 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
-        },
-        "classmap": [
-            "database/seeds",
-            "database/factories"
-        ]
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
     },
     "autoload-dev": {
         "psr-4": {

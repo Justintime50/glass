@@ -2,7 +2,7 @@
 
 ## NEXT RELEASE
 
-* Bumped Laravel from v6 to v7
+* Bumped Laravel from v6 to v8
 * Bumped all dependencies
 
 ## v0.8.0 (2022-01-17)
