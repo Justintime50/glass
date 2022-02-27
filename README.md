@@ -75,8 +75,14 @@ composer seed
 # Lint the PHP files
 composer lint
 
+# Fix PHP linting
+composer fix
+
 # Lint the SASS files
 npm run lint
+
+# Fix SASS linting
+npm run fix
 
 # Compile SASS and Javascript during development
 npm run dev
