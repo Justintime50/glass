@@ -1,75 +1,76 @@
 {
-  "name": "justintime50/glass",
-  "type": "project",
-  "description": "Minimalist blog featuring syntax highlighting, images, comments, themes, RSS, and SEO out of the box.",
-  "keywords": [
-    "blog"
-  ],
-  "license": "MIT",
-  "require": {
-    "php": "^7.3|^8.0",
-    "anhskohbo/no-captcha": "^3.3",
-    "doctrine/dbal": "^2.10",
-    "erusev/parsedown": "^1.7",
-    "facade/ignition": "^1.13",
-    "fideloper/proxy": "^4.0",
-    "intervention/image": "^2.5",
-    "laravel/framework": "^6.0",
-    "laravel/tinker": "^1.0"
-  },
-  "require-dev": {
-    "fzaninotto/faker": "^1.9",
-    "mockery/mockery": "^1.0",
-    "nunomaduro/collision": "^3.0",
-    "phpunit/phpunit": "^9.0",
-    "squizlabs/php_codesniffer": "^3.0"
-  },
-  "config": {
-    "optimize-autoloader": true,
-    "preferred-install": "dist",
-    "sort-packages": true,
-    "bin-dir": "bin"
-  },
-  "extra": {
-    "laravel": {
-      "dont-discover": []
-    }
-  },
-  "autoload": {
-    "psr-4": {
-      "App\\": "app/"
+    "name": "justintime50/glass",
+    "type": "project",
+    "description": "Minimalist blog featuring syntax highlighting, images, comments, themes, RSS, and SEO out of the box.",
+    "keywords": [
+        "blog"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "7.4.*",
+        "anhskohbo/no-captcha": "^3.3",
+        "doctrine/dbal": "^2.10",
+        "erusev/parsedown": "^1.7",
+        "facade/ignition": "^2.0",
+        "fideloper/proxy": "^4.0",
+        "intervention/image": "^2.5",
+        "laravel/framework": "^7.0",
+        "laravel/tinker": "^2.0",
+        "laravel/ui": "^2.0"
     },
-    "classmap": [
-      "database/seeds",
-      "database/factories"
-    ]
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Tests\\": "tests/"
+    "require-dev": {
+        "fzaninotto/faker": "^1.9",
+        "mockery/mockery": "^1.0",
+        "nunomaduro/collision": "^4.1",
+        "phpunit/phpunit": "^9.0",
+        "squizlabs/php_codesniffer": "^3.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "coverage": "XDEBUG_MODE=coverage ./bin/phpunit --coverage-html clover.html --coverage-clover clover.xml",
+        "db-clean": "docker exec -t glass-glass-1 php artisan db:wipe",
+        "fix": "./bin/phpcbf",
+        "lint": "./bin/phpcs",
+        "migrate": "docker exec -t glass-glass-1 php artisan migrate",
+        "migrate-fresh": "docker exec -t glass-glass-1 php artisan migrate:fresh",
+        "migrate-seed": "docker exec -t glass-glass-1 php artisan migrate:fresh --seed",
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "seed": "docker exec -t glass-glass-1 php artisan db:seed",
+        "test": "./bin/phpunit"
     }
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "scripts": {
-    "coverage": "XDEBUG_MODE=coverage ./bin/phpunit --coverage-html clover.html --coverage-clover clover.xml",
-    "db-clean": "docker exec -t glass-glass-1 php artisan db:wipe",
-    "fix": "./bin/phpcbf",
-    "lint": "./bin/phpcs",
-    "migrate": "docker exec -t glass-glass-1 php artisan migrate",
-    "migrate-fresh": "docker exec -t glass-glass-1 php artisan migrate:fresh",
-    "migrate-seed": "docker exec -t glass-glass-1 php artisan migrate:fresh --seed",
-    "post-autoload-dump": [
-      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-      "@php artisan package:discover --ansi"
-    ],
-    "post-root-package-install": [
-      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-    ],
-    "post-create-project-cmd": [
-      "@php artisan key:generate --ansi"
-    ],
-    "seed": "docker exec -t glass-glass-1 php artisan db:seed",
-    "test": "./bin/phpunit"
-  }
 }

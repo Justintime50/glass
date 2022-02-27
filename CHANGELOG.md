@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## NEXT RELEASE
+
+* Bumped Laravel from v6 to v7
+* Bumped all dependencies
+
 ## v0.8.0 (2022-01-17)
 
 * Adds `ReCaptcha` to user signups if `NOCAPTCHA_SECRET` and `NOCAPTCHA_SITEKEY` env variables are set when `APP_ENV` is `production`
