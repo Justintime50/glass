@@ -35,19 +35,16 @@ img {
   justify-content: center;
   margin-bottom: 10px;
   border-radius: 10px;
-  -webkit-border-radius: 10px;
   overflow: hidden;
   // Next two lines are a fix for Safari's GPU/CPU border-radius glitch with hidden overflow.
   // (https://stackoverflow.com/questions/10314207/webkit-not-respecting-overflowhidden-with-border-radius)
   transform: translateZ(0);
-  -webkit-transform: translateZ(0);
 }
 
 .banner-image {
   max-width: 100%;
   // Animation
   transition: transform 0.5s;
-  -webkit-transition: transform 0.5s;
 }
 
 .post-content {
@@ -80,10 +77,6 @@ img {
 
   #arrow {
     opacity: 0;
-    -webkit-transition: opacity 0.3s ease-in;
-    -moz-transition: opacity 0.3s ease-in;
-    -o-transition: opacity 0.3s ease-in;
-    -ms-transition: opacity 0.3s ease-in;
     transition: opacity 0.3s ease-in;
   }
 
@@ -102,10 +95,6 @@ img {
 
   #arrow {
     opacity: 1;
-    -webkit-transition: opacity 0.4s ease-in;
-    -moz-transition: opacity 0.4s ease-in;
-    -o-transition: opacity 0.4s ease-in;
-    -ms-transition: opacity 0.4s ease-in;
     transition: opacity 0.4s ease-in;
   }
 
@@ -142,7 +131,7 @@ img {
 
 label {
   font-weight: bold;
-  margin: 5px 0 0 0;
+  margin: 5px 0 0;
   display: block;
 }
 
@@ -161,13 +150,13 @@ label {
 }
 
 .pagination-wrapper {
-  margin: 30px 0 40px 0;
+  margin: 30px 0 40px;
 }
 
 .avatar {
   max-width: 100%;
   display: block;
-  margin: 5px 0 10px 0;
+  margin: 5px 0 10px;
 }
 
 .avatar-small {

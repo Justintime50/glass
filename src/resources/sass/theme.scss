@@ -1,5 +1,6 @@
 // Theme Elements
-// NOTE: Themes overwrite the default color scheme of the app, the "default" (light) theme is simply a lack of color alterations
+// NOTE: Themes overwrite the default color scheme of the app,
+// the "default" (light) theme is simply a lack of color alterations.
 
 body {
   background-color: $background-color;
@@ -74,9 +75,9 @@ pre {
   box-shadow: 2px 2px 10px $font-color;
 }
 
-input[type=text],
-input[type=email],
-input[type=password],
+input[type="text"],
+input[type="email"],
+input[type="password"],
 textarea,
 select {
   background-color: $font-color !important;
