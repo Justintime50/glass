@@ -1,9 +1,11 @@
 # CHANGELOG
 
-## NEXT RELEASE
+## v0.9.0 (2022-02-26)
 
-* Bumped Laravel from v6 to v8
+* Bumped Laravel from v6 to v9
+* Bumped PHP from 7.4 to 8.1
 * Bumped all dependencies
+* Fixes a bug where creating a user would fail in dev mode or with no recaptcha key specified due to a syntax error
 
 ## v0.8.0 (2022-01-17)
 
