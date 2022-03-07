@@ -11,11 +11,12 @@
         "anhskohbo/no-captcha": "^3.4",
         "doctrine/dbal": "^3.3",
         "erusev/parsedown": "^1.7",
-        "spatie/laravel-ignition": "^1.0",
         "intervention/image": "^2.7",
         "laravel/framework": "^9.0",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^3.4"
+        "laravel/ui": "^3.4",
+        "sentry/sentry-laravel": "^2.11",
+        "spatie/laravel-ignition": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9",
