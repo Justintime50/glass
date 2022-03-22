@@ -16,7 +16,7 @@ services:
       - glass-db
       - glass-db-replica
   glass-db:
-    image: 'bitnami/mariadb:10.6.5'
+    image: 'bitnami/mariadb:10.6.7'
     restart: always
     volumes:
       - database-data:/bitnami/mariadb
@@ -30,7 +30,7 @@ services:
     labels:
       - traefik.enable=false
   glass-db-replica:
-    image: 'bitnami/mariadb:10.6.5'
+    image: 'bitnami/mariadb:10.6.7'
     restart: always
     depends_on:
       - glass-db
