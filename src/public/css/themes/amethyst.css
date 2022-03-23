@@ -1,1 +1,96 @@
-body{background-color:#32245c;color:#cce5fc}code,pre{background-color:#cce5fc!important}.post-container-feed a{color:#cce5fc}.navbar a{color:#cce5fc!important}.pagination .page-item span,.pagination a{background-color:#42307d!important;color:#cce5fc}.pagination .page-item span:hover,.pagination a:hover{color:#cce5fc;opacity:.9}.navbar{background-color:#42307d!important}.navbar a:hover{opacity:.8}.navbar .dropdown-menu{background-color:#42307d!important}.navbar .dropdown-menu a:hover{background-color:#c3a2f5!important}.navbar .navbar-toggler{border-color:transparent}.navbar .navbar-toggler-icon{background-image:url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(187, 225, 250, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E")}.navbar .navbar-toggler:focus{background-image:url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(187, 225, 250, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E")}pre{background-color:#cce5fc;color:#c3a2f5}.post-container-feed:hover{box-shadow:2px 2px 10px #cce5fc}input[type=email],input[type=password],input[type=text],select,textarea{background-color:#cce5fc!important;color:#42307d!important}.card{background-color:#42307d;color:#cce5fc}.card-header,hr{background-color:#c3a2f5}hr{height:1px}.btn-danger{background-color:#b20000;border-color:#b20000}.table{color:#cce5fc}
+body {
+  background-color: #32245c;
+  color: #cce5fc;
+}
+
+pre,
+code {
+  background-color: #cce5fc !important;
+}
+
+/* For posts page */
+.post-container-feed a {
+  color: #cce5fc;
+}
+
+.navbar a {
+  color: #cce5fc !important;
+}
+
+.pagination .page-item span,
+.pagination a {
+  background-color: #42307d !important;
+  color: #cce5fc;
+}
+.pagination .page-item span:hover,
+.pagination a:hover {
+  color: #cce5fc;
+  opacity: 0.9;
+}
+
+.navbar {
+  background-color: #42307d !important;
+}
+.navbar a:hover {
+  opacity: 0.8;
+}
+.navbar .dropdown-menu {
+  background-color: #42307d !important;
+}
+.navbar .dropdown-menu a:hover {
+  background-color: #c3a2f5 !important;
+}
+
+.navbar .navbar-toggler {
+  border-color: transparent;
+}
+
+.navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(187, 225, 250, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.navbar .navbar-toggler:focus {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(187, 225, 250, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* Code blocks in markdown */
+pre {
+  background-color: #cce5fc;
+  color: #c3a2f5;
+}
+
+.post-container-feed:hover {
+  box-shadow: 2px 2px 10px #cce5fc;
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+textarea,
+select {
+  background-color: #cce5fc !important;
+  color: #42307d !important;
+}
+
+.card {
+  background-color: #42307d;
+  color: #cce5fc;
+}
+
+.card-header {
+  background-color: #c3a2f5;
+}
+
+hr {
+  background-color: #c3a2f5;
+  height: 1px;
+}
+
+.btn-danger {
+  background-color: #b20000;
+  border-color: #b20000;
+}
+
+.table {
+  color: #cce5fc;
+}
