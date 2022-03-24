@@ -17,4 +17,5 @@ window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 /**
  * Place custom Node Modules below
  */
+window.hljs = require("highlight.js");
 window.slugify = require("@sindresorhus/slugify");

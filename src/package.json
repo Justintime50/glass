@@ -13,15 +13,16 @@
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.4",
+        "@sindresorhus/slugify": "^1.1",
         "axios": "^0.26",
         "bootstrap": "^5.1",
+        "highlight.js": "^11.5.0",
         "laravel-mix": "^6.0",
         "postcss": "^8.1.14",
         "resolve-url-loader": "^5.0",
-        "sass-loader": "^12.6",
         "sass": "^1.49",
-        "stylelint-config-standard": "^25.0",
+        "sass-loader": "^12.6",
         "stylelint": "^14.5",
-        "@sindresorhus/slugify": "^1.1"
+        "stylelint-config-standard": "^25.0"
     }
 }

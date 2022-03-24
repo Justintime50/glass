@@ -13,8 +13,6 @@
     <title>{{ $settings->title }}</title>
 
     <!-- Styles -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css" rel="stylesheet">
-    <!-- Syntax highlighting -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @if ($settings->theme == 2)
     <link href="{{ asset('css/themes/dark.css') }}" rel='stylesheet'>
@@ -125,10 +123,9 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://kit.fontawesome.com/0dd4ecd465.js"></script>
-    <!-- Syntax highlighting for posts -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
     <script>
-        hljs.initHighlightingOnLoad();
+        // Syntax highlighting
+        hljs.highlightAll();
     </script>
 </body>
 
