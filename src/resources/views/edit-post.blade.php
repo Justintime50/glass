@@ -45,7 +45,7 @@
             @foreach ($categories as $category)
             <option value="{{ $category->id }}" <?php if ($post->category_id == $category->id) {
                 echo "selected";
-                } ?>>{{ $category->category }}</option>
+                                                } ?>>{{ $category->category }}</option>
             @endforeach
         </select>
 

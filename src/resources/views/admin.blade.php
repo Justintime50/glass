@@ -14,26 +14,26 @@
         <select name="comments" class="form-select">
             <option value="1" <?php if ($settings->comments == 1) {
                 echo "selected";
-                } ?>>On</option>
+                              } ?>>On</option>
             <option value="0" <?php if ($settings->comments == 0) {
                 echo "selected";
-                } ?>>Off</option>
+                              } ?>>Off</option>
         </select>
 
         <label for="title">Blog Theme</label>
         <select name="theme" class="form-select">
             <option value="1" <?php if ($settings->theme == 1) {
                 echo "selected";
-                } ?>>Light</option>
+                              } ?>>Light</option>
             <option value="2" <?php if ($settings->theme == 2) {
                 echo "selected";
-                } ?>>Dark</option>
+                              } ?>>Dark</option>
             <option value="3" <?php if ($settings->theme == 3) {
                 echo "selected";
-                } ?>>Midnight</option>
+                              } ?>>Midnight</option>
             <option value="4" <?php if ($settings->theme == 4) {
                 echo "selected";
-                } ?>>Amethyst</option>
+                              } ?>>Amethyst</option>
         </select>
 
         <input type="submit" class="btn btn-primary mt-3" value="Update Settings">
@@ -94,12 +94,12 @@
                     $post->title }}</a></td>
             <td>
                 <?php
-                        if ($post->published == 1) {
-                            echo "Published";
-                        } else {
-                            echo "Draft";
-                        }
-                        ?>
+                if ($post->published == 1) {
+                    echo "Published";
+                } else {
+                    echo "Draft";
+                }
+                ?>
             </td>
             <td>{{ $post->user->name }}</td>
             <td>{{ $post->created_at }}</td>
@@ -133,14 +133,14 @@
         <th>Actions</th>
         @foreach($users as $user)
         <?php
-                if ($user->role == 1) {
-                    $role = "Admin";
-                } elseif ($user->role == 2) {
-                    $role = "User";
-                } else {
-                    $role = "Undefined";
-                }
-                ?>
+        if ($user->role == 1) {
+            $role = "Admin";
+        } elseif ($user->role == 2) {
+            $role = "User";
+        } else {
+            $role = "Undefined";
+        }
+        ?>
         <tr>
             <td>
                 <?php $avatar_path = "storage/avatars/" . $user->id . ".png"; ?>
@@ -158,10 +158,10 @@
                     <select name="role" onchange="this.form.submit()" class="form-select">
                         <option value="1" <?php if ($user->role == 1) {
                             echo "selected";
-                            } ?>>Admin</option>
+                                          } ?>>Admin</option>
                         <option value="2" <?php if ($user->role == 2) {
                             echo "selected";
-                            } ?>>User</option>
+                                          } ?>>User</option>
                         <select>
                 </form>
             </td>

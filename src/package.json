@@ -21,6 +21,7 @@
         "postcss": "^8.1.14",
         "resolve-url-loader": "^5.0",
         "sass": "^1.49",
+        "postcss-scss": "^4.0.3",
         "sass-loader": "^12.6",
         "stylelint": "^14.5",
         "stylelint-config-standard": "^25.0"
