@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## NEXT RELEASE
+
+- Switches from file based sessions to database sessions (must migrate DB)
+
 ## v0.10.0 (2022-03-24)
 
 - Migrates from Bootstrap 4 to 5, removes Lodash, jQuery, Vue, and other unused frontend dependencies
