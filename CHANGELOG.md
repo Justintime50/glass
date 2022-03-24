@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## NEXT RELEASE
+## v0.10.0 (2022-03-24)
 
+- Migrates from Bootstrap 4 to 5, removes Lodash, jQuery, Vue, and other unused frontend dependencies
 - Adds `sentry` integration
 
 ## v0.9.0 (2022-02-27)

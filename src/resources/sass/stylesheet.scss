@@ -18,6 +18,18 @@ img {
   height: auto;
 }
 
+a {
+  text-decoration: none;
+}
+
+.btn {
+  color: #fff;
+}
+
+.btn:hover {
+  color: #fff;
+}
+
 .container {
   width: 55%;
 }
@@ -73,6 +85,7 @@ img {
 
   a {
     color: #000;
+    text-decoration: none;
   }
 
   #arrow {

@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use App\Models\User;
-use App\Models\Post;
-use App\Models\Comment;
 use App\Models\Category;
-use Auth;
-use Intervention\Image\ImageManagerStatic as Image;
+use App\Models\Comment;
+use App\Models\Post;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class PostController extends Controller
 {
@@ -164,13 +163,12 @@ class PostController extends Controller
     /**
      * Delete a post.
      *
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function delete(Request $request)
+    public function delete()
     {
         $id = request()->get('id');
-        $post = Post::find($id)->delete();
+        Post::find($id)->delete();
 
         session()->flash("message", "Post deleted.");
         return redirect('/');
@@ -209,12 +207,14 @@ class PostController extends Controller
         $id_max = 9999999999;
         $id = mt_rand($id_min, $id_max);
 
-        if (!is_dir(storage_path("app/public/post-images"))) {
-            mkdir(storage_path("app/public/post-images"), 0775, true);
+        $storage_path = 'app/public/post-images';
+
+        if (!is_dir(storage_path($storage_path))) {
+            mkdir(storage_path($storage_path), 0775, true);
         }
 
         // Upload Avatar (IMAGE INTERVENTION - LARAVEL)
-        Image::make($request->file("upload_image"))->save(storage_path("app/public/post-images/" . $id . ".png"));
+        Image::make($request->file("upload_image"))->save(storage_path("$storage_path/$id.png"));
 
         session()->flash("message", "Image uploaded successfully.");
         return redirect()->back();
@@ -223,10 +223,9 @@ class PostController extends Controller
     /**
      * Delete an image.
      *
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function deletePostImage(Request $request)
+    public function deletePostImage()
     {
         $id = request()->get('id');
         Storage::delete("post-images/$id");
