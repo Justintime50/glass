@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -16,20 +16,19 @@ jobs:
         run: docker network create traefik
       - name: Setup Project
         run: |
-          cp src/.env-example src/.env && cp database.env-example database.env
+          cp src/.env-example src/.env && cp .env-example .env
           ./setup.sh
           docker ps | grep -q glass-glass-1
           docker ps | grep -q glass-glass-db-1
-          docker ps | grep -q glass-glass-db-replica-1
   lint-php:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: "8.1"
       - name: Install Composer
         run: cd src && composer self-update
       - name: Install Dependencies
@@ -40,9 +39,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: "16"
       - name: Install dependencies
@@ -60,4 +59,4 @@ jobs:
           webhook_type: "json-extended"
           webhook_url: ${{ secrets.WEBHOOK_URL }}
           webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
-          data: '{ "pipeline": "deploy", "prod_compose": true, "healthcheck": ["glass-glass-1", "glass-glass-2", "glass-glass-db-1", "glass-glass-db-replica-1"] }'
+          data: '{ "pipeline": "deploy", "prod_compose": true, "healthcheck": ["glass-glass-1", "glass-glass-2", "glass-glass-db-1"] }'

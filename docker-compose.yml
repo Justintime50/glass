@@ -14,31 +14,13 @@ services:
       - src/.env
     depends_on:
       - glass-db
-      - glass-db-replica
   glass-db:
-    image: 'bitnami/mariadb:10.6.7'
+    image: 'bitnami/mariadb:10.8.2'
     restart: always
     volumes:
-      - database-data:/bitnami/mariadb
-    environment:
-      - MARIADB_REPLICATION_MODE=master
-      - MARIADB_SKIP_TEST_DB=yes
+      - database-data:/var/lib/mysql
     env_file:
-      - database.env
-    networks:
-      - glass
-    labels:
-      - traefik.enable=false
-  glass-db-replica:
-    image: 'bitnami/mariadb:10.6.7'
-    restart: always
-    depends_on:
-      - glass-db
-    environment:
-      - MARIADB_REPLICATION_MODE=slave
-      - MARIADB_MASTER_HOST=glass-db
-    env_file:
-      - database.env
+       - .env
     networks:
       - glass
     labels:
