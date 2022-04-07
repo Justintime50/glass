@@ -15,7 +15,7 @@ services:
     depends_on:
       - glass-db
   glass-db:
-    image: 'bitnami/mariadb:10.8.2'
+    image: 'mariadb:10.8.2'
     restart: always
     volumes:
       - database-data:/var/lib/mysql
