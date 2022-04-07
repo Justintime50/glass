@@ -13,7 +13,7 @@ services:
     volumes:
       - ./src/storage/logs:/var/www/html/storage/logs
       - ./src/storage/app/public:/var/www/html/storage/app/public
-  tuneapp-db:
+  glass-db:
      healthcheck:
        test: ["CMD", "mysql", "-u${MARIADB_USER}", "-p${MARIADB_PASSWORD}", "-e", "show databases;"]
        interval: 30s
