@@ -9,13 +9,15 @@ services:
       timeout: 10s
       retries: 3
     labels:
-      - traefik.frontend.rule=Host:blog.justinpaulhammond.com,www.blog.justinpaulhammond.com
+      - "traefik.http.routers.glass.rule=Host(`blog.justinpaulhammond.com`) || Host(`www.blog.justinpaulhammond.com`)"
+      - "traefik.http.routers.glass.tls=true"
+      - "traefik.http.routers.glass.tls.certresolver=letsencrypt"
     volumes:
       - ./src/storage/logs:/var/www/html/storage/logs
       - ./src/storage/app/public:/var/www/html/storage/app/public
   glass-db:
-     healthcheck:
-       test: ["CMD", "mysql", "-u${MARIADB_USER}", "-p${MARIADB_PASSWORD}", "-e", "show databases;"]
-       interval: 30s
-       timeout: 10s
-       retries: 3
+    healthcheck:
+      test: ["CMD", "mysql", "-u${MARIADB_USER}", "-p${MARIADB_PASSWORD}", "-e", "show databases;"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

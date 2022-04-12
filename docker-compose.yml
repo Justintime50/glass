@@ -8,8 +8,6 @@ services:
       - glass
     labels:
       - traefik.enable=true
-      - traefik.docker.network=traefik
-      - traefik.port=80
     env_file:
       - src/.env
     depends_on:
@@ -20,11 +18,9 @@ services:
     volumes:
       - database-data:/var/lib/mysql
     env_file:
-       - .env
+      - .env
     networks:
       - glass
-    labels:
-      - traefik.enable=false
 
 volumes:
   database-data:

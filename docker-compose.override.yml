@@ -2,6 +2,6 @@ version: "3.8"
 services:
   glass:
     labels:
-      - traefik.frontend.rule=Host:glass.localhost
+      - "traefik.http.routers.glass.rule=Host(`glass.localhost`)"
     volumes:
       - ./src:/var/www/html
