@@ -143,9 +143,9 @@
         ?>
         <tr>
             <td>
-                <?php $avatar_path = "storage/avatars/" . $user->id . ".png"; ?>
+                @php $avatar_path = public_path("storage/images/avatars/$user->id.png"); @endphp
                 @if (file_exists($avatar_path))
-                <img src="{{ asset($avatar_path) }}" class="avatar-small">
+                <img src="{{ asset("storage/images/avatars/$user->id.png") }}" class="avatar-small">
                 @else
                 <i class="fas fa-user fa-2x avatar-small"></i>
                 @endif

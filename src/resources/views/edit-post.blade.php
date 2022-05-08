@@ -31,7 +31,7 @@
                 href="{{ route('images') }}">Image Library</a></label>
         <input type="text" class="form-control" name="banner_image_url"
             value="{{ old('banner_image_url', $post->banner_image_url) }}">
-        @if (!file_exists("storage/post-images/$post->banner_image_url") || $post->banner_image_url == null)
+        @if (!file_exists(public_path("storage/images/posts/$post->banner_image_url")) || $post->banner_image_url == null)
         <p class="text-danger">Warning: The image provided could not be found. The default placeholder image will be
             used.</p>
         @endif
