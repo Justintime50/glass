@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Auth;
-use Illuminate\Validation\Rule;
 use App\Models\User;
-use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class UserController extends Controller
@@ -56,12 +53,8 @@ class UserController extends Controller
         ]);
         $id = request()->get('id');
 
-        if (!is_dir(storage_path("app/public/avatars"))) {
-            mkdir(storage_path("app/public/avatars"), 0775, true);
-        }
-
         // Upload Avatar (IMAGE INTERVENTION - LARAVEL)
-        Image::make(request()->file("upload_profile_pic"))->fit(150, 150)->save(storage_path("app/public/avatars/" . $id . ".png"));
+        Image::make(request()->file("upload_profile_pic"))->fit(150, 150)->save(public_path("storage/images/avatars/$id.png"));
 
         session()->flash("message", "Avatar updated successfully.");
         return redirect()->back();

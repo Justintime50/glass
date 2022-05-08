@@ -12,3 +12,6 @@ vendor
 # Other
 *.css.map
 *.LICENSE.txt
+
+# Laravel
+src/storage/images/

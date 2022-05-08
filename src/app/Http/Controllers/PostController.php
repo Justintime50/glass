@@ -183,10 +183,6 @@ class PostController extends Controller
      */
     public function readImages()
     {
-        if (!is_dir(storage_path("app/public/post-images"))) {
-            mkdir(storage_path("app/public/post-images"), 0775, true);
-        }
-
         return view('/images');
     }
 
@@ -202,19 +198,13 @@ class PostController extends Controller
             'upload_image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
-        // ~1 billion possible id's, overlap potential should be small
+        // ~1 billion possible IDs, overlap potential should be small
         $id_min = 1000000000;
         $id_max = 9999999999;
         $id = mt_rand($id_min, $id_max);
 
-        $storage_path = 'app/public/post-images';
-
-        if (!is_dir(storage_path($storage_path))) {
-            mkdir(storage_path($storage_path), 0775, true);
-        }
-
         // Upload Avatar (IMAGE INTERVENTION - LARAVEL)
-        Image::make($request->file("upload_image"))->save(storage_path("$storage_path/$id.png"));
+        Image::make($request->file("upload_image"))->save(public_path("storage/images/posts/$id.png"));
 
         session()->flash("message", "Image uploaded successfully.");
         return redirect()->back();
@@ -228,7 +218,7 @@ class PostController extends Controller
     public function deletePostImage()
     {
         $id = request()->get('id');
-        Storage::delete("post-images/$id");
+        Storage::delete("images/posts/$id");
 
         session()->flash("message", "Image deleted.");
         return redirect()->back();

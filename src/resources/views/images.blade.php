@@ -20,14 +20,15 @@
     <p>Copy the image filename below and paste into the image field when creating/editing a post.</p>
 
     <div class="row">
-        <?php $images_path = array_diff(scandir("storage/post-images/"), array('.', '..')); ?>
+        <?php $images_path = array_diff(File::allFiles(public_path("storage/images/posts"), array('.', '..'))); ?>
         @foreach($images_path as $image)
+        @php $image_name = basename($image); @endphp
         <div class="col">
-            <img src='{{ asset("storage/post-images/$image") }}' class="image-preview">
-            <p>{{$image}}</p>
+            <img src='{{ asset("storage/images/posts/$image_name") }}' class="img-thumbnail">
+            <p>{{ $image_name }}</p>
             <form action="{{ route('delete-image') }}" method="post">
                 @csrf
-                <input type="hidden" name="id" value="{{$image}}">
+                <input type="hidden" name="id" value="{{ $image_name }}">
                 <input type="submit" value="Delete Image" class="btn btn-sm btn-danger inline-block">
             </form>
         </div>

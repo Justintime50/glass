@@ -3,6 +3,10 @@
 ## NEXT RELEASE
 
 - Switches from file based sessions to database sessions (must migrate DB)
+- Completely overhauls the storage system for images and consolidates logic while protecting against incorrect instance setup
+  - Fixes a bug that prevented the `/images` page from loading on a new Glass instance due to a missing required directory
+  - Renames the `public/post-images` directory to `public/images/posts` (you will need to migrate your images manually)
+  - Renames the `public/avatars` directory to `public/images/avatars` (you will need to migrate your images manually)
 
 ## v0.10.0 (2022-03-24)
 
