@@ -185,14 +185,13 @@ label {
   display: block;
 }
 
-.image-container {
-  padding: 50px 0;
+.image-row-container {
+  padding: 20px 5px 10px 5px;
 }
 
 .image-preview {
-  max-width: 150px;
-  max-height: 150px;
-  margin: 30px;
+  max-height: 200px;
+  margin: 20px;
 }
 
 .navbar .navbar-toggler {
@@ -221,4 +220,10 @@ label {
 
 .bottom-margin-30 {
   margin-bottom: 30px;
+}
+
+.flex-center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -7,6 +7,8 @@
   - Fixes a bug that prevented the `/images` page from loading on a new Glass instance due to a missing required directory
   - Renames the `public/post-images` directory to `public/images/posts` (you will need to migrate your images manually)
   - Renames the `public/avatars` directory to `public/images/avatars` (you will need to migrate your images manually)
+- The image library page now properly scales images to a more uniform size
+- Adds the ability to download images from the image library page
 
 ## v0.10.0 (2022-03-24)
 
