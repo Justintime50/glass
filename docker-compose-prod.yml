@@ -21,7 +21,7 @@ services:
       - "traefik.http.routers.glass.tls.certresolver=letsencrypt"
     volumes:
       - ./src/storage/logs:/var/www/html/storage/logs
-      - ./src/storage/app/public:/var/www/html/storage/app/public
+      - ./src/storage/app/public:/var/www/html/public/storage
   glass-db:
     deploy:
       resources:

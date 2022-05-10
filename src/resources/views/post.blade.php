@@ -111,20 +111,17 @@
     <hr>
 
     <div class="row author">
-
         <div class="col-md-2">
-            <?php $avatar_path = "storage/avatars/" . $post->user->id . ".png"; ?>
-            @if (file_exists($avatar_path))
-            <img src="{{ asset($avatar_path) }}" class="avatar">
+            @if (file_exists(public_path("storage/images/avatars/" . $post->user->id . ".png")))
+                <img src="{{ asset("storage/images/avatars/" . $post->user->id . ".png") }}" class="avatar">
             @else
-            <i class="fas fa-user fa-3x avatar"></i>
+                <i class="fas fa-user fa-3x avatar"></i>
             @endif
-
         </div>
+
         <div class="col-md-10">
             <p><b>{{$post->user->name}}</b><br />{{$post->user->bio}}</p>
         </div>
-
     </div>
 
     @if ($settings->comments == 1)
