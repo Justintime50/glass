@@ -12,16 +12,28 @@
 
         <label for="title">Comments</label>
         <select name="comments" class="form-select">
-            <option value="1" <?php if ($settings->comments == 1) { echo "selected"; } ?>>On</option>
-            <option value="0" <?php if ($settings->comments == 0) { echo "selected"; } ?>>Off</option>
+            <option value="1" <?php if ($settings->comments == 1) {
+                echo "selected";
+                              } ?>>On</option>
+            <option value="0" <?php if ($settings->comments == 0) {
+                echo "selected";
+                              } ?>>Off</option>
         </select>
 
         <label for="title">Blog Theme</label>
         <select name="theme" class="form-select">
-            <option value="1" <?php if ($settings->theme == 1) { echo "selected"; } ?>>Light</option>
-            <option value="2" <?php if ($settings->theme == 2) { echo "selected"; } ?>>Dark</option>
-            <option value="3" <?php if ($settings->theme == 3) { echo "selected"; } ?>>Midnight</option>
-            <option value="4" <?php if ($settings->theme == 4) { echo "selected"; } ?>>Amethyst</option>
+            <option value="1" <?php if ($settings->theme == 1) {
+                echo "selected";
+                              } ?>>Light</option>
+            <option value="2" <?php if ($settings->theme == 2) {
+                echo "selected";
+                              } ?>>Dark</option>
+            <option value="3" <?php if ($settings->theme == 3) {
+                echo "selected";
+                              } ?>>Midnight</option>
+            <option value="4" <?php if ($settings->theme == 4) {
+                echo "selected";
+                              } ?>>Amethyst</option>
         </select>
 
         <input type="submit" class="btn btn-primary mt-3" value="Update Settings">
@@ -166,8 +178,12 @@
                         @csrf
                         <input type="hidden" name="id" value="{{ $user->id }}">
                         <select name="role" onchange="this.form.submit()" class="form-select">
-                            <option value="1" <?php if ($user->role == 1) { echo "selected"; } ?>>Admin</option>
-                            <option value="2" <?php if ($user->role == 2) { echo "selected"; } ?>>User</option>
+                            <option value="1" <?php if ($user->role == 1) {
+                                echo "selected";
+                                              } ?>>Admin</option>
+                            <option value="2" <?php if ($user->role == 2) {
+                                echo "selected";
+                                              } ?>>User</option>
                             <select>
                     </form>
                 </td>

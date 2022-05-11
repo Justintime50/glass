@@ -15,7 +15,7 @@ class CommentController extends Controller
     public function readComments()
     {
         $comments = Comment::orderBy('created_at', 'desc')
-            ->paginate(10, ['*'], 'comments');;
+            ->paginate(10, ['*'], 'comments');
 
         return view('/comments', compact('comments'));
     }
