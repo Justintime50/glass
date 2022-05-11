@@ -88,7 +88,7 @@ class PostController extends Controller
         }
         $comments = Comment::where('post_id', '=', $post->id)
             ->orderBy('created_at', 'asc')
-            ->paginate(15);
+            ->paginate(15); # TODO: Allow users to continue to go through all comments after reaching this limit via table or something similar
 
         return view('/post', compact('post', 'comments'));
     }

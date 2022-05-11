@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Comment;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -16,7 +15,7 @@ class CommentController extends Controller
     public function readComments()
     {
         $comments = Comment::orderBy('created_at', 'desc')
-            ->paginate(20);
+            ->paginate(10, ['*'], 'comments');;
 
         return view('/comments', compact('comments'));
     }

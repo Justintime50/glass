@@ -19,8 +19,8 @@
     <h2>Image Library</h2>
     <p>Copy the image filename below and paste into the image field when creating/editing a post.</p>
 
-    @php $images = File::allFiles(public_path("storage/images/posts")); @endphp
-    @foreach(array_values($images) as $index => $image)
+    @php $post_images = File::allFiles(public_path("storage/images/posts")); @endphp
+    @foreach(array_values($post_images) as $index => $image)
         @php $image_name = basename($image); @endphp
         @if ($index == 0)
             <div class="row image-row-container">
@@ -42,7 +42,7 @@
         @if (($index + 1) % 3 == 0)
             </div>
             <div class="row image-row-container">
-        @elseif ($index == count($images) - 1)
+        @elseif ($index == count($post_images) - 1)
             </div>
         @endif
     @endforeach

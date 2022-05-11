@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Category;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+
 
 class CategoryController extends Controller
 {
@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function create()
     {
         request()->validate([
-            'category'       => 'required|string',
+            'category' => 'required|string',
         ]);
 
         $category = new Category();
@@ -36,7 +36,7 @@ class CategoryController extends Controller
     public function update()
     {
         request()->validate([
-            'category'       => 'required|string',
+            'category' => 'required|string',
         ]);
 
         $id = request()->get('id');
@@ -44,7 +44,7 @@ class CategoryController extends Controller
         $category->category = request()->get('category');
         $category->save();
 
-        session()->flash("message", "Category created.");
+        session()->flash("message", "Category updated.");
         return redirect()->back();
     }
 

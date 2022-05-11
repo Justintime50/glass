@@ -125,43 +125,46 @@
     </div>
 
     @if ($settings->comments == 1)
+        <hr>
+        <h4>Comments</h4>
 
-    <hr>
+        @if(Auth::check())
+            <form action="{{ route('create-comment') }}" method="POST">
+                @csrf
 
-    <h4>Comments</h4>
-    @if(Auth::check())
-    <form action="{{ route('create-comment') }}" method="POST">
-        @csrf
+                <input type="text" name="post_id" value="{{$post->id}}" hidden>
+                <textarea name="comment" class="form-control" rows="3"
+                    placeholder="Commenting as {{ Auth::user()->name }}...">{{ old('comment') }}</textarea>
+                <input type="submit" class="btn btn-primary" value="Add Comment">
+            </form>
+        @else
+            <p>Please <a href="{{ route('login') }}">login</a> to leave a comment.</p>
+        @endif
 
-        <input type="text" name="post_id" value="{{$post->id}}" hidden>
-        <textarea name="comment" class="form-control" rows="3"
-            placeholder="Commenting as {{ Auth::user()->name }}...">{{ old('comment') }}</textarea>
-        <input type="submit" class="btn btn-primary" value="Add Comment">
-    </form>
-    @else
-    <p>Please <a href="{{ route('login') }}">login</a> to leave a comment.</p>
-    @endif
-    @forelse($comments as $comment)
-    <hr>
-    <p>{{$comment->comment}}</p>
-    <?php $avatar_path = "storage/avatars/" . $comment->user->id . ".png"; ?>
-    @if (file_exists($avatar_path))
-    <img src="{{ asset($avatar_path) }}" class="avatar-small">
-    @else
-    <i class="fas fa-user fa-2x avatar-small"></i>
-    @endif
-    <i>&nbsp;{{$comment->user->name}} - {{date_format($comment->updated_at, 'm/d/Y')}}</i>
-    @if(Auth::check())
-    <form action="{{ route('delete-comment') }}" method="POST">
-        @csrf
-        <br />
-        <input type="text" name="id" value="{{$comment->id}}" hidden>
-        <button class="btn btn-sm btn-danger" onclick="this.form.submit();">Delete Comment</button>
-    </form>
-    @endif
-    @empty
-    <p>No comments yet.</p>
-    @endforelse
+        @forelse($comments as $comment)
+            <hr>
+            <p>{{$comment->comment}}</p>
+            <?php $avatar_path = "storage/avatars/" . $comment->user->id . ".png"; ?>
+
+            @if (file_exists($avatar_path))
+                <img src="{{ asset($avatar_path) }}" class="avatar-small">
+            @else
+                <i class="fas fa-user fa-2x avatar-small"></i>
+            @endif
+
+            <i>&nbsp;{{$comment->user->name}} - {{date_format($comment->updated_at, 'm/d/Y')}}</i>
+
+            @if(Auth::check())
+                <form action="{{ route('delete-comment') }}" method="POST">
+                    @csrf
+                    <br />
+                    <input type="text" name="id" value="{{$comment->id}}" hidden>
+                    <button class="btn btn-sm btn-danger" onclick="this.form.submit();">Delete Comment</button>
+                </form>
+            @endif
+        @empty
+            <p>No comments yet.</p>
+        @endforelse
 
     @endif
 
