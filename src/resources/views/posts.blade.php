@@ -51,9 +51,9 @@
             {{ $posts->links() }}
         </div>
 
-        <a href="{{ route('posts') }}" class="btn btn-sm btn-primary">All Posts</a>
+        <a href="{{ route('posts') }}" class="btn btn-sm btn-primary category-button">All Posts</a>
         @foreach($categories as $category)
-            <a href="/posts/{{ $category->category }}" class="btn btn-sm btn-primary">{{ $category->category }}</a>
+            <a href="/posts/{{ $category->category }}" class="btn btn-sm btn-primary category-button">{{ $category->category }}</a>
         @endforeach
     </div>
 
