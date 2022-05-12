@@ -7,8 +7,13 @@
   - Fixes a bug that prevented the `/images` page from loading on a new Glass instance due to a missing required directory
   - Renames the `public/post-images` directory to `public/images/posts` (you will need to migrate your images manually)
   - Renames the `public/avatars` directory to `public/images/avatars` (you will need to migrate your images manually)
-- The image library page now properly scales images to a more uniform size
-- Adds the ability to download images from the image library page
+- Complete image overhaul (closes #68)
+  - The image library page now properly scales images to a more uniform size
+  - Adds the ability to download images from the image library page
+- Complete category overhaul (closes #67)
+  - Enforces unique category names
+  - Adds the ability to filter post results by category (clicking the category name on a single post or selecting a category from the bottom of the posts page)
+  - Adds the ability to update category names
 
 ## v0.10.0 (2022-03-24)
 

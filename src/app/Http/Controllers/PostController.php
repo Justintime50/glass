@@ -24,7 +24,28 @@ class PostController extends Controller
             ->where('published', '=', 1)
             ->paginate(10);
 
-        return view('/posts', compact('posts'));
+        $categories = Category::all();
+
+        return view('/posts', compact('posts', 'categories'));
+    }
+
+    /**
+     * Show the "posts" page and filter by category.
+     *
+     * @param str $category
+     * @return Illuminate\View\View
+     */
+    public function readPostsByCategory($category)
+    {
+        $category_record = Category::where('category', '=', $category)->firstOrFail();
+        $posts = Post::orderBy('created_at', 'desc')
+            ->where('published', '=', 1)
+            ->where('category_id', '=', $category_record->id)
+            ->paginate(10);
+
+        $categories = Category::all();
+
+        return view('/posts', compact('posts', 'category_record', 'categories'));
     }
 
     /**

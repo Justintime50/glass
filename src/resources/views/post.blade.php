@@ -30,7 +30,11 @@
         <i class="fas fa-clock"></i>
         @if (isset($post->reading_time)) {{ $post->reading_time }} @else {{ '0' }} @endif minutes
         <i class="fas fa-tag"></i>
-        @if (isset($post->category->category)) {{ $post->category->category }} @else {{ 'Uncategorized' }} @endif
+        @if (isset($post->category->category))
+            <a href="{{ "/posts/" . $post->category->category }}">{{ $post->category->category }}</a>
+        @else
+            {{ 'Uncategorized' }}
+        @endif
     </p>
     <div class="banner-image-container">
         @if (file_exists(public_path("storage/images/posts/$post->banner_image_url")) && $post->banner_image_url != null)

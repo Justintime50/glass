@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function create()
     {
         request()->validate([
-            'category' => 'required|string',
+            'category' => 'required|unique:categories|string',
         ]);
 
         $category = new Category();

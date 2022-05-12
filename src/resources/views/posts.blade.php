@@ -3,6 +3,9 @@
 @section('content')
 
     <div class="container">
+        @if (isset($category_record))
+            <h1>{{ $category_record->category }} Posts</h1>
+        @endif
 
         @forelse($posts as $post)
             <div class="post-container-feed">
@@ -26,7 +29,11 @@
                             <i class="fas fa-clock"></i>
                                 @if (isset($post->reading_time)) {{ $post->reading_time }} @else {{ '0' }} @endif minutes
                             <i class="fas fa-tag"></i>
-                                @if (isset($post->category->category)) {{ $post->category->category }} @else {{ 'Uncategorized' }} @endif
+                            @if (isset($post->category->category))
+                                <a href="{{ "/posts/" . $post->category->category }}">{{ $post->category->category }}</a>
+                            @else
+                                {{ 'Uncategorized' }}
+                            @endif
                         </p>
                         <p>
                             <?php $strippedPost = preg_replace("/[^0-9a-zA-Z_.!?' \r\n+]/", "", $post->post); ?>
@@ -43,6 +50,11 @@
         <div class="pagination-wrapper">
             {{ $posts->links() }}
         </div>
+
+        <a href="{{ route('posts') }}" class="btn btn-sm btn-primary">All Posts</a>
+        @foreach($categories as $category)
+            <a href="/posts/{{ $category->category }}" class="btn btn-sm btn-primary">{{ $category->category }}</a>
+        @endforeach
     </div>
 
 @endsection

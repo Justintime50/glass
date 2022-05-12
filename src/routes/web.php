@@ -21,6 +21,7 @@ Auth::routes();
 Route::get('/', 'PostController@readPosts')->name('/');
 Route::get('/blog', 'PostController@readPosts')->name('/blog');
 Route::get('/posts', 'PostController@readPosts')->name('posts');
+Route::get('/posts/{category}', 'PostController@readPostsByCategory');
 Route::get('/{user}/{slug}', 'PostController@read');
 Route::get('feed', 'RssFeedController@feed');
 
