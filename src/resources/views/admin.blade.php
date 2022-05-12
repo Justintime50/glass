@@ -174,16 +174,17 @@
                 </td>
                 <td>{{ $user->email }}</td>
                 <td>
+                    {{-- Don't allow changing your own role (so you don't accidentally remove admin privileges) --}}
                     <form action="{{ route('update-user-role') }}" method="post">
                         @csrf
                         <input type="hidden" name="id" value="{{ $user->id }}">
-                        <select name="role" onchange="this.form.submit()" class="form-select">
+                        <select name="role" onchange="this.form.submit()" class="form-select" <?php if ($user->id == Auth::user()->id) { echo 'disabled'; } ?>>
                             <option value="1" <?php if ($user->role == 1) {
                                 echo "selected";
-                                              } ?>>Admin</option>
+                                            } ?>>Admin</option>
                             <option value="2" <?php if ($user->role == 2) {
                                 echo "selected";
-                                              } ?>>User</option>
+                                            } ?>>User</option>
                             <select>
                     </form>
                 </td>
