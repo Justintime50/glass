@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class UserController extends Controller
@@ -26,18 +27,36 @@ class UserController extends Controller
     public function update()
     {
         request()->validate([
-            'name'          => 'required|string',
-            // 'password'      => 'nullable', // TODO: Add this functionality
-            'bio'           => 'nullable',
+            'name' => 'required|string',
+            'bio'  => 'nullable',
         ]);
 
         $user = User::where('id', '=', Auth::user()->id)->first();
         $user->name = request()->get('name');
-        // $user->password = request()->get('password'); // TODO: Add this functionality
         $user->bio = request()->get('bio');
         $user->save();
 
         session()->flash("message", "Profile updated.");
+        return redirect()->back();
+    }
+
+    /**
+     * Logic to update the user's password.
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function updatePassword()
+    {
+        request()->validate([
+            'password' => 'required|string|confirmed|min:8',
+        ]);
+
+        $user = User::find(auth()->user()->id);
+
+        $user->password = Hash::make(request()->password);
+        $user->save();
+
+        session()->flash("message", "Your password was updated successfully.");
         return redirect()->back();
     }
 
@@ -68,7 +87,7 @@ class UserController extends Controller
     public function delete()
     {
         $id = request()->get('id');
-        $user = User::find($id)->delete();
+        User::find($id)->delete();
 
         session()->flash("message", "User deleted.");
         return redirect()->back();

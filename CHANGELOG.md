@@ -15,6 +15,7 @@
   - Adds the ability to filter post results by category (clicking the category name on a single post or selecting a category from the bottom of the posts page)
   - Adds the ability to update category names
 - Removes the ability for the authenticated user to delete themselves
+- Adds the ability to update your own password
 
 ## v0.10.0 (2022-03-24)
 

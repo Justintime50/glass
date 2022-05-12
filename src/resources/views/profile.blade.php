@@ -10,15 +10,22 @@
         <label for="name">Name</label>
         <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}">
 
-        <label for="name">Password (coming soon)</label>
-        <input type="password" class="form-control" name="password" value="" disabled>
-        <input type="password" class="form-control" name="password" value="" disabled>
-
         <label for="bio">Bio</label>
         <textarea class="form-control" rows="6" name="bio">{{ old('bio', Auth::user()->bio) }}</textarea>
 
-        <br />
-        <input type="submit" class="btn btn-primary" value="Update Profile">
+        <input type="submit" class="btn btn-primary mt-2 mb-4" value="Update Profile">
+    </form>
+
+    <form action="{{ route('update-password') }}" method="POST">
+        @csrf
+
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" required>
+
+        <label for="password_confirmation">Confirm Password</label>
+        <input type="password" class="form-control" name="password_confirmation" required>
+
+        <input type="submit" class="btn btn-primary mt-2" value="Update Password">
     </form>
 
     <hr>
