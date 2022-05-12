@@ -49,7 +49,7 @@
         <thead>
             <th>Name</th>
             <th>Created By</th>
-            <th>Created At</th>
+            <th>Updated At</th>
             <th>Actions</th>
         </thead>
         <tbody>
@@ -189,11 +189,14 @@
                 </td>
                 <td>{{ $user->created_at }}</td>
                 <td>
-                    <form action="{{ route('delete-user') }}" method="post">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $user->id }}">
-                        <input type="submit" value="Delete User" class="btn btn-sm btn-danger">
-                    </form>
+                    {{-- Don't allow deleting yourself --}}
+                    @if ($user->id != Auth::user()->id)
+                        <form action="{{ route('delete-user') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $user->id }}">
+                            <input type="submit" value="Delete User" class="btn btn-sm btn-danger">
+                        </form>
+                    @endif
                 </td>
             </tr>
             @endforeach

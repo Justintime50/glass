@@ -24,7 +24,8 @@ class PostController extends Controller
             ->where('published', '=', 1)
             ->paginate(10);
 
-        $categories = Category::all();
+        $categories = Category::orderBy('category', 'asc')
+            ->get();
 
         return view('/posts', compact('posts', 'categories'));
     }
@@ -43,7 +44,8 @@ class PostController extends Controller
             ->where('category_id', '=', $category_record->id)
             ->paginate(10);
 
-        $categories = Category::all();
+        $categories = Category::orderBy('category', 'asc')
+            ->get();
 
         return view('/posts', compact('posts', 'category_record', 'categories'));
     }
