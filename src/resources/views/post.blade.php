@@ -148,7 +148,7 @@
         @forelse($comments as $comment)
             <hr>
             <p>{{$comment->comment}}</p>
-            <?php $avatar_path = "storage/avatars/" . $comment->user->id . ".png"; ?>
+            @php $avatar_path = "storage/avatars/" . $comment->user->id . ".png"; @endphp
 
             @if (file_exists($avatar_path))
                 <img src="{{ asset($avatar_path) }}" class="avatar-small">
