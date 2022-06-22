@@ -19,3 +19,4 @@ window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
  */
 window.hljs = require("highlight.js");
 window.slugify = require("@sindresorhus/slugify");
+window.pineapple = require("pineapple-library/pineapple/dist/js/pineapple");

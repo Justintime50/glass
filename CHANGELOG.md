@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## NEXT RELEASE
+## v0.11.0 (2022-06-21)
 
 - Switches from file based sessions to database sessions (must migrate DB)
 - Completely overhauls the storage system for images and consolidates logic while protecting against incorrect instance setup
@@ -16,6 +16,7 @@
   - Adds the ability to update category names
 - Removes the ability for the authenticated user to delete themselves or alter their role
 - Adds the ability to update your own password
+- Incorporates the `Pineapple` CSS and JS library for easier development
 
 ## v0.10.0 (2022-03-24)
 
