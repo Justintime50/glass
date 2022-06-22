@@ -4,11 +4,14 @@
 // Variables
 @import "variables";
 
+// Highlightjs
+@import "~highlight.js/scss/default";
+
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
-// Highlightjs
-@import "~highlight.js/scss/default";
+// Pineapple
+@import "~pineapple-library/pineapple/scss/pineapple";
 
 // Internal
 @import "social";
