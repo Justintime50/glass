@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
 
-        <a class="btn btn-primary bottom-margin-30" href="{{ strtolower(url('/' . $post->user->name . '/' . $post->slug)) }}"><i
+        <a class="btn btn-primary mb-3" href="{{ strtolower(url('/' . $post->user->name . '/' . $post->slug)) }}"><i
                 class="fas fa-chevron-left"></i> Back to Post</a>
         <h1>Edit Post</h1>
         <form action="{{ route('update-post') }}" method="POST">

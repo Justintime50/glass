@@ -6,7 +6,7 @@
     <div class="post-content container">
 
         @if (Auth::check() && Auth::user()->role == 1)
-            <form action="{{ route('delete-post') }}" method="POST" class="bottom-margin-30">
+            <form action="{{ route('delete-post') }}" method="POST" class="mb-3">
                 @csrf
                 <a class="btn btn-primary inline-block" href="{{ route('/') }}"><i class="fas fa-chevron-left"></i> Back to
                     Posts</a>

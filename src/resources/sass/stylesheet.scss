@@ -1,8 +1,9 @@
+// Elements
+
 body {
   font-size: 16px;
 }
 
-/* Code blocks in markdown */
 code {
   padding: 15px 20px !important;
   width: 100%;
@@ -22,6 +23,14 @@ a {
   text-decoration: none;
 }
 
+label {
+  font-weight: bold;
+  margin: 5px 0 0;
+  display: block;
+}
+
+// Overrides
+
 .btn {
   color: #fff;
 }
@@ -32,12 +41,6 @@ a {
 
 .container {
   width: 55%;
-}
-
-@media only screen and (max-width: 768px) {
-  .container {
-    width: 100%;
-  }
 }
 
 .banner-image-container {
@@ -59,29 +62,37 @@ a {
   transition: transform 0.5s;
 }
 
+.form-control {
+  margin-bottom: 10px;
+}
+
+.navbar .navbar-toggler {
+  border-color: transparent;
+}
+
+.navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.navbar .navbar-toggler:focus {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+// Custom
+
 .post-content {
   width: 45%;
 }
 
-@media only screen and (max-width: 992px) {
-  .post-content {
-    width: 75%;
-  }
-}
-
-@media only screen and (max-width: 1200px) {
-  .post-content {
-    width: 100%;
-  }
-}
-
-/* For posts page (feed) */
+// For posts page (feed)
 .post-container-content-feed {
   padding: 10px 25px;
 }
 
 .post-container-feed {
   margin: 20px 0;
+  transition: box-shadow 0.4s ease-in-out;
+  border-radius: 10px;
 
   a {
     color: #000;
@@ -92,9 +103,6 @@ a {
     opacity: 0;
     transition: opacity 0.3s ease-in;
   }
-
-  transition: box-shadow 0.4s ease-in-out;
-  border-radius: 10px;
 }
 
 .post-container-feed:hover {
@@ -114,38 +122,6 @@ a {
   cursor: pointer;
   box-shadow: 2px 2px 10px #888;
   transition: box-shadow 0.4s ease-in-out;
-}
-
-@media only screen and (max-width: 768px) {
-  .post-container-feed {
-    margin: 10px 0;
-
-    img {
-      transform: scale(1.8);
-    }
-  }
-
-  .banner-image-container {
-    img {
-      transform: scale(1.8);
-    }
-  }
-
-  .post-container-feed:hover {
-    img {
-      transform: scale(2.2) !important;
-    }
-  }
-}
-
-.form-control {
-  margin-bottom: 10px;
-}
-
-label {
-  font-weight: bold;
-  margin: 5px 0 0;
-  display: block;
 }
 
 .post-title {
@@ -194,32 +170,19 @@ label {
   margin: 20px;
 }
 
-.navbar .navbar-toggler {
-  border-color: transparent;
-}
-
-.navbar .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-}
-
-.navbar .navbar-toggler:focus {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-}
-
+// TODO: Use Pineapple
 .inline-block {
   display: inline-block;
 }
 
+// TODO: Use Pineapple
 .padding-0 {
   padding: 0;
 }
 
+// TODO: Use Pineapple
 .display-none {
   display: none;
-}
-
-.bottom-margin-30 {
-  margin-bottom: 30px;
 }
 
 .flex-center-container {
@@ -230,4 +193,44 @@ label {
 
 .category-button {
   margin: 4px 2px;
+}
+
+// Media Queries
+
+@media only screen and (max-width: 992px) {
+  .post-content {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .post-content {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .post-container-feed {
+    margin: 10px 0;
+
+    img {
+      transform: scale(1.8);
+    }
+  }
+
+  .banner-image-container {
+    img {
+      transform: scale(1.8);
+    }
+  }
+
+  .post-container-feed:hover {
+    img {
+      transform: scale(2.2) !important;
+    }
+  }
+
+  .container {
+    width: 100%;
+  }
 }
