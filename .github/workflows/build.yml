@@ -59,4 +59,4 @@ jobs:
           webhook_type: "json-extended"
           webhook_url: ${{ secrets.WEBHOOK_URL }}
           webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
-          data: '{ "pipeline": "deploy", "prod_compose": true, "healthcheck": ["glass-glass-1", "glass-glass-2", "glass-glass-db-1"] }'
+          data: '{ "deployment_type": "deploy", "prod_compose": true, "healthcheck": ["glass-glass-1", "glass-glass-2", "glass-glass-db-1"] }'
