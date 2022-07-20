@@ -19,12 +19,9 @@
                 <option value="0" @if (old('published') == '0') {{ 'selected' }} @endif>Draft</option>
             </select>
 
-            <label for="banner-image">Banner Image (eg: 1234567890.png) <i class="fas fa-chevron-right"></i> <a
+            <label for="banner_image_url">Banner Image (eg: 1234567890.png) <i class="fas fa-chevron-right"></i> <a
                     href="{{ route('images') }}">Image Library</a></label>
             <input type="text" class="form-control" name="banner_image_url" value="{{ old('banner_image_url') }}">
-
-            <label for="reading_time">Reading Time (number of minutes)</label>
-            <input type="text" class="form-control" name="reading_time" value="{{ old('reading_time') }}">
 
             <label for="category_id">Category</label>
             <select class="form-control" name="category_id">

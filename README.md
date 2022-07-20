@@ -13,7 +13,7 @@ Minimalist blog featuring syntax highlighting, images, comments, themes, RSS, an
 
 Glass draws its simplistic design inspiration from [Medium](https://medium.com) and [Gatsby](https://www.gatsbyjs.org). Glass allows you to quickly deploy a self-hosted blog in just a few simple steps.
 
-**Features**
+## Features
 
 - Custom image support per post
 - Comments (can be enabled/disabled)

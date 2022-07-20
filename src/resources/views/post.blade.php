@@ -28,11 +28,7 @@
             <i class="fas fa-user"></i>
             {{ $post->user->name }}
             <i class="fas fa-clock"></i>
-            @if (isset($post->reading_time))
-                {{ $post->reading_time }}
-            @else
-                {{ '0' }}
-            @endif minutes
+            {{ \App\Http\Controllers\PostController::generateReadingTime($post) }} minutes
             <i class="fas fa-tag"></i>
             @if (isset($post->category->category))
                 <a href="{{ '/posts/' . $post->category->category }}">{{ $post->category->category }}</a>
@@ -137,8 +133,7 @@
                     @csrf
 
                     <input type="text" name="post_id" value="{{ $post->id }}" hidden>
-                    <textarea name="comment" class="form-control" rows="3"
-                        placeholder="Commenting as {{ Auth::user()->name }}...">{{ old('comment') }}</textarea>
+                    <textarea name="comment" class="form-control" rows="3" placeholder="Commenting as {{ Auth::user()->name }}...">{{ old('comment') }}</textarea>
                     <input type="submit" class="btn btn-primary" value="Add Comment">
                 </form>
             @else

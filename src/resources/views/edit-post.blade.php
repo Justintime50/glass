@@ -12,11 +12,12 @@
             <input name="id" value="{{ $post->id }}" hidden>
 
             <label for="title">Title</label>
-            <input type="text" class="form-control" name="title" id="title" value="{{ old('title', $post->title) }}"
-                oninput="slugifyField('title', 'slug')">
+            <input type="text" class="form-control" name="title" id="title"
+                value="{{ old('title', $post->title) }}" oninput="slugifyField('title', 'slug')">
 
             <label for="slug">Slug (URL) - Must be a single string (eg: "my-new-post" OR "mynewpost")</label>
-            <input type='text' class='form-control' name='slug' id="slug" value="{{ old('slug', $post->slug) }}">
+            <input type='text' class='form-control' name='slug' id="slug"
+                value="{{ old('slug', $post->slug) }}">
 
             <label for="published">Post Status</label>
             <select class="form-select" name="published">
@@ -26,19 +27,16 @@
                 </option>
             </select>
 
-            <label for="banner-image">Banner Image (eg: 1234567890.png) <i class="fas fa-chevron-right"></i> <a
+            <label for="banner_image_url">Banner Image (eg: 1234567890.png) <i class="fas fa-chevron-right"></i> <a
                     href="{{ route('images') }}">Image Library</a></label>
             <input type="text" class="form-control" name="banner_image_url"
                 value="{{ old('banner_image_url', $post->banner_image_url) }}">
             @if (!file_exists(public_path("storage/images/posts/$post->banner_image_url")) || $post->banner_image_url == null)
-                <p class="text-danger">Warning: The image provided could not be found. The default placeholder image will
+                <small class="text-danger">Warning: The image provided could not be found. The default placeholder image
+                    will
                     be
-                    used.</p>
+                    used.</small>
             @endif
-
-            <label for="reading_time">Reading Time (number of minutes)</label>
-            <input type="text" class="form-control" name="reading_time"
-                value="{{ old('reading_time', $post->reading_time) }}">
 
             <label for="category_id">Category</label>
             <select class="form-select" name="category_id">

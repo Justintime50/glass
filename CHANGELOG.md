@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.12.0 (2022-07-19)
+
+- Dynamically generate an articles reading time instead of expecing authors to come up with this and store it in the database. (This will require a database migration to remove the `reading_time` column from the `posts` table)
+
 ## v0.11.0 (2022-06-21)
 
 - Switches from file based sessions to database sessions (must migrate DB)

@@ -246,4 +246,20 @@ class PostController extends Controller
         session()->flash("message", "Image deleted.");
         return redirect()->back();
     }
+
+    /**
+     * Generate reading time for an article.
+     *
+     * @param Post $post
+     * @return string
+     */
+    public static function generateReadingTime($post)
+    {
+        $averageReaderWordsPerMinute = 200;
+        $bufferMinutes = 1; // This accounts for reading times of less than 1 minute
+
+        $readingTime = round(str_word_count($post->post) / $averageReaderWordsPerMinute) + $bufferMinutes;
+
+        return $readingTime;
+    }
 }
