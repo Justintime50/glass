@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.12.1 (2022-09-17)
+
+- Slug URL fields no longer replace apostrophes with dashes but instead just remove them for better slugs with apostrophes
+
 ## v0.12.0 (2022-07-19)
 
 - Dynamically generate an articles reading time instead of expecing authors to come up with this and store it in the database. (This will require a database migration to remove the `reading_time` column from the `posts` table)
