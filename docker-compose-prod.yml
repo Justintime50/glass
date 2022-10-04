@@ -16,7 +16,7 @@ services:
       timeout: 10s
       retries: 3
     labels:
-      - "traefik.http.routers.glass.rule=Host(`blog.justinpaulhammond.com`) || Host(`www.blog.justinpaulhammond.com`)"
+      - "traefik.http.routers.glass.rule=Host(`blog.justinpaulhammond.com`, `www.blog.justinpaulhammond.com`)"
       - "traefik.http.routers.glass.tls=true"
       - "traefik.http.routers.glass.tls.certresolver=letsencrypt"
     volumes:
