@@ -25,4 +25,4 @@ class UserFactory extends Factory
             'bio' => $this->faker->sentence(),
         ];
     }
-};
+}

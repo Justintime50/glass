@@ -49,7 +49,7 @@ class AdminController extends Controller
 
         $settings->save();
 
-        session()->flash("message", "Settings updated.");
+        session()->flash('message', 'Settings updated.');
         return redirect()->back();
     }
 
@@ -70,7 +70,7 @@ class AdminController extends Controller
 
         $settings->save();
 
-        session()->flash("message", "User role updated.");
+        session()->flash('message', 'User role updated.');
         return redirect()->back();
     }
 }

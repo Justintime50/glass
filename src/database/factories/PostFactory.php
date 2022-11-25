@@ -32,4 +32,4 @@ class PostFactory extends Factory
             'published' => 1,
         ];
     }
-};
+}

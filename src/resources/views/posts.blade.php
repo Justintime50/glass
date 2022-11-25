@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        @if (isset($category_record))
-            <h1>{{ $category_record->category }} Posts</h1>
+        @if (isset($categoryRecord))
+            <h1>{{ $categoryRecord->category }} Posts</h1>
         @endif
 
         @forelse($posts as $post)

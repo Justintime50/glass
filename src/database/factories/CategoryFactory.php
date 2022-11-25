@@ -21,4 +21,4 @@ class CategoryFactory extends Factory
             'category' => $this->faker->word(),
         ];
     }
-};
+}

@@ -32,7 +32,10 @@ jobs:
       - name: Install Composer
         run: cd src && composer self-update
       - name: Install Dependencies
-        run: cd src && composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        run: |
+          cd src
+          composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+          npm install
       - name: Lint
         run: cd src && composer lint
   lint-sass:
@@ -43,7 +46,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "18"
       - name: Install dependencies
         run: cd src && npm install
       - name: Run SASS lint

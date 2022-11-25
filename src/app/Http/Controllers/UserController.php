@@ -36,7 +36,7 @@ class UserController extends Controller
         $user->bio = request()->get('bio');
         $user->save();
 
-        session()->flash("message", "Profile updated.");
+        session()->flash('message', 'Profile updated.');
         return redirect()->back();
     }
 
@@ -56,7 +56,7 @@ class UserController extends Controller
         $user->password = Hash::make(request()->password);
         $user->save();
 
-        session()->flash("message", "Your password was updated successfully.");
+        session()->flash('message', 'Your password was updated successfully.');
         return redirect()->back();
     }
 
@@ -73,9 +73,9 @@ class UserController extends Controller
         $id = request()->get('id');
 
         // Upload Avatar (IMAGE INTERVENTION - LARAVEL)
-        Image::make(request()->file("upload_profile_pic"))->fit(150, 150)->save(public_path("storage/images/avatars/$id.png"));
+        Image::make(request()->file('upload_profile_pic'))->fit(150, 150)->save(public_path("storage/images/avatars/$id.png"));
 
-        session()->flash("message", "Avatar updated successfully.");
+        session()->flash('message', 'Avatar updated successfully.');
         return redirect()->back();
     }
 
@@ -89,7 +89,7 @@ class UserController extends Controller
         $id = request()->get('id');
         User::find($id)->delete();
 
-        session()->flash("message", "User deleted.");
+        session()->flash('message', 'User deleted.');
         return redirect()->back();
     }
 }

@@ -23,7 +23,7 @@ class CategoryController extends Controller
         $category->user_id = Auth::user()->id;
         $category->save();
 
-        session()->flash("message", "Category created.");
+        session()->flash('message', 'Category created.');
         return redirect()->back();
     }
 
@@ -43,7 +43,7 @@ class CategoryController extends Controller
         $category->category = request()->get('category');
         $category->save();
 
-        session()->flash("message", "Category updated.");
+        session()->flash('message', 'Category updated.');
         return redirect()->back();
     }
 
@@ -57,7 +57,7 @@ class CategoryController extends Controller
         $id = request()->get('id');
         $category = Category::find($id)->delete();
 
-        session()->flash("message", "Category deleted.");
-        return redirect("/");
+        session()->flash('message', 'Category deleted.');
+        return redirect('/');
     }
 }

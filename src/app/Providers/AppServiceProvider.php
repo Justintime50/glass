@@ -26,12 +26,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // Setup directories as needed
-        $images_path = 'storage/images';
-        if (!is_dir(public_path("$images_path/posts"))) {
-            mkdir(public_path("$images_path/posts"), 0775, true);
+        $imagesPath = 'storage/images';
+        if (!is_dir(public_path("$imagesPath/posts"))) {
+            mkdir(public_path("$imagesPath/posts"), 0775, true);
         }
-        if (!is_dir(public_path("$images_path/avatars"))) {
-            mkdir(public_path("$images_path/avatars"), 0775, true);
+        if (!is_dir(public_path("$imagesPath/avatars"))) {
+            mkdir(public_path("$imagesPath/avatars"), 0775, true);
         }
 
         if (config('app.env') === 'production') {

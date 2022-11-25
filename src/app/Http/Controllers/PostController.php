@@ -38,10 +38,10 @@ class PostController extends Controller
      */
     public function readPostsByCategory($category)
     {
-        $category_record = Category::where('category', '=', $category)->firstOrFail();
+        $categoryRecord = Category::where('category', '=', $category)->firstOrFail();
         $posts = Post::orderBy('created_at', 'desc')
             ->where('published', '=', 1)
-            ->where('category_id', '=', $category_record->id)
+            ->where('category_id', '=', $categoryRecord->id)
             ->paginate(10);
 
         $categories = Category::orderBy('category', 'asc')
@@ -86,7 +86,7 @@ class PostController extends Controller
         $post->user_id = Auth::user()->id;
         $post->save();
 
-        session()->flash("message", "Post created.");
+        session()->flash('message', 'Post created.');
         return redirect('/');
     }
 
@@ -111,7 +111,7 @@ class PostController extends Controller
         }
         $comments = Comment::where('post_id', '=', $post->id)
             ->orderBy('created_at', 'asc')
-            ->paginate(15); # TODO: Allow users to continue to go through all comments after reaching this limit via table or something similar
+            ->paginate(15); // TODO: Allow users to continue to go through all comments after reaching this limit via table or something similar
 
         return view('/post', compact('post', 'comments'));
     }
@@ -179,7 +179,7 @@ class PostController extends Controller
         $post->save();
 
         $url = str_replace(' ', '-', $post->user->name) . '/' . $post->slug;
-        session()->flash("message", "Post updated.");
+        session()->flash('message', 'Post updated.');
         return redirect($url);
     }
 
@@ -193,7 +193,7 @@ class PostController extends Controller
         $id = request()->get('id');
         Post::find($id)->delete();
 
-        session()->flash("message", "Post deleted.");
+        session()->flash('message', 'Post deleted.');
         return redirect('/');
     }
 
@@ -222,14 +222,14 @@ class PostController extends Controller
         ]);
 
         // ~1 billion possible IDs, overlap potential should be small
-        $id_min = 1000000000;
-        $id_max = 9999999999;
-        $id = mt_rand($id_min, $id_max);
+        $idMin = 1000000000;
+        $idMax = 9999999999;
+        $id = mt_rand($idMin, $idMax);
 
         // Upload Avatar (IMAGE INTERVENTION - LARAVEL)
-        Image::make($request->file("upload_image"))->save(public_path("storage/images/posts/$id.png"));
+        Image::make($request->file('upload_image'))->save(public_path("storage/images/posts/$id.png"));
 
-        session()->flash("message", "Image uploaded successfully.");
+        session()->flash('message', 'Image uploaded successfully.');
         return redirect()->back();
     }
 
@@ -243,7 +243,7 @@ class PostController extends Controller
         $id = request()->get('id');
         Storage::delete("images/posts/$id");
 
-        session()->flash("message", "Image deleted.");
+        session()->flash('message', 'Image deleted.');
         return redirect()->back();
     }
 

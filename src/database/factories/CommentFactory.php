@@ -22,4 +22,4 @@ class CommentFactory extends Factory
             'comment' => $this->faker->sentence(),
         ];
     }
-};
+}

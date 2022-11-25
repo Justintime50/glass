@@ -37,7 +37,7 @@ class CommentController extends Controller
         $comment->post_id = request()->get('post_id');
         $comment->save();
 
-        session()->flash("message", "Comment created.");
+        session()->flash('message', 'Comment created.');
         return redirect()->back();
     }
 
@@ -51,7 +51,7 @@ class CommentController extends Controller
         $id = request()->get('id');
         $comment = Comment::find($id)->delete();
 
-        session()->flash("message", "Comment deleted.");
+        session()->flash('message', 'Comment deleted.');
         return redirect()->back();
     }
 }
