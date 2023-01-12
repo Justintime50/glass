@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Fixes a bug where retrieving posts by category didn't work due to a variable name error
+
 ## v0.12.1 (2022-09-17)
 
 - Slug URL fields no longer replace apostrophes with dashes but instead just remove them for better slugs with apostrophes

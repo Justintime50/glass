@@ -47,7 +47,7 @@ class PostController extends Controller
         $categories = Category::orderBy('category', 'asc')
             ->get();
 
-        return view('/posts', compact('posts', 'category_record', 'categories'));
+        return view('/posts', compact('posts', 'categoryRecord', 'categories'));
     }
 
     /**
