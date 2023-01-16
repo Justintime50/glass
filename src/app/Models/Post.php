@@ -16,7 +16,6 @@ class Post extends Model
         'keywords',
         'post',
         'published',
-        'reading_time',
         'slug',
         'title',
         'user_id',

@@ -3,6 +3,7 @@
 ## Next Release
 
 - Fixes a bug where retrieving posts by category didn't work due to a variable name error
+- Fixes various other bugs and makes additional improvements
 
 ## v0.12.1 (2022-09-17)
 

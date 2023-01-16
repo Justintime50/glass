@@ -23,7 +23,6 @@ class PostFactory extends Factory
         return [
             'title' => $title,
             'slug' => $slug,
-            'reading_time' => $this->faker->randomNumber($nbDigits = 1),
             'keywords' => $this->faker->word(),
             'category_id' => '1',
             'user_id' => 1,

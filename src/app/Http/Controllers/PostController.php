@@ -69,7 +69,6 @@ class PostController extends Controller
                     return $query->where('user_id', Auth::user()->id);
                 })
             ],
-            'reading_time'  => 'nullable|numeric',
             'keywords'      => 'nullable|string',
             'category'      => 'string',
             'post'          => 'required|string',
@@ -79,7 +78,6 @@ class PostController extends Controller
         $post->slug = request()->get('slug');
         $post->published = request()->get('published');
         $post->banner_image_url = request()->get('banner_image_url');
-        $post->reading_time = request()->get('reading_time');
         $post->keywords = request()->get('keywords');
         $post->category_id = request()->get('category_id');
         $post->post = request()->get('post');
@@ -162,7 +160,6 @@ class PostController extends Controller
                     return $query->where('user_id', Auth::user()->id);
                 })
             ],
-            'reading_time'  => 'nullable|numeric',
             'keywords'      => 'nullable|string',
             'category'      => 'string',
             'post'          => 'required|string',
@@ -172,7 +169,6 @@ class PostController extends Controller
         $post->banner_image_url = request()->get('banner_image_url');
         $post->title = request()->get('title');
         $post->slug = request()->get('slug');
-        $post->reading_time = request()->get('reading_time');
         $post->keywords = request()->get('keywords');
         $post->category_id = request()->get('category_id');
         $post->post = request()->get('post');
