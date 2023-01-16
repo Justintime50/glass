@@ -43,5 +43,6 @@
             </p>
 
             <input type="submit" class="btn btn-primary" value="Create Post">
+        </form>
     </div>
 @endsection

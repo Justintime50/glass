@@ -56,5 +56,6 @@
 
             <br />
             <input type="submit" class="btn btn-primary" value="Update Post">
+        </form>
     </div>
 @endsection
