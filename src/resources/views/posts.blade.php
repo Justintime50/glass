@@ -11,8 +11,10 @@
                 <a href="{{ strtolower(url('/' . str_replace(' ', '-', $post->user->name) . '/' . $post->slug)) }}"
                     class="post-link">
                     <div class="banner-image-container">
-                        @if (file_exists(public_path("storage/images/posts/$post->banner_image_url")) && $post->banner_image_url != null)
-                            <img src="{{ asset("storage/images/posts/$post->banner_image_url") }}" class="banner-image">
+                        @if (file_exists(\App\Http\Controllers\PostController::getImagePublicPath($post->banner_image_url)) &&
+                                $post->banner_image_url != null)
+                            <img src="{{ \App\Http\Controllers\PostController::getImageAssetPath($post->banner_image_url) }}"
+                                class="banner-image">
                         @else
                             <img src="{{ asset('pics/banner.jpg') }}" class="banner-image">
                         @endif
@@ -30,8 +32,7 @@
                             {{ \App\Http\Controllers\PostController::generateReadingTime($post) }} minutes
                             <i class="fas fa-tag"></i>
                             @if (isset($post->category->category))
-                                <a
-                                    href="{{ '/posts/' . $post->category->category }}">{{ $post->category->category }}</a>
+                                <a href="{{ '/posts/' . $post->category->category }}">{{ $post->category->category }}</a>
                             @else
                                 {{ 'Uncategorized' }}
                             @endif

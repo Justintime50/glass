@@ -111,6 +111,15 @@ hr {
   color: $font-color;
 }
 
+.modal-content {
+  background-color: $background-color;
+  color: $font-color;
+}
+
+.btn-close {
+  color: $font-color;
+}
+
 // Custom
 
 .post-container-feed:hover {

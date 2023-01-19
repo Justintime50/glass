@@ -37,8 +37,10 @@
             @endif
         </p>
         <div class="banner-image-container">
-            @if (file_exists(public_path("storage/images/posts/$post->banner_image_url")) && $post->banner_image_url != null)
-                <img src="{{ asset("storage/images/posts/$post->banner_image_url") }}" class="banner-image">
+            @if (file_exists(\App\Http\Controllers\PostController::getImagePublicPath($post->banner_image_url)) &&
+                    $post->banner_image_url != null)
+                <img src="{{ \App\Http\Controllers\PostController::getImageAssetPath($post->banner_image_url) }}"
+                    class="banner-image">
             @else
                 <img src="{{ asset('pics/banner.jpg') }}" class="banner-image">
             @endif

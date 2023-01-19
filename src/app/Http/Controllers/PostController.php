@@ -223,7 +223,7 @@ class PostController extends Controller
         $id = mt_rand($idMin, $idMax);
 
         // Upload Avatar (IMAGE INTERVENTION - LARAVEL)
-        Image::make($request->file('upload_image'))->save(public_path("storage/images/posts/$id.png"));
+        Image::make($request->file('upload_image'))->save(self::getImagePublicPath("$id.png"));
 
         session()->flash('message', 'Image uploaded successfully.');
         return redirect()->back();
@@ -257,5 +257,27 @@ class PostController extends Controller
         $readingTime = round(str_word_count($post->post) / $averageReaderWordsPerMinute) + $bufferMinutes;
 
         return $readingTime;
+    }
+
+    /**
+     * Gets the image asset path for a post.
+     *
+     * @param string $imageName
+     * @return string
+     */
+    public static function getImageAssetPath($imageName)
+    {
+        return asset("storage/images/posts/$imageName");
+    }
+
+    /**
+     * Gets the public image path for a post.
+     *
+     * @param string $imageName
+     * @return string
+     */
+    public static function getImagePublicPath($imageName)
+    {
+        return public_path("storage/images/posts/$imageName");
     }
 }

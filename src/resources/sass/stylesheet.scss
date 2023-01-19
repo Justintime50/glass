@@ -170,8 +170,23 @@ label {
   margin: 20px;
 }
 
+.image-page-image-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.auto-margin-top {
+  margin-top: auto;
+}
+
 .category-button {
   margin: 4px 2px;
+}
+
+
+#banner_image_preview {
+	max-height: 32px;
+  padding: 0 10px;
 }
 
 // Media Queries
