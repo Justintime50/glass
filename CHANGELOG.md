@@ -2,7 +2,7 @@
 
 ## Next Release
 
-- Adds an image gallery selection to the create and edit post screens. Previously, you'd need to visit the Image Library, copy the image name, go back to your post, paste in the image name to a field, and be on your way
+- Adds an image gallery selection to the create and edit post screens. Previously, you'd need to visit the Image Library, copy the image name, go back to your post, paste in the image name to a field, and be on your way (closes #68)
 - Fixes a bug where retrieving posts by category didn't work due to a variable name error
 - Various other improvements and bug fixes
 

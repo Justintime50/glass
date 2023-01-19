@@ -27,7 +27,7 @@
                 Select Banner Image
             </button>
 
-            <img src="{{ asset('pics/banner.jpg') }}" id="banner_image_preview">
+            <img src="{{ asset('pics/banner.jpg') }}" id="banner-image-preview">
 
             <div class="modal fade" id="imageGallery" tabindex="-1" aria-labelledby="imageGallery" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable">

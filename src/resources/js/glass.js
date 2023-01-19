@@ -12,6 +12,6 @@ export function slugifyField(textfield, slugField) {
 export function selectImage(imageName) {
     document.getElementById("banner_image_url").value = imageName;
     document.getElementById(
-        "banner_image_preview"
+        "banner-image-preview"
     ).src = `${window.location.origin}/storage/images/posts/${imageName}`;
 }

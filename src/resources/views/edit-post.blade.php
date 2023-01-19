@@ -35,7 +35,7 @@
             </button>
 
             <img src="{{ \App\Http\Controllers\PostController::getImageAssetPath($post->banner_image_url) }}"
-                id="banner_image_preview">
+                id="banner-image-preview">
 
             <div class="modal fade" id="imageGallery" tabindex="-1" aria-labelledby="imageGallery" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable">
