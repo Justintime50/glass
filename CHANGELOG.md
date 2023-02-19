@@ -4,6 +4,7 @@
 
 - Adds an image gallery selection to the create and edit post screens. Previously, you'd need to visit the Image Library, copy the image name, go back to your post, paste in the image name to a field, and be on your way (closes #68)
 - Fixes a bug where retrieving posts by category didn't work due to a variable name error
+- Adds better factories and seeders including posts now getting assigned a random user, each post containing comments, and better under-the-hood config for seeders
 - Various other improvements and bug fixes
 
 ## v0.12.1 (2022-09-17)

@@ -55,7 +55,7 @@ class CategoryController extends Controller
     public function delete()
     {
         $id = request()->get('id');
-        $category = Category::find($id)->delete();
+        Category::find($id)->delete();
 
         session()->flash('message', 'Category deleted.');
         return redirect('/');
