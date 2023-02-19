@@ -46,7 +46,6 @@
             <table class="table-striped table">
                 <thead>
                     <th>Name</th>
-                    <th>Created By</th>
                     <th>Updated At</th>
                     <th>Actions</th>
                 </thead>
@@ -54,7 +53,6 @@
                     @foreach ($categories as $category)
                         <tr>
                             <td>{{ $category->category }}</td>
-                            <td>{{ $category->user->name }}</td>
                             <td>{{ $category->created_at }}</td>
                             <td>
                                 <form action="{{ route('update-category') }}" method="POST" id="updateCategory"

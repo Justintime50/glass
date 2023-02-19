@@ -20,7 +20,6 @@ class CategoryController extends Controller
 
         $category = new Category();
         $category->category = request()->get('category');
-        $category->user_id = Auth::user()->id;
         $category->save();
 
         session()->flash('message', 'Category created.');

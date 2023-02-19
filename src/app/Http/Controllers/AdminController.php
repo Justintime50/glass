@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Setting;
 use App\Models\Category;
 use App\Models\Post;
-use Auth;
+use App\Models\Setting;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -24,7 +22,7 @@ class AdminController extends Controller
         $posts = Post::orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'posts');
         $categories = Category::orderBy('category', 'asc')
-            ->paginate(10, ['*'], 'categories');
+            ->paginate(10);
 
         return view('/admin', compact('users', 'settings', 'posts', 'categories'));
     }
