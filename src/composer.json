@@ -52,12 +52,14 @@
     "prefer-stable": true,
     "scripts": {
         "coverage": "XDEBUG_MODE=coverage ./bin/phpunit --coverage-html clover.html --coverage-clover clover.xml",
-        "db-clean": "docker exec -t glass-glass-1 php artisan db:wipe",
+        "db-clean": "docker exec -t glass-glass-1 php artisan db:wipe --no-interaction --force",
         "fix": "./bin/phpcbf --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
         "lint": "./bin/phpcs --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
-        "migrate": "docker exec -t glass-glass-1 php artisan migrate",
-        "migrate-fresh": "docker exec -t glass-glass-1 php artisan migrate:fresh",
-        "migrate-seed": "docker exec -t glass-glass-1 php artisan migrate:fresh --seed",
+        "migrate-fresh": "docker exec -t glass-glass-1 php artisan migrate:fresh --no-interaction --force",
+        "migrate-seed": "docker exec -t glass-glass-1 php artisan migrate:fresh --seed --no-interaction --force",
+        "migrate": "docker exec -t glass-glass-1 php artisan migrate --no-interaction --force",
+        "seed": "docker exec -t glass-glass-1 php artisan db:seed --no-interaction --force",
+        "test": "./bin/phpunit",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
@@ -67,8 +69,6 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ],
-        "seed": "docker exec -t glass-glass-1 php artisan db:seed",
-        "test": "./bin/phpunit"
+        ]
     }
 }
