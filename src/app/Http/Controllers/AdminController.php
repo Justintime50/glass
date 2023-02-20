@@ -22,7 +22,7 @@ class AdminController extends Controller
         $posts = Post::orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'posts');
         $categories = Category::orderBy('category', 'asc')
-            ->paginate(10);
+            ->paginate(10, ['*'], 'categories');
 
         return view('/admin', compact('users', 'settings', 'posts', 'categories'));
     }

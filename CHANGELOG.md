@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Fix admin page category table pagination
+
 ## v0.13.0 (2023-02-19)
 
 - Adds an image gallery selection to the create and edit post screens. Previously, you'd need to visit the Image Library, copy the image name, go back to your post, paste in the image name to a field, and be on your way (closes #68)
