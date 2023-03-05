@@ -50,11 +50,11 @@ jobs:
       - name: Run SASS lint
         run: cd src && npm run lint
   deploy:
+    if: github.ref == 'refs/heads/main'
     needs: ["docker", "lint-php", "lint-sass"]
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Harvey
-        if: github.ref == 'refs/heads/main'
         uses: distributhor/workflow-webhook@v2
         env:
           webhook_type: "json-extended"
