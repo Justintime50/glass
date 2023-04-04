@@ -91,7 +91,8 @@ class PostController extends Controller
     /**
      * Show the post content on a single page.
      *
-     * The page will be viewable regardless of published status for admins and only viewable if published for normal users.
+     * The page will be viewable regardless of published status for admins and only
+     * viewable if published for normal users.
      *
      * @param str $user
      * @param str $slug
@@ -109,7 +110,9 @@ class PostController extends Controller
         }
         $comments = Comment::where('post_id', '=', $post->id)
             ->orderBy('created_at', 'asc')
-            ->paginate(15); // TODO: Allow users to continue to go through all comments after reaching this limit via table or something similar
+            // TODO: Allow users to continue to go through all comments after reaching this
+            // limit via table or something similar.
+            ->paginate(15);
 
         return view('/post', compact('post', 'comments'));
     }

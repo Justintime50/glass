@@ -73,7 +73,9 @@ class UserController extends Controller
         $id = request()->get('id');
 
         // Upload Avatar (IMAGE INTERVENTION - LARAVEL)
-        Image::make(request()->file('upload_profile_pic'))->fit(150, 150)->save(public_path("storage/images/avatars/$id.png"));
+        Image::make(
+            request()->file('upload_profile_pic')
+        )->fit(150, 150)->save(public_path("storage/images/avatars/$id.png"));
 
         session()->flash('message', 'Avatar updated successfully.');
         return redirect()->back();
