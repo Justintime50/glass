@@ -2,7 +2,8 @@
 
 ## Next Release
 
-- Fix admin page category table pagination
+- Fixes admin page category table pagination
+- Fixes post comment avatar paths
 
 ## v0.13.0 (2023-02-19)
 
