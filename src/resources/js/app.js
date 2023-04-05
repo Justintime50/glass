@@ -1,8 +1,12 @@
-try {
-    // The Bootstrap Javascript library
-    require("bootstrap");
-    require("@popperjs/core");
-} catch (e) {}
+import "@popperjs/core";
+import "bootstrap";
+
+import slugify from "@sindresorhus/slugify";
+import axios from "axios";
+import hljs from "highlight.js";
+import pineapple from "pineapple-library/pineapple/dist/js/pineapple";
+
+import * as glass from "./glass";
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -10,16 +14,16 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require("axios");
+window.axios = axios;
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 /**
  * Place custom Node Modules below
  */
-window.hljs = require("highlight.js");
-window.slugify = require("@sindresorhus/slugify");
-window.pineapple = require("pineapple-library/pineapple/dist/js/pineapple");
+hljs.highlightAll();
+window.slugify = slugify;
+window.pineapple = pineapple;
 
 // Custom app Javascript
-window.app = require("./glass");
+window.app = glass;

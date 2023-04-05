@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## Next Release
+## v0.14.0 (2023-04-05)
 
 - Upgrades from Laravel 9 to 10
+- Migrates from Webpack to Vite
 - Fixes admin page category table pagination
 - Fixes post comment avatar paths
 - Bumps all dependencies
