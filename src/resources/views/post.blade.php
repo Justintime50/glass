@@ -114,8 +114,9 @@
 
         <div class="row author">
             <div class="col-md-2">
-                @if (file_exists(public_path('storage/images/avatars/' . $post->user->id . '.png')))
-                    <img src="{{ asset('storage/images/avatars/' . $post->user->id . '.png') }}" class="avatar">
+                @php $avatar_path = 'storage/images/avatars/' . $post->user->id . '.png'; @endphp
+                @if (file_exists(public_path($avatar_path)))
+                    <img src="{{ asset($avatar_path) }}" class="avatar">
                 @else
                     <i class="fas fa-user fa-3x avatar"></i>
                 @endif
@@ -145,9 +146,8 @@
             @forelse($comments as $comment)
                 <hr>
                 <p>{{ $comment->comment }}</p>
-                @php $avatar_path = "storage/avatars/" . $comment->user->id . ".png"; @endphp
-
-                @if (file_exists($avatar_path))
+                @php $avatar_path = 'storage/images/avatars/' . $comment->user->id . '.png'; @endphp
+                @if (file_exists(public_path($avatar_path)))
                     <img src="{{ asset($avatar_path) }}" class="avatar-small">
                 @else
                     <i class="fas fa-user fa-2x avatar-small"></i>
