@@ -2,8 +2,10 @@
 
 ## Next Release
 
+- Upgrades from Laravel 9 to 10
 - Fixes admin page category table pagination
 - Fixes post comment avatar paths
+- Bumps all dependencies
 
 ## v0.13.0 (2023-02-19)
 
