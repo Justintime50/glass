@@ -190,19 +190,19 @@ label {
 
 // Media Queries
 
-@media only screen and (max-width: 992px) {
+@media only screen and (width <= 992px) {
   .post-content {
     width: 75%;
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (width <= 1200px) {
   .post-content {
     width: 100%;
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (width <= 768px) {
   .post-container-feed {
     margin: 10px 0;
 
