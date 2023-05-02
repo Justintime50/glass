@@ -2,9 +2,8 @@
 $background-color: #32245c;
 $nav-background: #42307d;
 $accent-color: #c3a2f5;
-
 $font-color: #cce5fc;
 $danger-color: #b20000;
 
 // Import Theme Elements
-@import '../theme';
+@import 'theme';
