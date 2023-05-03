@@ -24,7 +24,7 @@
         <h1 class="post-title">{{ $post->title }}</h1>
         <p class="post-meta">
             <i class="fas fa-calendar"></i>
-            {{ date_format($post->created_at, 'm/d/Y') }}
+            {{ date_format($post->created_at, 'Y/m/d') }}
             <i class="fas fa-user"></i>
             {{ $post->user->name }}
             <i class="fas fa-clock"></i>
@@ -153,7 +153,7 @@
                     <i class="fas fa-user fa-2x avatar-small"></i>
                 @endif
 
-                <i>&nbsp;{{ $comment->user->name }} - {{ date_format($comment->created, 'm/d/Y') }}</i>
+                <i>&nbsp;{{ $comment->user->name }} - {{ date_format($comment->created_at, 'Y/m/d') }}</i>
 
                 @if (Auth::check())
                     <form action="{{ route('delete-comment') }}" method="POST">

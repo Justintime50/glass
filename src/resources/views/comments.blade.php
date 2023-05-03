@@ -18,7 +18,7 @@
                         <tr>
                             <td>{{ $comment->comment }}</td>
                             <td>{{ $comment->user->name }}</td>
-                            <td>{{ date_format($comment->created_at, 'm/d/Y') }}</td>
+                            <td>{{ date_format($comment->created_at, 'Y/m/d') }}</td>
                             <td>
                                 <a href="/{{ $comment->post->user->name }}/{{ $comment->post->slug }}">
                                     {{ $comment->post->title }}
