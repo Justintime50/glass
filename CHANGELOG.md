@@ -2,7 +2,7 @@
 
 ## Next Release
 
-- Swap `updated_at` to `created_at` timestamps for posts
+- Swap `updated_at` to `created_at` timestamps for posts and comments
 
 ## v0.14.0 (2023-04-05)
 

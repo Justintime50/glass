@@ -153,7 +153,7 @@
                     <i class="fas fa-user fa-2x avatar-small"></i>
                 @endif
 
-                <i>&nbsp;{{ $comment->user->name }} - {{ date_format($comment->updated_at, 'm/d/Y') }}</i>
+                <i>&nbsp;{{ $comment->user->name }} - {{ date_format($comment->created, 'm/d/Y') }}</i>
 
                 @if (Auth::check())
                     <form action="{{ route('delete-comment') }}" method="POST">
