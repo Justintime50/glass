@@ -25,7 +25,7 @@
                         </h2>
                         <p class="post-meta">
                             <i class="fas fa-calendar"></i>
-                            {{ date_format($post->updated_at, 'm/d/Y') }}
+                            {{ date_format($post->created_at, 'm/d/Y') }}
                             <i class="fas fa-user"></i>
                             {{ $post->user->name }}
                             <i class="fas fa-clock"></i>

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Swap `updated_at` to `created_at` timestamps for posts
+
 ## v0.14.0 (2023-04-05)
 
 - Upgrades from Laravel 9 to 10
