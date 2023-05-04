@@ -1,5 +1,7 @@
-@php $post_images = File::allFiles(public_path("storage/images/posts")); @endphp
-@foreach (array_values($post_images) as $index => $image)
+@php
+    $postImages = array_values(File::allFiles(public_path('storage/images/posts')));
+@endphp
+@foreach ($postImages as $index => $image)
     @php $imageName = basename($image); @endphp
     @if ($index == 0)
         <div class="row image-row-container">
@@ -26,14 +28,13 @@
                 <a class="btn btn-sm btn-primary" data-bs-dismiss="modal"
                     onclick='app.selectImage("{{ $imageName }}")'>Select</a>
             @endif
-
         </div>
     </div>
 
     @if (($index + 1) % 3 == 0)
         </div>
         <div class="row image-row-container">
-        @elseif ($index == count($post_images) - 1)
+        @elseif ($index == count($postImages) - 1 || $image == end($postImages))
         </div>
     @endif
 @endforeach

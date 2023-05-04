@@ -2,8 +2,9 @@
 
 @section('content')
     <div class="container">
-        <a class="btn btn-primary mb-3" href="{{ strtolower(url('/' . $post->user->name . '/' . $post->slug)) }}"><i
-                class="fas fa-chevron-left"></i> Back to Post</a>
+        <a class="btn btn-primary mb-3" href="{{ strtolower(url('/' . $post->user->name . '/' . $post->slug)) }}">
+            <i class="fas fa-chevron-left"></i> Back to Post
+        </a>
         <h1>Edit Post</h1>
 
         <form action="{{ route('update-post') }}" method="POST">
@@ -20,9 +21,11 @@
 
             <label for="published">Post Status</label>
             <select class="form-select" name="published">
-                <option value="1" @if ($post->published == 1 || old('published') == '1') {{ 'selected' }} @endif>Published
+                <option value="1" @if ($post->published == 1 || old('published') == '1') {{ 'selected' }} @endif>
+                    Published
                 </option>
-                <option value="0" @if ($post->published == 0 || old('published') == '0') {{ 'selected' }} @endif>Draft
+                <option value="0" @if ($post->published == 0 || old('published') == '0') {{ 'selected' }} @endif>
+                    Draft
                 </option>
             </select>
 
