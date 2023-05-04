@@ -34,7 +34,6 @@
     @if (($index + 1) % 3 == 0)
         </div>
         <div class="row image-row-container">
-        @elseif ($index == count($postImages) - 1 || $image == end($postImages))
-        </div>
     @endif
 @endforeach
+</div>
