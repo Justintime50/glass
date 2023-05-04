@@ -34,8 +34,13 @@
                 Select Banner Image
             </button>
 
-            <img src="{{ \App\Http\Controllers\PostController::getImageAssetPath($post->banner_image_url) }}"
-                id="banner-image-preview">
+            @if (file_exists(\App\Http\Controllers\PostController::getImagePublicPath($post->banner_image_url)) &&
+                    $post->banner_image_url != null)
+                <img src="{{ \App\Http\Controllers\PostController::getImageAssetPath($post->banner_image_url) }}"
+                    class="banner-image-preview">
+            @else
+                <img src="{{ asset('pics/banner.jpg') }}" id="banner-image-preview">
+            @endif
 
             <div class="modal fade" id="imageGallery" tabindex="-1" aria-labelledby="imageGallery" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable">

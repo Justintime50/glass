@@ -3,6 +3,7 @@
 ## Next Release
 
 - Swap `updated_at` to `created_at` timestamps for posts and comments
+- Fixes a 403 issue for the default image preview when editing a post
 
 ## v0.14.0 (2023-04-05)
 
