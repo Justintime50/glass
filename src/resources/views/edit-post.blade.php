@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="container">
-
         <a class="btn btn-primary mb-3" href="{{ strtolower(url('/' . $post->user->name . '/' . $post->slug)) }}"><i
                 class="fas fa-chevron-left"></i> Back to Post</a>
         <h1>Edit Post</h1>
+
         <form action="{{ route('update-post') }}" method="POST">
             @csrf
 
@@ -37,7 +37,7 @@
             @if (file_exists(\App\Http\Controllers\PostController::getImagePublicPath($post->banner_image_url)) &&
                     $post->banner_image_url != null)
                 <img src="{{ \App\Http\Controllers\PostController::getImageAssetPath($post->banner_image_url) }}"
-                    class="banner-image-preview">
+                    id="banner-image-preview">
             @else
                 <img src="{{ asset('pics/banner.jpg') }}" id="banner-image-preview">
             @endif
