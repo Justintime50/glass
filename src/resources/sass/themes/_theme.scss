@@ -33,6 +33,12 @@ hr {
   height: 1px;
 }
 
+thead th {
+  font-size: 1.1rem;
+  color: $font-color !important;
+  background-color: $nav-background !important;
+}
+
 // Overrides
 
 // For the posts page
@@ -47,6 +53,7 @@ hr {
 }
 
 .pagination {
+
   .page-item span,
   a {
     background-color: $nav-background !important;
@@ -106,9 +113,16 @@ hr {
   color: $font-color;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td,
-.table-striped > tbody > tr:nth-child(odd) > th {
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
   color: $font-color;
+  background-color: $accent-color;
+}
+
+.table-striped>tbody>tr:nth-child(even)>td,
+.table-striped>tbody>tr:nth-child(even)>th {
+  color: $font-color;
+  background-color: $nav-background;
 }
 
 .modal-content {
