@@ -1,6 +1,6 @@
 services:
   glass:
     labels:
-      - "traefik.http.routers.glass.rule=Host(`glass.localhost`)"
+      - 'traefik.http.routers.glass.rule=Host(`glass.localhost`)'
     volumes:
       - ./src:/var/www/html

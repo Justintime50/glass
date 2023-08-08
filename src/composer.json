@@ -15,13 +15,13 @@
         "laravel/framework": "^10.0",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
-        "sentry/sentry-laravel": "^3.3",
-        "spatie/laravel-ignition": "^2.0"
+        "sentry/sentry-laravel": "^3.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.21",
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.0",
+        "spatie/laravel-ignition": "^2.0",
         "squizlabs/php_codesniffer": "^3.7"
     },
     "config": {
@@ -53,8 +53,8 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
+        "clean-db": "docker exec -t glass-glass-1 php artisan db:wipe --no-interaction --force",
         "coverage": "XDEBUG_MODE=coverage ./bin/phpunit --coverage-html clover.html --coverage-clover clover.xml",
-        "db-clean": "docker exec -t glass-glass-1 php artisan db:wipe --no-interaction --force",
         "fix": "./bin/phpcbf --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
         "lint": "./bin/phpcs --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
         "migrate-fresh": "docker exec -t glass-glass-1 php artisan migrate:fresh --no-interaction --force",
