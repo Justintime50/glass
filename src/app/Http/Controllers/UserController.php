@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -16,7 +17,7 @@ class UserController extends Controller
      */
     public function read()
     {
-        return view('/profile');
+        return view('profile');
     }
 
     /**
@@ -86,9 +87,8 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function delete()
+    public function delete(Request $request, int $id)
     {
-        $id = request()->get('id');
         User::find($id)->delete();
 
         session()->flash('message', 'User deleted.');

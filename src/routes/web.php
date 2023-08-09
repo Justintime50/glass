@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,47 +14,56 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// No middleware
-Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+// Auth routes
+Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 Auth::routes();
 
-Route::get('/', 'PostController@readPosts')->name('/');
-Route::get('/blog', 'PostController@readPosts')->name('/blog');
-Route::get('/posts', 'PostController@readPosts')->name('posts');
-Route::get('/posts/{category}', 'PostController@readPostsByCategory');
-Route::get('/{user}/{slug}', 'PostController@read');
-Route::get('feed', 'RssFeedController@feed');
+// Landing pages
+Route::get('/', [App\Http\Controllers\PostController::class, 'readPosts']);
+Route::get('/blog', [App\Http\Controllers\PostController::class, 'readPosts']);
+Route::get('/posts', [App\Http\Controllers\PostController::class, 'readPosts']);
+
+// Misc
+Route::get('/posts/{category}', [App\Http\Controllers\PostController::class, 'readPostsByCategory']);
+Route::get('/{user}/{slug}', [App\Http\Controllers\PostController::class, 'read']);
+Route::get('feed', [App\Http\Controllers\RssFeedController::class, 'feed']);
 
 
 // Must be an Admin
 Route::middleware('Admin')->group(function () {
-    Route::get('/admin', 'AdminController@read')->name('admin');
-    Route::get('/edit-post/{user}/{slug}', 'PostController@readEdit')->name('edit-post');
-    Route::get('/create-post', 'PostController@readCreate')->name('create-post');
-    Route::get('/images', 'PostController@readImages')->name('images');
-    Route::get('/comments', 'CommentController@readComments')->name('comments');
-
-    Route::post('/update-settings', 'AdminController@update')->name('update-settings');
-    Route::post('/update-user-role', 'AdminController@updateUserRole')->name('update-user-role');
-    Route::post('/create-post', 'PostController@create')->name('create-post');
-    Route::post('/update-post', 'PostController@update')->name('update-post');
-    Route::post('/delete-post', 'PostController@delete')->name('delete-post');
-    Route::post('/upload-image', 'PostController@uploadPostImage')->name('upload-image');
-    Route::post('/delete-image', 'PostController@deletePostImage')->name('delete-image');
-    Route::post('/create-category', 'CategoryController@create')->name('create-category');
-    Route::post('/update-category', 'CategoryController@update')->name('update-category');
-    Route::post('/delete-category', 'CategoryController@delete')->name('delete-category');
-    Route::post('/delete-user', 'UserController@delete')->name('delete-user');
+    // General
+    Route::get('/admin', [App\Http\Controllers\AdminController::class, 'read']);
+    Route::patch('/settings', [App\Http\Controllers\AdminController::class, 'update']);
+    // Posts
+    Route::get('/create-post', [App\Http\Controllers\PostController::class, 'readCreate']);
+    Route::post('/posts', [App\Http\Controllers\PostController::class, 'create']);
+    Route::get('/posts/edit/{user}/{slug}', [App\Http\Controllers\PostController::class, 'readEdit']);
+    Route::patch('/posts/{id}', [App\Http\Controllers\PostController::class, 'update']);
+    Route::delete('/posts/{id}', [App\Http\Controllers\PostController::class, 'delete']);
+    // Images
+    Route::get('/images', [App\Http\Controllers\PostController::class, 'readImages']);
+    Route::post('/images', [App\Http\Controllers\PostController::class, 'uploadPostImage']);
+    Route::delete('/images/{id}', [App\Http\Controllers\PostController::class, 'deletePostImage']);  // TODO: This is broken
+    // Comments
+    Route::get('/comments', [App\Http\Controllers\CommentController::class, 'readComments']);
+    // Category
+    Route::post('/categories', [App\Http\Controllers\CategoryController::class, 'create']);
+    Route::patch('/categories/{id}', [App\Http\Controllers\CategoryController::class, 'update']);
+    Route::delete('/categories/{id}', [App\Http\Controllers\CategoryController::class, 'delete']);
+    // User
+    Route::patch('/users/role', [App\Http\Controllers\AdminController::class, 'updateUserRole']);
+    Route::delete('/users/{id}', [App\Http\Controllers\UserController::class, 'delete']);
 });
 
 
 // Must be logged in
 Route::middleware('auth')->group(function () {
-    Route::post('/create-comment', 'CommentController@create')->name('create-comment');
-    Route::post('/delete-comment', 'CommentController@delete')->name('delete-comment');
-    Route::post('/update-profile', 'UserController@update')->name('update-profile');
-    Route::post('/update-password', 'UserController@updatePassword')->name('update-password');
-    Route::post('/update-profile-pic', 'UserController@updateProfilePic')->name('update-profile-pic');
-
-    Route::get('/profile', 'UserController@read')->name('profile');
+    // Comments
+    Route::post('/comments', [App\Http\Controllers\CommentController::class, 'create']);
+    Route::delete('/comments/{id}', [App\Http\Controllers\CommentController::class, 'delete']);
+    // Logged in user
+    Route::get('/profile', [App\Http\Controllers\UserController::class, 'read']);
+    Route::patch('/update-profile', [App\Http\Controllers\UserController::class, 'update']);
+    Route::post('/update-password', [App\Http\Controllers\UserController::class, 'updatePassword']);
+    Route::post('/update-profile-pic', [App\Http\Controllers\UserController::class, 'updateProfilePic']);
 });

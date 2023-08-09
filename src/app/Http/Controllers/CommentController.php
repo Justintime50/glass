@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
@@ -17,7 +18,7 @@ class CommentController extends Controller
         $comments = Comment::orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'comments');
 
-        return view('/comments', compact('comments'));
+        return view('comments', compact('comments'));
     }
 
     /**
@@ -46,9 +47,8 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function delete()
+    public function delete(Request $request, int $id)
     {
-        $id = request()->get('id');
         $comment = Comment::find($id)->delete();
 
         session()->flash('message', 'Comment deleted.');

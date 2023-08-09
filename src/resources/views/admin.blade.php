@@ -3,8 +3,9 @@
 @section('content')
     <div class="container">
         <h1>Blog Settings</h1>
-        <form action="{{ route('update-settings') }}" method="POST">
+        <form action="/settings" method="POST">
             @csrf
+            @method('PATCH')
 
             <label for="title">Blog Title</label>
             <input type="text" class="form-control" name="title" value="{{ old('title', $settings->title) }}">
@@ -55,18 +56,20 @@
                             <td>{{ $category->category }}</td>
                             <td>{{ $category->created_at }}</td>
                             <td>
-                                <form action="{{ route('update-category') }}" method="POST" id="updateCategory"
-                                    class="inline-block">
+                                <form action="/categories/{{ $category->id }}" method="POST"
+                                    id="updateCategory{{ $category->id }}" class="inline-block">
                                     @csrf
-                                    <input type="hidden" name="id" value="{{ $category->id }}">
+                                    @method('PATCH')
                                     <input type="hidden" name="category" value="{{ $category->category }}"
-                                        id="newCategoryName">
+                                        id="newCategoryName{{ $category->id }}">
                                 </form>
-                                <button onclick="updateCategory()" class="btn btn-sm btn-primary inline-block">Update
+                                <button onclick="updateCategory({{ $category->id }})"
+                                    class="btn btn-sm btn-primary inline-block">Update
                                     Category</button>
 
-                                <form action="{{ route('delete-category') }}" method="post" class="inline-block">
+                                <form action="/categories/{{ $category->id }}" method="POST" class="inline-block">
                                     @csrf
+                                    @method('DELETE')
                                     <input type="hidden" name="id" value="{{ $category->id }}">
                                     {{-- TODO: Add a prompt here! Currently it just deletes! --}}
                                     <input type="submit" value="Delete Category" class="btn btn-sm btn-danger">
@@ -80,7 +83,7 @@
         {{ $categories->links() }}
 
         <h3>Create New Category</h3>
-        <form action="{{ route('create-category') }}" method="post">
+        <form action="/categories" method="POST">
             @csrf
             <input type="text" class="form-control" name="category" value="{{ old('category') }}"
                 placeholder="New category name...">
@@ -121,11 +124,11 @@
                             <td>{{ $post->user->name }}</td>
                             <td>{{ $post->created_at }}</td>
                             <td>
-                                <form action="{{ route('delete-post') }}" method="post">
+                                <form action="/posts/{{ $post->id }}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="id" value="{{ $post->id }}">
+                                    @method('DELETE')
                                     <a class="btn btn-sm btn-primary inline-block"
-                                        href="{{ strtolower(url('/edit-post/' . $post->user->name . '/' . $post->slug)) }}">Edit
+                                        href="{{ strtolower(url('/posts/edit/' . $post->user->name . '/' . $post->slug)) }}">Edit
                                         Post</a>
                                     {{-- TODO: Add a prompt here! Currently it just deletes! --}}
                                     <input type="submit" value="Delete Post" class="btn btn-sm btn-danger inline-block">
@@ -138,7 +141,7 @@
         </div>
         {{ $posts->links() }}
 
-        <a href="{{ route('create-post') }}" class="btn btn-primary">Create Post</a>
+        <a href="/create-post" class="btn btn-primary">Create Post</a>
     </div>
 
     <div class="section-space container">
@@ -178,20 +181,19 @@
                                 {{ $user->email }}
                             </td>
                             <td>
-                                {{-- Don't allow changing your own role (so you don't accidentally remove admin privileges) --}}
-                                <form action="{{ route('update-user-role') }}" method="post">
+                                <form action="/users/{{ $user->id }}/role" method="POST">
                                     @csrf
+                                    @method('PATCH')
                                     <input type="hidden" name="id" value="{{ $user->id }}">
+                                    {{-- Don't allow changing your own role (so you don't accidentally remove admin privileges) --}}
                                     <select name="role" onchange="this.form.submit()" class="form-select"
-                                        <?php if ($user->id == Auth::user()->id) {
-                                            echo 'disabled';
-                                        } ?>>
-                                        <option value="1" <?php if ($user->role == 1) {
-                                            echo 'selected';
-                                        } ?>>Admin</option>
-                                        <option value="2" <?php if ($user->role == 2) {
-                                            echo 'selected';
-                                        } ?>>User</option>
+                                        @if ($user->id == Auth::user()->id) {{ 'disabled' }} @endif>
+                                        <option value="1"
+                                            @if ($user->role == 1) {{ 'selected' }} @endif>Admin
+                                        </option>
+                                        <option value="2"
+                                            @if ($user->role == 2) {{ 'selected' }} @endif>
+                                            User</option>
                                     </select>
                                 </form>
                             </td>
@@ -201,8 +203,9 @@
                             <td>
                                 {{-- Don't allow deleting yourself --}}
                                 @if ($user->id != Auth::user()->id)
-                                    <form action="{{ route('delete-user') }}" method="post">
+                                    <form action="/users/{{ $user->id }}" method="POST">
                                         @csrf
+                                        @method('DELETE')
                                         <input type="hidden" name="id" value="{{ $user->id }}">
                                         <input type="submit" value="Delete User" class="btn btn-sm btn-danger">
                                     </form>
@@ -218,11 +221,11 @@
 
     <script>
         // Show a prompt to update the category name and replace it in the form as we submit it
-        function updateCategory() {
+        function updateCategory(id) {
             let newCategoryName = prompt("Enter a new category name:");
             if (newCategoryName != null) {
-                document.getElementById("newCategoryName").value = newCategoryName;
-                document.getElementById("updateCategory").submit();
+                document.getElementById(`newCategoryName${id}`).value = newCategoryName;
+                document.getElementById(`updateCategory${id}`).submit();
             }
         }
     </script>

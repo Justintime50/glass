@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Create Post</h1>
 
-        <form action="{{ route('create-post') }}" method="POST">
+        <form action="/posts" method="POST">
             @csrf
 
             <label for="title">Title</label>
@@ -38,7 +38,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Go to the <a href="{{ route('images') }}">Image Library</a> to manage images.</p>
+                            <p>Go to the <a href="/images">Image Library</a> to manage images.</p>
                             @include('partials.image-gallery')
                         </div>
                         <div class="modal-footer">

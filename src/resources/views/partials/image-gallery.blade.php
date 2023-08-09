@@ -12,11 +12,11 @@
             </div>
             <div class="auto-margin-top">
                 @if (str_contains(Request::url(), 'images'))
-                    <form action="{{ route('delete-image') }}" method="post">
+                    <form action="/images/{{ str_replace('.png', '', $imageName) }}" method="POST">
                         @csrf
+                        @method('DELETE')
 
                         <strong>{{ $imageName }}<br /></strong>
-                        <input type="hidden" name="id" value="{{ $imageName }}">
                         <a class="btn btn-primary btn-sm"
                             href="{{ \App\Http\Controllers\PostController::getImageAssetPath($imageName) }}"
                             download>Download</a>

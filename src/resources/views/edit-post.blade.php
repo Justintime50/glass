@@ -7,10 +7,9 @@
         </a>
         <h1>Edit Post</h1>
 
-        <form action="{{ route('update-post') }}" method="POST">
+        <form action="/posts/{{ $post->id }}" method="POST">
             @csrf
-
-            <input name="id" value="{{ $post->id }}" hidden>
+            @method('PATCH')
 
             <label for="title">Title</label>
             <input type="text" class="form-control" name="title" id="title" value="{{ old('title', $post->title) }}"
@@ -53,7 +52,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Go to the <a href="{{ route('images') }}">Image Library</a> to manage images.</p>
+                            <p>Go to the <a href="/images">Image Library</a> to manage images.</p>
                             @include('partials.image-gallery')
                         </div>
                         <div class="modal-footer">

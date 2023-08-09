@@ -28,7 +28,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="/">
                     {{ $settings->title }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
@@ -47,21 +47,21 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('posts') }}">Posts</a>
+                                <a class="nav-link" href="/posts">Posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="/login">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="/register">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             @if (Auth::user()->role == 1)
-                                <a class="nav-link" href="{{ route('create-post') }}">Create Post</a>
+                                <a class="nav-link" href="/create-post">Create Post</a>
                             @endif
-                            <a class="nav-link" href="{{ route('posts') }}">Posts</a>
+                            <a class="nav-link" href="/posts">Posts</a>
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -70,20 +70,19 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
+                                    <a class="dropdown-item" href="/profile">Profile</a>
                                     @if (Auth::user()->role == 1)
-                                        <a class="dropdown-item" href="{{ route('images') }}">Images</a>
-                                        <a class="dropdown-item" href="{{ route('comments') }}">Comments</a>
-                                        <a class="dropdown-item" href="{{ route('admin') }}">Admin</a>
+                                        <a class="dropdown-item" href="/images">Images</a>
+                                        <a class="dropdown-item" href="/comments">Comments</a>
+                                        <a class="dropdown-item" href="/admin">Admin</a>
                                     @endif
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item" href="/logout"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="display-none">
+                                    <form id="logout-form" action="/logout" method="POST" class="display-none">
                                         @csrf
                                     </form>
                                 </div>

@@ -3,8 +3,9 @@
 @section('content')
     <div class="container">
         <h1>Profile</h1>
-        <form action="{{ route('update-profile') }}" method="POST">
+        <form action="/update-profile" method="POST">
             @csrf
+            @method('PATCH')
 
             <label for="name">Name</label>
             <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}">
@@ -12,10 +13,10 @@
             <label for="bio">Bio</label>
             <textarea class="form-control" rows="6" name="bio">{{ old('bio', Auth::user()->bio) }}</textarea>
 
-            <input type="submit" class="btn btn-primary mt-2 mb-4" value="Update Profile">
+            <input type="submit" class="btn btn-primary mb-4 mt-2" value="Update Profile">
         </form>
 
-        <form action="{{ route('update-password') }}" method="POST">
+        <form action="/update-password" method="POST">
             @csrf
 
             <label for="password">Password</label>
@@ -30,8 +31,7 @@
         <hr>
 
         <!-- UPLOAD BUTTONS -->
-        <form action="{{ route('update-profile-pic') }}" method="post" enctype="multipart/form-data"
-            id="submit_profile_pic">
+        <form action="/update-profile-pic" method="POST" enctype="multipart/form-data" id="submit_profile_pic">
             @csrf
             <label>Profile Picture</label>
             <small class="avatar-upload-criteria">Picture must be a jpg or png no bigger than 2mb.</small>

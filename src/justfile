@@ -51,7 +51,7 @@ migrate-seed:
 
 # Deploy the project for production
 prod:
-    docker compose -f ../docker-compose.yml -f ../docker-compose-prod.yml up -d
+    docker compose -f ../docker-compose.yml -f ../docker-compose-prod.yml up -d --build
 
 # Compile SASS and Javascript during development (hot-reloads)
 run:

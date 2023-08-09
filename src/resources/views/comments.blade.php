@@ -25,9 +25,9 @@
                                 </a>
                             </td>
                             <td>
-                                <form action="{{ route('delete-comment') }}" method="POST">
+                                <form action="/comments/{{ $comment->id }}" method="POST">
                                     @csrf
-                                    <input type="text" name="id" value="{{ $comment->id }}" hidden>
+                                    @method('DELETE')
                                     <button class="btn btn-sm btn-danger" onclick="this.form.submit();">
                                         <i class="fas fa-trash"></i>
                                     </button>

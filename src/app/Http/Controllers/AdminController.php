@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Setting;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -24,7 +25,7 @@ class AdminController extends Controller
         $categories = Category::orderBy('category', 'asc')
             ->paginate(10, ['*'], 'categories');
 
-        return view('/admin', compact('users', 'settings', 'posts', 'categories'));
+        return view('admin', compact('users', 'settings', 'posts', 'categories'));
     }
 
     /**
@@ -56,13 +57,12 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function updateUserRole()
+    public function updateUserRole(Request $request, int $id)
     {
         request()->validate([
             'role'  => 'integer',
         ]);
 
-        $id = request()->get('id');
         $settings = User::find($id);
         $settings->role = request()->get('role');
 

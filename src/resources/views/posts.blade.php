@@ -47,14 +47,14 @@
             </div>
         @empty
             <h2>No posts yet.</h2>
-            <p>If you are the owner of this blog, you should <a href="{{ route('create-post') }}">create your first
+            <p>If you are the owner of this blog, you should <a href="/create-post">create your first
                     post</a>!</p>
         @endforelse
         <div class="pagination-wrapper">
             {{ $posts->links() }}
         </div>
 
-        <a href="{{ route('posts') }}" class="btn btn-sm btn-primary category-button">All Posts</a>
+        <a href="/posts" class="btn btn-sm btn-primary category-button">All Posts</a>
         @foreach ($categories as $category)
             <a href="/posts/{{ $category->category }}"
                 class="btn btn-sm btn-primary category-button">{{ $category->category }}</a>

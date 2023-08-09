@@ -27,7 +27,7 @@ class PostController extends Controller
         $categories = Category::orderBy('category', 'asc')
             ->get();
 
-        return view('/posts', compact('posts', 'categories'));
+        return view('posts', compact('posts', 'categories'));
     }
 
     /**
@@ -47,7 +47,7 @@ class PostController extends Controller
         $categories = Category::orderBy('category', 'asc')
             ->get();
 
-        return view('/posts', compact('posts', 'categoryRecord', 'categories'));
+        return view('posts', compact('posts', 'categoryRecord', 'categories'));
     }
 
     /**
@@ -114,7 +114,7 @@ class PostController extends Controller
             // limit via table or something similar.
             ->paginate(15);
 
-        return view('/post', compact('post', 'comments'));
+        return view('post', compact('post', 'comments'));
     }
 
     /**
@@ -126,7 +126,7 @@ class PostController extends Controller
     {
         $categories = Category::all();
 
-        return view('/create-post', compact('categories'));
+        return view('create-post', compact('categories'));
     }
 
     /**
@@ -142,7 +142,7 @@ class PostController extends Controller
             ->firstOrFail();
         $categories = Category::all();
 
-        return view('/edit-post', compact('post', 'categories'));
+        return view('edit-post', compact('post', 'categories'));
     }
 
     /**
@@ -150,10 +150,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update()
+    public function update(Request $request, int $id)
     {
-        $id = request()->get('id');
-        $post = Post::where('id', '=', $id)->first();
+        $post = Post::find($id);
 
         request()->validate([
             'title'         => 'required|string',
@@ -187,9 +186,8 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function delete()
+    public function delete(Request $request, int $id)
     {
-        $id = request()->get('id');
         Post::find($id)->delete();
 
         session()->flash('message', 'Post deleted.');
@@ -205,7 +203,7 @@ class PostController extends Controller
      */
     public function readImages()
     {
-        return view('/images');
+        return view('images');
     }
 
     /**
@@ -237,10 +235,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function deletePostImage()
+    public function deletePostImage(Request $request, int $id)
     {
-        $id = request()->get('id');
-        Storage::delete("images/posts/$id");
+        // TODO: Store image IDs in a database
+        Storage::delete("images/posts/$id.png");
 
         session()->flash('message', 'Image deleted.');
         return redirect()->back();

@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Images</h1>
 
-        <form action="{{ route('upload-image') }}" method="post" enctype="multipart/form-data" id="submit_image">
+        <form action="/images" method="POST" enctype="multipart/form-data" id="submit_image">
             @csrf
             <label>Upload an Image</label>
             <small class="avatar-upload-criteria">Picture must be a jpg or png no bigger than 2mb.</small>

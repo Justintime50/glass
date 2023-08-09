@@ -6,18 +6,19 @@
     <div class="post-content container">
 
         @if (Auth::check() && Auth::user()->role == 1)
-            <form action="{{ route('delete-post') }}" method="POST" class="mb-3">
+            <form action="/posts/{{ $post->id }}" method="POST" class="mb-3">
                 @csrf
-                <a class="btn btn-primary inline-block" href="{{ route('/') }}"><i class="fas fa-chevron-left"></i> Back to
+                @method('DELETE')
+                <a class="btn btn-primary inline-block" href="/"><i class="fas fa-chevron-left"></i> Back to
                     Posts</a>
                 <a class="btn btn-primary inline-block"
-                    href="{{ strtolower(url('/edit-post/' . str_replace(' ', '-', $post->user->name) . '/' . $post->slug)) }}">Edit
+                    href="{{ strtolower(url('/posts/edit/' . str_replace(' ', '-', $post->user->name) . '/' . $post->slug)) }}">Edit
                     Post</a>
                 <input name="id" value="{{ $post->id }}" hidden>
                 <input type="submit" class="btn btn-danger inline-block" value="Delete Post">
             </form>
         @else
-            <a class="btn btn-primary inline-block" href="{{ route('/') }}"><i class="fas fa-chevron-left"></i> Back to
+            <a class="btn btn-primary inline-block" href="/"><i class="fas fa-chevron-left"></i> Back to
                 Posts</a>
         @endif
 
@@ -132,7 +133,7 @@
             <h4>Comments</h4>
 
             @if (Auth::check())
-                <form action="{{ route('create-comment') }}" method="POST">
+                <form action="/comments" method="POST">
                     @csrf
 
                     <input type="text" name="post_id" value="{{ $post->id }}" hidden>
@@ -140,7 +141,7 @@
                     <input type="submit" class="btn btn-primary" value="Add Comment">
                 </form>
             @else
-                <p>Please <a href="{{ route('login') }}">login</a> to leave a comment.</p>
+                <p>Please <a href="/login">login</a> to leave a comment.</p>
             @endif
 
             @forelse($comments as $comment)
@@ -156,10 +157,10 @@
                 <i>&nbsp;{{ $comment->user->name }} - {{ date_format($comment->created_at, 'Y/m/d') }}</i>
 
                 @if (Auth::check())
-                    <form action="{{ route('delete-comment') }}" method="POST">
+                    <form action="/comments/{{ $comment->id }}" method="POST">
                         @csrf
+                        @method('DELETE')
                         <br />
-                        <input type="text" name="id" value="{{ $comment->id }}" hidden>
                         <button class="btn btn-sm btn-danger" onclick="this.form.submit();">Delete Comment</button>
                     </form>
                 @endif

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -18,6 +18,7 @@ class CategoryController extends Controller
             'category' => 'required|unique:categories|string',
         ]);
 
+        // TODO: If creating a previously deleted category, re-enable it instead of erroring
         $category = new Category();
         $category->category = request()->get('category');
         $category->save();
@@ -31,15 +32,14 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update()
+    public function update(Request $request, int $id)
     {
         request()->validate([
             'category' => 'required|string',
         ]);
 
-        $id = request()->get('id');
         $category = Category::find($id);
-        $category->category = request()->get('category');
+        $category->category = $request->input('category');
         $category->save();
 
         session()->flash('message', 'Category updated.');
@@ -51,12 +51,11 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function delete()
+    public function delete(Request $request, int $id)
     {
-        $id = request()->get('id');
         Category::find($id)->delete();
 
         session()->flash('message', 'Category deleted.');
-        return redirect('/');
+        return redirect()->back();
     }
 }
