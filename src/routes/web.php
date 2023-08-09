@@ -43,7 +43,8 @@ Route::middleware('Admin')->group(function () {
     // Images
     Route::get('/images', [App\Http\Controllers\PostController::class, 'readImages']);
     Route::post('/images', [App\Http\Controllers\PostController::class, 'uploadPostImage']);
-    Route::delete('/images/{id}', [App\Http\Controllers\PostController::class, 'deletePostImage']);  // TODO: This is broken
+    // TODO: Deleting images is broken
+    Route::delete('/images/{id}', [App\Http\Controllers\PostController::class, 'deletePostImage']);
     // Comments
     Route::get('/comments', [App\Http\Controllers\CommentController::class, 'readComments']);
     // Category
