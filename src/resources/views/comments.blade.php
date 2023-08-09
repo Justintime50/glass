@@ -17,7 +17,15 @@
                     @forelse($comments as $comment)
                         <tr>
                             <td>{{ $comment->comment }}</td>
-                            <td>{{ $comment->user->name }}</td>
+                            <td>
+                                @php $avatar_path = 'storage/images/avatars/' . $comment->user->id . '.png'; @endphp
+                                @if (file_exists(public_path($avatar_path)))
+                                    <img src="{{ asset($avatar_path) }}" class="avatar-small">
+                                @else
+                                    <i class="fas fa-user fa-2x avatar-small"></i>
+                                @endif
+                                {{ $comment->user->name }}
+                            </td>
                             <td>{{ date_format($comment->created_at, 'Y/m/d') }}</td>
                             <td>
                                 <a href="/{{ $comment->post->user->name }}/{{ $comment->post->slug }}">

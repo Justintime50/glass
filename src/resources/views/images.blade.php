@@ -16,7 +16,6 @@
     <div class="container">
         <hr />
         <h2>Image Library</h2>
-        <p>Copy the image filename below and paste into the image field when creating/editing a post.</p>
 
         @include('partials.image-gallery')
     </div>
