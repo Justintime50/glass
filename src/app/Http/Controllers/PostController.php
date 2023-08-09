@@ -238,7 +238,7 @@ class PostController extends Controller
     public function deletePostImage(Request $request, int $id)
     {
         // TODO: Store image IDs in a database
-        Storage::delete("images/posts/$id.png");
+        unlink(public_path("storage/images/posts/$id.png"));
 
         session()->flash('message', 'Image deleted.');
         return redirect()->back();
