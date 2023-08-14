@@ -60,6 +60,7 @@
         "migrate-fresh": "docker exec -t glass-glass-1 php artisan migrate:fresh --no-interaction --force",
         "migrate-seed": "docker exec -t glass-glass-1 php artisan migrate:fresh --seed --no-interaction --force",
         "migrate": "docker exec -t glass-glass-1 php artisan migrate --no-interaction --force",
+        "rollback": "docker exec -t glass-glass-1 php artisan migrate:rollback --no-interaction --force",
         "seed": "docker exec -t glass-glass-1 php artisan db:seed --no-interaction --force",
         "test": "./bin/phpunit",
         "post-autoload-dump": [
