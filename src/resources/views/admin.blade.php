@@ -70,8 +70,8 @@
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="id" value="{{ $category->id }}">
-                                    {{-- TODO: Add a prompt here! Currently it just deletes! --}}
-                                    <input type="submit" value="Delete" class="btn btn-sm btn-danger">
+                                    <input type="submit" value="Delete" class="btn btn-sm btn-danger"
+                                        onclick="submitFormAfterPrompt('Are you sure you want to delete this category?');return false;">
                                 </form>
                             </td>
                         </tr>
@@ -128,8 +128,8 @@
                                     @method('DELETE')
                                     <a class="btn btn-sm btn-primary inline-block"
                                         href="{{ strtolower(url('/posts/edit/' . $post->user->name . '/' . $post->slug)) }}">Edit</a>
-                                    {{-- TODO: Add a prompt here! Currently it just deletes! --}}
-                                    <input type="submit" value="Delete" class="btn btn-sm btn-danger inline-block">
+                                    <input type="submit" value="Delete" class="btn btn-sm btn-danger inline-block"
+                                        onclick="submitFormAfterPrompt('Are you sure you want to delete this post?');return false;">
                                 </form>
                             </td>
                         </tr>
@@ -224,6 +224,13 @@
             if (newCategoryName != null) {
                 document.getElementById(`newCategoryName${id}`).value = newCategoryName;
                 document.getElementById(`updateCategory${id}`).submit();
+            }
+        }
+
+        // Prompts the user prior to submitting a form
+        function submitFormAfterPrompt(message = null) {
+            if (confirm(message) == true) {
+                this.closest('form').submit();
             }
         }
     </script>

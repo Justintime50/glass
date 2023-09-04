@@ -4,6 +4,8 @@
 
 - Completely overhauls all routes to follow RESTful practices
 - Swap `updated_at` to `created_at` timestamps for posts and comments
+- Removes the unusable "Remember Me" checkbox on the login page
+- Added prompts before deletion on the admin page for categories and posts
 - Fixes a 403 issue for the default image preview when editing a post
 - Fixes a bug that didn't properly validation reCAPTCHA on user registration
 - Fixes the styling of tables on any theme other than `light` to properly show the theme colors (admin panel)
