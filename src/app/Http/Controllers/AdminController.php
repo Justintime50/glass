@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Setting;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,9 +15,10 @@ class AdminController extends Controller
     /**
      * Show the admin page including users, settings, posts, and categories.
      *
-     * @return Illuminate\View\View
+     * @param Request $request
+     * @return View
      */
-    public function read()
+    public function showAdminDashboard(Request $request): View
     {
         $users = User::orderBy('name', 'asc')
             ->paginate(10, ['*'], 'users');
@@ -31,9 +34,10 @@ class AdminController extends Controller
     /**
      * Update the settings of the blog.
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function update()
+    public function update(Request $request): RedirectResponse
     {
         request()->validate([
             'title'       => 'required|string',
@@ -55,9 +59,10 @@ class AdminController extends Controller
     /**
      * Update a user's role (eg: switch someone from a user to an admin)
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function updateUserRole(Request $request, int $id)
+    public function updateUserRole(Request $request, int $id): RedirectResponse
     {
         request()->validate([
             'role'  => 'integer',

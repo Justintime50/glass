@@ -5,6 +5,8 @@
 Minimalist blog featuring syntax highlighting, images, comments, themes, RSS, and SEO out of the box.
 
 [![Build Status](https://github.com/Justintime50/glass/workflows/build/badge.svg)](https://github.com/Justintime50/glass/actions)
+[![Coverage Status](https://coveralls.io/repos/github/Justintime50/glass/badge.svg?branch=main)](https://coveralls.io/github/Justintime50/glass?branch=main)
+[![Version](https://img.shields.io/github/v/tag/justintime50/glass)](https://github.com/justintime50/glass/releases)
 [![Licence](https://img.shields.io/github/license/justintime50/glass)](LICENSE)
 
 <img src="https://raw.githubusercontent.com/justintime50/assets/main/src/glass/showcase.png" alt="Showcase">

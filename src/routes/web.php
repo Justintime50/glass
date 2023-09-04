@@ -32,7 +32,7 @@ Route::get('feed', [App\Http\Controllers\RssFeedController::class, 'feed']);
 // Must be an Admin
 Route::middleware('Admin')->group(function () {
     // General
-    Route::get('/admin', [App\Http\Controllers\AdminController::class, 'read']);
+    Route::get('/admin', [App\Http\Controllers\AdminController::class, 'showAdminDashboard']);
     Route::patch('/settings', [App\Http\Controllers\AdminController::class, 'update']);
     // Posts
     Route::get('/create-post', [App\Http\Controllers\PostController::class, 'readCreate']);

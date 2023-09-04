@@ -19,8 +19,10 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.21",
+        "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.0",
+        "rregeer/phpunit-coverage-check": "^0.3.1",
         "spatie/laravel-ignition": "^2.0",
         "squizlabs/php_codesniffer": "^3.7"
     },
@@ -54,7 +56,7 @@
     "prefer-stable": true,
     "scripts": {
         "clean-db": "docker exec -t glass-glass-1 php artisan db:wipe --no-interaction --force",
-        "coverage": "XDEBUG_MODE=coverage ./bin/phpunit --coverage-html clover.html --coverage-clover clover.xml",
+        "coverage": "XDEBUG_MODE=coverage ./bin/phpunit --coverage-html clover.html --coverage-clover clover.xml && bin/coverage-check clover.xml 10 --only-percentage",
         "fix": "./bin/phpcbf --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
         "lint": "./bin/phpcs --standard=./node_modules/justintime50-styles/src/php/phpcs.xml .",
         "migrate-fresh": "docker exec -t glass-glass-1 php artisan migrate:fresh --no-interaction --force",

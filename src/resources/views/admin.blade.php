@@ -64,15 +64,14 @@
                                         id="newCategoryName{{ $category->id }}">
                                 </form>
                                 <button onclick="updateCategory({{ $category->id }})"
-                                    class="btn btn-sm btn-primary inline-block">Update
-                                    Category</button>
+                                    class="btn btn-sm btn-primary inline-block">Update</button>
 
                                 <form action="/categories/{{ $category->id }}" method="POST" class="inline-block">
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="id" value="{{ $category->id }}">
                                     {{-- TODO: Add a prompt here! Currently it just deletes! --}}
-                                    <input type="submit" value="Delete Category" class="btn btn-sm btn-danger">
+                                    <input type="submit" value="Delete" class="btn btn-sm btn-danger">
                                 </form>
                             </td>
                         </tr>
@@ -87,7 +86,7 @@
             @csrf
             <input type="text" class="form-control" name="category" value="{{ old('category') }}"
                 placeholder="New category name...">
-            <input type="submit" value="Create category" class="btn btn-primary mt-2 inline-block">
+            <input type="submit" value="Create Category" class="btn btn-primary mt-2 inline-block">
         </form>
     </div>
 
@@ -128,10 +127,9 @@
                                     @csrf
                                     @method('DELETE')
                                     <a class="btn btn-sm btn-primary inline-block"
-                                        href="{{ strtolower(url('/posts/edit/' . $post->user->name . '/' . $post->slug)) }}">Edit
-                                        Post</a>
+                                        href="{{ strtolower(url('/posts/edit/' . $post->user->name . '/' . $post->slug)) }}">Edit</a>
                                     {{-- TODO: Add a prompt here! Currently it just deletes! --}}
-                                    <input type="submit" value="Delete Post" class="btn btn-sm btn-danger inline-block">
+                                    <input type="submit" value="Delete" class="btn btn-sm btn-danger inline-block">
                                 </form>
                             </td>
                         </tr>
@@ -207,7 +205,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <input type="hidden" name="id" value="{{ $user->id }}">
-                                        <input type="submit" value="Delete User" class="btn btn-sm btn-danger">
+                                        <input type="submit" value="Delete" class="btn btn-sm btn-danger">
                                     </form>
                                 @endif
                             </td>
