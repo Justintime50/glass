@@ -24,7 +24,7 @@ class AdminControllerTest extends TestCase
         Category::factory()->create();
         Post::factory()->create();
 
-        $request = Request::create("/admin", 'GET');
+        $request = Request::create('/admin', 'GET');
         $response = $controller->showAdminDashboard($request);
 
         $viewData = $response->getData();
