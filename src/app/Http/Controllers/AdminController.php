@@ -37,18 +37,18 @@ class AdminController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function update(Request $request): RedirectResponse
+    public function updateSettings(Request $request): RedirectResponse
     {
-        request()->validate([
+        $request->validate([
             'title'       => 'required|string',
-            'comments'    => 'integer',
-            'theme'       => 'integer',
+            'comments'    => 'required|integer',
+            'theme'       => 'required|integer',
         ]);
 
         $settings = Setting::first();
-        $settings->title = request()->get('title');
-        $settings->comments = request()->get('comments');
-        $settings->theme = request()->get('theme');
+        $settings->title = $request->input('title');
+        $settings->comments = $request->input('comments');
+        $settings->theme = $request->input('theme');
 
         $settings->save();
 
@@ -64,12 +64,12 @@ class AdminController extends Controller
      */
     public function updateUserRole(Request $request, int $id): RedirectResponse
     {
-        request()->validate([
-            'role'  => 'integer',
+        $request->validate([
+            'role'  => 'required|integer',
         ]);
 
         $settings = User::find($id);
-        $settings->role = request()->get('role');
+        $settings->role = $request->input('role');
 
         $settings->save();
 

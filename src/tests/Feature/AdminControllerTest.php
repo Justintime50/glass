@@ -34,4 +34,46 @@ class AdminControllerTest extends TestCase
         $this->assertGreaterThanOrEqual(1, count($viewData['posts']));
         $this->assertEquals('Uncategorized', $viewData['categories'][0]['category']);
     }
+
+    /**
+     * Tests that we can update settings correctly.
+     *
+     * @return void
+     */
+    public function testUpdateSettings()
+    {
+        $controller = new AdminController();
+
+        $request = Request::create('/settings', 'PATCH', [
+            'title' => 'new title',
+            'comments' => 0,
+            'theme' => 2,
+        ]);
+        $response = $controller->updateSettings($request);
+
+        $this->assertDatabaseHas('settings', ['title' => 'new title']);
+        $this->assertDatabaseHas('settings', ['comments' => 0]);
+        $this->assertDatabaseHas('settings', ['theme' => 2]);
+        $this->assertEquals('Settings updated.', $response->getSession()->get('message'));
+        $this->assertEquals(302, $response->getStatusCode());
+    }
+
+    /**
+     * Tests that we can update a user's role correctly.
+     *
+     * @return void
+     */
+    public function testUpdateUserRole()
+    {
+        $controller = new AdminController();
+
+        $request = Request::create('/settings', 'PATCH', [
+            'role' => 3,
+        ]);
+        $response = $controller->updateUserRole($request, 1);
+
+        $this->assertDatabaseHas('users', ['role' => 3]);
+        $this->assertEquals('User role updated.', $response->getSession()->get('message'));
+        $this->assertEquals(302, $response->getStatusCode());
+    }
 }
