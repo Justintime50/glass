@@ -9,6 +9,7 @@
 - Fixes a 403 issue for the default image preview when editing a post
 - Fixes a bug that didn't properly validation reCAPTCHA on user registration
 - Fixes the styling of tables on any theme other than `light` to properly show the theme colors (admin panel)
+- Fixes a bug that wouldn't allow categories to be reused if deleted
 
 ## v0.14.0 (2023-04-05)
 

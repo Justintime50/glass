@@ -60,6 +60,7 @@ class AdminController extends Controller
      * Update a user's role (eg: switch someone from a user to an admin)
      *
      * @param Request $request
+     * @param int $id
      * @return RedirectResponse
      */
     public function updateUserRole(Request $request, int $id): RedirectResponse

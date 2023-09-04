@@ -13,6 +13,10 @@ class Category extends Model
 
     protected $table = 'categories';
 
+    protected $fillable = [
+        'category',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
