@@ -74,7 +74,7 @@ jobs:
           ./bin/php-coveralls --coverage_clover=build/logs/clover.xml -v
   deploy:
     if: github.ref == 'refs/heads/main'
-    needs: ['docker', 'lint']
+    needs: ['docker', 'lint', 'test']
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Harvey
