@@ -26,7 +26,7 @@ Route::get('/posts', [App\Http\Controllers\PostController::class, 'readPosts']);
 // Misc
 Route::get('/posts/{category}', [App\Http\Controllers\PostController::class, 'readPostsByCategory']);
 Route::get('/{user}/{slug}', [App\Http\Controllers\PostController::class, 'read']);
-Route::get('feed', [App\Http\Controllers\RssFeedController::class, 'feed']);
+Route::get('/feed', [App\Http\Controllers\RssFeedController::class, 'getFeed']);
 
 
 // Must be an Admin

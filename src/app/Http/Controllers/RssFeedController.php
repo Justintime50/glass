@@ -2,22 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class RssFeedController extends Controller
 {
     /**
      * Return an RSS feed of the most recent posts.
      *
-     * @return Illuminate\View\View
+     * @return Response
      */
-    public function feed()
+    public function getFeed(Request $request): Response
     {
         $posts = Post::orderBy('created_at', 'desc')
             ->where('published', '=', 1)
-            ->limit(50)->get();
+            ->limit(50)
+            ->get();
 
-        return response()->view('rss.feed', compact('posts'))->header('Content-Type', 'application/xml');
+        return response()
+            ->view('rss.feed', compact('posts'))
+            ->header('Content-Type', 'application/xml');
     }
 }
