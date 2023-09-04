@@ -45,7 +45,7 @@ Route::middleware('Admin')->group(function () {
     Route::post('/images', [App\Http\Controllers\PostController::class, 'uploadPostImage']);
     Route::delete('/images/{id}', [App\Http\Controllers\PostController::class, 'deletePostImage']);
     // Comments
-    Route::get('/comments', [App\Http\Controllers\CommentController::class, 'readComments']);
+    Route::get('/comments', [App\Http\Controllers\CommentController::class, 'showComments']);
     // Category
     Route::post('/categories', [App\Http\Controllers\CategoryController::class, 'create']);
     Route::patch('/categories/{id}', [App\Http\Controllers\CategoryController::class, 'update']);

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,9 +13,9 @@ class CommentController extends Controller
     /**
      * Show all the blog's comments on one page.
      *
-     * @return Illuminate\View\View
+     * @return View
      */
-    public function readComments()
+    public function showComments(Request $request): View
     {
         $comments = Comment::orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'comments');
@@ -22,20 +24,21 @@ class CommentController extends Controller
     }
 
     /**
-     * Create (or leave) a comment on a post.
+     * Create a comment on a post.
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function create()
+    public function create(Request $request): RedirectResponse
     {
-        request()->validate([
-            'comment'       => 'required|string',
+        $request->validate([
+            'comment' => 'required|string',
         ]);
 
         $comment = new Comment();
-        $comment->comment = request()->get('comment');
+        $comment->comment = $request->input('comment');
         $comment->user_id = Auth::user()->id;
-        $comment->post_id = request()->get('post_id');
+        $comment->post_id = $request->input('post_id');
         $comment->save();
 
         session()->flash('message', 'Comment created.');
@@ -45,11 +48,13 @@ class CommentController extends Controller
     /**
      * Delete a comment.
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Request $request
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function delete(Request $request, int $id)
+    public function delete(Request $request, int $id): RedirectResponse
     {
-        $comment = Comment::find($id)->delete();
+        Comment::find($id)->delete();
 
         session()->flash('message', 'Comment deleted.');
         return redirect()->back();

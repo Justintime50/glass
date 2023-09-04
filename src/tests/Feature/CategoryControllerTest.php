@@ -57,7 +57,7 @@ class CategoryControllerTest extends TestCase
     }
 
     /**
-     * Tests that we can update settings correctly.
+     * Tests that we can update a category correctly.
      *
      * @return void
      */
@@ -77,7 +77,7 @@ class CategoryControllerTest extends TestCase
     }
 
     /**
-     * Tests that we can update a user's role correctly.
+     * Tests that we can delete a category correctly.
      *
      * @return void
      */
