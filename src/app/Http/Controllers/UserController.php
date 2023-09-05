@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class UserController extends Controller
@@ -13,9 +15,9 @@ class UserController extends Controller
     /**
      * Return the profile page.
      *
-     * @return Illuminate\View\View
+     * @return View
      */
-    public function read()
+    public function showProfile(): View
     {
         return view('profile');
     }
@@ -23,18 +25,19 @@ class UserController extends Controller
     /**
      * Update a user profile.
      *
-     * @return Illuminate\View\View
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function update()
+    public function update(Request $request): RedirectResponse
     {
-        request()->validate([
+        $request->validate([
             'name' => 'required|string',
             'bio'  => 'nullable',
         ]);
 
         $user = User::where('id', '=', Auth::user()->id)->first();
-        $user->name = request()->get('name');
-        $user->bio = request()->get('bio');
+        $user->name = $request->input('name');
+        $user->bio = $request->input('bio');
         $user->save();
 
         session()->flash('message', 'Profile updated.');
@@ -44,17 +47,18 @@ class UserController extends Controller
     /**
      * Logic to update the user's password.
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function updatePassword()
+    public function updatePassword(Request $request): RedirectResponse
     {
-        request()->validate([
+        $request->validate([
             'password' => 'required|string|confirmed|min:8',
         ]);
 
         $user = User::find(auth()->user()->id);
 
-        $user->password = Hash::make(request()->password);
+        $user->password = Hash::make($request->input('password'));
         $user->save();
 
         session()->flash('message', 'Your password was updated successfully.');
@@ -64,19 +68,19 @@ class UserController extends Controller
     /**
      * Update the user profile picture.
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function updateProfilePic()
+    public function updateProfilePic(Request $request): RedirectResponse
     {
-        request()->validate([
+        $request->validate([
             'upload_profile_pic' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
-        $id = request()->get('id');
+        $id = $request->input('id');
 
-        // Upload Avatar (IMAGE INTERVENTION - LARAVEL)
-        Image::make(
-            request()->file('upload_profile_pic')
-        )->fit(150, 150)->save(public_path("storage/images/avatars/$id.png"));
+        Image::make($request->file('upload_profile_pic'))
+            ->fit(150, 150)
+            ->save(public_path("storage/images/avatars/$id.png"));
 
         session()->flash('message', 'Avatar updated successfully.');
         return redirect()->back();
@@ -85,9 +89,11 @@ class UserController extends Controller
     /**
      * Delete a user profile (account).
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Request $request
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function delete(Request $request, int $id)
+    public function delete(Request $request, int $id): RedirectResponse
     {
         User::find($id)->delete();
 

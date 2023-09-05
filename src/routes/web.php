@@ -25,7 +25,7 @@ Route::get('/posts', [App\Http\Controllers\PostController::class, 'readPosts']);
 
 // Misc
 Route::get('/posts/{category}', [App\Http\Controllers\PostController::class, 'readPostsByCategory']);
-Route::get('/{user}/{slug}', [App\Http\Controllers\PostController::class, 'read']);
+Route::get('/{user}/{slug}', [App\Http\Controllers\PostController::class, 'showPost']);
 Route::get('/feed', [App\Http\Controllers\RssFeedController::class, 'getFeed']);
 
 
@@ -62,7 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/comments', [App\Http\Controllers\CommentController::class, 'create']);
     Route::delete('/comments/{id}', [App\Http\Controllers\CommentController::class, 'delete']);
     // Logged in user
-    Route::get('/profile', [App\Http\Controllers\UserController::class, 'read']);
+    Route::get('/profile', [App\Http\Controllers\UserController::class, 'showProfile']);
     Route::patch('/update-profile', [App\Http\Controllers\UserController::class, 'update']);
     Route::post('/update-password', [App\Http\Controllers\UserController::class, 'updatePassword']);
     Route::post('/update-profile-pic', [App\Http\Controllers\UserController::class, 'updateProfilePic']);

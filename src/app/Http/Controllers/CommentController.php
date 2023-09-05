@@ -13,6 +13,7 @@ class CommentController extends Controller
     /**
      * Show all the blog's comments on one page.
      *
+     * @param Request $request
      * @return View
      */
     public function showComments(Request $request): View

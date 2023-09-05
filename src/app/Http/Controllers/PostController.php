@@ -7,7 +7,6 @@ use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -98,7 +97,7 @@ class PostController extends Controller
      * @param str $slug
      * @return Illuminate\View\View
      */
-    public function read($user, $slug)
+    public function showPost($user, $slug)
     {
         if (Auth::user() && Auth::user()->role = 1) {
             $post = Post::where('slug', '=', $slug)
