@@ -18,16 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 Auth::routes();
 
-// Landing pages
+// Post pages
 Route::get('/', [App\Http\Controllers\PostController::class, 'showPosts']);
-Route::get('/blog', [App\Http\Controllers\PostController::class, 'showPosts']);
 Route::get('/posts', [App\Http\Controllers\PostController::class, 'showPosts']);
-
-// Misc
-Route::get('/posts/{category}', [App\Http\Controllers\PostController::class, 'showPostsByCategory']);
-Route::get('/{user}/{slug}', [App\Http\Controllers\PostController::class, 'showPost']);
+Route::get('/posts/category/{category}', [App\Http\Controllers\PostController::class, 'showPostsByCategory']);
+Route::get('/posts/user/{user}', [App\Http\Controllers\PostController::class, 'showPostsByUser']);
+Route::get('/posts/{user}/{slug}', [App\Http\Controllers\PostController::class, 'showPost']);
+Route::get('/{user}/{slug}', [App\Http\Controllers\PostController::class, 'showPost']); // Kept for legacy links, should instead us the route prepended with `/posts`
 Route::get('/feed', [App\Http\Controllers\RssFeedController::class, 'getFeed']);
-
 
 // Must be an Admin
 Route::middleware('Admin')->group(function () {
@@ -54,7 +52,6 @@ Route::middleware('Admin')->group(function () {
     Route::patch('/users/role', [App\Http\Controllers\AdminController::class, 'updateUserRole']);
     Route::delete('/users/{id}', [App\Http\Controllers\UserController::class, 'delete']);
 });
-
 
 // Must be logged in
 Route::middleware('auth')->group(function () {

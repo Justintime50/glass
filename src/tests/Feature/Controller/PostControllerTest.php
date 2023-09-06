@@ -33,10 +33,11 @@ class PostControllerTest extends TestCase
 
         $this->assertGreaterThanOrEqual(1, count($viewData['posts']));
         $this->assertGreaterThanOrEqual(1, count($viewData['categories']));
+        $this->assertGreaterThanOrEqual(1, count($viewData['authors']));
     }
 
     /**
-     * Tests that we return the posts page and data correctly.
+     * Tests that we return the posts page and data correctly when filtering by category.
      *
      * @return void
      */
@@ -46,7 +47,7 @@ class PostControllerTest extends TestCase
         $category = Category::factory()->create();
         Post::factory(['category_id' => $category->id])->create();
 
-        $request = Request::create("/posts/$category->category", 'GET');
+        $request = Request::create("/posts/category/$category->category", 'GET');
         $response = $controller->showPostsByCategory($request, $category->category);
 
         $viewData = $response->getData();
@@ -54,6 +55,29 @@ class PostControllerTest extends TestCase
         $this->assertEquals($category->category, $viewData['categoryRecord']['category']);
         $this->assertGreaterThanOrEqual(1, count($viewData['posts']));
         $this->assertGreaterThanOrEqual(1, count($viewData['categories']));
+        $this->assertGreaterThanOrEqual(1, count($viewData['authors']));
+    }
+
+    /**
+     * Tests that we return the posts page and data correctly when filtering by user.
+     *
+     * @return void
+     */
+    public function testShowPostsByUser()
+    {
+        $controller = new PostController();
+        $user = User::find(1);
+        Post::factory(['user_id' => $user->id])->create();
+
+        $request = Request::create("/posts/user/$user->name", 'GET');
+        $response = $controller->showPostsByUser($request, $user->name);
+
+        $viewData = $response->getData();
+
+        $this->assertEquals($user->name, $viewData['userRecord']['name']);
+        $this->assertGreaterThanOrEqual(1, count($viewData['posts']));
+        $this->assertGreaterThanOrEqual(1, count($viewData['categories']));
+        $this->assertGreaterThanOrEqual(1, count($viewData['authors']));
     }
 
     /**

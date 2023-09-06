@@ -26,12 +26,12 @@
             <i class="fas fa-calendar"></i>
             {{ date_format($post->created_at, 'Y/m/d') }}
             <i class="fas fa-user"></i>
-            {{ $post->user->name }}
+            <a href="{{ '/posts/user/' . $post->user->name }}">{{ $post->user->name }}</a>
             <i class="fas fa-clock"></i>
             {{ \App\Http\Controllers\PostController::generateReadingTime($post) }} minutes
             <i class="fas fa-tag"></i>
             @if (isset($post->category->category))
-                <a href="{{ '/posts/' . $post->category->category }}">{{ $post->category->category }}</a>
+                <a href="{{ '/posts/category/' . $post->category->category }}">{{ $post->category->category }}</a>
             @else
                 {{ 'Uncategorized' }}
             @endif

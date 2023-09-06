@@ -32,7 +32,7 @@
                             {{ \App\Http\Controllers\PostController::generateReadingTime($post) }} minutes
                             <i class="fas fa-tag"></i>
                             @if (isset($post->category->category))
-                                <a href="{{ '/posts/' . $post->category->category }}">{{ $post->category->category }}</a>
+                                {{ $post->category->category }}
                             @else
                                 {{ 'Uncategorized' }}
                             @endif
@@ -54,10 +54,18 @@
             {{ $posts->links() }}
         </div>
 
+        <h3>Categories</h3>
         <a href="/posts" class="btn btn-sm btn-primary category-button">All Posts</a>
         @foreach ($categories as $category)
-            <a href="/posts/{{ $category->category }}"
+            <a href="/posts/category/{{ $category->category }}"
                 class="btn btn-sm btn-primary category-button">{{ $category->category }}</a>
+        @endforeach
+
+        <h3 class="mt-3">Users</h3>
+        <a href="/posts" class="btn btn-sm btn-primary category-button">All Users</a>
+        @foreach ($authors as $author)
+            <a href="/posts/user/{{ $author->name }}"
+                class="btn btn-sm btn-primary category-button">{{ $author->name }}</a>
         @endforeach
     </div>
 @endsection

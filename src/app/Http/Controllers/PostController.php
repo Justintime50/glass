@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -29,7 +30,11 @@ class PostController extends Controller
         $categories = Category::orderBy('category', 'asc')
             ->get();
 
-        return view('posts', compact('posts', 'categories'));
+        $authors = User::orderBy('name', 'asc')
+            ->where('role', '=', 1)
+            ->get();
+
+        return view('posts', compact('posts', 'categories', 'authors'));
     }
 
     /**
@@ -50,7 +55,36 @@ class PostController extends Controller
         $categories = Category::orderBy('category', 'asc')
             ->get();
 
-        return view('posts', compact('categoryRecord', 'posts', 'categories'));
+        $authors = User::orderBy('name', 'asc')
+            ->where('role', '=', 1)
+            ->get();
+
+        return view('posts', compact('categoryRecord', 'posts', 'categories', 'authors'));
+    }
+
+    /**
+     * Show the "posts" page and filter by author (user).
+     *
+     * @param Request $request
+     * @param string $user
+     * @return View
+     */
+    public function showPostsByUser(Request $request, string $user): View
+    {
+        $userRecord = User::where('name', '=', $user)->firstOrFail();
+        $posts = Post::orderBy('created_at', 'desc')
+            ->where('published', '=', 1)
+            ->where('user_id', '=', $userRecord->id)
+            ->paginate(10);
+
+        $categories = Category::orderBy('category', 'asc')
+            ->get();
+
+        $authors = User::orderBy('name', 'asc')
+            ->where('role', '=', 1)
+            ->get();
+
+        return view('posts', compact('userRecord', 'posts', 'categories', 'authors'));
     }
 
     /**
