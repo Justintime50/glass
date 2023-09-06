@@ -24,7 +24,8 @@ Route::get('/posts', [App\Http\Controllers\PostController::class, 'showPosts']);
 Route::get('/posts/category/{category}', [App\Http\Controllers\PostController::class, 'showPostsByCategory']);
 Route::get('/posts/user/{user}', [App\Http\Controllers\PostController::class, 'showPostsByUser']);
 Route::get('/posts/{user}/{slug}', [App\Http\Controllers\PostController::class, 'showPost']);
-Route::get('/{user}/{slug}', [App\Http\Controllers\PostController::class, 'showPost']); // Kept for legacy links, should instead us the route prepended with `/posts`
+// Kept for legacy links, should instead us the route prepended with `/posts`
+Route::get('/{user}/{slug}', [App\Http\Controllers\PostController::class, 'showPost']);
 Route::get('/feed', [App\Http\Controllers\RssFeedController::class, 'getFeed']);
 
 // Must be an Admin
