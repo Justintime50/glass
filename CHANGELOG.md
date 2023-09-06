@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.0.1 (2023-09-06)
+
+- Fixes long-string line wrapping on the posts page when viewing on mobile
+
 ## v1.0.0 (2023-09-05)
 
 - Overhauled all routes
