@@ -265,9 +265,9 @@ class PostController extends Controller
      * Generate reading time for an article.
      *
      * @param Post $post
-     * @return string
+     * @return int
      */
-    public static function generateReadingTime($post): string
+    public static function generateReadingTime(Post $post): int
     {
         $averageReaderWordsPerMinute = 200;
         $bufferMinutes = 1; // This accounts for reading times of less than 1 minute
@@ -283,7 +283,7 @@ class PostController extends Controller
      * @param string $imageName
      * @return string
      */
-    public static function getImageAssetPath($imageName): string
+    public static function getImageAssetPath(string $imageName): string
     {
         return asset("storage/images/posts/$imageName");
     }
@@ -294,7 +294,7 @@ class PostController extends Controller
      * @param string $imageName
      * @return string
      */
-    public static function getImagePublicPath($imageName): string
+    public static function getImagePublicPath(string $imageName): string
     {
         return public_path("storage/images/posts/$imageName");
     }

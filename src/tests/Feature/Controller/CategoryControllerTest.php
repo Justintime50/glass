@@ -4,7 +4,6 @@ namespace Tests\Feature\Controller;
 
 use App\Http\Controllers\CategoryController;
 use App\Models\Category;
-use App\Models\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
 use Tests\TestCase;
