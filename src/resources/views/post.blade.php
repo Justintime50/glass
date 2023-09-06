@@ -165,8 +165,8 @@
                                             @csrf
                                             @method('DELETE')
                                             <br />
-                                            <button class="btn btn-sm btn-danger" onclick="this.form.submit();">Delete
-                                                Comment</button>
+                                            <button class="btn btn-sm btn-danger"
+                                                onclick="this.form.submit();">Delete</button>
                                         </form>
                                     @endif
                                 </td>

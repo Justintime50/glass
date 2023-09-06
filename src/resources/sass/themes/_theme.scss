@@ -25,7 +25,7 @@ input[type="password"],
 textarea,
 select {
   background-color: $font-color !important;
-  color: $nav-background !important;
+  color: $background-color-accent !important;
 }
 
 hr {
@@ -36,10 +36,18 @@ hr {
 thead th {
   font-size: 1.1rem;
   color: $font-color !important;
-  background-color: $nav-background !important;
+  background-color: $background-color-accent !important;
 }
 
 // Overrides
+
+a {
+  color: $font-color;
+}
+
+a:hover {
+  opacity: 0.85;
+}
 
 // For the posts page
 .post-container-feed {
@@ -56,26 +64,21 @@ thead th {
 
   .page-item span,
   a {
-    background-color: $nav-background !important;
+    background-color: $background-color-accent !important;
     color: $font-color;
   }
 
   .page-item span:hover,
   a:hover {
     color: $font-color;
-    opacity: 0.9;
   }
 }
 
 .navbar {
-  background-color: $nav-background !important;
-
-  a:hover {
-    opacity: 0.8;
-  }
+  background-color: $background-color-accent !important;
 
   .dropdown-menu {
-    background-color: $nav-background !important;
+    background-color: $background-color-accent !important;
 
     a:hover {
       background-color: $accent-color !important;
@@ -96,7 +99,7 @@ thead th {
 }
 
 .card {
-  background-color: $nav-background;
+  background-color: $background-color-accent;
   color: $font-color;
 }
 
@@ -104,9 +107,26 @@ thead th {
   background-color: $accent-color;
 }
 
+.btn-primary {
+  background-color: $interaction-color;
+  border-color: $interaction-color;
+}
+
+.btn-primary:hover {
+  background-color: $interaction-color;
+  border-color: $interaction-color;
+  opacity: 0.85;
+}
+
 .btn-danger {
   background-color: $danger-color;
   border-color: $danger-color;
+}
+
+.btn-danger:hover {
+  background-color: $danger-color;
+  border-color: $danger-color;
+  opacity: 0.85;
 }
 
 .table {
@@ -122,7 +142,7 @@ thead th {
 .table-striped>tbody>tr:nth-child(even)>td,
 .table-striped>tbody>tr:nth-child(even)>th {
   color: $font-color;
-  background-color: $nav-background;
+  background-color: $background-color-accent;
 }
 
 .modal-content {
@@ -131,6 +151,16 @@ thead th {
 }
 
 .btn-close {
+  color: $font-color;
+}
+
+.page-item.active .page-link {
+  border-color: $accent-color;
+}
+
+.alert-info {
+  background-color: $accent-color;
+  border-color: $interaction-color;
   color: $font-color;
 }
 
