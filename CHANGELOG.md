@@ -10,6 +10,7 @@
 - Fixes a bug that didn't properly validation reCAPTCHA on user registration
 - Fixes the styling of tables on any theme other than `light` to properly show the theme colors (admin panel)
 - Fixes a bug that wouldn't allow categories to be reused if deleted
+- Fixes a 500 error that was triggered by a banner image url not being set (order of checks swapped around)
 - Corrects and improves input validation
 
 ## v0.14.0 (2023-04-05)

@@ -36,8 +36,8 @@
                 Select Banner Image
             </button>
 
-            @if (file_exists(\App\Http\Controllers\PostController::getImagePublicPath($post->banner_image_url)) &&
-                    $post->banner_image_url != null)
+            @if (isset($post->banner_image_url) &&
+                    file_exists(\App\Http\Controllers\PostController::getImagePublicPath($post->banner_image_url)))
                 <img src="{{ \App\Http\Controllers\PostController::getImageAssetPath($post->banner_image_url) }}"
                     id="banner-image-preview">
             @else
