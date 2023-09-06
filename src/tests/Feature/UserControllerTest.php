@@ -24,7 +24,7 @@ class UserControllerTest extends TestCase
         $controller = new UserController();
 
         $request = Request::create('/profile', 'GET');
-        $response = $controller->showProfile($request);
+        $controller->showProfile($request);
 
         // TODO: Is there a better assertion here since we return an empty view?
         $this->assertTrue(true);

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -15,9 +17,10 @@ class PostController extends Controller
     /**
      * Show all of the blogs posts (paginated).
      *
-     * @return Illuminate\View\View
+     * @param Request $request
+     * @return View
      */
-    public function readPosts()
+    public function showPosts(Request $request): View
     {
         $posts = Post::orderBy('created_at', 'desc')
             ->where('published', '=', 1)
@@ -32,10 +35,11 @@ class PostController extends Controller
     /**
      * Show the "posts" page and filter by category.
      *
-     * @param str $category
-     * @return Illuminate\View\View
+     * @param Request $request
+     * @param string $category
+     * @return View
      */
-    public function readPostsByCategory($category)
+    public function showPostsByCategory(Request $request, string $category): View
     {
         $categoryRecord = Category::where('category', '=', $category)->firstOrFail();
         $posts = Post::orderBy('created_at', 'desc')
@@ -46,45 +50,7 @@ class PostController extends Controller
         $categories = Category::orderBy('category', 'asc')
             ->get();
 
-        return view('posts', compact('posts', 'categoryRecord', 'categories'));
-    }
-
-    /**
-     * Create a new post.
-     *
-     * Only admins can create posts.
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function create()
-    {
-        $post = new Post();
-
-        request()->validate([
-            'title'         => 'required|string',
-            'slug' => [
-                'required',
-                Rule::unique('posts')->ignore($post->id)->where(function ($query) {
-                    return $query->where('user_id', Auth::user()->id);
-                })
-            ],
-            'keywords'      => 'nullable|string',
-            'category'      => 'string',
-            'post'          => 'required|string',
-        ]);
-
-        $post->title = request()->get('title');
-        $post->slug = request()->get('slug');
-        $post->published = request()->get('published');
-        $post->banner_image_url = request()->get('banner_image_url');
-        $post->keywords = request()->get('keywords');
-        $post->category_id = request()->get('category_id');
-        $post->post = request()->get('post');
-        $post->user_id = Auth::user()->id;
-        $post->save();
-
-        session()->flash('message', 'Post created.');
-        return redirect('/');
+        return view('posts', compact('categoryRecord', 'posts', 'categories'));
     }
 
     /**
@@ -93,11 +59,12 @@ class PostController extends Controller
      * The page will be viewable regardless of published status for admins and only
      * viewable if published for normal users.
      *
-     * @param str $user
-     * @param str $slug
+     * @param Request $request
+     * @param string $user
+     * @param string $slug
      * @return Illuminate\View\View
      */
-    public function showPost($user, $slug)
+    public function showPost(Request $request, string $user, string $slug): View
     {
         if (Auth::user() && Auth::user()->role = 1) {
             $post = Post::where('slug', '=', $slug)
@@ -119,9 +86,10 @@ class PostController extends Controller
     /**
      * Show the "create post" page.
      *
-     * @return Illuminate\View\View
+     * @param Request $request
+     * @return View
      */
-    public function readCreate()
+    public function showCreatePage(Request $request): View
     {
         $categories = Category::all();
 
@@ -131,11 +99,12 @@ class PostController extends Controller
     /**
      * Show the "edit post" page.
      *
-     * @param str $user
-     * @param str $slug
-     * @return Illuminate\View\View
+     * @param Request $request
+     * @param string $user
+     * @param string $slug
+     * @return View
      */
-    public function readEdit($user, $slug)
+    public function showEditPage(Request $request, string $user, string $slug): View
     {
         $post = Post::where('slug', '=', $slug)
             ->firstOrFail();
@@ -145,15 +114,58 @@ class PostController extends Controller
     }
 
     /**
+     * Create a new post.
+     *
+     * Only admins can create posts.
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function create(Request $request): RedirectResponse
+    {
+        $post = new Post();
+
+        $request->validate([
+            'title' => 'required|string',
+            'slug' => [
+                'required',
+                Rule::unique('posts')->ignore($post->id)->where(function ($query) {
+                    return $query->where('user_id', Auth::user()->id);
+                })
+            ],
+            'keywords' => 'nullable|string',
+            'category_id' => 'nullable|string',
+            'post' => 'required|string',
+            'banner_image_url' => 'nullable|string',
+            'published' => 'required|integer',
+        ]);
+
+        $post->title = $request->input('title');
+        $post->slug = $request->input('slug');
+        $post->published = $request->input('published');
+        $post->banner_image_url = $request->input('banner_image_url');
+        $post->keywords = $request->input('keywords');
+        $post->category_id = $request->input('category_id');
+        $post->post = $request->input('post');
+        $post->user_id = Auth::user()->id;
+        $post->save();
+
+        session()->flash('message', 'Post created.');
+        return redirect('/');
+    }
+
+    /**
      * Update a post.
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Request $request
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): RedirectResponse
     {
         $post = Post::find($id);
 
-        request()->validate([
+        $request->validate([
             'title'         => 'required|string',
             'slug' => [
                 'required',
@@ -161,18 +173,20 @@ class PostController extends Controller
                     return $query->where('user_id', Auth::user()->id);
                 })
             ],
-            'keywords'      => 'nullable|string',
-            'category'      => 'string',
-            'post'          => 'required|string',
+            'keywords' => 'nullable|string',
+            'category_id' => 'nullable|string',
+            'post' => 'required|string',
+            'banner_image_url' => 'nullable|string',
+            'published' => 'required|integer',
         ]);
 
-        $post->published = request()->get('published');
-        $post->banner_image_url = request()->get('banner_image_url');
-        $post->title = request()->get('title');
-        $post->slug = request()->get('slug');
-        $post->keywords = request()->get('keywords');
-        $post->category_id = request()->get('category_id');
-        $post->post = request()->get('post');
+        $post->published = $request->input('published');
+        $post->banner_image_url = $request->input('banner_image_url');
+        $post->title = $request->input('title');
+        $post->slug = $request->input('slug');
+        $post->keywords = $request->input('keywords');
+        $post->category_id = $request->input('category_id');
+        $post->post = $request->input('post');
         $post->save();
 
         $url = str_replace(' ', '-', $post->user->name) . '/' . $post->slug;
@@ -183,9 +197,11 @@ class PostController extends Controller
     /**
      * Delete a post.
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Request $request
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function delete(Request $request, int $id)
+    public function delete(Request $request, int $id): RedirectResponse
     {
         Post::find($id)->delete();
 
@@ -198,9 +214,10 @@ class PostController extends Controller
      *
      * Images will have a unique ID associated with them which can be referenced to show the images in posts.
      *
-     * @return Illuminate\View\View
+     * @param Request $request
+     * @return View
      */
-    public function readImages()
+    public function showImagesPage(Request $request): View
     {
         return view('images');
     }
@@ -209,9 +226,9 @@ class PostController extends Controller
      * Upload an image to local storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse
      */
-    public function uploadPostImage(Request $request)
+    public function uploadPostImage(Request $request): RedirectResponse
     {
         $request->validate([
             'upload_image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
@@ -222,7 +239,6 @@ class PostController extends Controller
         $idMax = 9999999999;
         $id = mt_rand($idMin, $idMax);
 
-        // Upload Avatar (IMAGE INTERVENTION - LARAVEL)
         Image::make($request->file('upload_image'))->save(self::getImagePublicPath("$id.png"));
 
         session()->flash('message', 'Image uploaded successfully.');
@@ -232,9 +248,11 @@ class PostController extends Controller
     /**
      * Delete an image.
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Request $request
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function deletePostImage(Request $request, int $id)
+    public function deletePostImage(Request $request, int $id): RedirectResponse
     {
         // TODO: Store image IDs in a database
         unlink(public_path("storage/images/posts/$id.png"));
@@ -249,7 +267,7 @@ class PostController extends Controller
      * @param Post $post
      * @return string
      */
-    public static function generateReadingTime($post)
+    public static function generateReadingTime($post): string
     {
         $averageReaderWordsPerMinute = 200;
         $bufferMinutes = 1; // This accounts for reading times of less than 1 minute
@@ -265,7 +283,7 @@ class PostController extends Controller
      * @param string $imageName
      * @return string
      */
-    public static function getImageAssetPath($imageName)
+    public static function getImageAssetPath($imageName): string
     {
         return asset("storage/images/posts/$imageName");
     }
@@ -276,7 +294,7 @@ class PostController extends Controller
      * @param string $imageName
      * @return string
      */
-    public static function getImagePublicPath($imageName)
+    public static function getImagePublicPath($imageName): string
     {
         return public_path("storage/images/posts/$imageName");
     }
