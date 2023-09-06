@@ -35,7 +35,7 @@ class InsertAdminAccount extends Migration
 
         // Seed an initial category
         $category = new Category();
-        $category->user_id = 1;
+        $category->user_id = 1; // later removed
         $category->category = 'Uncategorized';
         $category->save();
     }
