@@ -30,4 +30,9 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class)->withTrashed();
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

@@ -3,15 +3,17 @@
 ## Next Release
 
 - Completely overhauls all routes to follow RESTful practices
+- Paginates and styles the comments on each post page
+- Added prompts before deletion on the admin page for categories and posts
 - Swap `updated_at` to `created_at` timestamps for posts and comments
 - Removes the unusable "Remember Me" checkbox on the login page
-- Added prompts before deletion on the admin page for categories and posts
 - Fixes a 403 issue for the default image preview when editing a post
-- Fixes a bug that didn't properly validation reCAPTCHA on user registration
-- Fixes the styling of tables on any theme other than `light` to properly show the theme colors (admin panel)
+- Fixes a bug that didn't properly validate reCAPTCHA on user registration
+- Fixes the styling of tables to properly show the theme colors (admin panel)
 - Fixes a bug that wouldn't allow categories to be reused if deleted
 - Fixes a 500 error that was triggered by a banner image url not being set (order of checks swapped around)
-- Corrects and improves input validation
+- Fixes and improves input validation
+- Various other bug fixes and UI improvements
 
 ## v0.14.0 (2023-04-05)
 

@@ -2,7 +2,6 @@
 <title>{{ $post->title }}</title>
 
 @section('content')
-
     <div class="post-content container">
 
         @if (Auth::check() && Auth::user()->role == 1)
@@ -144,31 +143,39 @@
                 <p>Please <a href="/login">login</a> to leave a comment.</p>
             @endif
 
-            @forelse($comments as $comment)
-                <hr>
-                <p>{{ $comment->comment }}</p>
-                @php $avatar_path = 'storage/images/avatars/' . $comment->user->id . '.png'; @endphp
-                @if (file_exists(public_path($avatar_path)))
-                    <img src="{{ asset($avatar_path) }}" class="avatar-small">
-                @else
-                    <i class="fas fa-user fa-2x avatar-small"></i>
-                @endif
+            <div class="table-responsive">
+                <table class="table-striped table">
+                    <tbody>
+                        @foreach ($comments as $comment)
+                            <tr>
+                                <td>
+                                    <p>{{ $comment->comment }}</p>
+                                    @php $avatar_path = 'storage/images/avatars/' . $comment->user->id . '.png'; @endphp
+                                    @if (file_exists(public_path($avatar_path)))
+                                        <img src="{{ asset($avatar_path) }}" class="avatar-small">
+                                    @else
+                                        <i class="fas fa-user fa-2x avatar-small"></i>
+                                    @endif
 
-                <i>&nbsp;{{ $comment->user->name }} - {{ date_format($comment->created_at, 'Y/m/d') }}</i>
+                                    <i>&nbsp;{{ $comment->user->name }} -
+                                        {{ date_format($comment->created_at, 'Y/m/d') }}</i>
 
-                @if (Auth::check())
-                    <form action="/comments/{{ $comment->id }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <br />
-                        <button class="btn btn-sm btn-danger" onclick="this.form.submit();">Delete Comment</button>
-                    </form>
-                @endif
-            @empty
-                <p>No comments yet.</p>
-            @endforelse
+                                    @if (Auth::check())
+                                        <form action="/comments/{{ $comment->id }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <br />
+                                            <button class="btn btn-sm btn-danger" onclick="this.form.submit();">Delete
+                                                Comment</button>
+                                        </form>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                {{ $comments->links() }}
+            </div>
         @endif
-
     </div>
-
 @endsection
