@@ -2,16 +2,16 @@
 
 ## v1.0.0 (2023-09-05)
 
-- Completely overhauls all routes to follow RESTful practices
-- Paginates and styles the comments on each post page
-- Added prompts before deletion on the admin page for categories and posts
-- Swap `updated_at` to `created_at` timestamps for posts and comments
-- Removes the unusable "Remember Me" checkbox on the login page
-- Updated routes
+- Overhauled all routes
+  - All routes now follow RESTful practices
   - Removes the `/blog` route
   - Changes the `/posts/{category}` route to `/posts/category/{category}` to help distinguish what the slug is
   - Adds a new `/posts/user/{user}` route so you can filter posts by author
   - Adds a new `/posts/{user}/{slug}` route that works the same as the now legacy `/{user}/{slug}`
+- Paginates and styles the comments on each post page
+- Added prompts before deletion on the admin page for categories and posts
+- Swap `updated_at` to `created_at` timestamps for posts and comments
+- Removes the unusable "Remember Me" checkbox on the login page
 - Fixes a 403 issue for the default image preview when editing a post
 - Fixes a bug that didn't properly validate reCAPTCHA on user registration
 - Fixes the styling of tables to properly show the theme colors (admin panel)
