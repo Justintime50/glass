@@ -24,6 +24,10 @@ return new class extends Migration
             $table->index(['category_id']);
             $table->index(['user_id']);
         });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->index(['name']);
+        });
     }
 
     /**
@@ -43,6 +47,10 @@ return new class extends Migration
         Schema::table('posts', function (Blueprint $table) {
             $table->dropIndex('posts_category_id_index');
             $table->dropIndex('posts_user_id_index');
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropIndex('users_name_index');
         });
     }
 };
