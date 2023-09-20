@@ -34,7 +34,7 @@ services:
           cpus: '0.25'
           memory: '128M'
     healthcheck:
-      test: ['CMD', 'mysql', '-u${MARIADB_USER}', '-p${MARIADB_PASSWORD}', '-e', 'show databases;']
+      test: ['CMD', 'mariadb', '-u${MARIADB_USER}', '-p${MARIADB_PASSWORD}', '-e', 'show databases;']
       interval: 10s
       timeout: 10s
       retries: 3

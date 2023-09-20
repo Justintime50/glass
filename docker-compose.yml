@@ -12,7 +12,7 @@ services:
     depends_on:
       - glass-db
   glass-db:
-    image: 'mariadb:10.11.4'
+    image: 'mariadb:11.1.2'
     restart: always
     volumes:
       - database-data:/var/lib/mysql

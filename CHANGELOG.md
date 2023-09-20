@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Updates MariaDB from 10.11 to 11.1
+
 ## v1.0.1 (2023-09-06)
 
 - Fixes long-string line wrapping on the posts page when viewing on mobile
