@@ -166,7 +166,7 @@ class PostController extends Controller
                 })
             ],
             'keywords' => 'nullable|string',
-            'category_id' => 'nullable|string',
+            'category_id' => 'nullable|integer',
             'post' => 'required|string',
             'banner_image_url' => 'nullable|string',
             'published' => 'required|integer',
@@ -206,7 +206,7 @@ class PostController extends Controller
                 })
             ],
             'keywords' => 'nullable|string',
-            'category_id' => 'nullable|string',
+            'category_id' => 'nullable|integer',
             'post' => 'required|string',
             'banner_image_url' => 'nullable|string',
             'published' => 'required|integer',

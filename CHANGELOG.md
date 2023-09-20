@@ -4,6 +4,7 @@
 
 - Categories are now unique and required, enforced at the database level
 - Various database indexes were added for common lookup patterns for quick retrieval
+- Fixes various database field types and type validation on form submission to better align with the context they are used with
 - Fixes a bug that didn't show the dropdown chevrons for form-select fields when creating a post
 - Fixes a Bootstrap deprecation warning
 - Updates MariaDB from 10.11 to 11.1
