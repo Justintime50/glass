@@ -19,6 +19,11 @@ return new class extends Migration
         Schema::table('comments', function (Blueprint $table) {
             $table->index(['post_id']);
         });
+
+        Schema::table('posts', function (Blueprint $table) {
+            $table->index(['category_id']);
+            $table->index(['user_id']);
+        });
     }
 
     /**
@@ -33,6 +38,11 @@ return new class extends Migration
 
         Schema::table('comments', function (Blueprint $table) {
             $table->dropIndex('comments_post_id_index');
+        });
+
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropIndex('posts_category_id_index');
+            $table->dropIndex('posts_user_id_index');
         });
     }
 };
