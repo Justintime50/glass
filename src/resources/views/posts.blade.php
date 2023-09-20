@@ -31,11 +31,7 @@
                             <i class="fas fa-clock"></i>
                             {{ \App\Http\Controllers\PostController::generateReadingTime($post) }} minutes
                             <i class="fas fa-tag"></i>
-                            @if (isset($post->category->category))
-                                {{ $post->category->category }}
-                            @else
-                                {{ 'Uncategorized' }}
-                            @endif
+                            {{ $post->category->category }}
                         </p>
                         <p>
                             <?php $strippedPost = preg_replace("/[^0-9a-zA-Z_.!?' \r\n+]/", '', $post->post); ?>

@@ -30,11 +30,7 @@
             <i class="fas fa-clock"></i>
             {{ \App\Http\Controllers\PostController::generateReadingTime($post) }} minutes
             <i class="fas fa-tag"></i>
-            @if (isset($post->category->category))
-                <a href="{{ '/posts/category/' . $post->category->category }}">{{ $post->category->category }}</a>
-            @else
-                {{ 'Uncategorized' }}
-            @endif
+            <a href="{{ '/posts/category/' . $post->category->category }}">{{ $post->category->category }}</a>
         </p>
         <div class="banner-image-container">
             @if (isset($post->banner_image_url) &&

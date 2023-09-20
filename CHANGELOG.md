@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Next Release
+
+- Categories are now unique and required, enforced at the database level
+- Various database indexes were added for common lookup patterns for quick retrieval
+- Fixes a bug that didn't show the dropdown chevrons for form-select fields when creating a post
+- Fixes a Bootstrap deprecation warning
+- Updates MariaDB from 10.11 to 11.1
+
 ## v1.0.1 (2023-09-06)
 
 - Fixes long-string line wrapping on the posts page when viewing on mobile

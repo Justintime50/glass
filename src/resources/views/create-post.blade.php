@@ -15,7 +15,7 @@
             <input type='text' class='form-control' name='slug' id="slug" value="{{ old('slug') }}">
 
             <label for="published">Post Status</label>
-            <select class="form-control" name="published">
+            <select class="form-select" name="published">
                 <option value="1" @if (old('published') == '1') {{ 'selected' }} @endif>Published</option>
                 <option value="0" @if (old('published') == '0') {{ 'selected' }} @endif>Draft</option>
             </select>
@@ -49,7 +49,7 @@
             </div>
 
             <label for="category_id">Category</label>
-            <select class="form-control" name="category_id">
+            <select class="form-select" name="category_id">
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->category }}</option>
                 @endforeach
