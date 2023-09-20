@@ -15,6 +15,10 @@ return new class extends Migration
             $table->string('category')->nullable(false)->change();
             $table->unique('category');
         });
+
+        Schema::table('comments', function (Blueprint $table) {
+            $table->index(['post_id']);
+        });
     }
 
     /**
@@ -25,6 +29,10 @@ return new class extends Migration
         Schema::table('categories', function (Blueprint $table) {
             $table->dropUnique(['category']);
             $table->string('category')->nullable(true)->change();
+        });
+
+        Schema::table('comments', function (Blueprint $table) {
+            $table->dropIndex('comments_post_id_index');
         });
     }
 };
