@@ -227,7 +227,7 @@ class PostController extends Controller
     }
 
     /**
-     * Delete a post.
+     * Delete a post and its associated comments.
      *
      * @param Request $request
      * @param int $id
@@ -235,7 +235,9 @@ class PostController extends Controller
      */
     public function delete(Request $request, int $id): RedirectResponse
     {
-        Post::find($id)->delete();
+        $post = Post::find($id);
+        $post->comments()->delete();
+        $post->delete();
 
         session()->flash('message', 'Post deleted.');
         return redirect('/');
