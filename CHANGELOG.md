@@ -2,6 +2,8 @@
 
 ## Next Release
 
+- Categories are now unique, enforced at the database level, and are indexed for quick retrieval
+- Fixed a bug that didn't show the dropdown chevrons for form-select fields when creating a post
 - Updates MariaDB from 10.11 to 11.1
 
 ## v1.0.1 (2023-09-06)

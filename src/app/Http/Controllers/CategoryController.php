@@ -21,7 +21,7 @@ class CategoryController extends Controller
             ->first() ?: new Category();
 
         $request->validate([
-            'category' => 'required|string|unique:categories,category' . $category->id,
+            'category' => 'required|string',
         ]);
 
         if ($category->trashed()) {
