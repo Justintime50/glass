@@ -22,32 +22,4 @@ class PostControllerTest extends TestCase
 
         $this->assertEquals(1, $readingTime);
     }
-
-    /**
-     * Tests that we get the image asset path correctly.
-     *
-     * @return void
-     */
-    public function testGetImageAssetPath()
-    {
-        $controller = new PostController();
-
-        $assetPath = $controller::getImageAssetPath('mock-image.png');
-
-        $this->assertStringContainsString('storage/images/posts/mock-image.png', $assetPath);
-    }
-
-    /**
-     * Tests that we get the public image path correctly.
-     *
-     * @return void
-     */
-    public function testGetImagePublicPath()
-    {
-        $controller = new PostController();
-
-        $assetPath = $controller::getImagePublicPath('mock-image.png');
-
-        $this->assertStringContainsString('storage/images/posts/mock-image.png', $assetPath);
-    }
 }

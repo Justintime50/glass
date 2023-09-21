@@ -18,9 +18,12 @@
                         <tr>
                             <td>{{ $comment->comment }}</td>
                             <td>
-                                @php $avatar_path = 'storage/images/avatars/' . $comment->user->id . '.png'; @endphp
-                                @if (file_exists(public_path($avatar_path)))
-                                    <img src="{{ asset($avatar_path) }}" class="avatar-small">
+                                @if (
+                                    \App\Http\Controllers\ImageController::getImagePublicPath(
+                                        $comment->user->image?->subdirectory,
+                                        $comment->user->image?->filename) !== null)
+                                    <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($comment->user->image->subdirectory, $comment->user->image->filename) }}"
+                                        class="avatar-small">
                                 @else
                                     <i class="fas fa-user fa-2x avatar-small"></i>
                                 @endif

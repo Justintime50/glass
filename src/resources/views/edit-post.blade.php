@@ -28,20 +28,22 @@
                 </option>
             </select>
 
-            <label for="banner_image_url">Banner Image</label>
-            <input type="text" class="form-control" name="banner_image_url" id="banner_image_url"
-                value="{{ old('banner_image_url', $post->banner_image_url) }}" hidden>
+            <label for="image_id">Banner Image</label>
+            <input type="text" class="form-control" name="image_id" id="image_id"
+                value="{{ old('image_id', $post->image?->id) }}" hidden>
 
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imageGallery">
                 Select Banner Image
             </button>
 
-            @if (isset($post->banner_image_url) &&
-                    file_exists(\App\Http\Controllers\PostController::getImagePublicPath($post->banner_image_url)))
-                <img src="{{ \App\Http\Controllers\PostController::getImageAssetPath($post->banner_image_url) }}"
+            @if (
+                \App\Http\Controllers\ImageController::getImagePublicPath($post->image?->subdirectory, $post->image?->filename) !==
+                    null)
+                <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($post->image->subdirectory, $post->image->filename) }}"
                     id="banner-image-preview">
             @else
-                <img src="{{ asset('pics/banner.jpg') }}" id="banner-image-preview">
+                <img src="{{ asset(\App\Http\Controllers\ImageController::$defaultBannerImage) }}"
+                    id="banner-image-preview">
             @endif
 
             <div class="modal fade" id="imageGallery" tabindex="-1" aria-labelledby="imageGallery" aria-hidden="true">

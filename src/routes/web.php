@@ -40,9 +40,9 @@ Route::middleware('Admin')->group(function () {
     Route::patch('/posts/{id}', [App\Http\Controllers\PostController::class, 'update']);
     Route::delete('/posts/{id}', [App\Http\Controllers\PostController::class, 'delete']);
     // Images
-    Route::get('/images', [App\Http\Controllers\PostController::class, 'showImagesPage']);
-    Route::post('/images', [App\Http\Controllers\PostController::class, 'uploadPostImage']);
-    Route::delete('/images/{id}', [App\Http\Controllers\PostController::class, 'deletePostImage']);
+    Route::get('/images', [App\Http\Controllers\ImageController::class, 'showImagesPage']);
+    Route::post('/images', [App\Http\Controllers\ImageController::class, 'uploadPostImage']);
+    Route::delete('/images/{id}', [App\Http\Controllers\ImageController::class, 'deletePostImage']);
     // Comments
     Route::get('/comments', [App\Http\Controllers\CommentController::class, 'showComments']);
     // Category

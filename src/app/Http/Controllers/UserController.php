@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\ImageManagerStatic;
 
 class UserController extends Controller
 {
@@ -68,6 +69,10 @@ class UserController extends Controller
     /**
      * Update the user profile picture.
      *
+     * 1. Store the image on disk
+     * 2. Make an entry of the image filename in the images table
+     * 3. Associate the new image to the user
+     *
      * @param Request $request
      * @return RedirectResponse
      */
@@ -76,11 +81,21 @@ class UserController extends Controller
         $request->validate([
             'upload_profile_pic' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
-        $id = $request->input('id');
+        $file = $request->file('upload_profile_pic');
+        $filename = ImageController::sanatizeImageFilename($file);
 
-        Image::make($request->file('upload_profile_pic'))
+        ImageManagerStatic::make($file)
             ->fit(150, 150)
-            ->save(public_path("storage/images/avatars/$id.png"));
+            ->save(ImageController::getImagePublicPath(ImageController::$avatarImagesSubdirectory, $filename));
+
+        $image = new Image();
+        $image->subdirectory = ImageController::$avatarImagesSubdirectory;
+        $image->filename = $filename;
+        $image->save();
+
+        $user = User::find(Auth::user()->id);
+        $user->image_id = $image->id;
+        $user->save();
 
         session()->flash('message', 'Avatar updated successfully.');
         return redirect()->back();
@@ -95,7 +110,10 @@ class UserController extends Controller
      */
     public function delete(Request $request, int $id): RedirectResponse
     {
-        User::find($id)->delete();
+        $user = User::find($id);
+        $image = Image::find($user->image_id);
+        unlink(ImageController::getImagePublicPath($image->subdirectory, $image->filename));
+        $user->delete();
 
         session()->flash('message', 'User deleted.');
         return redirect()->back();

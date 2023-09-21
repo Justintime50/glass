@@ -29,7 +29,6 @@ class PostFactory extends Factory
             'category_id' => Category::inRandomOrder()->first()->id,
             'user_id' => User::inRandomOrder()->first()->id,
             'post' => $this->faker->paragraph(),
-            'banner_image_url' => null,
             'published' => 1,
         ];
     }

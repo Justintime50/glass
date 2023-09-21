@@ -30,19 +30,19 @@
 
         <hr>
 
-        <!-- UPLOAD BUTTONS -->
         <form action="/update-profile-pic" method="POST" enctype="multipart/form-data" id="submit_profile_pic">
             @csrf
             <label>Profile Picture</label>
             <small class="avatar-upload-criteria">Picture must be a jpg or png no bigger than 2mb.</small>
-            <?php $avatar_path = public_path('storage/images/avatars/' . Auth::user()->id . '.png'); ?>
-            @if (file_exists($avatar_path))
-                <img src="{{ asset('storage/images/avatars/' . Auth::user()->id . '.png') }}" class="avatar">
+            @if (
+                \App\Http\Controllers\ImageController::getImagePublicPath(Auth::user()->image?->subdirectory,
+                    Auth::user()->image?->filename) !== null)
+                <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath(Auth::user()->image->subdirectory, Auth::user()->image->filename) }}"
+                    class="avatar">
             @else
                 <i class="fas fa-user fa-3x avatar"></i>
             @endif
             <br />
-            <input type="text" name="id" value="{{ Auth::user()->id }}" hidden>
             <label for="profile_pic" class="btn btn-primary">Update Profile Picture</label>
             <input type="file" name="upload_profile_pic" id="profile_pic" onchange="this.form.submit()" hidden>
         </form>

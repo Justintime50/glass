@@ -20,15 +20,14 @@
                 <option value="0" @if (old('published') == '0') {{ 'selected' }} @endif>Draft</option>
             </select>
 
-            <label for="banner_image_url">Banner Image</label>
-            <input type="text" class="form-control" name="banner_image_url" id="banner_image_url"
-                value="{{ old('banner_image_url') }}" hidden>
+            <label for="image_id">Banner Image</label>
+            <input type="text" class="form-control" name="image_id" id="image_id" value="{{ old('image_id') }}" hidden>
 
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imageGallery">
                 Select Banner Image
             </button>
 
-            <img src="{{ asset('pics/banner.jpg') }}" id="banner-image-preview">
+            <img src="{{ asset(\App\Http\Controllers\ImageController::$defaultBannerImage) }}" id="banner-image-preview">
 
             <div class="modal fade" id="imageGallery" tabindex="-1" aria-labelledby="imageGallery" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable">
