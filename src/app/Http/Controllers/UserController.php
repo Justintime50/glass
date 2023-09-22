@@ -80,9 +80,9 @@ class UserController extends Controller
     public function updateProfilePic(Request $request): RedirectResponse
     {
         $request->validate([
-            'upload_profile_pic' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
-        $file = $request->file('upload_profile_pic');
+        $file = $request->file('image');
         $filename = ImageController::sanatizeImageFilename($file);
 
         ImageManagerStatic::make($file)

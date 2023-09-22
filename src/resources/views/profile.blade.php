@@ -44,7 +44,7 @@
             @endif
             <br />
             <label for="profile_pic" class="btn btn-primary">Update Profile Picture</label>
-            <input type="file" name="upload_profile_pic" id="profile_pic" onchange="this.form.submit()" hidden>
+            <input type="file" name="image" id="profile_pic" onchange="this.form.submit()" hidden>
         </form>
 
     </div>

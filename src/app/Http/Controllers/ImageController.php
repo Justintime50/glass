@@ -42,10 +42,10 @@ class ImageController extends Controller
     public function uploadPostImage(Request $request): RedirectResponse
     {
         $request->validate([
-            'upload_image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
-        $file = $request->file('upload_image');
+        $file = $request->file('image');
         $filename = ImageController::sanatizeImageFilename($file);
 
         ImageManagerStatic::make($file)
@@ -89,8 +89,8 @@ class ImageController extends Controller
      */
     public static function sanatizeImageFilename($file): string
     {
-        $filename = preg_replace('/[^A-Za-z0-9\-\_]/', '', pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
-        $fileExtension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+        $filename = preg_replace('/[^A-Za-z0-9\-\_]/', '', $file->getClientOriginalName());
+        $fileExtension = $file->getClientOriginalExtension();
         $newFilename = $filename . '-' . time() . '.' . $fileExtension;
 
         return $newFilename;
