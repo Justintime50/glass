@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic;
@@ -68,11 +69,15 @@ class ImageController extends Controller
      */
     public function deletePostImage(Request $request, int $id): RedirectResponse
     {
-        $image = Image::find($id);
-        unlink(ImageController::getImagePublicPath($image->subdirectory, $image->filename));
-        $image->delete();
+        try {
+            $image = Image::findOrFail($id);
+            unlink(ImageController::getImagePublicPath($image->subdirectory, $image->filename));
+            $image->delete();
+            session()->flash('message', 'Image deleted.');
+        } catch (ModelNotFoundException $e) {
+            // Don't delete an image that doesn't exist
+        }
 
-        session()->flash('message', 'Image deleted.');
         return redirect()->back();
     }
 

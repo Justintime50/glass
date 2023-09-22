@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\ImageController;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -26,12 +27,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // Setup directories as needed
-        $imagesPath = 'storage/images';
-        if (!is_dir(public_path("$imagesPath/posts"))) {
-            mkdir(public_path("$imagesPath/posts"), 0775, true);
+        $imagesPath = 'storage/' . ImageController::$imagesDir;
+        $postsPath = $imagesPath . '/' . ImageController::$postImagesSubdirectory;
+        $avatarsPath = $imagesPath . '/' . ImageController::$avatarImagesSubdirectory;
+        if (!is_dir(public_path($postsPath))) {
+            mkdir(public_path($postsPath), 0775, true);
         }
-        if (!is_dir(public_path("$imagesPath/avatars"))) {
-            mkdir(public_path("$imagesPath/avatars"), 0775, true);
+        if (!is_dir(public_path($avatarsPath))) {
+            mkdir(public_path($avatarsPath), 0775, true);
         }
 
         if (config('app.env') === 'production') {
