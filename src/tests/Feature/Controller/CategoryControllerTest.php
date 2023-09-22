@@ -12,6 +12,11 @@ class CategoryControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    public static function setUpBeforeClass(): void
+    {
+        self::$controller = new CategoryController();
+    }
+
     /**
      * Tests that we create a category correctly.
      *
@@ -19,12 +24,10 @@ class CategoryControllerTest extends TestCase
      */
     public function testCreate()
     {
-        $controller = new CategoryController();
-
         $request = Request::create('/categories', 'POST', [
             'category' => 'new category'
         ]);
-        $response = $controller->create($request);
+        $response = self::$controller->create($request);
 
         $this->assertDatabaseHas('categories', ['category' => 'new category']);
         $this->assertEquals('Category created.', $response->getSession()->get('message'));
@@ -38,17 +41,16 @@ class CategoryControllerTest extends TestCase
      */
     public function testReenableSoftDeleted()
     {
-        $controller = new CategoryController();
         $category = Category::factory(['category' => 'existing category'])->create();
 
         // Delete the category so we can later re-enable it
         $deleteRequest = Request::create("/categories/$category->id", 'DELETE');
-        $controller->delete($deleteRequest, $category->id);
+        self::$controller->delete($deleteRequest, $category->id);
 
         $request = Request::create('/categories', 'POST', [
             'category' => 'existing category'
         ]);
-        $response = $controller->create($request);
+        $response = self::$controller->create($request);
 
         $this->assertNotSoftDeleted('categories', ['category' => 'existing category']);
         $this->assertEquals('Category created.', $response->getSession()->get('message'));
@@ -62,13 +64,12 @@ class CategoryControllerTest extends TestCase
      */
     public function testUpdate()
     {
-        $controller = new CategoryController();
         $category = Category::factory()->create();
 
         $request = Request::create("/categories/$category->id", 'PATCH', [
             'category' => 'updated category',
         ]);
-        $response = $controller->update($request, $category->id);
+        $response = self::$controller->update($request, $category->id);
 
         $this->assertDatabaseHas('categories', ['category' => 'updated category']);
         $this->assertEquals('Category updated.', $response->getSession()->get('message'));
@@ -82,11 +83,10 @@ class CategoryControllerTest extends TestCase
      */
     public function testDelete()
     {
-        $controller = new CategoryController();
         $category = Category::factory(['category' => 'deleted category'])->create();
 
         $request = Request::create("/categories/$category->id", 'DELETE');
-        $response = $controller->delete($request, $category->id);
+        $response = self::$controller->delete($request, $category->id);
 
         $this->assertSoftDeleted('categories', ['category' => 'deleted category']);
         $this->assertEquals('Category deleted.', $response->getSession()->get('message'));

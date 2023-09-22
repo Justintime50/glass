@@ -14,6 +14,11 @@ class CommentControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    public static function setUpBeforeClass(): void
+    {
+        self::$controller = new CommentController();
+    }
+
     /**
      * Tests that we return the admin page and data correctly.
      *
@@ -21,12 +26,11 @@ class CommentControllerTest extends TestCase
      */
     public function testShowComments()
     {
-        $controller = new CommentController();
         $post = Post::factory()->create();
         Comment::factory(['post_id' => $post->id])->create();
 
         $request = Request::create('/comments', 'GET');
-        $response = $controller->showComments($request);
+        $response = self::$controller->showComments($request);
 
         $viewData = $response->getData();
 
@@ -40,7 +44,6 @@ class CommentControllerTest extends TestCase
      */
     public function testCreate()
     {
-        $controller = new CommentController();
         $authedUser = User::find(1);
         $this->actingAs($authedUser);
         $post = Post::factory()->create();
@@ -49,7 +52,7 @@ class CommentControllerTest extends TestCase
             'comment' => 'new comment',
             'post_id' => $post->id,
         ]);
-        $response = $controller->create($request);
+        $response = self::$controller->create($request);
 
         $this->assertDatabaseHas('comments', ['comment' => 'new comment']);
         $this->assertEquals('Comment created.', $response->getSession()->get('message'));
@@ -63,7 +66,6 @@ class CommentControllerTest extends TestCase
      */
     public function testDelete()
     {
-        $controller = new CommentController();
         $authedUser = User::find(1);
         $this->actingAs($authedUser);
         $post = Post::factory()->create();
@@ -73,7 +75,7 @@ class CommentControllerTest extends TestCase
         ])->create();
 
         $request = Request::create("/comments/$comment->id", 'DELETE');
-        $response = $controller->delete($request, $comment->id);
+        $response = self::$controller->delete($request, $comment->id);
 
         $this->assertSoftDeleted('comments', ['comment' => 'deleted comment']);
         $this->assertEquals('Comment deleted.', $response->getSession()->get('message'));

@@ -14,6 +14,11 @@ class UserControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    public static function setUpBeforeClass(): void
+    {
+        self::$controller = new UserController();
+    }
+
     /**
      * Tests that we return the admin page and data correctly.
      *
@@ -21,10 +26,8 @@ class UserControllerTest extends TestCase
      */
     public function testShowProfile()
     {
-        $controller = new UserController();
-
         $request = Request::create('/profile', 'GET');
-        $controller->showProfile($request);
+        self::$controller->showProfile($request);
 
         // TODO: Is there a better assertion here since we return an empty view?
         $this->assertTrue(true);
@@ -37,7 +40,6 @@ class UserControllerTest extends TestCase
      */
     public function testUpdate()
     {
-        $controller = new UserController();
         $authedUser = User::find(1);
         $this->actingAs($authedUser);
         $post = Post::factory()->create();
@@ -46,7 +48,7 @@ class UserControllerTest extends TestCase
             'name' => 'updated name',
             'bio' => 'test bio',
         ]);
-        $response = $controller->update($request);
+        $response = self::$controller->update($request);
 
         $this->assertDatabaseHas('users', ['name' => 'updated name']);
         $this->assertEquals('Profile updated.', $response->getSession()->get('message'));
@@ -60,7 +62,6 @@ class UserControllerTest extends TestCase
      */
     public function testUpdatePassword()
     {
-        $controller = new UserController();
         $authedUser = User::find(1);
         $this->actingAs($authedUser);
 
@@ -70,7 +71,7 @@ class UserControllerTest extends TestCase
             'password' => $password,
             'password_confirmation' => $password,
         ]);
-        $response = $controller->updatePassword($request);
+        $response = self::$controller->updatePassword($request);
 
         $user = User::find($authedUser->id);
 
@@ -88,10 +89,9 @@ class UserControllerTest extends TestCase
     {
         // TODO: Finish writing this test asserting an image got uploaded
         $this->doesNotPerformAssertions();
-        // $controller = new UserController();
 
         // $request = Request::create("/update-profile-pic", 'POST');
-        // $response = $controller->updateProfilePic($request);
+        // $response = self::$controller->updateProfilePic($request);
 
         // $this->assertEquals('Avatar updated successfully.', $response->getSession()->get('message'));
         // $this->assertEquals(302, $response->getStatusCode());
@@ -104,11 +104,10 @@ class UserControllerTest extends TestCase
      */
     public function testDelete()
     {
-        $controller = new UserController();
         $user = User::find(1);
 
         $request = Request::create("/users/$user->id", 'DELETE');
-        $response = $controller->delete($request, $user->id);
+        $response = self::$controller->delete($request, $user->id);
 
         $this->assertSoftDeleted('users', ['id' => 1]);
         $this->assertEquals('User deleted.', $response->getSession()->get('message'));

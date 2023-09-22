@@ -8,6 +8,8 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
+    protected static $controller;
+
     protected function setUp(): void
     {
         parent::setUp();

@@ -7,6 +7,12 @@ use Tests\TestCase;
 
 class ImageControllerTest extends TestCase
 {
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$controller = new ImageController();
+    }
+
     /**
      * Tests that we get the image asset path correctly.
      *
@@ -14,9 +20,7 @@ class ImageControllerTest extends TestCase
      */
     public function testGetImageAssetPath()
     {
-        $controller = new ImageController();
-
-        $assetPath = $controller->getImageAssetPath(ImageController::$postImagesSubdirectory, 'mock-image.png');
+        $assetPath = self::$controller->getImageAssetPath(ImageController::$postImagesSubdirectory, 'mock-image.png');
 
         $this->assertStringContainsString('storage/images/posts/mock-image.png', $assetPath);
     }
@@ -28,9 +32,7 @@ class ImageControllerTest extends TestCase
      */
     public function testGetImagePublicPath()
     {
-        $controller = new ImageController();
-
-        $assetPath = $controller->getImagePublicPath(ImageController::$postImagesSubdirectory, 'mock-image.png');
+        $assetPath = self::$controller->getImagePublicPath(ImageController::$postImagesSubdirectory, 'mock-image.png');
 
         $this->assertStringContainsString('storage/images/posts/mock-image.png', $assetPath);
     }
