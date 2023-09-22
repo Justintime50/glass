@@ -7,7 +7,9 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase
@@ -87,14 +89,18 @@ class UserControllerTest extends TestCase
      */
     public function testUpdateProfilePic()
     {
-        // TODO: Finish writing this test asserting an image got uploaded
-        $this->doesNotPerformAssertions();
+        Storage::fake('public');
 
-        // $request = Request::create("/update-profile-pic", 'POST');
-        // $response = self::$controller->updateProfilePic($request);
+        $authedUser = User::find(1);
+        $this->actingAs($authedUser);
 
-        // $this->assertEquals('Avatar updated successfully.', $response->getSession()->get('message'));
-        // $this->assertEquals(302, $response->getStatusCode());
+        $request = Request::create("/update-profile-pic", 'POST', [], [], [
+            'image' => UploadedFile::fake()->image('image.jpg'),
+        ]);
+        $response = self::$controller->updateProfilePic($request);
+
+        $this->assertEquals('Avatar updated successfully.', $response->getSession()->get('message'));
+        $this->assertEquals(302, $response->getStatusCode());
     }
 
     /**

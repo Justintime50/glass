@@ -45,18 +45,23 @@ class ImageController extends Controller
             'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
-        $file = $request->file('image');
-        $filename = ImageController::sanatizeImageFilename($file);
+        try {
+            $file = $request->file('image');
+            $filename = ImageController::sanatizeImageFilename($file);
 
-        ImageManagerStatic::make($file)
-            ->save(ImageController::getImagePublicPath(self::$postImagesSubdirectory, $filename));
+            ImageManagerStatic::make($file)
+                ->save(ImageController::getImagePublicPath(self::$postImagesSubdirectory, $filename));
 
-        $image = new Image();
-        $image->subdirectory = self::$postImagesSubdirectory;
-        $image->filename = $filename;
-        $image->save();
+            $image = new Image();
+            $image->subdirectory = self::$postImagesSubdirectory;
+            $image->filename = $filename;
+            $image->save();
 
-        session()->flash('message', 'Image uploaded successfully.');
+            session()->flash('message', 'Image uploaded successfully.');
+        } catch (\Exception) {
+            session()->flash('error', 'Image upload failed! Please try again.');
+        }
+
         return redirect()->back();
     }
 

@@ -82,23 +82,29 @@ class UserController extends Controller
         $request->validate([
             'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
-        $file = $request->file('image');
-        $filename = ImageController::sanatizeImageFilename($file);
 
-        ImageManagerStatic::make($file)
-            ->fit(150, 150)
-            ->save(ImageController::getImagePublicPath(ImageController::$avatarImagesSubdirectory, $filename));
+        try {
+            $file = $request->file('image');
+            $filename = ImageController::sanatizeImageFilename($file);
 
-        $image = new Image();
-        $image->subdirectory = ImageController::$avatarImagesSubdirectory;
-        $image->filename = $filename;
-        $image->save();
+            ImageManagerStatic::make($file)
+                ->fit(150, 150)
+                ->save(ImageController::getImagePublicPath(ImageController::$avatarImagesSubdirectory, $filename));
 
-        $user = User::find(Auth::user()->id);
-        $user->image_id = $image->id;
-        $user->save();
+            $image = new Image();
+            $image->subdirectory = ImageController::$avatarImagesSubdirectory;
+            $image->filename = $filename;
+            $image->save();
 
-        session()->flash('message', 'Avatar updated successfully.');
+            $user = User::find(Auth::user()->id);
+            $user->image_id = $image->id;
+            $user->save();
+
+            session()->flash('message', 'Avatar updated successfully.');
+        } catch (\Exception) {
+            session()->flash('error', 'Avatar update failed! Please try again.');
+        }
+
         return redirect()->back();
     }
 

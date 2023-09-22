@@ -3,8 +3,11 @@
 namespace Tests\Feature\Controller;
 
 use App\Http\Controllers\ImageController;
+use App\Models\Image;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class ImageControllerTest extends TestCase
@@ -37,14 +40,15 @@ class ImageControllerTest extends TestCase
      */
     public function testUploadPostImage()
     {
-        // TODO: Finish writing this test asserting an image got uploaded
-        $this->doesNotPerformAssertions();
+        Storage::fake('public');
 
-        // $request = Request::create("/images", 'POST');
-        // $response = self::$controller->uploadPostImage($request);
+        $request = Request::create("/images", 'POST', [], [], [
+            'image' => UploadedFile::fake()->image('image.jpg'),
+        ]);
+        $response = self::$controller->uploadPostImage($request);
 
-        // $this->assertEquals('Image uploaded successfully.', $response->getSession()->get('message'));
-        // $this->assertEquals(302, $response->getStatusCode());
+        $this->assertEquals('Image uploaded successfully.', $response->getSession()->get('message'));
+        $this->assertEquals(302, $response->getStatusCode());
     }
 
     /**
@@ -54,13 +58,19 @@ class ImageControllerTest extends TestCase
      */
     public function testDeletePostImage()
     {
-        // TODO: Finish writing this test asserting an image got uploaded
-        $this->doesNotPerformAssertions();
+        Storage::fake('public');
 
-        // $request = Request::create("/images", 'DELETE');
-        // $response = self::$controller->deletePostImage($request);
+        $request = Request::create("/images", 'POST', [], [], [
+            'image' => UploadedFile::fake()->image('image.jpg'),
+        ]);
+        $response = self::$controller->uploadPostImage($request);
 
-        // $this->assertEquals('Image deleted.', $response->getSession()->get('message'));
-        // $this->assertEquals(302, $response->getStatusCode());
+        $image = Image::find(1);
+
+        $request = Request::create("/images/$image->id", 'DELETE');
+        $response = self::$controller->deletePostImage($request, $image->id);
+
+        $this->assertEquals('Image deleted.', $response->getSession()->get('message'));
+        $this->assertEquals(302, $response->getStatusCode());
     }
 }
