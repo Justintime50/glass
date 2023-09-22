@@ -7,7 +7,6 @@ use Tests\TestCase;
 
 class ImageControllerTest extends TestCase
 {
-
     public static function setUpBeforeClass(): void
     {
         self::$controller = new ImageController();

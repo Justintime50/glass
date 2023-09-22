@@ -110,7 +110,9 @@ class ImageController extends Controller
      */
     public static function getImageAssetPath(?string $subdirectory, ?string $imageName): string|null
     {
-        return isset($subdirectory) && isset($imageName) ? asset('storage/' . self::$imagesDir . "/$subdirectory/$imageName") : null;
+        return isset($subdirectory) && isset($imageName)
+            ? asset('storage/' . self::$imagesDir . "/$subdirectory/$imageName")
+            : null;
     }
 
     /**
@@ -122,6 +124,8 @@ class ImageController extends Controller
      */
     public static function getImagePublicPath(?string $subdirectory, ?string $imageName): string|null
     {
-        return isset($subdirectory) && isset($imageName) ?  public_path('storage/' . self::$imagesDir . "/$subdirectory/$imageName") : null;
+        return isset($subdirectory) && isset($imageName)
+            ?  public_path('storage/' . self::$imagesDir . "/$subdirectory/$imageName")
+            : null;
     }
 }

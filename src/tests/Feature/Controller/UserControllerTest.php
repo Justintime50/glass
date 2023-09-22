@@ -94,7 +94,7 @@ class UserControllerTest extends TestCase
         $authedUser = User::find(1);
         $this->actingAs($authedUser);
 
-        $request = Request::create("/update-profile-pic", 'POST', [], [], [
+        $request = Request::create('/update-profile-pic', 'POST', [], [], [
             'image' => UploadedFile::fake()->image('image.jpg'),
         ]);
         $response = self::$controller->updateProfilePic($request);

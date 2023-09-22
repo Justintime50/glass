@@ -42,7 +42,7 @@ class ImageControllerTest extends TestCase
     {
         Storage::fake('public');
 
-        $request = Request::create("/images", 'POST', [], [], [
+        $request = Request::create('/images', 'POST', [], [], [
             'image' => UploadedFile::fake()->image('image.jpg'),
         ]);
         $response = self::$controller->uploadPostImage($request);
@@ -60,7 +60,7 @@ class ImageControllerTest extends TestCase
     {
         Storage::fake('public');
 
-        $request = Request::create("/images", 'POST', [], [], [
+        $request = Request::create('/images', 'POST', [], [], [
             'image' => UploadedFile::fake()->image('image.jpg'),
         ]);
         $response = self::$controller->uploadPostImage($request);
