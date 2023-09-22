@@ -8,6 +8,7 @@ use App\Models\Image;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -245,9 +246,13 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->comments()->delete();
-        $image = Image::find($post->image_id);
-        unlink(ImageController::getImagePublicPath($image->subdirectory, $image->filename));
-        $image->delete();
+        try {
+            $image = Image::findOrFail($post->image_id);
+            unlink(ImageController::getImagePublicPath($image->subdirectory, $image->filename));
+            $image->delete();
+        } catch (ModelNotFoundException $e) {
+            // Don't delete an image that doesn't exist
+        }
         $post->delete();
 
         session()->flash('message', 'Post deleted.');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -111,8 +112,13 @@ class UserController extends Controller
     public function delete(Request $request, int $id): RedirectResponse
     {
         $user = User::find($id);
-        $image = Image::find($user->image_id);
-        unlink(ImageController::getImagePublicPath($image->subdirectory, $image->filename));
+        try {
+            $image = Image::findOrFail($user->image_id);
+            unlink(ImageController::getImagePublicPath($image->subdirectory, $image->filename));
+            $image->delete();
+        } catch (ModelNotFoundException $e) {
+            // Don't delete an image that doesn't exist
+        }
         $user->delete();
 
         session()->flash('message', 'User deleted.');
