@@ -12,6 +12,11 @@ class RssFeedControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    public static function setUpBeforeClass(): void
+    {
+        self::$controller = new RssFeedController();
+    }
+
     /**
      * Tests that we return the RSS feed correctly.
      *
@@ -19,11 +24,10 @@ class RssFeedControllerTest extends TestCase
      */
     public function testFeed()
     {
-        $controller = new RssFeedController();
         Post::factory()->create();
 
         $request = Request::create('/feed', 'GET');
-        $response = $controller->getFeed($request);
+        $response = self::$controller->getFeed($request);
 
         $xml = simplexml_load_string($response->getContent());
         $this->assertInstanceOf(\SimpleXMLElement::class, $xml);

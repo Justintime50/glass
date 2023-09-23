@@ -13,6 +13,11 @@ class AdminControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    public static function setUpBeforeClass(): void
+    {
+        self::$controller = new AdminController();
+    }
+
     /**
      * Tests that we return the admin page and data correctly.
      *
@@ -20,12 +25,11 @@ class AdminControllerTest extends TestCase
      */
     public function testShowAdminDashboard()
     {
-        $controller = new AdminController();
         Category::factory()->create();
         Post::factory()->create();
 
         $request = Request::create('/admin', 'GET');
-        $response = $controller->showAdminDashboard($request);
+        $response = self::$controller->showAdminDashboard($request);
 
         $viewData = $response->getData();
 
@@ -42,14 +46,12 @@ class AdminControllerTest extends TestCase
      */
     public function testUpdateSettings()
     {
-        $controller = new AdminController();
-
         $request = Request::create('/settings', 'PATCH', [
             'title' => 'new title',
             'comments' => 0,
             'theme' => 2,
         ]);
-        $response = $controller->updateSettings($request);
+        $response = self::$controller->updateSettings($request);
 
         $this->assertDatabaseHas('settings', ['title' => 'new title']);
         $this->assertDatabaseHas('settings', ['comments' => 0]);
@@ -65,12 +67,10 @@ class AdminControllerTest extends TestCase
      */
     public function testUpdateUserRole()
     {
-        $controller = new AdminController();
-
         $request = Request::create('/settings', 'PATCH', [
             'role' => 3,
         ]);
-        $response = $controller->updateUserRole($request, 1);
+        $response = self::$controller->updateUserRole($request, 1);
 
         $this->assertDatabaseHas('users', ['role' => 3]);
         $this->assertEquals('User role updated.', $response->getSession()->get('message'));

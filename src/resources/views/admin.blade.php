@@ -167,9 +167,11 @@
                         @endphp
                         <tr>
                             <td>
-                                @php $avatar_path = public_path("storage/images/avatars/$user->id.png"); @endphp
-                                @if (file_exists($avatar_path))
-                                    <img src="{{ asset("storage/images/avatars/$user->id.png") }}" class="avatar-small">
+                                @if (
+                                    \App\Http\Controllers\ImageController::getImagePublicPath($user->image?->subdirectory, $user->image?->filename) !==
+                                        null)
+                                    <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($user->image->subdirectory, $user->image->filename) }}"
+                                        class="avatar-small">
                                 @else
                                     <i class="fas fa-user fa-2x avatar-small"></i>
                                 @endif

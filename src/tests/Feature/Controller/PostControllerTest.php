@@ -15,6 +15,11 @@ class PostControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    public static function setUpBeforeClass(): void
+    {
+        self::$controller = new PostController();
+    }
+
     /**
      * Tests that we return the posts page and data correctly.
      *
@@ -22,12 +27,11 @@ class PostControllerTest extends TestCase
      */
     public function testShowPosts()
     {
-        $controller = new PostController();
         $category = Category::factory()->create();
         Post::factory(['category_id' => $category->id])->create();
 
         $request = Request::create('/posts', 'GET');
-        $response = $controller->showPosts($request);
+        $response = self::$controller->showPosts($request);
 
         $viewData = $response->getData();
 
@@ -43,12 +47,11 @@ class PostControllerTest extends TestCase
      */
     public function testShowPostsByCategory()
     {
-        $controller = new PostController();
         $category = Category::factory()->create();
         Post::factory(['category_id' => $category->id])->create();
 
         $request = Request::create("/posts/category/$category->category", 'GET');
-        $response = $controller->showPostsByCategory($request, $category->category);
+        $response = self::$controller->showPostsByCategory($request, $category->category);
 
         $viewData = $response->getData();
 
@@ -65,12 +68,11 @@ class PostControllerTest extends TestCase
      */
     public function testShowPostsByUser()
     {
-        $controller = new PostController();
         $user = User::find(1);
         Post::factory(['user_id' => $user->id])->create();
 
         $request = Request::create("/posts/user/$user->name", 'GET');
-        $response = $controller->showPostsByUser($request, $user->name);
+        $response = self::$controller->showPostsByUser($request, $user->name);
 
         $viewData = $response->getData();
 
@@ -87,7 +89,6 @@ class PostControllerTest extends TestCase
      */
     public function testShowPost()
     {
-        $controller = new PostController();
         $authorUser = User::find(1);
         $post = Post::factory([
             'user_id' => $authorUser->id,
@@ -96,7 +97,7 @@ class PostControllerTest extends TestCase
         Comment::factory(['post_id' => $post->id])->create();
 
         $request = Request::create("/$authorUser->name/$post->slug", 'GET');
-        $response = $controller->showPost($request, $authorUser->name, $post->slug);
+        $response = self::$controller->showPost($request, $authorUser->name, $post->slug);
 
         $viewData = $response->getData();
 
@@ -111,7 +112,6 @@ class PostControllerTest extends TestCase
      */
     public function testShowPostAdmin()
     {
-        $controller = new PostController();
         $authedUser = User::find(1);
         $this->actingAs($authedUser);
         $post = Post::factory([
@@ -121,7 +121,7 @@ class PostControllerTest extends TestCase
         Comment::factory(['post_id' => $post->id])->create();
 
         $request = Request::create("/$authedUser->name/$post->slug", 'GET');
-        $response = $controller->showPost($request, $authedUser->name, $post->slug);
+        $response = self::$controller->showPost($request, $authedUser->name, $post->slug);
 
         $viewData = $response->getData();
 
@@ -136,11 +136,10 @@ class PostControllerTest extends TestCase
      */
     public function testShowCreatePage()
     {
-        $controller = new PostController();
         Category::factory()->create();
 
         $request = Request::create('/create-post', 'GET');
-        $response = $controller->showCreatePage($request);
+        $response = self::$controller->showCreatePage($request);
 
         $viewData = $response->getData();
 
@@ -154,13 +153,12 @@ class PostControllerTest extends TestCase
      */
     public function testShowEditPage()
     {
-        $controller = new PostController();
         $authorUser = User::find(1);
         $post = Post::factory()->create();
         Category::factory()->create();
 
         $request = Request::create("/$authorUser->name/$post->slug", 'GET');
-        $response = $controller->showEditPage($request, $authorUser->name, $post->slug);
+        $response = self::$controller->showEditPage($request, $authorUser->name, $post->slug);
 
         $viewData = $response->getData();
 
@@ -175,7 +173,6 @@ class PostControllerTest extends TestCase
      */
     public function testCreate()
     {
-        $controller = new PostController();
         $authedUser = User::find(1);
         $this->actingAs($authedUser);
 
@@ -187,7 +184,7 @@ class PostControllerTest extends TestCase
             'post' => 'mock content here',
             'published' => 1,
         ]);
-        $response = $controller->create($request);
+        $response = self::$controller->create($request);
 
         $this->assertDatabaseHas('posts', ['post' => 'mock content here']);
         $this->assertEquals('Post created.', $response->getSession()->get('message'));
@@ -201,7 +198,6 @@ class PostControllerTest extends TestCase
      */
     public function testUpdate()
     {
-        $controller = new PostController();
         $authedUser = User::find(1);
         $this->actingAs($authedUser);
         $post = Post::factory()->create();
@@ -214,7 +210,7 @@ class PostControllerTest extends TestCase
             'post' => 'mock content here',
             'published' => 1,
         ]);
-        $response = $controller->update($request, $post->id);
+        $response = self::$controller->update($request, $post->id);
 
         $this->assertDatabaseHas('posts', ['post' => 'mock content here']);
         $this->assertEquals('Post updated.', $response->getSession()->get('message'));
@@ -228,11 +224,10 @@ class PostControllerTest extends TestCase
      */
     public function testDelete()
     {
-        $controller = new PostController();
         $post = Post::factory(['post' => 'deleted post'])->create();
 
         $request = Request::create("/posts/$post->id", 'DELETE');
-        $response = $controller->delete($request, $post->id);
+        $response = self::$controller->delete($request, $post->id);
 
         $this->assertSoftDeleted('posts', ['post' => 'deleted post']);
         $this->assertEquals('Post deleted.', $response->getSession()->get('message'));
@@ -240,54 +235,16 @@ class PostControllerTest extends TestCase
     }
 
     /**
-     * Tests that we return the images page and data correctly.
+     * Tests that we generate the reading time correctly.
      *
      * @return void
      */
-    public function testShowImages()
+    public function testGenerateReadingTime()
     {
-        $controller = new PostController();
+        $post = Post::factory()->create();
 
-        $request = Request::create('/images', 'GET');
-        $controller->showImagesPage($request);
+        $readingTime = self::$controller::generateReadingTime($post);
 
-        // TODO: Is there a better assertion here since we return an empty view?
-        $this->assertTrue(true);
-    }
-
-    /**
-     * Tests that we can upload a post image correctly.
-     *
-     * @return void
-     */
-    public function testUpdateProfilePic()
-    {
-        // TODO: Finish writing this test asserting an image got uploaded
-        $this->doesNotPerformAssertions();
-        // $controller = new PostController();
-
-        // $request = Request::create("/images", 'POST');
-        // $response = $controller->uploadPostImage($request);
-
-        // $this->assertEquals('Image uploaded successfully.', $response->getSession()->get('message'));
-        // $this->assertEquals(302, $response->getStatusCode());
-    }
-
-    /**
-     * Tests that we can delete a post image correctly.
-     *
-     * @return void
-     */
-    public function testDeletePostImage()
-    {
-        // TODO: Finish writing this test asserting an image got uploaded
-        $this->doesNotPerformAssertions();
-        // $controller = new PostController();
-
-        // $request = Request::create("/images", 'DELETE');
-        // $response = $controller->deletePostImage($request);
-
-        // $this->assertEquals('Image deleted.', $response->getSession()->get('message'));
-        // $this->assertEquals(302, $response->getStatusCode());
+        $this->assertEquals(1, $readingTime);
     }
 }

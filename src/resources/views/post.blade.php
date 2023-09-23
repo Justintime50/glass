@@ -33,12 +33,13 @@
             <a href="{{ '/posts/category/' . $post->category->category }}">{{ $post->category->category }}</a>
         </p>
         <div class="banner-image-container">
-            @if (isset($post->banner_image_url) &&
-                    file_exists(\App\Http\Controllers\PostController::getImagePublicPath($post->banner_image_url)))
-                <img src="{{ \App\Http\Controllers\PostController::getImageAssetPath($post->banner_image_url) }}"
+            @if (
+                \App\Http\Controllers\ImageController::getImagePublicPath($post->image?->subdirectory, $post->image?->filename) !==
+                    null)
+                <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($post->image->subdirectory, $post->image->filename) }}"
                     class="banner-image">
             @else
-                <img src="{{ asset('pics/banner.jpg') }}" class="banner-image">
+                <img src="{{ asset(\App\Http\Controllers\ImageController::$defaultBannerImage) }}" class="banner-image">
             @endif
         </div>
         <div>
@@ -110,9 +111,12 @@
 
         <div class="row author">
             <div class="col-md-2">
-                @php $avatar_path = 'storage/images/avatars/' . $post->user->id . '.png'; @endphp
-                @if (file_exists(public_path($avatar_path)))
-                    <img src="{{ asset($avatar_path) }}" class="avatar">
+                @if (
+                    \App\Http\Controllers\ImageController::getImagePublicPath(
+                        $post->user->image?->subdirectory,
+                        $post->user->image?->filename) !== null)
+                    <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($post->user->image->subdirectory, $post->user->image->filename) }}"
+                        class="avatar">
                 @else
                     <i class="fas fa-user fa-3x avatar"></i>
                 @endif
@@ -146,9 +150,12 @@
                             <tr>
                                 <td>
                                     <p>{{ $comment->comment }}</p>
-                                    @php $avatar_path = 'storage/images/avatars/' . $comment->user->id . '.png'; @endphp
-                                    @if (file_exists(public_path($avatar_path)))
-                                        <img src="{{ asset($avatar_path) }}" class="avatar-small">
+                                    @if (
+                                        \App\Http\Controllers\ImageController::getImagePublicPath(
+                                            $comment->user->image?->subdirectory,
+                                            $comment->user->image?->filename) !== null)
+                                        <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($comment->user->image->subdirectory, $comment->user->image->filename) }}"
+                                            class="avatar-small">
                                     @else
                                         <i class="fas fa-user fa-2x avatar-small"></i>
                                     @endif

@@ -20,7 +20,7 @@ class CommentModelTest extends TestCase
     public function testCommentRelationships()
     {
         // Seed necessary records for factory
-        $post = Post::factory()->create();
+        Post::factory()->create();
 
         $comment = Comment::factory()->create();
 

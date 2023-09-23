@@ -9,8 +9,8 @@ export function slugifyField(textfield, slugField) {
 }
 
 // selectImage inserts the image name into the url field of the form once selected from a modal
-export function selectImage(imageName) {
-    document.getElementById("banner_image_url").value = imageName;
+export function selectImage(imageId, imageName) {
+    document.getElementById("image_id").value = imageId;
     document.getElementById(
         "banner-image-preview"
     ).src = `${window.location.origin}/storage/images/posts/${imageName}`;

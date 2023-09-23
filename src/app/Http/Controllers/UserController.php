@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\ImageManagerStatic;
 
 class UserController extends Controller
 {
@@ -68,21 +70,41 @@ class UserController extends Controller
     /**
      * Update the user profile picture.
      *
+     * 1. Store the image on disk
+     * 2. Make an entry of the image filename in the images table
+     * 3. Associate the new image to the user
+     *
      * @param Request $request
      * @return RedirectResponse
      */
     public function updateProfilePic(Request $request): RedirectResponse
     {
         $request->validate([
-            'upload_profile_pic' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
-        $id = $request->input('id');
 
-        Image::make($request->file('upload_profile_pic'))
-            ->fit(150, 150)
-            ->save(public_path("storage/images/avatars/$id.png"));
+        try {
+            $file = $request->file('image');
+            $filename = ImageController::sanatizeImageFilename($file);
 
-        session()->flash('message', 'Avatar updated successfully.');
+            ImageManagerStatic::make($file)
+                ->fit(150, 150)
+                ->save(ImageController::getImagePublicPath(ImageController::$avatarImagesSubdirectory, $filename));
+
+            $image = new Image();
+            $image->subdirectory = ImageController::$avatarImagesSubdirectory;
+            $image->filename = $filename;
+            $image->save();
+
+            $user = User::find(Auth::user()->id);
+            $user->image_id = $image->id;
+            $user->save();
+
+            session()->flash('message', 'Avatar updated successfully.');
+        } catch (\Exception) {
+            session()->flash('error', 'Avatar update failed! Please try again.');
+        }
+
         return redirect()->back();
     }
 
@@ -95,7 +117,15 @@ class UserController extends Controller
      */
     public function delete(Request $request, int $id): RedirectResponse
     {
-        User::find($id)->delete();
+        $user = User::find($id);
+        try {
+            $image = Image::findOrFail($user->image_id);
+            unlink(ImageController::getImagePublicPath($image->subdirectory, $image->filename));
+            $image->delete();
+        } catch (ModelNotFoundException $e) {
+            // Don't delete an image that doesn't exist
+        }
+        $user->delete();
 
         session()->flash('message', 'User deleted.');
         return redirect()->back();

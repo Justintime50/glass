@@ -2,6 +2,7 @@
 
 ## Next Release
 
+- Image references are now stored in the database instead of losely through the filesystem. This means that tracking what images belong to what users and posts should work much smoother. Additionally, various improvements were made across the app to how images are handled resulting in a vastly improved image experience
 - Categories are now unique and required, enforced at the database level
 - Various database indexes were added for common lookup patterns for quick retrieval
 - Foreign key constraints were added to enforce data integrity at the database level when records are related to one another

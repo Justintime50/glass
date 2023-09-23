@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Image;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Intervention\Image\ImageManagerStatic as Image;
 
 class PostController extends Controller
 {
@@ -108,6 +109,7 @@ class PostController extends Controller
                 ->where('published', '=', 1)
                 ->firstOrFail();
         }
+
         $comments = Comment::where('post_id', '=', $post->id)
             ->orderBy('created_at', 'asc')
             ->paginate(10);
@@ -125,7 +127,10 @@ class PostController extends Controller
     {
         $categories = Category::all();
 
-        return view('create-post', compact('categories'));
+        $images = Image::where('subdirectory', '=', ImageController::$postImagesSubdirectory)
+            ->get();
+
+        return view('create-post', compact('categories', 'images'));
     }
 
     /**
@@ -140,9 +145,13 @@ class PostController extends Controller
     {
         $post = Post::where('slug', '=', $slug)
             ->firstOrFail();
+
         $categories = Category::all();
 
-        return view('edit-post', compact('post', 'categories'));
+        $images = Image::where('subdirectory', '=', ImageController::$postImagesSubdirectory)
+            ->get();
+
+        return view('edit-post', compact('post', 'categories', 'images'));
     }
 
     /**
@@ -168,14 +177,14 @@ class PostController extends Controller
             'keywords' => 'nullable|string',
             'category_id' => 'nullable|integer',
             'post' => 'required|string',
-            'banner_image_url' => 'nullable|string',
+            'image_id' => 'nullable|integer',
             'published' => 'required|integer',
         ]);
 
         $post->title = $request->input('title');
         $post->slug = $request->input('slug');
         $post->published = $request->input('published');
-        $post->banner_image_url = $request->input('banner_image_url');
+        $post->image_id = $request->input('image_id');
         $post->keywords = $request->input('keywords');
         $post->category_id = $request->input('category_id');
         $post->post = $request->input('post');
@@ -208,12 +217,12 @@ class PostController extends Controller
             'keywords' => 'nullable|string',
             'category_id' => 'nullable|integer',
             'post' => 'required|string',
-            'banner_image_url' => 'nullable|string',
+            'image_id' => 'nullable|integer',
             'published' => 'required|integer',
         ]);
 
         $post->published = $request->input('published');
-        $post->banner_image_url = $request->input('banner_image_url');
+        $post->image_id = $request->input('image_id');
         $post->title = $request->input('title');
         $post->slug = $request->input('slug');
         $post->keywords = $request->input('keywords');
@@ -227,7 +236,7 @@ class PostController extends Controller
     }
 
     /**
-     * Delete a post and its associated comments.
+     * Delete a post, its image, and its associated comments.
      *
      * @param Request $request
      * @param int $id
@@ -237,62 +246,17 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->comments()->delete();
+        try {
+            $image = Image::findOrFail($post->image_id);
+            unlink(ImageController::getImagePublicPath($image->subdirectory, $image->filename));
+            $image->delete();
+        } catch (ModelNotFoundException $e) {
+            // Don't delete an image that doesn't exist
+        }
         $post->delete();
 
         session()->flash('message', 'Post deleted.');
         return redirect('/');
-    }
-
-    /**
-     * Show the image gallery.
-     *
-     * Images will have a unique ID associated with them which can be referenced to show the images in posts.
-     *
-     * @param Request $request
-     * @return View
-     */
-    public function showImagesPage(Request $request): View
-    {
-        return view('images');
-    }
-
-    /**
-     * Upload an image to local storage.
-     *
-     * @param Request $request
-     * @return RedirectResponse
-     */
-    public function uploadPostImage(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'upload_image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
-        ]);
-
-        // ~1 billion possible IDs, overlap potential should be small
-        $idMin = 1000000000;
-        $idMax = 9999999999;
-        $id = mt_rand($idMin, $idMax);
-
-        Image::make($request->file('upload_image'))->save(self::getImagePublicPath("$id.png"));
-
-        session()->flash('message', 'Image uploaded successfully.');
-        return redirect()->back();
-    }
-
-    /**
-     * Delete an image.
-     *
-     * @param Request $request
-     * @param int $id
-     * @return RedirectResponse
-     */
-    public function deletePostImage(Request $request, int $id): RedirectResponse
-    {
-        // TODO: Store image IDs in a database
-        unlink(public_path("storage/images/posts/$id.png"));
-
-        session()->flash('message', 'Image deleted.');
-        return redirect()->back();
     }
 
     /**
@@ -309,27 +273,5 @@ class PostController extends Controller
         $readingTime = round(str_word_count($post->post) / $averageReaderWordsPerMinute) + $bufferMinutes;
 
         return $readingTime;
-    }
-
-    /**
-     * Gets the image asset path for a post.
-     *
-     * @param string $imageName
-     * @return string
-     */
-    public static function getImageAssetPath(string $imageName): string
-    {
-        return asset("storage/images/posts/$imageName");
-    }
-
-    /**
-     * Gets the public image path for a post.
-     *
-     * @param string $imageName
-     * @return string
-     */
-    public static function getImagePublicPath(string $imageName): string
-    {
-        return public_path("storage/images/posts/$imageName");
     }
 }

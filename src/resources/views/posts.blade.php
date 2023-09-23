@@ -11,12 +11,14 @@
                 <a href="{{ strtolower(url('/' . str_replace(' ', '-', $post->user->name) . '/' . $post->slug)) }}"
                     class="post-link">
                     <div class="banner-image-container">
-                        @if (isset($post->banner_image_url) &&
-                                file_exists(\App\Http\Controllers\PostController::getImagePublicPath($post->banner_image_url)))
-                            <img src="{{ \App\Http\Controllers\PostController::getImageAssetPath($post->banner_image_url) }}"
+                        @if (
+                            \App\Http\Controllers\ImageController::getImagePublicPath($post->image?->subdirectory, $post->image?->filename) !==
+                                null)
+                            <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($post->image->subdirectory, $post->image->filename) }}"
                                 class="banner-image">
                         @else
-                            <img src="{{ asset('pics/banner.jpg') }}" class="banner-image">
+                            <img src="{{ asset(\App\Http\Controllers\ImageController::$defaultBannerImage) }}"
+                                class="banner-image">
                         @endif
                     </div>
                     <div class="post-container-content-feed">
