@@ -12,11 +12,11 @@ class UserModelTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * Tests Image relationships are setup correctly.
+     * Tests User relationships are setup correctly.
      *
      * @return void
      */
-    public function testImageRelationships()
+    public function testUserRelationships()
     {
         $user = User::find(1);
         $image = Image::factory()->create();
