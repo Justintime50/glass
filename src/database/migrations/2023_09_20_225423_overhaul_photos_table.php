@@ -11,23 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('photos', function (Blueprint $table) {
-            $table->string('user_id')->change(); // change to string, rename to follow
-            $table->string('post_id')->change(); // change to string, rename to follow
+        Schema::rename('photos', 'images');
+
+        Schema::table('images', function (Blueprint $table) {
+            $table->string('user_id')->change(); // change to string, rename to follow and must be done separately
+            $table->string('post_id')->change(); // change to string, rename to follow and must be done separately
             $table->dropColumn('url');
         });
 
         // Split so SQLite via test suite can work since it doesn't support renaming multiple columns at once
-        Schema::table('photos', function (Blueprint $table) {
+        Schema::table('images', function (Blueprint $table) {
             $table->renameColumn('user_id', 'subdirectory');
         });
 
         // Split so SQLite via test suite can work since it doesn't support renaming multiple columns at once
-        Schema::table('photos', function (Blueprint $table) {
+        Schema::table('images', function (Blueprint $table) {
             $table->renameColumn('post_id', 'filename');
         });
-
-        Schema::rename('photos', 'images');
 
         // Split so SQLite via test suite can work since it doesn't support renaming multiple columns at once
         Schema::table('users', function (Blueprint $table) {
@@ -36,7 +36,7 @@ return new class extends Migration
 
         Schema::table('users', function (Blueprint $table) {
             $table->bigInteger('image_id')->unsigned()->change();
-            $table->foreign('image_id')->references('id')->on('images');
+            $table->foreign('image_id')->references('id')->on('images')->nullable();
         });
 
         // Split so SQLite via test suite can work since it doesn't support renaming multiple columns at once
@@ -46,7 +46,7 @@ return new class extends Migration
 
         Schema::table('posts', function (Blueprint $table) {
             $table->bigInteger('image_id')->unsigned()->change();
-            $table->foreign('image_id')->references('id')->on('images');
+            $table->foreign('image_id')->references('id')->on('images')->nullable();
         });
     }
 
@@ -55,23 +55,23 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('images', function (Blueprint $table) {
+        Schema::rename('images', 'photos');
+
+        Schema::table('photos', function (Blueprint $table) {
             $table->integer('subdirectory')->change();
             $table->integer('filename')->change();
             $table->string('url');
         });
 
         // Split so SQLite via test suite can work since it doesn't support renaming multiple columns at once
-        Schema::table('images', function (Blueprint $table) {
+        Schema::table('photos', function (Blueprint $table) {
             $table->renameColumn('subdirectory', 'user_id');
         });
 
         // Split so SQLite via test suite can work since it doesn't support renaming multiple columns at once
-        Schema::table('images', function (Blueprint $table) {
+        Schema::table('photos', function (Blueprint $table) {
             $table->renameColumn('filename', 'post_id');
         });
-
-        Schema::rename('images', 'photos');
 
         Schema::table('users', function (Blueprint $table) {
             $table->dropForeign('users_image_id_foreign');
