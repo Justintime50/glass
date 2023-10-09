@@ -1,10 +1,11 @@
 # CHANGELOG
 
-## Next Release
+## v2.0.0 (2023-10-09)
 
 - Image references are now stored in the database instead of losely through the filesystem. This means that tracking what images belong to what users and posts should work much smoother. Additionally, various improvements were made across the app to how images are handled resulting in a vastly improved image experience
+  - Upgrade Note: When upgrading from v1.x, you will need to either manually add database entries for each image you previously had and link them to posts and users or re-upload images as needed
 - Categories are now unique and required, enforced at the database level
-- Various database indexes were added for common lookup patterns for quick retrieval
+- Various database indexes were added for common lookup patterns for faster queries
 - Foreign key constraints were added to enforce data integrity at the database level when records are related to one another
   - Due to this addition, comments of a post now get deleted when a post is deleted
 - Fixes various database field types and type validation on form submission to better align with the context they are used with
