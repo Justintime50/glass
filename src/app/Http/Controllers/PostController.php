@@ -170,6 +170,7 @@ class PostController extends Controller
             'title' => 'required|string',
             'slug' => [
                 'required',
+                'alpha_dash:ascii',
                 Rule::unique('posts')->ignore($post->id)->where(function ($query) {
                     return $query->where('user_id', Auth::user()->id);
                 })
@@ -210,6 +211,7 @@ class PostController extends Controller
             'title'         => 'required|string',
             'slug' => [
                 'required',
+                'alpha_dash:ascii',
                 Rule::unique('posts')->ignore($post->id)->where(function ($query) {
                     return $query->where('user_id', Auth::user()->id);
                 })

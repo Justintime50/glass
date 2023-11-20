@@ -12,11 +12,10 @@
             @method('PATCH')
 
             <label for="title">Title</label>
-            <input type="text" class="form-control" name="title" id="title" value="{{ old('title', $post->title) }}"
-                oninput="app.slugifyField('title', 'slug')">
+            <input type="text" class="form-control" name="title" id="title" value="{{ old('title', $post->title) }}">
 
             <label for="slug">Slug (URL) - Must be a single string (eg: "my-new-post" OR "mynewpost")</label>
-            <input type='text' class='form-control' name='slug' id="slug" value="{{ old('slug', $post->slug) }}">
+            <input type='text' class='form-control' name='slug' value="{{ old('slug', $post->slug) }}">
 
             <label for="published">Post Status</label>
             <select class="form-select" name="published">

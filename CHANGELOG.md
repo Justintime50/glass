@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.1 (2023-11-20)
+
+- URL slugs now only accept alphanumeric characters along with dashes and underscores to ensure valid URL strings
+- The post title is no longer slugified automatically to the URL when editing a post title. This ensures that existing links aren't broken without user intervention when updating a post title
+- Bumps patch versions of dependencies
+
 ## v2.0.0 (2023-10-09)
 
 - Image references are now stored in the database instead of losely through the filesystem. This means that tracking what images belong to what users and posts should work much smoother. Additionally, various improvements were made across the app to how images are handled resulting in a vastly improved image experience
