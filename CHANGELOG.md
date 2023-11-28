@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v2.1.0 (2023-11-28)
+
+- Adds PHP 8.3 support
+- Bumps MariaDB from 11.1.2 to 11.1.3
+- Removes CPU limits, ups database memory limits
+- Bumps dependencies
+
 ## v2.0.1 (2023-11-20)
 
 - URL slugs now only accept alphanumeric characters along with dashes and underscores to ensure valid URL strings
