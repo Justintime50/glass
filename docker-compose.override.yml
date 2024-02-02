@@ -2,5 +2,8 @@ services:
   glass:
     labels:
       - 'traefik.http.routers.glass.rule=Host(`glass.localhost`)'
+    depends_on:
+      glass-db:
+        condition: service_started
     volumes:
       - ./src:/var/www/html
