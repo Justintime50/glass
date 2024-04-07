@@ -11,7 +11,7 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-      - run: docker network create traefik
+      - run: docker network create traefik-glass
       - name: Run setup Docker container
         run: |
           cp .env-example .env
@@ -45,7 +45,7 @@ jobs:
         with:
           php-version: ${{ matrix.phpversion }}
           coverage: xdebug
-      - run: docker network create traefik
+      - run: docker network create traefik-glass
       - name: Install Dependencies
         run: |
           cp .env-example .env
