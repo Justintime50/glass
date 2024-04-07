@@ -14,7 +14,6 @@ jobs:
       - name: Setup Docker container
         run: |
           docker network create traefik-glass
-          docker network create glass
           cp .env-example .env
           cd src
           cp .env-example .env
@@ -49,7 +48,6 @@ jobs:
       - name: Install Dependencies
         run: |
           docker network create traefik-glass
-          docker network create glass
           cp .env-example .env
           cd src
           cp .env-example .env

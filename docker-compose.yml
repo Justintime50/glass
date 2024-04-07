@@ -3,17 +3,16 @@ services:
     build: .
     restart: always
     networks:
-      - traefik
+      - traefik-glass
       - glass
     labels:
       - traefik.enable=true
+      - 'traefik.docker.network=traefik-glass'
     env_file:
       - src/.env
   glass-db:
     image: 'mariadb:11.3.2'
     restart: always
-    labels:
-      - 'traefik.docker.network=traefik-glass'
     volumes:
       - database-data:/var/lib/mysql
     env_file:
