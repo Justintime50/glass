@@ -7,7 +7,7 @@ services:
       replicas: 2
     mem_limit: '512m'
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost']
+      test: ['CMD', 'curl', '--silent', '--output', '/dev/null', '--show-error', '--fail', 'http://localhost']
       start_period: 10s
       start_interval: 2s
       interval: 30s
@@ -26,7 +26,8 @@ services:
   glass-db:
     mem_limit: '768m'
     healthcheck:
-      test: ['CMD', 'mariadb', '-u${MARIADB_USER}', '-p${MARIADB_PASSWORD}', '-e', 'show databases;']
+      test:
+        ['CMD', 'mariadb', '-u${MARIADB_USER}', '-p${MARIADB_PASSWORD}', '-D${MARIADB_DATABASE}', '-e', 'show tables;']
       # Need to account for upgrade times at startup
       start_period: 30s
       start_interval: 2s
