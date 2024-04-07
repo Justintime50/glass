@@ -12,6 +12,8 @@ services:
   glass-db:
     image: 'mariadb:11.3.2'
     restart: always
+    labels:
+      - 'traefik.docker.network=traefik-glass'
     volumes:
       - database-data:/var/lib/mysql
     env_file:
@@ -24,8 +26,6 @@ volumes:
     driver: local
 
 networks:
-  traefik:
-    name: traefik
+  traefik-glass:
     external: true
   glass:
-    name: glass
