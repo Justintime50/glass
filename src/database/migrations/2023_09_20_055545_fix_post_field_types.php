@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->integer('category_id')->change();
-            $table->string('keywords')->change();
+            $table->integer('category_id')->nullable()->change();
+            $table->string('keywords')->nullable()->change();
             $table->mediumText('post')->change();
         });
     }
@@ -24,8 +24,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('category_id')->change();
-            $table->text('keywords')->change();
+            $table->string('category_id')->nullable()->change();
+            $table->text('keywords')->nullable()->change();
             $table->longText('post')->change();
         });
     }

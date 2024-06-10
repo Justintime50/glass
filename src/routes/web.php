@@ -1,18 +1,9 @@
 <?php
 
+use App\Http\Middleware\Admin;
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 // Auth routes
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
@@ -29,7 +20,7 @@ Route::get('/{user}/{slug}', [App\Http\Controllers\PostController::class, 'showP
 Route::get('/feed', [App\Http\Controllers\RssFeedController::class, 'getFeed']);
 
 // Must be an Admin
-Route::middleware('Admin')->group(function () {
+Route::middleware(Admin::class)->group(function () {
     // General
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'showAdminDashboard']);
     Route::patch('/settings', [App\Http\Controllers\AdminController::class, 'updateSettings']);
@@ -55,7 +46,7 @@ Route::middleware('Admin')->group(function () {
 });
 
 // Must be logged in
-Route::middleware('auth')->group(function () {
+Route::middleware(Authenticate::class)->group(function () {
     // Comments
     Route::post('/comments', [App\Http\Controllers\CommentController::class, 'create']);
     Route::delete('/comments/{id}', [App\Http\Controllers\CommentController::class, 'delete']);

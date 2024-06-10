@@ -23,7 +23,7 @@ return new class extends Migration
 
         Schema::table('posts', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned()->change();
-            $table->bigInteger('category_id')->unsigned()->change();
+            $table->bigInteger('category_id')->unsigned()->nullable()->change();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
@@ -58,6 +58,12 @@ return new class extends Migration
 
             $table->renameIndex('posts_category_id_foreign', 'posts_category_id_index');
             $table->renameIndex('posts_user_id_foreign', 'posts_user_id_index');
+        });
+
+        // Changes must be done separately from dropping indexes
+        Schema::table('posts', function (Blueprint $table) {
+            $table->integer('user_id')->change();
+            $table->integer('category_id')->nullable()->change();
         });
     }
 };

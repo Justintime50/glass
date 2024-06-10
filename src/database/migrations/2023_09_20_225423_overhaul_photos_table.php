@@ -35,8 +35,8 @@ return new class extends Migration
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->bigInteger('image_id')->unsigned()->change();
-            $table->foreign('image_id')->references('id')->on('images')->nullable();
+            $table->bigInteger('image_id')->unsigned()->nullable()->change();
+            $table->foreign('image_id')->references('id')->on('images');
         });
 
         // Split so SQLite via test suite can work since it doesn't support renaming multiple columns at once
@@ -45,8 +45,8 @@ return new class extends Migration
         });
 
         Schema::table('posts', function (Blueprint $table) {
-            $table->bigInteger('image_id')->unsigned()->change();
-            $table->foreign('image_id')->references('id')->on('images')->nullable();
+            $table->bigInteger('image_id')->unsigned()->nullable()->change();
+            $table->foreign('image_id')->references('id')->on('images');
         });
     }
 
@@ -79,7 +79,7 @@ return new class extends Migration
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('image_id')->change();
+            $table->integer('image_id')->nullable()->change();
         });
 
         // Split so SQLite via test suite can work since it doesn't support renaming multiple columns at once

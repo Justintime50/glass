@@ -2,14 +2,14 @@
 
 namespace App\Http\ViewComposers;
 
+use App\Models\Setting;
 use Illuminate\View\View;
-use Auth;
 
 class SettingsComposer
 {
     public function compose(View $view)
     {
-        $settings = \App\Models\Setting::first();
+        $settings = Setting::first();
         $view->with('settings', $settings);
     }
 }

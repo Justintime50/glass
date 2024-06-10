@@ -7,14 +7,14 @@ services:
       replicas: 2
     mem_limit: '512m'
     healthcheck:
-      test: ['CMD', 'curl', '--silent', '--output', '/dev/null', '--show-error', '--fail', 'http://localhost']
+      test: ['CMD', 'curl', '--silent', '--output', '/dev/null', '--show-error', '--fail', 'http://localhost/up']
       start_period: 10s
       start_interval: 1s
       interval: 30s
       timeout: 10s
       retries: 3
     labels:
-      - 'traefik.http.routers.glass.rule=Host(`blog.justinpaulhammond.com`, `www.blog.justinpaulhammond.com`)'
+      - 'traefik.http.routers.glass.rule=Host(`blog.justinpaulhammond.com`) || Host(`www.blog.justinpaulhammond.com`)'
       - 'traefik.http.routers.glass.tls=true'
       - 'traefik.http.routers.glass.tls.certresolver=letsencrypt'
     depends_on:
