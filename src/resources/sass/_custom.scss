@@ -92,6 +92,12 @@
   flex-direction: column;
 }
 
+.image-filename {
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
 .auto-margin-top {
   margin-top: auto;
 }

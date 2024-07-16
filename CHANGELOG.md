@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Fixes a bug where image filenames could overflow their containers if long
+
 ## v3.0.0 (2024-06-10)
 
 - Upgrades Laravel from v10 to v11

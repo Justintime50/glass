@@ -7,7 +7,7 @@
                         class="img-thumbnail image-preview">
                 </div>
                 <div class="auto-margin-top">
-                    <p>{{ $image->filename }}</p>
+                    <p class="image-filename">{{ $image->filename }}</p>
                     @if (str_contains(Request::url(), 'images'))
                         <form action="/images/{{ $image->id }}" method="POST">
                             @csrf
