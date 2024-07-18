@@ -3,6 +3,7 @@
 ## Next Release
 
 - Fixes a bug where image filenames could overflow their containers if long
+- Fixes the `Back to Posts` button to respect pagination (closes [#86](https://github.com/Justintime50/glass/issues/86))
 
 ## v3.0.0 (2024-06-10)
 

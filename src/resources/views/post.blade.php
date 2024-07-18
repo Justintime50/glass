@@ -8,17 +8,20 @@
             <form action="/posts/{{ $post->id }}" method="POST" class="mb-3">
                 @csrf
                 @method('DELETE')
-                <a class="btn btn-primary inline-block" href="/"><i class="fas fa-chevron-left"></i> Back to
-                    Posts</a>
-                <a class="btn btn-primary inline-block"
-                    href="{{ strtolower(url('/posts/edit/' . str_replace(' ', '-', $post->user->name) . '/' . $post->slug)) }}">Edit
-                    Post</a>
+                <a href="#" onclick="window.history.back(); return false;" class="btn btn-primary inline-block">
+                    <i class="fas fa-chevron-left"></i> Back to Posts
+                </a>
+                <a href="{{ strtolower(url('/posts/edit/' . str_replace(' ', '-', $post->user->name) . '/' . $post->slug)) }}"
+                    class="btn btn-primary inline-block">
+                    Edit Post
+                </a>
                 <input name="id" value="{{ $post->id }}" hidden>
                 <input type="submit" class="btn btn-danger inline-block" value="Delete Post">
             </form>
         @else
-            <a class="btn btn-primary inline-block" href="/"><i class="fas fa-chevron-left"></i> Back to
-                Posts</a>
+            <a href="#" onclick="window.history.back(); return false;" class="btn btn-primary inline-block">
+                <i class="fas fa-chevron-left"></i> Back to Posts
+            </a>
         @endif
 
         <h1 class="post-title">{{ $post->title }}</h1>

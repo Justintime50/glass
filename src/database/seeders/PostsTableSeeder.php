@@ -16,7 +16,7 @@ class PostsTableSeeder extends Seeder
     {
         Post::factory()
             ->hasComments(5)
-            ->count(5)
+            ->count(15)
             ->create();
     }
 }
