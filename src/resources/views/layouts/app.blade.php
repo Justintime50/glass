@@ -21,7 +21,6 @@
     @elseif ($settings->theme == 4)
         @vite(['resources/sass/themes/amethyst.scss'])
     @endif
-    <script src="https://kit.fontawesome.com/0dd4ecd465.js"></script>
 </head>
 
 <body>
@@ -82,7 +81,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="/logout" method="POST" class="display-none">
+                                    <form id="logout-form" action="/logout" method="POST" class="pa-display-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -94,7 +93,7 @@
         </nav>
 
         <!-- LARAVEL ERRORS -->
-        <div class="container-fluid padding-0">
+        <div class="container-fluid pa-padding-0">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

@@ -8,31 +8,31 @@
             <form action="/posts/{{ $post->id }}" method="POST" class="mb-3">
                 @csrf
                 @method('DELETE')
-                <a href="#" onclick="window.history.back(); return false;" class="btn btn-primary inline-block">
-                    <i class="fas fa-chevron-left"></i> Back to Posts
+                <a href="#" onclick="window.history.back(); return false;" class="btn btn-primary pa-inline-block">
+                    <i class="bi bi-chevron-left"></i> Back to Posts
                 </a>
                 <a href="{{ strtolower(url('/posts/edit/' . str_replace(' ', '-', $post->user->name) . '/' . $post->slug)) }}"
-                    class="btn btn-primary inline-block">
+                    class="btn btn-primary pa-inline-block">
                     Edit Post
                 </a>
                 <input name="id" value="{{ $post->id }}" hidden>
-                <input type="submit" class="btn btn-danger inline-block" value="Delete Post">
+                <input type="submit" class="btn btn-danger pa-inline-block" value="Delete Post">
             </form>
         @else
-            <a href="#" onclick="window.history.back(); return false;" class="btn btn-primary inline-block">
-                <i class="fas fa-chevron-left"></i> Back to Posts
+            <a href="#" onclick="window.history.back(); return false;" class="btn btn-primary pa-inline-block">
+                <i class="bi bi-chevron-left"></i> Back to Posts
             </a>
         @endif
 
         <h1 class="post-title">{{ $post->title }}</h1>
         <p class="post-meta">
-            <i class="fas fa-calendar"></i>
+            <i class="bi bi-calendar"></i>
             {{ date_format($post->created_at, 'Y/m/d') }}
-            <i class="fas fa-user"></i>
+            <i class="bi bi-person-fill"></i>
             <a href="{{ '/posts/user/' . $post->user->name }}">{{ $post->user->name }}</a>
-            <i class="fas fa-clock"></i>
+            <i class="bi bi-clock"></i>
             {{ \App\Http\Controllers\PostController::generateReadingTime($post) }} minutes
-            <i class="fas fa-tag"></i>
+            <i class="bi bi-tag"></i>
             <a href="{{ '/posts/category/' . $post->category->category }}">{{ $post->category->category }}</a>
         </p>
         <div class="banner-image-container">
@@ -121,7 +121,7 @@
                     <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($post->user->image->subdirectory, $post->user->image->filename) }}"
                         class="avatar">
                 @else
-                    <i class="fas fa-user fa-3x avatar"></i>
+                    <i class="bi bi-person-fill pa-font-xl avatar"></i>
                 @endif
             </div>
 
@@ -160,7 +160,7 @@
                                         <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($comment->user->image->subdirectory, $comment->user->image->filename) }}"
                                             class="avatar-small">
                                     @else
-                                        <i class="fas fa-user fa-2x avatar-small"></i>
+                                        <i class="bi bi-person-fill pa-font-lg avatar-small"></i>
                                     @endif
 
                                     <i>&nbsp;{{ $comment->user->name }} -

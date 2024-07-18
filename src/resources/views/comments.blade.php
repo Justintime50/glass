@@ -25,9 +25,9 @@
                                     <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($comment->user->image->subdirectory, $comment->user->image->filename) }}"
                                         class="avatar-small">
                                 @else
-                                    <i class="fas fa-user fa-2x avatar-small"></i>
+                                    <i class="bi bi-person-fill pa-font-lg avatar-small"></i>
                                 @endif
-                                {{ $comment->user->name }}
+                                <br />{{ $comment->user->name }}
                             </td>
                             <td>{{ date_format($comment->created_at, 'Y/m/d') }}</td>
                             <td>
@@ -40,7 +40,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger" onclick="this.form.submit();">
-                                        <i class="fas fa-trash"></i>
+                                        <i class="bi bi-trash-fill"></i>
                                     </button>
                                 </form>
                             </td>

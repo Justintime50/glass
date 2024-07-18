@@ -75,7 +75,7 @@
                             @if (config('app.env') == 'production' && config('captcha.secret') !== false && config('captcha.sitekey') !== false)
                                 {!! NoCaptcha::renderJs() !!}
                                 <div class="text-center">
-                                    <div class="inline-block">
+                                    <div class="pa-inline-block">
                                         {!! NoCaptcha::display() !!}
                                     </div>
                                 </div>

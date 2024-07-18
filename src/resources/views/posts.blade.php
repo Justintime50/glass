@@ -23,16 +23,16 @@
                     </div>
                     <div class="post-container-content-feed">
                         <h2>
-                            {{ $post->title }} <i class="fas fa-arrow-right" id="arrow"></i>
+                            {{ $post->title }} <i class="bi bi-arrow-right" id="arrow"></i>
                         </h2>
                         <p class="post-meta">
-                            <i class="fas fa-calendar"></i>
+                            <i class="bi bi-calendar"></i>
                             {{ date_format($post->created_at, 'Y/m/d') }}
-                            <i class="fas fa-user"></i>
+                            <i class="bi bi-person-fill"></i>
                             {{ $post->user->name }}
-                            <i class="fas fa-clock"></i>
+                            <i class="bi bi-clock"></i>
                             {{ \App\Http\Controllers\PostController::generateReadingTime($post) }} minutes
-                            <i class="fas fa-tag"></i>
+                            <i class="bi bi-tag"></i>
                             {{ $post->category->category }}
                         </p>
                         <p>

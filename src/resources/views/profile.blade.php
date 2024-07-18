@@ -40,7 +40,7 @@
                 <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath(Auth::user()->image->subdirectory, Auth::user()->image->filename) }}"
                     class="avatar">
             @else
-                <i class="fas fa-user fa-3x avatar"></i>
+                <i class="bi bi-person-fill pa-font-xl avatar"></i>
             @endif
             <br />
             <label for="profile_pic" class="btn btn-primary">Update Profile Picture</label>

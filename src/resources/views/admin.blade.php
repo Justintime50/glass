@@ -57,16 +57,16 @@
                             <td>{{ $category->created_at }}</td>
                             <td>
                                 <form action="/categories/{{ $category->id }}" method="POST"
-                                    id="updateCategory{{ $category->id }}" class="inline-block">
+                                    id="updateCategory{{ $category->id }}" class="pa-inline-block">
                                     @csrf
                                     @method('PATCH')
                                     <input type="hidden" name="category" value="{{ $category->category }}"
                                         id="newCategoryName{{ $category->id }}">
                                 </form>
                                 <button onclick="updateCategory({{ $category->id }})"
-                                    class="btn btn-sm btn-primary inline-block">Update</button>
+                                    class="btn btn-sm btn-primary pa-inline-block">Update</button>
 
-                                <form action="/categories/{{ $category->id }}" method="POST" class="inline-block">
+                                <form action="/categories/{{ $category->id }}" method="POST" class="pa-inline-block">
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="id" value="{{ $category->id }}">
@@ -86,7 +86,7 @@
             @csrf
             <input type="text" class="form-control" name="category" value="{{ old('category') }}"
                 placeholder="New category name...">
-            <input type="submit" value="Create Category" class="btn btn-primary mt-2 inline-block">
+            <input type="submit" value="Create Category" class="btn btn-primary pa-inline-block mt-2">
         </form>
     </div>
 
@@ -126,9 +126,9 @@
                                 <form action="/posts/{{ $post->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <a class="btn btn-sm btn-primary inline-block"
+                                    <a class="btn btn-sm btn-primary pa-inline-block"
                                         href="{{ strtolower(url('/posts/edit/' . $post->user->name . '/' . $post->slug)) }}">Edit</a>
-                                    <input type="submit" value="Delete" class="btn btn-sm btn-danger inline-block"
+                                    <input type="submit" value="Delete" class="btn btn-sm btn-danger pa-inline-block"
                                         onclick="submitFormAfterPrompt('Are you sure you want to delete this post?');return false;">
                                 </form>
                             </td>
@@ -173,7 +173,7 @@
                                     <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($user->image->subdirectory, $user->image->filename) }}"
                                         class="avatar-small">
                                 @else
-                                    <i class="fas fa-user fa-2x avatar-small"></i>
+                                    <i class="bi bi-person-fill pa-font-lg avatar-small"></i>
                                 @endif
                                 {{ $user->name }}
                             </td>

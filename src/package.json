@@ -11,9 +11,10 @@
         "@sindresorhus/slugify": "^1.1",
         "axios": "^1.6",
         "bootstrap": "^5.3",
+        "bootstrap-icons": "^1.11",
         "laravel-vite-plugin": "^1.0",
         "highlight.js": "^11.9",
-        "pineapple-library": "^3.2",
+        "pineapple-library": "^4.0",
         "sass": "^1.76",
         "vite": "^5.2"
     },

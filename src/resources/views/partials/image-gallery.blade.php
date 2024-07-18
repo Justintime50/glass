@@ -2,7 +2,7 @@
     <div class="row image-row-container">
         @foreach ($chunk as $image)
             <div class="col-md-4 image-page-image-container text-center">
-                <div class="flex-center-container">
+                <div class="pa-flex-center-container">
                     <img src='{{ \App\Http\Controllers\ImageController::getImageAssetPath($image->subdirectory, $image->filename) }}'
                         class="img-thumbnail image-preview">
                 </div>
