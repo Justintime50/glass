@@ -93,7 +93,7 @@
         </nav>
 
         <!-- LARAVEL ERRORS -->
-        <div class="container-fluid pa-padding-0">
+        <div class="pa-padding-0 container">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

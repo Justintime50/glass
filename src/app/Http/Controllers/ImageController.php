@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Intervention\Image\ImageManagerStatic;
+use Intervention\Image\ImageManager;
 
 class ImageController extends Controller
 {
@@ -49,7 +49,8 @@ class ImageController extends Controller
             $file = $request->file('image');
             $filename = ImageController::sanatizeImageFilename($file);
 
-            ImageManagerStatic::make($file)
+            ImageManager::gd()
+                ->read($file)
                 ->save(ImageController::getImagePublicPath(self::$postImagesSubdirectory, $filename));
 
             $image = new Image();
@@ -58,8 +59,8 @@ class ImageController extends Controller
             $image->save();
 
             session()->flash('message', 'Image uploaded successfully.');
-        } catch (\Exception) {
-            session()->flash('error', 'Image upload failed! Please try again.');
+        } catch (\Exception $error) {
+            session()->flash('error', "Image upload failed: $error");
         }
 
         return redirect()->back();

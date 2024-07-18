@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
-use Intervention\Image\ImageManagerStatic;
+use Intervention\Image\ImageManager;
 
 class UserController extends Controller
 {
@@ -87,8 +87,9 @@ class UserController extends Controller
             $file = $request->file('image');
             $filename = ImageController::sanatizeImageFilename($file);
 
-            ImageManagerStatic::make($file)
-                ->fit(150, 150)
+            ImageManager::gd()
+                ->read($file)
+                ->resize(150, 150)
                 ->save(ImageController::getImagePublicPath(ImageController::$avatarImagesSubdirectory, $filename));
 
             $image = new Image();
