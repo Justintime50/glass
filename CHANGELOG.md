@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v3.0.1 (2024-07-18)
 
 - Replaces FontAwesome with Bootstrap Icons
 - Fixes a bug where image filenames could overflow their containers if long
