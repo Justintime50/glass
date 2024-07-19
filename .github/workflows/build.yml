@@ -32,6 +32,7 @@ jobs:
       - name: Lint project
         run: |
           cd src
+          npm cache clean --force
           just install lint
   test:
     runs-on: ubuntu-latest
