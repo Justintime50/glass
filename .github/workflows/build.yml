@@ -28,7 +28,7 @@ jobs:
           php-version: '8.3'
       - uses: actions/setup-node@v4
         with:
-          node-version: '22.4.x' # See https://github.com/npm/cli/issues/7657 for why we pinned this version
+          node-version: '22'
       - name: Lint project
         run: |
           cd src
