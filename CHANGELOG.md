@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Bumps mariadb from 11.3.2 to 11.4.3
+
 ## v3.0.1 (2024-07-18)
 
 - Replaces FontAwesome with Bootstrap Icons
