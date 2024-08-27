@@ -97,11 +97,11 @@ class PostController extends Controller
      * @param Request $request
      * @param string $user
      * @param string $slug
-     * @return Illuminate\View\View
+     * @return View
      */
     public function showPost(Request $request, string $user, string $slug): View
     {
-        if (Auth::user() && Auth::user()->role = 1) {
+        if (Auth::user() && Auth::user()->role == 1) {
             $post = Post::where('slug', '=', $slug)
                 ->firstOrFail();
         } else {
@@ -272,7 +272,7 @@ class PostController extends Controller
         $averageReaderWordsPerMinute = 200;
         $bufferMinutes = 1; // This accounts for reading times of less than 1 minute
 
-        $readingTime = round(str_word_count($post->post) / $averageReaderWordsPerMinute) + $bufferMinutes;
+        $readingTime = (int)round(str_word_count($post->post) / $averageReaderWordsPerMinute) + $bufferMinutes;
 
         return $readingTime;
     }
