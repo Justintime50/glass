@@ -16,7 +16,6 @@ services:
     labels:
       - 'traefik.http.routers.glass.rule=Host(`blog.justinpaulhammond.com`) || Host(`www.blog.justinpaulhammond.com`)'
       - 'traefik.http.routers.glass.tls=true'
-      - 'traefik.http.routers.glass.tls.certresolver=letsencrypt'
     depends_on:
       glass-db:
         condition: service_healthy
