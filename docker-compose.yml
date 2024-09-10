@@ -5,9 +5,6 @@ services:
     networks:
       - traefik
       - glass
-    labels:
-      - 'traefik.enable=true'
-      - 'traefik.docker.network=traefik'
     env_file:
       - src/.env
   glass-db:

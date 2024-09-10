@@ -1,6 +1,7 @@
 services:
   glass:
     labels:
+      - 'traefik.enable=true'
       - 'traefik.http.routers.glass.rule=Host(`glass.localhost`)'
     depends_on:
       glass-db:

@@ -13,9 +13,6 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-    labels:
-      - 'traefik.http.routers.glass.rule=Host(`blog.justinpaulhammond.com`) || Host(`www.blog.justinpaulhammond.com`)'
-      - 'traefik.http.routers.glass.tls=true'
     depends_on:
       glass-db:
         condition: service_healthy
