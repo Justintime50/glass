@@ -2,6 +2,7 @@
 
 ## Next Release
 
+- New auth view layouts
 - Bumps mariadb from 11.3.2 to 11.4.3
 
 ## v3.0.1 (2024-07-18)
