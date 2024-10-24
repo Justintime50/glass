@@ -1,6 +1,7 @@
 services:
   glass:
     build: .
+    # image: justintime50/glass
     restart: always
     networks:
       - traefik
