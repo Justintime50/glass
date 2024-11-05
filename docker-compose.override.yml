@@ -3,8 +3,15 @@ services:
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.glass.rule=Host(`glass.localhost`)'
+    networks:
+      - traefik
     depends_on:
       glass-db:
         condition: service_started
     volumes:
       - ./src:/var/www/html
+
+networks:
+  traefik:
+    name: traefik
+    external: true

@@ -4,7 +4,6 @@ services:
     # image: justintime50/glass
     restart: always
     networks:
-      - traefik
       - glass
     env_file:
       - src/.env
@@ -23,8 +22,5 @@ volumes:
     driver: local
 
 networks:
-  traefik:
-    name: traefik
-    external: true
   glass:
     name: glass
