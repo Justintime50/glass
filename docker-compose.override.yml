@@ -10,6 +10,23 @@ services:
         condition: service_started
     volumes:
       - ./src:/var/www/html
+  glass-db:
+    image: 'mariadb:11.4.3'
+    restart: always
+    volumes:
+      - glass-db:/var/lib/mysql
+    environment:
+      MARIADB_DATABASE: glass
+      MARIADB_ROOT_PASSWORD: password
+      MARIADB_USER: glass
+      MARIADB_PASSWORD: password
+      MARIADB_AUTO_UPGRADE: 1
+    networks:
+      - glass
+
+volumes:
+  glass-db:
+    name: glass-db
 
 networks:
   traefik:

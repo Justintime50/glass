@@ -7,19 +7,6 @@ services:
       - glass
     env_file:
       - src/.env
-  glass-db:
-    image: 'mariadb:11.4.3'
-    restart: always
-    volumes:
-      - database-data:/var/lib/mysql
-    env_file:
-      - .env
-    networks:
-      - glass
-
-volumes:
-  database-data:
-    driver: local
 
 networks:
   glass:

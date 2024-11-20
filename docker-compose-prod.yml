@@ -5,7 +5,7 @@ services:
         PROD: true
     ports:
       - 8140:80
-    mem_limit: '512m'
+    mem_limit: '1024m'
     healthcheck:
       test: ['CMD', 'curl', '--silent', '--output', '/dev/null', '--show-error', '--fail', 'http://localhost/up']
       start_period: 10s
@@ -13,19 +13,5 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-    depends_on:
-      glass-db:
-        condition: service_healthy
     volumes:
       - ./src/storage/app/public:/var/www/html/public/storage
-  glass-db:
-    mem_limit: '768m'
-    healthcheck:
-      test:
-        ['CMD', 'mariadb', '-u${MARIADB_USER}', '-p${MARIADB_PASSWORD}', '-D${MARIADB_DATABASE}', '-e', 'show tables;']
-      # Need to account for upgrade times at startup
-      start_period: 30s
-      start_interval: 1s
-      interval: 30s
-      timeout: 10s
-      retries: 3
