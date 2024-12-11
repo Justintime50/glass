@@ -47,11 +47,11 @@ class ImageController extends Controller
 
         try {
             $file = $request->file('image');
-            $filename = ImageController::sanatizeImageFilename($file);
+            $filename = self::sanatizeImageFilename($file);
 
             ImageManager::gd()
                 ->read($file)
-                ->save(ImageController::getImagePublicPath(self::$postImagesSubdirectory, $filename));
+                ->save(self::getImagePublicPath(self::$postImagesSubdirectory, $filename));
 
             $image = new Image();
             $image->subdirectory = self::$postImagesSubdirectory;
@@ -77,7 +77,7 @@ class ImageController extends Controller
     {
         try {
             $image = Image::findOrFail($id);
-            unlink(ImageController::getImagePublicPath($image->subdirectory, $image->filename));
+            unlink(self::getImagePublicPath($image->subdirectory, $image->filename));
             $image->delete();
             session()->flash('message', 'Image deleted.');
         } catch (ModelNotFoundException $e) {
@@ -126,7 +126,7 @@ class ImageController extends Controller
     public static function getImagePublicPath(?string $subdirectory, ?string $imageName): string|null
     {
         return isset($subdirectory) && isset($imageName)
-            ?  public_path('storage/' . self::$imagesDir . "/$subdirectory/$imageName")
+            ? public_path('storage/' . self::$imagesDir . "/$subdirectory/$imageName")
             : null;
     }
 }
