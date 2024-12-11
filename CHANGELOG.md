@@ -1,7 +1,9 @@
 # CHANGELOG
 
-## Next Release
+## v3.1.0 (2024-12-11)
 
+- Adds PHP 8.4 support
+- Docker Swarm support (changes made to configuration and tooling)
 - New auth view layouts
 - Bumps Docker image with improved PHP-FPM throughput
 - Bumps dependencies

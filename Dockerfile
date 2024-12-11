@@ -1,4 +1,4 @@
-FROM justintime50/nginx-php:8.3-23
+FROM justintime50/nginx-php:8.4-25
 
 ARG PROD
 
@@ -8,7 +8,7 @@ RUN if [ ! -z "$PROD" ]; then \
     # Setup prod env
     composer install -q --no-ansi --no-interaction --no-scripts --no-plugins --no-progress --prefer-dist --optimize-autoloader --no-dev \
     && npm install -s --omit=dev \
-    && npm run build; \
+    && npx vite build; \
     # Setup dev env
     else \
     composer install \
