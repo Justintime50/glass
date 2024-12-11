@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class Photos extends Migration
 {
@@ -34,10 +34,6 @@ class Photos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photos');
-
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('banner_image_url');
-        });
+        // Only up migrations are allowed
     }
 }

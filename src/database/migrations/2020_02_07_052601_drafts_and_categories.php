@@ -34,17 +34,6 @@ class DraftsAndCategories extends Migration
      */
     public function down()
     {
-        // Split so SQLite via test suite can work since it doesn't support multiple actions at once when renaming
-        Schema::table('posts', function (Blueprint $table) {
-            $table->renameColumn('category_id', 'category');
-        });
-
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('published');
-        });
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
+        // Only up migrations are allowed
     }
 }

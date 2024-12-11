@@ -25,8 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->integer('user_id');
-        });
+        // Only up migrations are allowed
     }
 };

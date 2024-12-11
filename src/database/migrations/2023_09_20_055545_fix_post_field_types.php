@@ -23,10 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->string('category_id')->nullable()->change();
-            $table->text('keywords')->nullable()->change();
-            $table->longText('post')->change();
-        });
+        // Only up migrations are allowed
     }
 };

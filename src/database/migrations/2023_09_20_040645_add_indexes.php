@@ -35,22 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->dropUnique(['category']);
-            $table->string('category')->nullable(true)->change();
-        });
-
-        Schema::table('comments', function (Blueprint $table) {
-            $table->dropIndex('comments_post_id_index');
-        });
-
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropIndex('posts_category_id_index');
-            $table->dropIndex('posts_user_id_index');
-        });
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropIndex('users_name_index');
-        });
+        // Only up migrations are allowed
     }
 };

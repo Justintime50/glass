@@ -38,32 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('comments', function (Blueprint $table) {
-            $table->dropForeign('comments_user_id_foreign');
-            $table->dropForeign('comments_post_id_foreign');
-
-            $table->dropIndex('comments_user_id_foreign');
-            $table->renameIndex('comments_post_id_foreign', 'comments_post_id_index');
-        });
-
-        // Changes must be done separately from dropping indexes
-        Schema::table('comments', function (Blueprint $table) {
-            $table->integer('user_id')->change();
-            $table->integer('post_id')->change();
-        });
-
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropForeign('posts_user_id_foreign');
-            $table->dropForeign('posts_category_id_foreign');
-
-            $table->renameIndex('posts_category_id_foreign', 'posts_category_id_index');
-            $table->renameIndex('posts_user_id_foreign', 'posts_user_id_index');
-        });
-
-        // Changes must be done separately from dropping indexes
-        Schema::table('posts', function (Blueprint $table) {
-            $table->integer('user_id')->change();
-            $table->integer('category_id')->nullable()->change();
-        });
+        // Only up migrations are allowed
     }
 };

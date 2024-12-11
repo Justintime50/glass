@@ -47,8 +47,6 @@ class InsertAdminAccount extends Migration
      */
     public function down()
     {
-        User::truncate();
-        Setting::truncate();
-        Category::truncate();
+        // Only up migrations are allowed
     }
 }

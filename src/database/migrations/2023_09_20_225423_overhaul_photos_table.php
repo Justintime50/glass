@@ -55,50 +55,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::rename('images', 'photos');
-
-        Schema::table('photos', function (Blueprint $table) {
-            $table->integer('subdirectory')->change();
-            $table->integer('filename')->change();
-            $table->string('url');
-        });
-
-        // Split so SQLite via test suite can work since it doesn't support renaming multiple columns at once
-        Schema::table('photos', function (Blueprint $table) {
-            $table->renameColumn('subdirectory', 'user_id');
-        });
-
-        // Split so SQLite via test suite can work since it doesn't support renaming multiple columns at once
-        Schema::table('photos', function (Blueprint $table) {
-            $table->renameColumn('filename', 'post_id');
-        });
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('users_image_id_foreign');
-            $table->dropIndex('users_image_id_foreign');
-        });
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('image_id')->nullable()->change();
-        });
-
-        // Split so SQLite via test suite can work since it doesn't support renaming multiple columns at once
-        Schema::table('users', function (Blueprint $table) {
-            $table->renameColumn('image_id', 'profile_pic_id');
-        });
-
-        // Split so SQLite via test suite can work since it doesn't support renaming multiple columns at once
-        Schema::table('posts', function (Blueprint $table) {
-            $table->renameColumn('image_id', 'banner_image_url');
-        });
-
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropForeign('posts_image_id_foreign');
-            $table->dropIndex('posts_image_id_foreign');
-        });
-
-        Schema::table('posts', function (Blueprint $table) {
-            $table->string('banner_image_url')->change();
-        });
+        // Only up migrations are allowed
     }
 };

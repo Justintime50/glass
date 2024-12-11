@@ -25,8 +25,6 @@ class NullableCategories extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->string('category')->change();
-        });
+        // Only up migrations are allowed
     }
 }

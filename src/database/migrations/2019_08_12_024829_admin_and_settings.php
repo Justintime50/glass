@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AdminAndSettings extends Migration
 {
@@ -44,13 +44,6 @@ class AdminAndSettings extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('settings');
-        Schema::dropIfExists('categories');
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('bio');
-            $table->dropColumn('profile_pic_id');
-            $table->dropColumn('role');
-        });
+        // Only up migrations are allowed
     }
 }
