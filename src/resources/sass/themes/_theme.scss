@@ -24,8 +24,13 @@ input[type="email"],
 input[type="password"],
 textarea,
 select {
-  background-color: $font-color !important;
-  color: $background-color-accent !important;
+  background-color: $background-color-accent !important;
+  color: $font-color !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba($font-color, 0.6) !important;
 }
 
 hr {

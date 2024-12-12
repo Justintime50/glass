@@ -15,28 +15,31 @@
 
             <label for="title">Comments</label>
             <select class="form-select" name="comments">
-                <option value="1" <?php if ($settings->comments == 1) {
-                    echo 'selected';
-                } ?>>On</option>
-                <option value="0" <?php if ($settings->comments == 0) {
-                    echo 'selected';
-                } ?>>Off</option>
+                <option value="1" @if ($settings->comments == 1) {{ 'selected' }} @endif>
+                    On
+                </option>
+                <option value="0" @if ($settings->comments == 0) {{ 'selected' }} @endif>
+                    Off
+                </option>
             </select>
 
             <label for="title">Blog Theme</label>
             <select class="form-select" name="theme">
-                <option value="1" <?php if ($settings->theme == 1) {
-                    echo 'selected';
-                } ?>>Light</option>
-                <option value="2" <?php if ($settings->theme == 2) {
-                    echo 'selected';
-                } ?>>Dark</option>
-                <option value="3" <?php if ($settings->theme == 3) {
-                    echo 'selected';
-                } ?>>Midnight</option>
-                <option value="4" <?php if ($settings->theme == 4) {
-                    echo 'selected';
-                } ?>>Amethyst</option>
+                <option value="1" @if ($settings->theme == 1) {{ 'selected' }} @endif>
+                    Light
+                </option>
+                <option value="2" @if ($settings->theme == 2) {{ 'selected' }} @endif>
+                    Dark
+                </option>
+                <option value="3" @if ($settings->theme == 3) {{ 'selected' }} @endif>
+                    Midnight
+                </option>
+                <option value="4" @if ($settings->theme == 4) {{ 'selected' }} @endif>
+                    Amethyst
+                </option>
+                <option value="5" @if ($settings->theme == 5) {{ 'selected' }} @endif>
+                    Golf
+                </option>
             </select>
 
             <input class="btn btn-primary mt-3"

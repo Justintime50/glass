@@ -20,6 +20,8 @@
         @vite(['resources/sass/themes/midnight.scss'])
     @elseif ($settings->theme == 4)
         @vite(['resources/sass/themes/amethyst.scss'])
+    @elseif ($settings->theme == 5)
+        @vite(['resources/sass/themes/golf.scss'])
     @endif
 </head>
 
@@ -30,8 +32,13 @@
                 <a class="navbar-brand" href="/">
                     {{ $settings->title }}
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
-                    aria-controls="navbar" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbar"
+                        type="button"
+                        aria-controls="navbar"
+                        aria-expanded="false"
+                        aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -63,8 +70,14 @@
                             <a class="nav-link" href="/posts">Posts</a>
 
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a class="nav-link dropdown-toggle"
+                                   id="navbarDropdown"
+                                   data-bs-toggle="dropdown"
+                                   href="#"
+                                   role="button"
+                                   aria-haspopup="true"
+                                   aria-expanded="false"
+                                   v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -75,13 +88,17 @@
                                         <a class="dropdown-item" href="/comments">Comments</a>
                                         <a class="dropdown-item" href="/admin">Admin</a>
                                     @endif
-                                    <a class="dropdown-item" href="/logout"
-                                        onclick="event.preventDefault();
+                                    <a class="dropdown-item"
+                                       href="/logout"
+                                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="/logout" method="POST" class="pa-display-none">
+                                    <form class="pa-display-none"
+                                          id="logout-form"
+                                          action="/logout"
+                                          method="POST">
                                         @csrf
                                     </form>
                                 </div>

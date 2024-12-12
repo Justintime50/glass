@@ -53,7 +53,7 @@ lint-css-fix:
 
 # Fix JS linting
 lint-js-fix:
-    eslint resources/js/*.js --fix
+    npx eslint resources/js/*.js --fix
 
 # Migrates the database
 migrate:

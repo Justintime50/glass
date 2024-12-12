@@ -1,10 +1,11 @@
 # CHANGELOG
 
-## v3.1.0 (2024-12-11)
+## v3.1.0 (2024-12-12)
 
 - Adds PHP 8.4 support
 - Docker Swarm support (changes made to configuration and tooling)
 - S3 file support for images
+- Adds `golf` theme
 - New auth view layouts
 - Bumps Docker image with improved PHP-FPM throughput
 - Bumps dependencies
