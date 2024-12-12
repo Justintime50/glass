@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   docker:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: extractions/setup-just@v2
@@ -18,7 +18,7 @@ jobs:
           cp .env-example .env
           just setup
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: extractions/setup-just@v2
@@ -33,7 +33,7 @@ jobs:
           cd src
           just install lint
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         phpversion: ['8.2', '8.3', '8.4']
@@ -56,7 +56,7 @@ jobs:
           just coverage
   coverage:
     if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: extractions/setup-just@v2
