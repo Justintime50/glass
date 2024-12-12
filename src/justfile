@@ -18,7 +18,7 @@ clean-db:
 
 # Run a coverage report
 coverage:
-    XDEBUG_MODE=coverage ./{{PHP_BIN}}/phpunit --coverage-html clover.html --coverage-clover clover.xml
+    XDEBUG_MODE=coverage ./{{PHP_BIN}}/phpunit --coverage-html clover.html --coverage-clover build/logs/clover.xml
 
 # Install dependencies
 install:
