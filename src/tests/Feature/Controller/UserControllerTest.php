@@ -89,7 +89,7 @@ class UserControllerTest extends TestCase
      */
     public function testUpdateProfilePic()
     {
-        Storage::fake('public');
+        Storage::fake('local');
 
         $authedUser = User::find(1);
         $this->actingAs($authedUser);

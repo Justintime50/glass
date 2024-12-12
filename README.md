@@ -17,7 +17,7 @@ Glass draws its simplistic design inspiration from [Medium](https://medium.com) 
 
 ## Features
 
-- Custom image support per post
+- Custom image support per post (local storage or S3 configurable)
 - Comments (can be enabled/disabled)
 - Syntax highlighting for code snippets
 - Themes to style your blog instance

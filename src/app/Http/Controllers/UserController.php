@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Intervention\Image\ImageManager;
 
@@ -86,11 +87,24 @@ class UserController extends Controller
         try {
             $file = $request->file('image');
             $filename = ImageController::sanatizeImageFilename($file);
-
+            $subdirectory = ImageController::$avatarImagesSubdirectory;
+            $temporaryPath = sys_get_temp_dir() . '/' . $filename;
             ImageManager::gd()
                 ->read($file)
                 ->resize(150, 150)
-                ->save(ImageController::getImagePublicPath(ImageController::$avatarImagesSubdirectory, $filename));
+                ->save($temporaryPath);
+
+            if (config('filesystems.default') === 's3') {
+                $s3Path = ImageController::$imagesDir . "/$subdirectory/$filename";
+                $success = Storage::disk('s3')->put($s3Path, file_get_contents($temporaryPath));
+                unlink($temporaryPath);
+                if (!$success) {
+                    throw new \Exception();
+                }
+            } else {
+                $localPath = ImageController::getImagePublicPath($subdirectory, $filename);
+                rename($temporaryPath, $localPath);
+            }
 
             $image = new Image();
             $image->subdirectory = ImageController::$avatarImagesSubdirectory;
@@ -102,8 +116,8 @@ class UserController extends Controller
             $user->save();
 
             session()->flash('message', 'Avatar updated successfully.');
-        } catch (\Exception) {
-            session()->flash('error', 'Avatar update failed! Please try again.');
+        } catch (\Exception $error) {
+            session()->flash('error', 'Avatar upload failed, please try again.');
         }
 
         return redirect()->back();
@@ -121,7 +135,16 @@ class UserController extends Controller
         $user = User::find($id);
         try {
             $image = Image::findOrFail($user->image_id);
-            unlink(ImageController::getImagePublicPath($image->subdirectory, $image->filename));
+            if (config('filesystems.default') === 's3') {
+                $s3Path = ImageController::$imagesDir . "/$image->subdirectory/$image->filename";
+                $success = Storage::disk('s3')->delete($s3Path);
+                if (!$success) {
+                    throw new \Exception();
+                }
+            } else {
+                $localPath = ImageController::getImagePublicPath($image->subdirectory, $image->filename);
+                unlink($localPath);
+            }
             $image->delete();
         } catch (ModelNotFoundException $e) {
             // Don't delete an image that doesn't exist

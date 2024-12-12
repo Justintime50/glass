@@ -8,17 +8,15 @@
 
         @forelse($posts as $post)
             <div class="post-container-feed">
-                <a href="{{ strtolower(url('/' . str_replace(' ', '-', $post->user->name) . '/' . $post->slug)) }}"
-                    class="post-link">
+                <a class="post-link"
+                   href="{{ strtolower(url('/' . str_replace(' ', '-', $post->user->name) . '/' . $post->slug)) }}">
                     <div class="banner-image-container">
-                        @if (
-                            \App\Http\Controllers\ImageController::getImagePublicPath($post->image?->subdirectory, $post->image?->filename) !==
-                                null)
-                            <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($post->image->subdirectory, $post->image->filename) }}"
-                                class="banner-image">
+                        @if (isset($post->image))
+                            <img class="banner-image"
+                                 src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($post->image->subdirectory, $post->image->filename) }}">
                         @else
-                            <img src="{{ asset(\App\Http\Controllers\ImageController::$defaultBannerImage) }}"
-                                class="banner-image">
+                            <img class="banner-image"
+                                 src="{{ asset(\App\Http\Controllers\ImageController::$defaultBannerImage) }}">
                         @endif
                     </div>
                     <div class="post-container-content-feed">
@@ -53,17 +51,17 @@
         </div>
 
         <h3>Categories</h3>
-        <a href="/posts" class="btn btn-sm btn-primary category-button">All Posts</a>
+        <a class="btn btn-sm btn-primary category-button" href="/posts">All Posts</a>
         @foreach ($categories as $category)
-            <a href="/posts/category/{{ $category->category }}"
-                class="btn btn-sm btn-primary category-button">{{ $category->category }}</a>
+            <a class="btn btn-sm btn-primary category-button"
+               href="/posts/category/{{ $category->category }}">{{ $category->category }}</a>
         @endforeach
 
         <h3 class="mt-3">Users</h3>
-        <a href="/posts" class="btn btn-sm btn-primary category-button">All Users</a>
+        <a class="btn btn-sm btn-primary category-button" href="/posts">All Users</a>
         @foreach ($authors as $author)
-            <a href="/posts/user/{{ $author->name }}"
-                class="btn btn-sm btn-primary category-button">{{ $author->name }}</a>
+            <a class="btn btn-sm btn-primary category-button"
+               href="/posts/user/{{ $author->name }}">{{ $author->name }}</a>
         @endforeach
     </div>
 @endsection

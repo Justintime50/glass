@@ -18,12 +18,9 @@
                         <tr>
                             <td>{{ $comment->comment }}</td>
                             <td>
-                                @if (
-                                    \App\Http\Controllers\ImageController::getImagePublicPath(
-                                        $comment->user->image?->subdirectory,
-                                        $comment->user->image?->filename) !== null)
-                                    <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($comment->user->image->subdirectory, $comment->user->image->filename) }}"
-                                        class="avatar-small">
+                                @if (isset($comment->user->image))
+                                    <img class="avatar-small"
+                                         src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($comment->user->image->subdirectory, $comment->user->image->filename) }}">
                                 @else
                                     <i class="bi bi-person-fill pa-font-lg avatar-small"></i>
                                 @endif

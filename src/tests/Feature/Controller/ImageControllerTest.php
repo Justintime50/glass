@@ -40,7 +40,7 @@ class ImageControllerTest extends TestCase
      */
     public function testUploadPostImage()
     {
-        Storage::fake('public');
+        Storage::fake('local');
 
         $request = Request::create('/images', 'POST', [], [], [
             'image' => UploadedFile::fake()->image('image.jpg'),
@@ -58,7 +58,7 @@ class ImageControllerTest extends TestCase
      */
     public function testDeletePostImage()
     {
-        Storage::fake('public');
+        Storage::fake('local');
 
         $request = Request::create('/images', 'POST', [], [], [
             'image' => UploadedFile::fake()->image('image.jpg'),

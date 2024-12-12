@@ -8,10 +8,13 @@
             @method('PATCH')
 
             <label for="title">Blog Title</label>
-            <input type="text" class="form-control" name="title" value="{{ old('title', $settings->title) }}">
+            <input class="form-control"
+                   type="text"
+                   name="title"
+                   value="{{ old('title', $settings->title) }}">
 
             <label for="title">Comments</label>
-            <select name="comments" class="form-select">
+            <select class="form-select" name="comments">
                 <option value="1" <?php if ($settings->comments == 1) {
                     echo 'selected';
                 } ?>>On</option>
@@ -21,7 +24,7 @@
             </select>
 
             <label for="title">Blog Theme</label>
-            <select name="theme" class="form-select">
+            <select class="form-select" name="theme">
                 <option value="1" <?php if ($settings->theme == 1) {
                     echo 'selected';
                 } ?>>Light</option>
@@ -36,7 +39,9 @@
                 } ?>>Amethyst</option>
             </select>
 
-            <input type="submit" class="btn btn-primary mt-3" value="Update Settings">
+            <input class="btn btn-primary mt-3"
+                   type="submit"
+                   value="Update Settings">
         </form>
     </div>
 
@@ -56,22 +61,32 @@
                             <td>{{ $category->category }}</td>
                             <td>{{ $category->created_at }}</td>
                             <td>
-                                <form action="/categories/{{ $category->id }}" method="POST"
-                                    id="updateCategory{{ $category->id }}" class="pa-inline-block">
+                                <form class="pa-inline-block"
+                                      id="updateCategory{{ $category->id }}"
+                                      action="/categories/{{ $category->id }}"
+                                      method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <input type="hidden" name="category" value="{{ $category->category }}"
-                                        id="newCategoryName{{ $category->id }}">
+                                    <input id="newCategoryName{{ $category->id }}"
+                                           type="hidden"
+                                           name="category"
+                                           value="{{ $category->category }}">
                                 </form>
-                                <button onclick="updateCategory({{ $category->id }})"
-                                    class="btn btn-sm btn-primary pa-inline-block">Update</button>
+                                <button class="btn btn-sm btn-primary pa-inline-block"
+                                        onclick="updateCategory({{ $category->id }})">Update</button>
 
-                                <form action="/categories/{{ $category->id }}" method="POST" class="pa-inline-block">
+                                <form class="pa-inline-block"
+                                      action="/categories/{{ $category->id }}"
+                                      method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="id" value="{{ $category->id }}">
-                                    <input type="submit" value="Delete" class="btn btn-sm btn-danger"
-                                        onclick="submitFormAfterPrompt('Are you sure you want to delete this category?');return false;">
+                                    <input type="hidden"
+                                           name="id"
+                                           value="{{ $category->id }}">
+                                    <input class="btn btn-sm btn-danger"
+                                           type="submit"
+                                           value="Delete"
+                                           onclick="submitFormAfterPrompt('Are you sure you want to delete this category?');return false;">
                                 </form>
                             </td>
                         </tr>
@@ -84,9 +99,14 @@
         <h3>Create New Category</h3>
         <form action="/categories" method="POST">
             @csrf
-            <input type="text" class="form-control" name="category" value="{{ old('category') }}"
-                placeholder="New category name...">
-            <input type="submit" value="Create Category" class="btn btn-primary pa-inline-block mt-2">
+            <input class="form-control"
+                   type="text"
+                   name="category"
+                   value="{{ old('category') }}"
+                   placeholder="New category name...">
+            <input class="btn btn-primary pa-inline-block mt-2"
+                   type="submit"
+                   value="Create Category">
         </form>
     </div>
 
@@ -107,7 +127,7 @@
                         <tr>
                             <td>
                                 <a
-                                    href="{{ strtolower(url('/' . str_replace(' ', '-', $post->user->name) . '/' . $post->slug)) }}">
+                                   href="{{ strtolower(url('/' . str_replace(' ', '-', $post->user->name) . '/' . $post->slug)) }}">
                                     {{ $post->title }}
                                 </a>
                             </td>
@@ -127,9 +147,11 @@
                                     @csrf
                                     @method('DELETE')
                                     <a class="btn btn-sm btn-primary pa-inline-block"
-                                        href="{{ strtolower(url('/posts/edit/' . $post->user->name . '/' . $post->slug)) }}">Edit</a>
-                                    <input type="submit" value="Delete" class="btn btn-sm btn-danger pa-inline-block"
-                                        onclick="submitFormAfterPrompt('Are you sure you want to delete this post?');return false;">
+                                       href="{{ strtolower(url('/posts/edit/' . $post->user->name . '/' . $post->slug)) }}">Edit</a>
+                                    <input class="btn btn-sm btn-danger pa-inline-block"
+                                           type="submit"
+                                           value="Delete"
+                                           onclick="submitFormAfterPrompt('Are you sure you want to delete this post?');return false;">
                                 </form>
                             </td>
                         </tr>
@@ -139,7 +161,7 @@
         </div>
         {{ $posts->links() }}
 
-        <a href="/create-post" class="btn btn-primary">Create Post</a>
+        <a class="btn btn-primary" href="/create-post">Create Post</a>
     </div>
 
     <div class="section-space container">
@@ -167,11 +189,9 @@
                         @endphp
                         <tr>
                             <td>
-                                @if (
-                                    \App\Http\Controllers\ImageController::getImagePublicPath($user->image?->subdirectory, $user->image?->filename) !==
-                                        null)
-                                    <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($user->image->subdirectory, $user->image->filename) }}"
-                                        class="avatar-small">
+                                @if (isset($user->image))
+                                    <img class="avatar-small"
+                                         src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($user->image->subdirectory, $user->image->filename) }}">
                                 @else
                                     <i class="bi bi-person-fill pa-font-lg avatar-small"></i>
                                 @endif
@@ -184,15 +204,19 @@
                                 <form action="/users/{{ $user->id }}/role" method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <input type="hidden" name="id" value="{{ $user->id }}">
+                                    <input type="hidden"
+                                           name="id"
+                                           value="{{ $user->id }}">
                                     {{-- Don't allow changing your own role (so you don't accidentally remove admin privileges) --}}
-                                    <select name="role" onchange="this.form.submit()" class="form-select"
-                                        @if ($user->id == Auth::user()->id) {{ 'disabled' }} @endif>
+                                    <select class="form-select"
+                                            name="role"
+                                            onchange="this.form.submit()"
+                                            @if ($user->id == Auth::user()->id) {{ 'disabled' }} @endif>
                                         <option value="1"
-                                            @if ($user->role == 1) {{ 'selected' }} @endif>Admin
+                                                @if ($user->role == 1) {{ 'selected' }} @endif>Admin
                                         </option>
                                         <option value="2"
-                                            @if ($user->role == 2) {{ 'selected' }} @endif>
+                                                @if ($user->role == 2) {{ 'selected' }} @endif>
                                             User</option>
                                     </select>
                                 </form>
@@ -206,8 +230,12 @@
                                     <form action="/users/{{ $user->id }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <input type="hidden" name="id" value="{{ $user->id }}">
-                                        <input type="submit" value="Delete" class="btn btn-sm btn-danger">
+                                        <input type="hidden"
+                                               name="id"
+                                               value="{{ $user->id }}">
+                                        <input class="btn btn-sm btn-danger"
+                                               type="submit"
+                                               value="Delete">
                                     </form>
                                 @endif
                             </td>

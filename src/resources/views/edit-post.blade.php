@@ -12,10 +12,17 @@
             @method('PATCH')
 
             <label for="title">Title</label>
-            <input type="text" class="form-control" name="title" id="title" value="{{ old('title', $post->title) }}">
+            <input class="form-control"
+                   id="title"
+                   type="text"
+                   name="title"
+                   value="{{ old('title', $post->title) }}">
 
             <label for="slug">Slug (URL) - Must be a single string (eg: "my-new-post" OR "mynewpost")</label>
-            <input type='text' class='form-control' name='slug' value="{{ old('slug', $post->slug) }}">
+            <input class='form-control'
+                   type='text'
+                   name='slug'
+                   value="{{ old('slug', $post->slug) }}">
 
             <label for="published">Post Status</label>
             <select class="form-select" name="published">
@@ -28,36 +35,50 @@
             </select>
 
             <label for="image_id">Banner Image</label>
-            <input type="text" class="form-control" name="image_id" id="image_id"
-                value="{{ old('image_id', $post->image?->id) }}" hidden>
+            <input class="form-control"
+                   id="image_id"
+                   type="text"
+                   name="image_id"
+                   value="{{ old('image_id', $post->image?->id) }}"
+                   hidden>
 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imageGallery">
+            <button class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#imageGallery"
+                    type="button">
                 Select Banner Image
             </button>
 
-            @if (
-                \App\Http\Controllers\ImageController::getImagePublicPath($post->image?->subdirectory, $post->image?->filename) !==
-                    null)
-                <img src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($post->image->subdirectory, $post->image->filename) }}"
-                    id="banner-image-preview">
+            @if (isset($post->image))
+                <img id="banner-image-preview"
+                     src="{{ \App\Http\Controllers\ImageController::getImageAssetPath($post->image->subdirectory, $post->image->filename) }}">
             @else
-                <img src="{{ asset(\App\Http\Controllers\ImageController::$defaultBannerImage) }}"
-                    id="banner-image-preview">
+                <img id="banner-image-preview"
+                     src="{{ asset(\App\Http\Controllers\ImageController::$defaultBannerImage) }}">
             @endif
 
-            <div class="modal fade" id="imageGallery" tabindex="-1" aria-labelledby="imageGallery" aria-hidden="true">
+            <div class="modal fade"
+                 id="imageGallery"
+                 tabindex="-1"
+                 aria-labelledby="imageGallery"
+                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="imageGallery">Select Banner Image</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    type="button"
+                                    aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <p>Go to the <a href="/images">Image Library</a> to manage images.</p>
                             @include('partials.image-gallery')
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button class="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                    type="button">Close</button>
                         </div>
                     </div>
                 </div>
@@ -73,10 +94,16 @@
             </select>
 
             <label for="keywords">Keywords (separated by commas)</label>
-            <input type="text" class="form-control" name="keywords" value="{{ old('keywords', $post->keywords) }}">
+            <input class="form-control"
+                   type="text"
+                   name="keywords"
+                   value="{{ old('keywords', $post->keywords) }}">
 
             <label for="post">Post</label>
-            <textarea name="post" class="form-control" id="post" rows="6">{{ old('post', $post->post) }}</textarea>
+            <textarea class="form-control"
+                      id="post"
+                      name="post"
+                      rows="6">{{ old('post', $post->post) }}</textarea>
 
             <p>
                 <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">
@@ -84,7 +111,9 @@
                 </a>
             </p>
 
-            <input type="submit" class="btn btn-primary" value="Update Post">
+            <input class="btn btn-primary"
+                   type="submit"
+                   value="Update Post">
         </form>
     </div>
 @endsection
