@@ -150,6 +150,10 @@ a:hover {
   background-color: $background-color-accent;
 }
 
+.modal-header {
+    background-color: $accent-color;
+  }
+
 .modal-content {
   background-color: $background-color;
   color: $font-color;
