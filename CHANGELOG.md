@@ -2,6 +2,7 @@
 
 ## Next Release
 
+- Fixes a bug where you could not delete an image used by a post by adding a database migration to set the `image_id` to null on posts when an image is deleted that is still referred to in a post
 - Bumps dependencies
 
 ## v3.1.0 (2024-12-12)
