@@ -5,31 +5,28 @@
     <div class="post-content container">
 
         @if (Auth::check() && Auth::user()->role == 1)
-            <form class="mb-3"
+            <a class="btn btn-primary pa-inline-block" href="/posts">
+                <i class="bi bi-chevron-left"></i> Back to Posts
+            </a>
+            <a class="btn btn-primary pa-inline-block"
+               href="{{ strtolower(url('/posts/edit/' . str_replace(' ', '-', $post->user->name) . '/' . $post->slug)) }}">
+                Edit Post
+            </a>
+            <form class="pa-inline-block mb-3"
                   action="/posts/{{ $post->id }}"
                   method="POST">
                 @csrf
                 @method('DELETE')
-                <a class="btn btn-primary pa-inline-block"
-                   href="#"
-                   onclick="window.history.back(); return false;">
-                    <i class="bi bi-chevron-left"></i> Back to Posts
-                </a>
-                <a class="btn btn-primary pa-inline-block"
-                   href="{{ strtolower(url('/posts/edit/' . str_replace(' ', '-', $post->user->name) . '/' . $post->slug)) }}">
-                    Edit Post
-                </a>
                 <input name="id"
                        value="{{ $post->id }}"
                        hidden>
                 <input class="btn btn-danger pa-inline-block"
                        type="submit"
-                       value="Delete Post">
+                       value="Delete Post"
+                       onclick="if (confirm('Are you sure you want to delete this post?')) { this.closest('form').submit(); } return false">
             </form>
         @else
-            <a class="btn btn-primary pa-inline-block"
-               href="#"
-               onclick="window.history.back(); return false;">
+            <a class="btn btn-primary pa-inline-block" href="/posts">
                 <i class="bi bi-chevron-left"></i> Back to Posts
             </a>
         @endif

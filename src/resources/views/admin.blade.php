@@ -56,14 +56,14 @@
                 <thead>
                     <th>Name</th>
                     <th>Updated At</th>
-                    <th>Actions</th>
+                    <th class="text-center">Actions</th>
                 </thead>
                 <tbody>
                     @foreach ($categories as $category)
                         <tr>
                             <td>{{ $category->category }}</td>
                             <td>{{ $category->created_at }}</td>
-                            <td>
+                            <td class="text-center">
                                 <form class="pa-inline-block"
                                       id="updateCategory{{ $category->id }}"
                                       action="/categories/{{ $category->id }}"
@@ -76,7 +76,9 @@
                                            value="{{ $category->category }}">
                                 </form>
                                 <button class="btn btn-sm btn-primary pa-inline-block"
-                                        onclick="updateCategory({{ $category->id }})">Update</button>
+                                        onclick="app.updateCategory({{ $category->id }})">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
 
                                 <form class="pa-inline-block"
                                       action="/categories/{{ $category->id }}"
@@ -86,10 +88,11 @@
                                     <input type="hidden"
                                            name="id"
                                            value="{{ $category->id }}">
-                                    <input class="btn btn-sm btn-danger"
-                                           type="submit"
-                                           value="Delete"
-                                           onclick="submitFormAfterPrompt('Are you sure you want to delete this category?');return false;">
+                                    <button class="btn btn-sm btn-danger"
+                                            type="submit"
+                                            onclick="if (confirm('Are you sure you want to delete this category?')) { this.closest('form').submit(); } return false">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -123,7 +126,7 @@
                     <th>Status</th>
                     <th>Author</th>
                     <th>Created At</th>
-                    <th>Actions</th>
+                    <th class="text-center">Actions</th>
                 </thead>
                 <tbody>
                     @foreach ($posts as $post)
@@ -145,16 +148,21 @@
                             </td>
                             <td>{{ $post->user->name }}</td>
                             <td>{{ $post->created_at }}</td>
-                            <td>
-                                <form action="/posts/{{ $post->id }}" method="POST">
+                            <td class="text-center" style="white-space: nowrap;">
+                                <a class="btn btn-sm btn-primary"
+                                   href="{{ strtolower(url('/posts/edit/' . $post->user->name . '/' . $post->slug)) }}"><i
+                                       class="bi bi-pencil-square"></i></a>
+                                <form class="pa-inline-block"
+                                      action="/posts/{{ $post->id }}"
+                                      method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <a class="btn btn-sm btn-primary pa-inline-block"
-                                       href="{{ strtolower(url('/posts/edit/' . $post->user->name . '/' . $post->slug)) }}">Edit</a>
-                                    <input class="btn btn-sm btn-danger pa-inline-block"
-                                           type="submit"
-                                           value="Delete"
-                                           onclick="submitFormAfterPrompt('Are you sure you want to delete this post?');return false;">
+                                    <button class="btn btn-sm btn-danger"
+                                            type="submit"
+                                            value="D"
+                                            onclick="if (confirm('Are you sure you want to delete this post?')) { this.closest('form').submit(); } return false">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -177,7 +185,7 @@
                     <th>Email</th>
                     <th>Role</th>
                     <th>Signed Up</th>
-                    <th>Actions</th>
+                    <th class="text-center">Actions</th>
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
@@ -227,7 +235,7 @@
                             <td>
                                 {{ $user->created_at }}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{-- Don't allow deleting yourself --}}
                                 @if ($user->id != Auth::user()->id)
                                     <form action="/users/{{ $user->id }}" method="POST">
@@ -236,9 +244,10 @@
                                         <input type="hidden"
                                                name="id"
                                                value="{{ $user->id }}">
-                                        <input class="btn btn-sm btn-danger"
-                                               type="submit"
-                                               value="Delete">
+                                        <button class="btn btn-sm btn-danger"
+                                                type="submit"
+                                                onclick="if (confirm('Are you sure you want to delete this post?')) { this.closest('form').submit(); } return false">
+                                            <i class="bi bi-trash"></i></button>
                                     </form>
                                 @endif
                             </td>
@@ -249,22 +258,4 @@
         </div>
         {{ $users->links() }}
     </div>
-
-    <script>
-        // Show a prompt to update the category name and replace it in the form as we submit it
-        function updateCategory(id) {
-            let newCategoryName = prompt("Enter a new category name:");
-            if (newCategoryName != null) {
-                document.getElementById(`newCategoryName${id}`).value = newCategoryName;
-                document.getElementById(`updateCategory${id}`).submit();
-            }
-        }
-
-        // Prompts the user prior to submitting a form
-        function submitFormAfterPrompt(message = null) {
-            if (confirm(message) == true) {
-                this.closest('form').submit();
-            }
-        }
-    </script>
 @endsection

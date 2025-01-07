@@ -36,7 +36,8 @@
                                 <form action="/comments/{{ $comment->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-sm btn-danger" onclick="this.form.submit();">
+                                    <button class="btn btn-sm btn-danger"
+                                            onclick="if (confirm('Are you sure you want to delete this comment?')) { this.closest('form').submit(); } return false">
                                         <i class="bi bi-trash-fill"></i>
                                     </button>
                                 </form>

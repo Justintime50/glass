@@ -18,7 +18,8 @@
                                download>Download</a>
                             <input class="btn btn-sm btn-danger"
                                    type="submit"
-                                   value="Delete">
+                                   value="Delete"
+                                   onclick="if (confirm('Are you sure you want to delete this image?')) { this.closest('form').submit(); } return false">
                         </form>
                     @else
                         @php

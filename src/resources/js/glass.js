@@ -18,3 +18,13 @@ export function selectImage(imageId, imageName, filesystemDriver, s3PublicUrl) {
     document.getElementById("image_id").value = imageId;
     document.getElementById("banner-image-preview").src = path;
 }
+
+// Show a prompt to update the category name and replace it in the form as we submit it
+export function updateCategory(id) {
+    const newCategoryName = prompt("Enter a new category name:");
+
+    if (newCategoryName != null) {
+        document.getElementById(`newCategoryName${id}`).value = newCategoryName;
+        document.getElementById(`updateCategory${id}`).submit();
+    }
+}
