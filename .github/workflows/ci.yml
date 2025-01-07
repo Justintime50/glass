@@ -32,28 +32,6 @@ jobs:
         run: |
           cd src
           just install lint
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        phpversion: ['8.2', '8.3', '8.4']
-    steps:
-      - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v2
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.phpversion }}
-          coverage: xdebug
-      - run: docker network create traefik
-      - name: Install Dependencies
-        run: |
-          cd src
-          cp .env-example .env
-          just setup
-      - name: Run tests
-        run: |
-          cd src
-          just coverage
   coverage:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest

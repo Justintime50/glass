@@ -38,7 +38,7 @@ lint-css:
 
 # Lint the JS files
 lint-js:
-    npx eslint resources/js/*.js
+    npx eslint -c {{STYLES_DIR}}/javascript/eslint.config.js resources/js/*.js
 
 # Fix all linting issues
 lint-fix: lint-php-fix lint-css-fix lint-js-fix
@@ -53,7 +53,7 @@ lint-css-fix:
 
 # Fix JS linting
 lint-js-fix:
-    npx eslint resources/js/*.js --fix
+    npx eslint -c {{STYLES_DIR}}/javascript/eslint.config.js resources/js/*.js --fix
 
 # Migrates the database
 migrate:

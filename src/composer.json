@@ -7,7 +7,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.4",
         "anhskohbo/no-captcha": "^3.6",
         "erusev/parsedown": "^1.7",
         "intervention/image": "^3.7",

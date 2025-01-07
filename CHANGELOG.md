@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Bumps dependencies
+
 ## v3.1.0 (2024-12-12)
 
 - Adds PHP 8.4 support
