@@ -12,7 +12,7 @@
         "laravel-vite-plugin": "^1.1",
         "pineapple-library": "^4.0",
         "sass": "^1.83",
-        "vite": "^6.0"
+        "vite": "^6.2"
     },
     "devDependencies": {
         "eslint": "^9.0",
