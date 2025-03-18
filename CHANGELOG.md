@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Bumps dependencies
+
 ## v3.2.0 (2025-01-07)
 
 - Adds confirmation prompts to deleting records
