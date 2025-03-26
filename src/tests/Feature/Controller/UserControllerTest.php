@@ -31,8 +31,7 @@ class UserControllerTest extends TestCase
         $request = Request::create('/profile', 'GET');
         self::$controller->showProfile($request);
 
-        // TODO: Is there a better assertion here since we return an empty view?
-        $this->assertTrue(true);
+        $this->expectNotToPerformAssertions();
     }
 
     /**

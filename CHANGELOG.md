@@ -2,6 +2,8 @@
 
 ## Next Release
 
+- Upgrades Laravel to v12
+- Adds properties to models
 - Bumps dependencies
 
 ## v3.2.0 (2025-01-07)

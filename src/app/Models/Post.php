@@ -9,6 +9,28 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Posts are the main content of the blog.
+ *
+ * @property int $id
+ * @property string $title
+ * @property string $slug
+ * @property string|null $keywords
+ * @property int|null $category_id
+ * @property int $user_id
+ * @property string $post
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property int|null $image_id
+ * @property int $published
+ * @property-read \App\Models\Category|null $category
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
+ * @property-read int|null $comments_count
+ * @property-read \App\Models\Image|null $image
+ * @property-read \App\Models\User $user
+ * @mixin \Eloquent
+ */
 class Post extends Model
 {
     use HasFactory;

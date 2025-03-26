@@ -29,8 +29,7 @@ class ImageControllerTest extends TestCase
         $request = Request::create('/images', 'GET');
         self::$controller->showImagesPage($request);
 
-        // TODO: Is there a better assertion here since we return an empty view?
-        $this->assertTrue(true);
+        $this->expectNotToPerformAssertions();
     }
 
     /**

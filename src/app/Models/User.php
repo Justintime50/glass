@@ -6,21 +6,32 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
+/**
+ * Users are the main actors of the blog.
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property string $password
+ * @property string|null $remember_token
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $bio
+ * @property int|null $image_id
+ * @property int $role
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Image|null $image
+ * @mixin \Eloquent
+ */
 class User extends Authenticatable
 {
     use HasFactory;
-    use Notifiable;
     use SoftDeletes;
 
     public $timestamps = true;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'bio',
         'created_at',
@@ -32,11 +43,6 @@ class User extends Authenticatable
         'updated_at'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
