@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * Users are the main actors of the blog.
@@ -23,11 +24,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property int $role
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\Image|null $image
- * @mixin \Eloquent
  */
 class User extends Authenticatable
 {
     use HasFactory;
+    use Notifiable;
     use SoftDeletes;
 
     public $timestamps = true;
