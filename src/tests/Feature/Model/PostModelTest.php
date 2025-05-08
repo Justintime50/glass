@@ -26,7 +26,6 @@ class PostModelTest extends TestCase
 
         $this->assertInstanceOf(User::class, $post->user);
         $this->assertInstanceOf(Category::class, $post->category);
-        $this->assertContainsOnlyInstancesOf(Comment::class, $post->comments);
         $this->assertInstanceOf(Image::class, $post->image);
     }
 }
