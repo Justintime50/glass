@@ -3,7 +3,6 @@
 namespace Tests\Feature\Model;
 
 use App\Models\Category;
-use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Post;
 use App\Models\User;
