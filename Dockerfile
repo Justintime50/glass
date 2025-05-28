@@ -1,4 +1,4 @@
-FROM justintime50/nginx-php:8.4-26
+FROM justintime50/nginx-php:8.4-29
 
 ARG PROD
 
