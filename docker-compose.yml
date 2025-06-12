@@ -18,7 +18,7 @@ services:
       - ./src:/var/www/html
 
   glass-db:
-    image: 'mariadb:11.4.4'
+    image: 'mariadb:11.4.7'
     restart: always
     volumes:
       - glass-db:/var/lib/mysql
