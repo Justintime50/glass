@@ -1,10 +1,12 @@
 # CHANGELOG
 
-## Next Release
+## v3.3.0 (2025-07-04)
 
 - Upgrades Laravel to v12
 - Adds properties to models
 - Adds new `AWS_PREFIX` env variable to define a prefix (if used, `AWS_PUBLIC_URL` should then be the true base of the S3 bucket)
+- Alerts now show proper color for errors, helping to easily distinguish.
+- Alerts are now dismissible
 - Bumps dependencies
 
 ## v3.2.0 (2025-01-07)

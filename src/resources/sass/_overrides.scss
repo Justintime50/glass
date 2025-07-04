@@ -1,48 +1,70 @@
 @import "variables";
 
 .btn {
-  color: $color-white;
+    color: $color-white;
 }
 
 .btn:hover {
-  color: $color-white;
+    color: $color-white;
 }
 
 .container {
-  width: 55%;
+    width: 55%;
 }
 
 .banner-image-container {
-  max-height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  overflow: hidden;
-  // Next two lines are a fix for Safari's GPU/CPU border-radius glitch with hidden overflow.
-  // (https://stackoverflow.com/questions/10314207/webkit-not-respecting-overflowhidden-with-border-radius)
-  transform: translateZ(0);
+    max-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    // Next two lines are a fix for Safari's GPU/CPU border-radius glitch with hidden overflow.
+    // (https://stackoverflow.com/questions/10314207/webkit-not-respecting-overflowhidden-with-border-radius)
+    transform: translateZ(0);
 }
 
 .banner-image {
-  max-width: 100%;
-  // Animation
-  transition: transform 0.5s;
+    max-width: 100%;
+    // Animation
+    transition: transform 0.5s;
 }
 
 .form-control {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .navbar .navbar-toggler {
-  border-color: transparent;
+    border-color: transparent;
 }
 
 .navbar .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
 .navbar .navbar-toggler:focus {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.alert {
+    margin-bottom: 0;
+
+    ul {
+        margin-bottom: 0;
+    }
+
+    &.alert-dismissible {
+        >.container {
+            position: relative;
+            padding-left: 2rem;
+
+            >.btn-close {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    }
 }

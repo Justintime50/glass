@@ -109,28 +109,48 @@
             </div>
         </nav>
 
-        <!-- LARAVEL ERRORS -->
-        <div class="pa-padding-0 container">
+        <section>
+            {{-- $errors are validation errors --}}
             @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+                <div class="alert alert-danger rounded-0 alert-dismissible fade show" role="alert">
+                    <div class="container">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        <button class="btn-close"
+                                data-bs-dismiss="alert"
+                                type="button"
+                                aria-label="Close"></button>
+                    </div>
                 </div>
             @endif
 
-            @if (session()->has('message'))
-                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+            @if (session('message'))
+                <div class="alert alert-info rounded-0 alert-dismissible fade show" role="alert">
+                    <div class="container">
+                        {{ Session::get('message') }}
+                        <button class="btn-close"
+                                data-bs-dismiss="alert"
+                                type="button"
+                                aria-label="Close"></button>
+                    </div>
+                </div>
             @endif
 
-            @if (session()->has('error'))
-                <p class="alert alert-danger {{ Session::get('alert-class', 'alert-info') }}">
-                    {{ Session::get('error') }}
-                </p>
+            @if (session('error'))
+                <div class="alert alert-danger rounded-0 alert-dismissible fade show" role="alert">
+                    <div class="container">
+                        {{ Session::get('error') }}
+                        <button class="btn-close"
+                                data-bs-dismiss="alert"
+                                type="button"
+                                aria-label="Close"></button>
+                    </div>
+                </div>
             @endif
-        </div>
+        </section>
 
         <main class="py-4">
             @yield('content')

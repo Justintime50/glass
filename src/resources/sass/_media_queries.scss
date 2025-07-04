@@ -1,37 +1,37 @@
 @media only screen and (width <=992px) {
-  .post-content {
-    width: 75%;
-  }
+    .post-content {
+        width: 75%;
+    }
 }
 
 @media only screen and (width <=1200px) {
-  .post-content {
-    width: 100%;
-  }
+    .post-content {
+        width: 100%;
+    }
 }
 
 @media only screen and (width <=768px) {
-  .post-container-feed {
-    margin: 10px 0;
+    .post-container-feed {
+        margin: 10px 0;
 
-    img {
-      transform: scale(1.8);
+        img {
+            transform: scale(1.8);
+        }
     }
-  }
 
-  .banner-image-container {
-    img {
-      transform: scale(1.8);
+    .banner-image-container {
+        img {
+            transform: scale(1.8);
+        }
     }
-  }
 
-  .post-container-feed:hover {
-    img {
-      transform: scale(2.2) !important;
+    .post-container-feed:hover {
+        img {
+            transform: scale(2.2) !important;
+        }
     }
-  }
 
-  .container {
-    width: 100%;
-  }
+    .container {
+        width: 100%;
+    }
 }
