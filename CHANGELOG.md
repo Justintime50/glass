@@ -4,6 +4,7 @@
 
 - Upgrades Laravel to v12
 - Adds properties to models
+- Adds new `AWS_PREFIX` env variable to define a prefix (if used, `AWS_PUBLIC_URL` should then be the true base of the S3 bucket)
 - Bumps dependencies
 
 ## v3.2.0 (2025-01-07)

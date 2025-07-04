@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
+use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
@@ -29,6 +30,7 @@ class ImageController extends Controller
     public function showImagesPage(Request $request): View
     {
         $images = Image::where('subdirectory', '=', self::$postImagesSubdirectory)
+            ->orderByDesc('created_at')
             ->get();
 
         return view('images', compact('images'));
@@ -55,11 +57,11 @@ class ImageController extends Controller
 
             if (config('filesystems.default') === 's3') {
                 $s3Path = self::$imagesDir . "/$subdirectory/$filename";
-                $success = Storage::disk('s3')->put($s3Path, file_get_contents($temporaryPath));
-                unlink($temporaryPath);
-                if (!$success) {
-                    throw new \Exception();
+                if (config('filesystems.disks.s3.path_prefix') !== null) {
+                    $s3Path = config('filesystems.disks.s3.path_prefix') . '/' . $s3Path;
                 }
+                Storage::disk('s3')->put($s3Path, file_get_contents($temporaryPath));
+                unlink($temporaryPath);
             } else {
                 $localPath = self::getImagePublicPath($subdirectory, $filename);
                 rename($temporaryPath, $localPath);
@@ -71,7 +73,7 @@ class ImageController extends Controller
             $image->save();
 
             session()->flash('message', 'Image uploaded successfully.');
-        } catch (\Exception $error) {
+        } catch (Exception) {
             session()->flash('error', 'Image upload failed, please try again.');
         }
 
@@ -97,10 +99,10 @@ class ImageController extends Controller
         try {
             if (config('filesystems.default') === 's3') {
                 $s3Path = self::$imagesDir . "/$image->subdirectory/$image->filename";
-                $success = Storage::disk('s3')->delete($s3Path);
-                if (!$success) {
-                    throw new \Exception();
+                if (config('filesystems.disks.s3.path_prefix') !== null) {
+                    $s3Path = config('filesystems.disks.s3.path_prefix') . '/' . $s3Path;
                 }
+                Storage::disk('s3')->delete($s3Path);
             } else {
                 $localPath = self::getImagePublicPath($image->subdirectory, $image->filename);
                 unlink($localPath);
@@ -108,7 +110,7 @@ class ImageController extends Controller
 
             $image->delete();
             session()->flash('message', 'Image deleted.');
-        } catch (\Exception $error) {
+        } catch (Exception) {
             session()->flash('error', 'Image deletion failed, please try again.');
         }
 
@@ -140,7 +142,11 @@ class ImageController extends Controller
     public static function getImageAssetPath(?string $subdirectory, ?string $imageName): string|null
     {
         if (config('filesystems.default') === 's3') {
-            return config('filesystems.disks.s3.public_url') . '/' . self::$imagesDir . "/$subdirectory/$imageName";
+            $assetPath = config('filesystems.disks.s3.public_url') . '/' . self::$imagesDir . "/$subdirectory/$imageName"; // phpcs:ignore
+            if (config('filesystems.disks.s3.path_prefix') !== null) {
+                $assetPath = config('filesystems.disks.s3.public_url') . '/' . config('filesystems.disks.s3.path_prefix') . '/' . self::$imagesDir . "/$subdirectory/$imageName"; // phpcs:ignore
+            }
+            return $assetPath;
         } else {
             return isset($subdirectory, $imageName)
                 ? asset('storage/' . self::$imagesDir . "/$subdirectory/$imageName")
@@ -158,7 +164,11 @@ class ImageController extends Controller
     public static function getImagePublicPath(?string $subdirectory, ?string $imageName): string|null
     {
         if (config('filesystems.default') === 's3') {
-            return config('filesystems.disks.s3.public_url') . '/' . self::$imagesDir . "/$subdirectory/$imageName";
+            $publicPath = config('filesystems.disks.s3.public_url') . '/' . self::$imagesDir . "/$subdirectory/$imageName"; // phpcs:ignore
+            if (config('filesystems.disks.s3.path_prefix') !== null) {
+                $publicPath = config('filesystems.disks.s3.public_url') . '/' . config('filesystems.disks.s3.path_prefix') . '/' . self::$imagesDir . "/$subdirectory/$imageName"; // phpcs:ignore
+            }
+            return $publicPath;
         } else {
             return isset($subdirectory, $imageName)
                 ? public_path('storage/' . self::$imagesDir . "/$subdirectory/$imageName")

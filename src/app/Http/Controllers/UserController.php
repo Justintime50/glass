@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\User;
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -96,11 +97,11 @@ class UserController extends Controller
 
             if (config('filesystems.default') === 's3') {
                 $s3Path = ImageController::$imagesDir . "/$subdirectory/$filename";
-                $success = Storage::disk('s3')->put($s3Path, file_get_contents($temporaryPath));
-                unlink($temporaryPath);
-                if (!$success) {
-                    throw new \Exception();
+                if (config('filesystems.disks.s3.path_prefix') !== null) {
+                    $s3Path = config('filesystems.disks.s3.path_prefix') . '/' . $s3Path;
                 }
+                Storage::disk('s3')->put($s3Path, file_get_contents($temporaryPath));
+                unlink($temporaryPath);
             } else {
                 $localPath = ImageController::getImagePublicPath($subdirectory, $filename);
                 rename($temporaryPath, $localPath);
@@ -116,7 +117,7 @@ class UserController extends Controller
             $user->save();
 
             session()->flash('message', 'Avatar updated successfully.');
-        } catch (\Exception $error) {
+        } catch (Exception) {
             session()->flash('error', 'Avatar upload failed, please try again.');
         }
 
@@ -137,16 +138,16 @@ class UserController extends Controller
             $image = Image::findOrFail($user->image_id);
             if (config('filesystems.default') === 's3') {
                 $s3Path = ImageController::$imagesDir . "/$image->subdirectory/$image->filename";
-                $success = Storage::disk('s3')->delete($s3Path);
-                if (!$success) {
-                    throw new \Exception();
+                if (config('filesystems.disks.s3.path_prefix') !== null) {
+                    $s3Path = config('filesystems.disks.s3.path_prefix') . '/' . $s3Path;
                 }
+                Storage::disk('s3')->delete($s3Path);
             } else {
                 $localPath = ImageController::getImagePublicPath($image->subdirectory, $image->filename);
                 unlink($localPath);
             }
             $image->delete();
-        } catch (ModelNotFoundException $e) {
+        } catch (ModelNotFoundException) {
             // Don't delete an image that doesn't exist
         }
         $user->delete();
