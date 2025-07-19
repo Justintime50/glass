@@ -1,4 +1,4 @@
-FROM justintime50/nginx-php:8.4-31
+FROM justintime50/nginx-php:8.4-32
 
 ARG PROD
 
@@ -16,5 +16,3 @@ RUN if [ ! -z "$PROD" ]; then \
     fi \
     # Setup shared env
     && php artisan storage:link
-
-CMD sh -c "$(if [ ! -z "$PROD" ]; then php artisan optimize; else php artisan optimize:clear; fi)"
