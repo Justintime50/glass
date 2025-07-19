@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Bumps Docker image (now uses supervisord to start php/nginx)
+
 ## v3.3.0 (2025-07-04)
 
 - Upgrades Laravel to v12
