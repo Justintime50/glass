@@ -17,40 +17,35 @@ jobs:
           cd src
           cp .env-example .env
           just setup
-        continue-on-error: true
-
-      - name: Print glass-glass-1 logs
-        run: docker logs glass-glass-1
-        continue-on-error: true
-#   lint:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-#       - uses: extractions/setup-just@v2
-#       - uses: shivammathur/setup-php@v2
-#         with:
-#           php-version: '8.4'
-#       - uses: actions/setup-node@v4
-#         with:
-#           node-version: '22'
-#       - name: Lint project
-#         run: |
-#           cd src
-#           just install lint
-#   coverage:
-#     if: github.ref == 'refs/heads/main'
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-#       - uses: extractions/setup-just@v2
-#       - uses: shivammathur/setup-php@v2
-#         with:
-#           php-version: '8.4'
-#           coverage: xdebug
-#       - name: Generate coverage report
-#         env:
-#           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#         run: |
-#           cd src
-#           just install coverage
-#           ./bin/php-coveralls --coverage_clover=build/logs/clover.xml -v
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v2
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Lint project
+        run: |
+          cd src
+          just install lint
+  coverage:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v2
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: xdebug
+      - name: Generate coverage report
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd src
+          just install coverage
+          ./bin/php-coveralls --coverage_clover=build/logs/clover.xml -v

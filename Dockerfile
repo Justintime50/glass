@@ -1,4 +1,4 @@
-FROM justintime50/nginx-php:latest
+FROM justintime50/nginx-php:8.4-33
 
 ARG PROD
 
