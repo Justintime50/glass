@@ -1,4 +1,4 @@
-FROM justintime50/nginx-php:8.4-32
+FROM justintime50/nginx-php:latest
 
 ARG PROD
 
@@ -16,9 +16,6 @@ RUN if [ ! -z "$PROD" ]; then \
     && npm install; \
     fi \
     # Setup shared env
-    && php artisan storage:link \
-    && touch /var/log/supervisord.log \
-    && chown www-data:www-data /var/log/supervisord.log
+    && php artisan storage:link
 
 # ENTRYPOINT ["/bin/sh", "-c", "if [ ! -z \"$PROD\" ]; then php artisan optimize; else php artisan optimize:clear; fi"]
-# ENTRYPOINT ["supervisord", "-c", "/etc/supervisord.conf"]
