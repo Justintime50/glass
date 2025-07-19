@@ -5,7 +5,6 @@ on: [push, pull_request]
 jobs:
   docker:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: extractions/setup-just@v2
@@ -18,8 +17,11 @@ jobs:
           cd src
           cp .env-example .env
           just setup
-          docker logs glass-glass-1
+        continue-on-error: true
 
+      - name: Print glass-glass-1 logs
+        run: docker logs glass-glass-1
+        continue-on-error: true
 #   lint:
 #     runs-on: ubuntu-latest
 #     steps:
