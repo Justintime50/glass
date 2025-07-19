@@ -19,4 +19,4 @@ RUN if [ ! -z "$PROD" ]; then \
     && php artisan storage:link
 
 # ENTRYPOINT ["/bin/sh", "-c", "if [ ! -z \"$PROD\" ]; then php artisan optimize; else php artisan optimize:clear; fi"]
-ENTRYPOINT ["php-fpm"]
+# ENTRYPOINT ["supervisord", "-c", "/etc/supervisord.conf"]
