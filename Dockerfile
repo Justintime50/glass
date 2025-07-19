@@ -16,7 +16,9 @@ RUN if [ ! -z "$PROD" ]; then \
     && npm install; \
     fi \
     # Setup shared env
-    && php artisan storage:link
+    && php artisan storage:link \
+    && touch /var/log/supervisord.log \
+    && chown www-data:www-data /var/log/supervisord.log
 
 # ENTRYPOINT ["/bin/sh", "-c", "if [ ! -z \"$PROD\" ]; then php artisan optimize; else php artisan optimize:clear; fi"]
 # ENTRYPOINT ["supervisord", "-c", "/etc/supervisord.conf"]
