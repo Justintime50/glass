@@ -3,6 +3,7 @@ FROM justintime50/nginx-php:8.4-32
 ARG PROD
 
 COPY --chown=www-data:www-data ./src /var/www/html
+COPY test.conf /etc/supervisord.conf
 
 RUN if [ ! -z "$PROD" ]; then \
     # Setup prod env
@@ -17,4 +18,4 @@ RUN if [ ! -z "$PROD" ]; then \
     # Setup shared env
     && php artisan storage:link
 
-ENTRYPOINT ["/bin/sh", "-c", "if [ ! -z \"$PROD\" ]; then php artisan optimize; else php artisan optimize:clear; fi"]
+# ENTRYPOINT ["/bin/sh", "-c", "if [ ! -z \"$PROD\" ]; then php artisan optimize; else php artisan optimize:clear; fi"]
