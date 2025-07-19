@@ -16,3 +16,5 @@ RUN if [ ! -z "$PROD" ]; then \
     fi \
     # Setup shared env
     && php artisan storage:link
+
+ENTRYPOINT ["/bin/sh", "-c", "if [ ! -z \"$PROD\" ]; then php artisan optimize; else php artisan optimize:clear; fi"]
