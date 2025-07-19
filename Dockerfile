@@ -3,7 +3,6 @@ FROM justintime50/nginx-php:latest
 ARG PROD
 
 COPY --chown=www-data:www-data ./src /var/www/html
-COPY test.conf /etc/supervisord.conf
 
 RUN if [ ! -z "$PROD" ]; then \
     # Setup prod env
