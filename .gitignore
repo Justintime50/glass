@@ -19,3 +19,6 @@ src/storage/images/
 # Coverage
 clover.html
 clover.xml
+
+# Supervisor
+supervisord*
