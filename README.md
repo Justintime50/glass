@@ -36,10 +36,6 @@ cp src/.env-example src/.env && cp .env-example .env
 just setup
 ```
 
-### Install in Subdirectory (Optional)
-
-There is a guide on how to do this [here](https://serversforhackers.com/c/nginx-php-in-subdirectory).
-
 ## Usage
 
 Visit `glass.localhost` in a browser to get started.
@@ -47,16 +43,6 @@ Visit `glass.localhost` in a browser to get started.
 ### Default Login
 
 The default login is `admin@glass.com` and `password`. **Make sure to update the email/password after first login!**
-
-## Deploy
-
-```bash
-# Deploy the project locally
-just run
-
-# Deploy the project in production
-just prod
-```
 
 ## Development
 
