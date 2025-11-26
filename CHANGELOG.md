@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v4.0.2 (2025-11-26)
+
+- Post previews strip additional non-human readable characters to provide a clean single statement on the beginning of the post
+
 ## v4.0.1 (2025-11-26)
 
 - The image library modal now loads images in descending order based on when they were uploaded

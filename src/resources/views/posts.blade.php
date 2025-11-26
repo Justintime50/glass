@@ -34,7 +34,12 @@
                             {{ $post->category->category }}
                         </p>
                         <p>
-                            <?php $strippedPost = preg_replace("/[^0-9a-zA-Z_.!?' \r\n+]/", '', $post->post); ?>
+                            @php
+                                $strippedPost = strip_tags($post->post); // Remove HTML tags
+                                $strippedPost = html_entity_decode($strippedPost); // Decode HTML entities
+                                $strippedPost = preg_replace('/[`]/', '', $strippedPost); // Remove backticks
+                                $strippedPost = preg_replace('/\s+/', ' ', $strippedPost); // Normalize whitespace
+                            @endphp
                             {{ substr($strippedPost, 0, 255) }}
                             ...
                         </p>
