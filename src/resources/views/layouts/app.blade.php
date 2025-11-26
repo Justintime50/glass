@@ -13,6 +13,7 @@
     <title>{{ $settings->title }}</title>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://fonts.bunny.net/css?family=Poppins">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @if ($settings->theme == 2)
         @vite(['resources/sass/themes/dark.scss'])

@@ -1,11 +1,11 @@
-@import "variables";
+@use "variables";
 
 .btn {
-    color: $color-white;
+    color: variables.$color-white;
 }
 
 .btn:hover {
-    color: $color-white;
+    color: variables.$color-white;
 }
 
 .container {

@@ -2,21 +2,29 @@
 // NOTE: Themes overwrite the default color scheme of the app,
 // the "default" (light) theme is simply a lack of color alterations.
 
+// Defaults
+$background-color: #fff !default;
+$background-color-accent: #eee !default;
+$accent-color: #ccc !default;
+$interaction-color: #007bff !default;
+$font-color: #222 !default;
+$danger-color: #d00 !default;
+
 // Elements
 
 body {
-  background-color: $background-color;
-  color: $font-color;
+    background-color: $background-color;
+    color: $font-color;
 }
 
 pre,
 code {
-  background-color: $font-color !important;
+    background-color: $font-color !important;
 }
 
 pre {
-  background-color: $font-color;
-  color: $accent-color;
+    background-color: $font-color;
+    color: $accent-color;
 }
 
 input[type="text"],
@@ -24,157 +32,158 @@ input[type="email"],
 input[type="password"],
 textarea,
 select {
-  background-color: $background-color-accent !important;
-  color: $font-color !important;
+    background-color: $background-color-accent !important;
+    color: $font-color !important;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: rgba($font-color, 0.6) !important;
+    color: rgba($font-color, 0.6) !important;
 }
 
 hr {
-  background-color: $accent-color;
-  height: 1px;
+    background-color: $accent-color;
+    height: 1px;
 }
 
 thead th {
-  font-size: 1.1rem;
-  color: $font-color !important;
-  background-color: $background-color-accent !important;
+    font-size: 1.1rem;
+    color: $font-color !important;
+    background-color: $background-color-accent !important;
 }
 
 // Overrides
 
 a {
-  color: $font-color;
+    color: $font-color;
 }
 
 a:hover {
-  opacity: 0.85;
+    opacity: 0.85;
 }
 
 // For the posts page
 .post-container-feed {
-  a {
-    color: $font-color;
-  }
+    a {
+        color: $font-color;
+    }
 }
 
 .navbar a {
-  color: $font-color !important;
+    color: $font-color !important;
 }
 
 .pagination {
 
-  .page-item span,
-  a {
-    background-color: $background-color-accent !important;
-    color: $font-color;
-  }
+    .page-item span,
+    a {
+        background-color: $background-color-accent !important;
+        color: $font-color;
+    }
 
-  .page-item span:hover,
-  a:hover {
-    color: $font-color;
-  }
+    .page-item span:hover,
+    a:hover {
+        color: $font-color;
+    }
 }
 
 .navbar {
-  background-color: $background-color-accent !important;
-
-  .dropdown-menu {
     background-color: $background-color-accent !important;
 
-    a:hover {
-      background-color: $accent-color !important;
+    .dropdown-menu {
+        background-color: $background-color-accent !important;
+
+        a:hover {
+            background-color: $accent-color !important;
+        }
     }
-  }
 }
 
 .navbar .navbar-toggler {
-  border-color: transparent;
+    border-color: transparent;
 }
 
 .navbar .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(187, 225, 250, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(187, 225, 250, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
 .navbar .navbar-toggler:focus {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(187, 225, 250, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(187, 225, 250, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
 .card {
-  background-color: $background-color-accent;
-  color: $font-color;
+    background-color: $accent-color;
+    color: $font-color;
 }
 
 .card-header {
-  background-color: $accent-color;
+    background-color: $accent-color;
 }
 
 .btn-primary {
-  background-color: $interaction-color;
-  border-color: $interaction-color;
+    background-color: $interaction-color;
+    border-color: $interaction-color;
 }
 
 .btn-primary:hover {
-  background-color: $interaction-color;
-  border-color: $interaction-color;
-  opacity: 0.85;
+    background-color: $interaction-color;
+    border-color: $interaction-color;
+    opacity: 0.85;
 }
 
 .btn-danger {
-  background-color: $danger-color;
-  border-color: $danger-color;
+    background-color: $danger-color;
+    border-color: $danger-color;
 }
 
 .btn-danger:hover {
-  background-color: $danger-color;
-  border-color: $danger-color;
-  opacity: 0.85;
+    background-color: $danger-color;
+    border-color: $danger-color;
+    opacity: 0.85;
 }
 
 .table {
-  color: $font-color;
+    color: $font-color;
 }
 
 .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
-  color: $font-color;
-  background-color: $accent-color;
+    color: $font-color;
+    background-color: $accent-color;
 }
 
 .table-striped>tbody>tr:nth-child(even)>td,
 .table-striped>tbody>tr:nth-child(even)>th {
-  color: $font-color;
-  background-color: $background-color-accent;
+    color: $font-color;
+    background-color: $background-color-accent;
 }
 
 .modal-header {
     background-color: $accent-color;
-  }
+}
 
 .modal-content {
-  background-color: $background-color;
-  color: $font-color;
+    background-color: $background-color;
+    color: $font-color;
 }
 
 .btn-close {
-  color: $font-color;
+    color: $font-color;
 }
 
 .page-item.active .page-link {
-  border-color: $accent-color;
+    border-color: $interaction-color;
+    background-color: $interaction-color !important;
 }
 
 .alert-info {
-  background-color: $accent-color;
-  border-color: $interaction-color;
-  color: $font-color;
+    background-color: $accent-color;
+    border-color: $interaction-color;
+    color: $font-color;
 }
 
 // Custom
 
 .post-container-feed:hover {
-  box-shadow: 2px 2px 10px $font-color;
+    box-shadow: 2px 2px 10px $font-color;
 }

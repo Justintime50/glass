@@ -5,6 +5,7 @@
 - Bumps Docker image
   - PHP 8.5
   - Now uses supervisord to start php/nginx
+- Fixes various UI elements (layout, colors, etc)
 - Bumps dependencies
 
 ## v3.3.0 (2025-07-04)

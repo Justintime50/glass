@@ -1,4 +1,4 @@
-@import "variables";
+@use "variables";
 
 .post-content {
     width: 45%;
@@ -16,7 +16,7 @@
     border-radius: 10px;
 
     a {
-        color: $color-black;
+        color: variables.$color-black;
         text-decoration: none;
     }
 
@@ -37,7 +37,7 @@
     }
 
     cursor: pointer;
-    box-shadow: 2px 2px 10px $color-gray;
+    box-shadow: 2px 2px 10px variables.$color-gray;
     transition: box-shadow 0.4s ease-in-out;
 }
 

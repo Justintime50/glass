@@ -1,10 +1,8 @@
 // Dark Theme Colors
-$background-color: #22262d;
-$background-color-accent: #2e333a;
-$accent-color: #444c55;
-$interaction-color: #2c5687;
-$font-color: #eee;
-$danger-color: #961010;
-
-// Import Theme Elements
-@import 'theme';
+@use 'theme' with ($background-color: #22262d,
+    $background-color-accent: #2e333a,
+    $accent-color: #444c55,
+    $interaction-color: #2c5687,
+    $font-color: #eee,
+    $danger-color: #961010,
+)

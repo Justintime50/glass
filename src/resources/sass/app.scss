@@ -1,13 +1,14 @@
-// External
-@import "https://fonts.googleapis.com/css?family=Poppins";
-@import "bootstrap/scss/bootstrap";
-@import "bootstrap-icons/font/bootstrap-icons.css";
-@import "pineapple-library/pineapple/scss/pineapple";
-@import "highlight.js/scss/default";
+// Variables (must come first)
+@use "variables" as *;
+
+// External SASS
+@use "bootstrap/scss/bootstrap" as *;
+@use "pineapple-library/pineapple/scss/pineapple" as *;
+@use "highlight.js/scss/default" as *;
 
 // Internal
-@import "social";
-@import "elements";
-@import "overrides";
-@import "custom";
-@import "media_queries";
+@use "social";
+@use "elements";
+@use "overrides";
+@use "custom";
+@use "media_queries";

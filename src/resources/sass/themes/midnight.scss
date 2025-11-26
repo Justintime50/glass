@@ -1,10 +1,8 @@
 // Midnight Theme Colors
-$background-color: #1b262c;
-$background-color-accent: #0f4c75;
-$accent-color: #3282b8;
-$interaction-color: #198fdd;
-$font-color: #bbe1fa;
-$danger-color: #a51d1d;
-
-// Import Theme Elements
-@import 'theme';
+@use 'theme' with ($background-color: #1b262c,
+    $background-color-accent: #0f4c75,
+    $accent-color: #3282b8,
+    $interaction-color: #198fdd,
+    $font-color: #bbe1fa,
+    $danger-color: #a51d1d,
+)
