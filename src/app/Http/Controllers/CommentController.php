@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CommentNotification;
 use App\Models\Comment;
+use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class CommentController extends Controller
 {
@@ -41,6 +45,19 @@ class CommentController extends Controller
         $comment->user_id = Auth::user()->id;
         $comment->post_id = $request->input('post_id');
         $comment->save();
+
+        $settings = Setting::first();
+        if ($settings->comments) {
+            $admins = User::where('role', '1')->get();
+            foreach ($admins as $admin) {
+                # TODO: Only send email to admins who have enabled email notifications
+                Mail::to($admin->email)->queue(new CommentNotification(
+                    $comment->user,
+                    $comment->post,
+                    $comment->comment
+                ));
+            }
+        }
 
         session()->flash('message', 'Comment created.');
         return redirect()->back();

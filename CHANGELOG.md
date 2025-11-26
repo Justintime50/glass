@@ -9,6 +9,7 @@
 - Bumps Docker image
   - PHP 8.5
   - Now uses supervisord to start php/nginx
+- Comment notifications are now sent via email to admins if the blog has comments enabled (closes #93)
 - Fixes various UI elements (layout, colors, etc)
 - Bumps dependencies
 

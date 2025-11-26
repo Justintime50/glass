@@ -4,6 +4,7 @@ ARG PROD
 ENV PROD=$PROD
 
 COPY --chown=www-data:www-data ./src /var/www/html
+COPY docker/supervisor/ /etc/supervisor/conf.d/
 
 RUN if [ -n "$PROD" ]; then \
     # Setup prod env
