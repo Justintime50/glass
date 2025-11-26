@@ -128,6 +128,7 @@ class PostController extends Controller
         $categories = Category::all();
 
         $images = Image::where('subdirectory', '=', ImageController::$postImagesSubdirectory)
+            ->orderByDesc('created_at')
             ->get();
 
         return view('create-post', compact('categories', 'images'));
@@ -149,6 +150,7 @@ class PostController extends Controller
         $categories = Category::all();
 
         $images = Image::where('subdirectory', '=', ImageController::$postImagesSubdirectory)
+            ->orderByDesc('created_at')
             ->get();
 
         return view('edit-post', compact('post', 'categories', 'images'));

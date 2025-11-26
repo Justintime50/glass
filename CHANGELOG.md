@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v4.0.1 (2025-11-26)
+
+- The image library modal now loads images in descending order based on when they were uploaded
+- YouTube links that were automatically linked via Trix are now properly embeded instead
+- S3 hosted images properly show previews again when selected from image library
+
 ## v4.0.0 (2025-11-26)
 
 - BREAKING: The markdown editor and renderer for post content has been replaced with Trix, a WYSIWYG editor. This allows for easier post creation while still providing powerful rendering capabilities. This does mean however that all previous post content may not render properly when upgrading as it may contain markdown while the new Trix editor saves HTML to the DB. It's recommended to script a markdown to HTML content replacer for your DB content if there are many blog posts or simply go edit and adjust each post one-by-one after upgrading to correct the rendered content. Due to the stylistic choices of everyone's writing and layout, providing a tool to do this is not viable.

@@ -14,7 +14,6 @@ use Intervention\Image\ImageManager;
 class ImageController extends Controller
 {
     public static $defaultBannerImage = 'pics/banner.jpg';
-    public static $postImagesPath = 'storage/images/posts';
     public static $postImagesSubdirectory = 'posts';
     public static $avatarImagesSubdirectory = 'avatars';
     public static $imagesDir = 'images';
