@@ -50,8 +50,8 @@
                 <img class="banner-image" src="{{ asset(\App\Http\Controllers\ImageController::$defaultBannerImage) }}">
             @endif
         </div>
-        <div>
-            {!! Parsedown::instance()->setSafeMode(true)->text($post->post) !!}
+        <div id="trix-content">
+            {!! $post->post !!}
         </div>
 
         <div class="social">

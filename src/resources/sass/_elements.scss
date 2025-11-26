@@ -3,13 +3,19 @@ body {
 }
 
 code {
-    padding: 15px 20px !important;
-    width: 100%;
-    display: block;
+    background-color: #f8f9fa !important;
+    padding: 2px 4px;
+    border-radius: 4px;
 }
 
 pre {
     border-radius: 6px;
+
+    code {
+        padding: 15px 20px !important;
+        width: 100%;
+        display: block;
+    }
 }
 
 img {
