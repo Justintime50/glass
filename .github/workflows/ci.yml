@@ -10,7 +10,7 @@ jobs:
       - uses: extractions/setup-just@v3
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'
+          php-version: '8.5'
       - run: docker network create traefik
       - name: Setup Docker container
         run: |
@@ -24,7 +24,7 @@ jobs:
       - uses: extractions/setup-just@v3
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'
+          php-version: '8.5'
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
@@ -40,7 +40,7 @@ jobs:
       - uses: extractions/setup-just@v3
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'
+          php-version: '8.5'
           coverage: xdebug
       - name: Generate coverage report
         run: |

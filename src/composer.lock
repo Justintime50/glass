@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1e938306a00d7fd7eb934cf987047de0",
+    "content-hash": "a2d3a857ab6c6d7aac8fa43a65125c2a",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -126,16 +126,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.363.2",
+            "version": "3.363.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "f8b5f125248daa8942144b4771c041a63ec41900"
+                "reference": "0ec2218d32e291b988b1602583032ca5d11f8e8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f8b5f125248daa8942144b4771c041a63ec41900",
-                "reference": "f8b5f125248daa8942144b4771c041a63ec41900",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/0ec2218d32e291b988b1602583032ca5d11f8e8d",
+                "reference": "0ec2218d32e291b988b1602583032ca5d11f8e8d",
                 "shasum": ""
             },
             "require": {
@@ -217,9 +217,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.363.2"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.363.3"
             },
-            "time": "2025-11-25T19:04:55+00:00"
+            "time": "2025-11-26T19:05:22+00:00"
         },
         {
             "name": "brick/math",
@@ -1473,16 +1473,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v12.40.1",
+            "version": "v12.40.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "2e986acbf9acf62cba13400bc23c4d639bf188b9"
+                "reference": "1ccd99220b474500e672b373f32bd709ec38de50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/2e986acbf9acf62cba13400bc23c4d639bf188b9",
-                "reference": "2e986acbf9acf62cba13400bc23c4d639bf188b9",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1ccd99220b474500e672b373f32bd709ec38de50",
+                "reference": "1ccd99220b474500e672b373f32bd709ec38de50",
                 "shasum": ""
             },
             "require": {
@@ -1688,7 +1688,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-11-25T16:16:33+00:00"
+            "time": "2025-11-26T19:24:25+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -10072,7 +10072,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.4"
+        "php": "^8.5"
     },
     "platform-dev": {},
     "plugin-api-version": "2.9.0"
