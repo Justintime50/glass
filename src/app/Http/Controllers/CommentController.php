@@ -50,7 +50,7 @@ class CommentController extends Controller
         if ($settings->comments) {
             $admins = User::where('role', '1')->get();
             foreach ($admins as $admin) {
-                # TODO: Only send email to admins who have enabled email notifications
+                // TODO: Only send email to admins who have enabled email notifications
                 Mail::to($admin->email)->queue(new CommentNotification(
                     $comment->user,
                     $comment->post,

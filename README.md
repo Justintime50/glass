@@ -2,7 +2,7 @@
 
 # Glass
 
-Minimalist blog featuring syntax highlighting, images, comments, themes, RSS, and SEO out of the box.
+Minimalist blog featuring WYSIWYG editor, syntax highlighting, images, comments, themes, RSS, and SEO out of the box.
 
 [![CI Status](https://github.com/Justintime50/glass/workflows/ci/badge.svg)](https://github.com/Justintime50/glass/actions)
 [![Coverage Status](https://img.shields.io/codecov/c/github/justintime50/glass)](https://app.codecov.io/github/Justintime50/glass)
@@ -17,9 +17,11 @@ Glass draws its simplistic design inspiration from [Medium](https://medium.com) 
 
 ## Features
 
+- WYSIWYG editor - renders rich text, images, code snippets, YouTube and Twitter embeds
 - Custom image support per post (local storage or S3 configurable)
 - Comments (can be enabled/disabled)
-- Syntax highlighting for code snippets
+  - Comment email notifications to admins
+- Syntax highlighting for code snippets (use single or triple backticks)
 - Themes to style your blog instance
 - RSS feed so users can easily stay up-to-date with the latest posts via `/feed`
 - SEO out of the box with custom tags per post

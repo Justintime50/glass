@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v4.0.0 (2025-11-26)
 
 - BREAKING: The markdown editor and renderer for post content has been replaced with Trix, a WYSIWYG editor. This allows for easier post creation while still providing powerful rendering capabilities. This does mean however that all previous post content may not render properly when upgrading as it may contain markdown while the new Trix editor saves HTML to the DB. It's recommended to script a markdown to HTML content replacer for your DB content if there are many blog posts or simply go edit and adjust each post one-by-one after upgrading to correct the rendered content. Due to the stylistic choices of everyone's writing and layout, providing a tool to do this is not viable.
   - Pasting an image link (eg: from the image library) will render the image inline
@@ -8,7 +8,7 @@
   - Pasting a block of code with single or triple backticks will render code blocks and inline code
 - Bumps Docker image
   - PHP 8.5
-  - Now uses supervisord to start php/nginx
+  - Now uses supervisord to start php/nginx/email queue
 - Comment notifications are now sent via email to admins if the blog has comments enabled (closes #93)
 - Fixes various UI elements (layout, colors, etc)
 - Bumps dependencies
