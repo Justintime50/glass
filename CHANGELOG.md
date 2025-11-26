@@ -2,7 +2,10 @@
 
 ## Next Release
 
-- Bumps Docker image (now uses supervisord to start php/nginx)
+- Bumps Docker image
+  - PHP 8.5
+  - Now uses supervisord to start php/nginx
+- Bumps dependencies
 
 ## v3.3.0 (2025-07-04)
 
