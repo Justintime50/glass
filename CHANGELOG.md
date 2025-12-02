@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v4.1.0 (2025-12-02)
+
+- YouTube Shorts links can now be embedded
+
 ## v4.0.2 (2025-11-26)
 
 - Post previews strip additional non-human readable characters to provide a clean single statement on the beginning of the post
