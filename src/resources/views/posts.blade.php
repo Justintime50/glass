@@ -9,7 +9,7 @@
         @forelse($posts as $post)
             <div class="post-container-feed">
                 <a class="post-link"
-                   href="{{ strtolower(url('/' . str_replace(' ', '-', $post->user->name) . '/' . $post->slug)) }}">
+                   href="{{ strtolower(url('/' . str_replace(' ', '-', $post->user->name) . '/' . $post->slug) . '?page=' . request('page', 1)) }}">
                     <div class="banner-image-container">
                         @if (isset($post->image))
                             <img class="banner-image"

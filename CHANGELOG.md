@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v4.1.1 (2025-12-03)
+
+- The `Back to Posts` button now retains which page you came from to return you to the proper posts page
+- Code blocks now properly preserve newlines
+
 ## v4.1.0 (2025-12-02)
 
 - YouTube Shorts links can now be embedded

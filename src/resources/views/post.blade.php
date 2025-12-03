@@ -5,7 +5,7 @@
     <div class="post-content container">
 
         @if (Auth::check() && Auth::user()->role == 1)
-            <a class="btn btn-primary pa-inline-block" href="/posts">
+            <a class="btn btn-primary pa-inline-block" href="{{ url('/posts?page=' . request('page', 1)) }}">
                 <i class="bi bi-chevron-left"></i> Back to Posts
             </a>
             <a class="btn btn-primary pa-inline-block"

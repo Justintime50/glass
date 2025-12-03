@@ -13,7 +13,7 @@
         "pineapple-library": "^4.0",
         "sass": "^1.83",
         "trix": "^2.1",
-        "trix-tools": "^0.3.0",
+        "trix-tools": "^0.3.2",
         "vite": "^6.2"
     },
     "devDependencies": {
