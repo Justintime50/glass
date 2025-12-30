@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Bump dependencies
+
 ## v4.1.1 (2025-12-03)
 
 - The `Back to Posts` button now retains which page you came from to return you to the proper posts page
