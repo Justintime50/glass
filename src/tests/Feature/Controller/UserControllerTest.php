@@ -43,7 +43,7 @@ class UserControllerTest extends TestCase
     {
         $authedUser = User::find(1);
         $this->actingAs($authedUser);
-        $post = Post::factory()->create();
+        Post::factory()->create();
 
         $request = Request::create('/users', 'POST', [
             'name' => 'updated name',

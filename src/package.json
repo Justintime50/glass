@@ -18,7 +18,6 @@
     },
     "devDependencies": {
         "eslint": "^9.0",
-        "justintime50-styles": "0.7.0",
         "postcss-scss": "^4.0",
         "stylelint": "^16.12",
         "stylelint-config-standard": "^36.0"

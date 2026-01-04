@@ -1,5 +1,5 @@
 PHP_BIN := "bin"
-STYLES_DIR := "node_modules/justintime50-styles/src"
+STYLES_DIR := "vendor/justintime50/styles/src"
 PROJECT_NAME := "glass"
 DOCKER_CONTAINER_NAME := `docker ps --filter "name=glass" --format "{{.ID}}" | head -n 1`
 DOCKER_DB_CONTAINER_NAME := `docker ps --filter "name=glass-db" --format "{{.ID}}" | head -n 1`
