@@ -6,12 +6,9 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: extractions/setup-just@v3
-      - uses: shivammathur/setup-php@v2
+      - uses: justintime50/composite-actions/bootstrap-php@v1
         with:
           php-version: '8.5'
-      - run: docker network create traefik
       - name: Setup Docker container
         run: |
           cd src
@@ -20,14 +17,9 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: extractions/setup-just@v3
-      - uses: shivammathur/setup-php@v2
+      - uses: justintime50/composite-actions/bootstrap-php@v1
         with:
           php-version: '8.5'
-      - uses: actions/setup-node@v6
-        with:
-          node-version: '24'
       - name: Lint project
         run: |
           cd src
@@ -36,12 +28,9 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: extractions/setup-just@v3
-      - uses: shivammathur/setup-php@v2
+      - uses: justintime50/composite-actions/bootstrap-php@v1
         with:
           php-version: '8.5'
-          coverage: xdebug
       - name: Generate coverage report
         run: |
           cd src
