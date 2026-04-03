@@ -2,6 +2,7 @@
 
 ## Next Release
 
+- Upgrade to Laravel 13
 - Bump dependencies
 
 ## v4.1.1 (2025-12-03)

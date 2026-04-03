@@ -9,17 +9,17 @@
         "bootstrap": "^5.3",
         "bootstrap-icons": "^1.11",
         "highlight.js": "^11.10",
-        "laravel-vite-plugin": "^1.1",
+        "laravel-vite-plugin": "^3.0",
         "pineapple-library": "^4.0",
-        "sass": "^1.83",
+        "sass": "^1.98",
         "trix": "^2.1",
         "trix-tools": "^0.3.2",
-        "vite": "^6.2"
+        "vite": "^8.0"
     },
     "devDependencies": {
         "eslint": "^9.0",
         "postcss-scss": "^4.0",
-        "stylelint": "^16.12",
-        "stylelint-config-standard": "^36.0"
+        "stylelint": "^17.4",
+        "stylelint-config-standard": "^40.0"
     }
 }
