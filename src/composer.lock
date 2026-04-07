@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f79834ed86067824682ce01397de5dc0",
+    "content-hash": "df9f912a91fec24da643aad54a03f5b7",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -126,16 +126,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.376.2",
+            "version": "3.376.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "ff2f61f280fc46081a1fbb7ae201a09f431d436d"
+                "reference": "fe7773b1e069a45aa74e09cdd65219af6039ff6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/ff2f61f280fc46081a1fbb7ae201a09f431d436d",
-                "reference": "ff2f61f280fc46081a1fbb7ae201a09f431d436d",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/fe7773b1e069a45aa74e09cdd65219af6039ff6b",
+                "reference": "fe7773b1e069a45aa74e09cdd65219af6039ff6b",
                 "shasum": ""
             },
             "require": {
@@ -217,9 +217,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.376.2"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.376.4"
             },
-            "time": "2026-04-02T18:09:03+00:00"
+            "time": "2026-04-06T18:18:41+00:00"
         },
         {
             "name": "brick/math",
@@ -1474,16 +1474,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v13.3.0",
+            "version": "v13.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "118b7063c44a2f3421d1646f5ddf08defcfd1db3"
+                "reference": "912de244f88a69742b76e8a2807f6765947776da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/118b7063c44a2f3421d1646f5ddf08defcfd1db3",
-                "reference": "118b7063c44a2f3421d1646f5ddf08defcfd1db3",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/912de244f88a69742b76e8a2807f6765947776da",
+                "reference": "912de244f88a69742b76e8a2807f6765947776da",
                 "shasum": ""
             },
             "require": {
@@ -1692,7 +1692,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2026-04-01T15:39:53+00:00"
+            "time": "2026-04-07T13:38:26+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -1755,16 +1755,16 @@
         },
         {
             "name": "laravel/serializable-closure",
-            "version": "v2.0.10",
+            "version": "v2.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/serializable-closure.git",
-                "reference": "870fc81d2f879903dfc5b60bf8a0f94a1609e669"
+                "reference": "d1af40ac4a6ccc12bd062a7184f63c9995a63bdd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/870fc81d2f879903dfc5b60bf8a0f94a1609e669",
-                "reference": "870fc81d2f879903dfc5b60bf8a0f94a1609e669",
+                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/d1af40ac4a6ccc12bd062a7184f63c9995a63bdd",
+                "reference": "d1af40ac4a6ccc12bd062a7184f63c9995a63bdd",
                 "shasum": ""
             },
             "require": {
@@ -1812,7 +1812,7 @@
                 "issues": "https://github.com/laravel/serializable-closure/issues",
                 "source": "https://github.com/laravel/serializable-closure"
             },
-            "time": "2026-02-20T19:59:49+00:00"
+            "time": "2026-04-07T13:32:18+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2731,16 +2731,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "3.11.3",
+            "version": "3.11.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CarbonPHP/carbon.git",
-                "reference": "6a7e652845bb018c668220c2a545aded8594fbbf"
+                "reference": "e890471a3494740f7d9326d72ce6a8c559ffee60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CarbonPHP/carbon/zipball/6a7e652845bb018c668220c2a545aded8594fbbf",
-                "reference": "6a7e652845bb018c668220c2a545aded8594fbbf",
+                "url": "https://api.github.com/repos/CarbonPHP/carbon/zipball/e890471a3494740f7d9326d72ce6a8c559ffee60",
+                "reference": "e890471a3494740f7d9326d72ce6a8c559ffee60",
                 "shasum": ""
             },
             "require": {
@@ -2832,7 +2832,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-11T17:23:39+00:00"
+            "time": "2026-04-07T09:57:54+00:00"
         },
         {
             "name": "nette/schema",
@@ -4074,16 +4074,16 @@
         },
         {
             "name": "sentry/sentry-laravel",
-            "version": "4.24.0",
+            "version": "4.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-laravel.git",
-                "reference": "f823bd85e38e06cb4f1b7a82d48a2fc95320b31d"
+                "reference": "6699c9465df6bee07d82279f7a209db941913456"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-laravel/zipball/f823bd85e38e06cb4f1b7a82d48a2fc95320b31d",
-                "reference": "f823bd85e38e06cb4f1b7a82d48a2fc95320b31d",
+                "url": "https://api.github.com/repos/getsentry/sentry-laravel/zipball/6699c9465df6bee07d82279f7a209db941913456",
+                "reference": "6699c9465df6bee07d82279f7a209db941913456",
                 "shasum": ""
             },
             "require": {
@@ -4149,7 +4149,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-laravel/issues",
-                "source": "https://github.com/getsentry/sentry-laravel/tree/4.24.0"
+                "source": "https://github.com/getsentry/sentry-laravel/tree/4.25.0"
             },
             "funding": [
                 {
@@ -4161,7 +4161,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2026-03-24T10:33:54+00:00"
+            "time": "2026-04-07T12:55:27+00:00"
         },
         {
             "name": "symfony/clock",
@@ -7599,21 +7599,21 @@
         },
         {
             "name": "justintime50/phpcs-short-scalar-types",
-            "version": "0.3.0",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Justintime50/phpcs-short-scalar-types.git",
-                "reference": "f1958ade51c25f4b42744810a36a5630ea5bf567"
+                "reference": "3a8d404e8bfd651554b8fa136621cd1ebffb72c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Justintime50/phpcs-short-scalar-types/zipball/f1958ade51c25f4b42744810a36a5630ea5bf567",
-                "reference": "f1958ade51c25f4b42744810a36a5630ea5bf567",
+                "url": "https://api.github.com/repos/Justintime50/phpcs-short-scalar-types/zipball/3a8d404e8bfd651554b8fa136621cd1ebffb72c6",
+                "reference": "3a8d404e8bfd651554b8fa136621cd1ebffb72c6",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.0",
-                "squizlabs/php_codesniffer": ">=3.0"
+                "php": ">=7.2",
+                "squizlabs/php_codesniffer": ">=4.0"
             },
             "type": "phpcodesniffer-standard",
             "autoload": {
@@ -7634,7 +7634,7 @@
             "description": "PHPCS sniff to enforce short scalar type names in comments (bool, int, etc.)",
             "support": {
                 "issues": "https://github.com/Justintime50/phpcs-short-scalar-types/issues",
-                "source": "https://github.com/Justintime50/phpcs-short-scalar-types/tree/v0.3.0"
+                "source": "https://github.com/Justintime50/phpcs-short-scalar-types/tree/v1.0.0"
             },
             "funding": [
                 {
@@ -7642,26 +7642,26 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-01-04T06:12:53+00:00"
+            "time": "2026-03-18T19:15:25+00:00"
         },
         {
             "name": "justintime50/styles",
-            "version": "0.11.4",
+            "version": "0.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Justintime50/styles.git",
-                "reference": "d592e378a10fbf8a6d8f46b1c6b1e12c4333206a"
+                "reference": "d230fa845ee601863b119c2e9df06e49d58a4866"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Justintime50/styles/zipball/d592e378a10fbf8a6d8f46b1c6b1e12c4333206a",
-                "reference": "d592e378a10fbf8a6d8f46b1c6b1e12c4333206a",
+                "url": "https://api.github.com/repos/Justintime50/styles/zipball/d230fa845ee601863b119c2e9df06e49d58a4866",
+                "reference": "d230fa845ee601863b119c2e9df06e49d58a4866",
                 "shasum": ""
             },
             "require": {
-                "justintime50/phpcs-short-scalar-types": "^0.3.0",
+                "justintime50/phpcs-short-scalar-types": "^1.0.0",
                 "php": "^8.0",
-                "slevomat/coding-standard": "^8.18"
+                "slevomat/coding-standard": "^8.28"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -7677,8 +7677,7 @@
             "description": "A collection of style guides and best practices used for my projects and teams.",
             "homepage": "https://github.com/Justintime50/styles",
             "support": {
-                "issues": "https://github.com/Justintime50/styles/issues",
-                "source": "https://github.com/Justintime50/styles/tree/v0.11.4"
+                "source": "https://github.com/Justintime50/styles/tree/v0.13.0"
             },
             "funding": [
                 {
@@ -7686,7 +7685,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-01-04T06:15:14+00:00"
+            "time": "2026-04-07T18:13:03+00:00"
         },
         {
             "name": "larastan/larastan",
@@ -7923,16 +7922,16 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v8.9.2",
+            "version": "v8.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "6eb16883e74fd725ac64dbe81544c961ab448ba5"
+                "reference": "b0d8ab95b29c3189aeeb902d81215231df4c1b64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/6eb16883e74fd725ac64dbe81544c961ab448ba5",
-                "reference": "6eb16883e74fd725ac64dbe81544c961ab448ba5",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/b0d8ab95b29c3189aeeb902d81215231df4c1b64",
+                "reference": "b0d8ab95b29c3189aeeb902d81215231df4c1b64",
                 "shasum": ""
             },
             "require": {
@@ -8015,7 +8014,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2026-03-31T21:51:27+00:00"
+            "time": "2026-04-06T19:25:53+00:00"
         },
         {
             "name": "phar-io/manifest",

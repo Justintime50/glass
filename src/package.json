@@ -8,6 +8,7 @@
         "@sindresorhus/slugify": "^1.1",
         "bootstrap": "^5.3",
         "bootstrap-icons": "^1.11",
+        "globals": "^17.4.0",
         "highlight.js": "^11.10",
         "laravel-vite-plugin": "^3.0",
         "pineapple-library": "^4.0",
@@ -17,7 +18,8 @@
         "vite": "^8.0"
     },
     "devDependencies": {
-        "eslint": "^9.0",
+        "@eslint/js": "^10.0",
+        "eslint": "^10.0",
         "postcss-scss": "^4.0",
         "stylelint": "^17.4",
         "stylelint-config-standard": "^40.0"
