@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## Next Release
+## v4.2.0 (2026-04-25)
 
 - Upgrade to Laravel 13
+- Add `cache` DB table
 - Bump dependencies
 
 ## v4.1.1 (2025-12-03)
