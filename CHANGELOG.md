@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Bumped deps
+
 ## v4.2.0 (2026-04-25)
 
 - Upgrade to Laravel 13
