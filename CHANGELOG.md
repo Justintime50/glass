@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## Next Release
+## v4.3.0 (2026-07-30)
 
+- Replaces custom image integration to use Laravel's new native image manipulation (should improve image upload edge cases and speeds)
 - Bumped deps
 
 ## v4.2.0 (2026-04-25)

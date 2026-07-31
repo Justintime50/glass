@@ -10,9 +10,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Image as ImageFacade;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
-use Intervention\Image\ImageManager;
 
 class UserController extends Controller
 {
@@ -89,22 +89,19 @@ class UserController extends Controller
             $file = $request->file('image');
             $filename = ImageController::sanatizeImageFilename($file);
             $subdirectory = ImageController::$avatarImagesSubdirectory;
-            $temporaryPath = sys_get_temp_dir() . '/' . $filename;
-            ImageManager::gd()
-                ->read($file)
+            $imageContents = ImageFacade::fromUpload($file)
                 ->resize(150, 150)
-                ->save($temporaryPath);
+                ->toBytes();
 
             if (config('filesystems.default') === 's3') {
                 $s3Path = ImageController::$imagesDir . "/$subdirectory/$filename";
                 if (config('filesystems.disks.s3.path_prefix') !== null) {
                     $s3Path = config('filesystems.disks.s3.path_prefix') . '/' . $s3Path;
                 }
-                Storage::disk('s3')->put($s3Path, file_get_contents($temporaryPath));
-                unlink($temporaryPath);
+                Storage::disk('s3')->put($s3Path, $imageContents);
             } else {
                 $localPath = ImageController::getImagePublicPath($subdirectory, $filename);
-                rename($temporaryPath, $localPath);
+                file_put_contents($localPath, $imageContents);
             }
 
             $image = new Image();

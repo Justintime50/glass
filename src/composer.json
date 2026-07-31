@@ -9,7 +9,7 @@
     "require": {
         "php": "^8.5",
         "anhskohbo/no-captcha": "^3.8",
-        "intervention/image": "^3.11",
+        "intervention/image": "^4.0",
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
         "laravel/ui": "^4.6",

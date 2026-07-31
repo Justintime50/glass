@@ -8,8 +8,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Image as ImageFacade;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManager;
 
 class ImageController extends Controller
 {
@@ -51,19 +51,17 @@ class ImageController extends Controller
             $file = $request->file('image');
             $filename = self::sanatizeImageFilename($file);
             $subdirectory = self::$postImagesSubdirectory;
-            $temporaryPath = sys_get_temp_dir() . '/' . $filename;
-            ImageManager::gd()->read($file)->save($temporaryPath);
+            $imageContents = ImageFacade::fromUpload($file)->toBytes();
 
             if (config('filesystems.default') === 's3') {
                 $s3Path = self::$imagesDir . "/$subdirectory/$filename";
                 if (config('filesystems.disks.s3.path_prefix') !== null) {
                     $s3Path = config('filesystems.disks.s3.path_prefix') . '/' . $s3Path;
                 }
-                Storage::disk('s3')->put($s3Path, file_get_contents($temporaryPath));
-                unlink($temporaryPath);
+                Storage::disk('s3')->put($s3Path, $imageContents);
             } else {
                 $localPath = self::getImagePublicPath($subdirectory, $filename);
-                rename($temporaryPath, $localPath);
+                file_put_contents($localPath, $imageContents);
             }
 
             $image = new Image();
