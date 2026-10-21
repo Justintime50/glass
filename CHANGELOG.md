@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v4.3.1 (2026-10-21)
+
+- Bumps PHP to patch critical vulnerabilities:
+  - `CVE-2026-109618` [GHSA-w8hw-w9fx-j79w](https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w)
+  - `CVE-2026-109619` [GHSA-6wmf-4rv5-p3rp](https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp)
+- Bumps NPM and Composer deps
+
 ## v4.3.0 (2026-07-30)
 
 - Replaces custom image integration to use Laravel's new native image manipulation (should improve image upload edge cases and speeds)
